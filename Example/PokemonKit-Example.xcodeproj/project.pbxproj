@@ -220,6 +220,7 @@
 				TargetAttributes = {
 					7412E0151D58E3B30086DD94 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Q8N5TWD49X;
 						LastSwiftMigration = 0810;
 					};
 					7412E0291D58E3B30086DD94 = {
@@ -486,10 +487,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "PokemonKit-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "test.prismatic-games.PokemonKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -501,10 +502,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "PokemonKit-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "test.prismatic-games.PokemonKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
