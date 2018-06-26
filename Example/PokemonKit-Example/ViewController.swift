@@ -15,26 +15,24 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        PokemonKit.fetchBerryList()
-            .then { berryList in
+        PokemonKit.fetchBerryList() { result in
+            switch result {
+            case .success(let berryList):
                 print(berryList)
-            }.catch { error in
-                print(error)
+            case .failure(let error):
+            print(error.message)
+            }
         }
         
-        PokemonKit.fetchBerry("1")
-            .then { berryInfo in
-                print(berryInfo.name!)
-            }.catch {error in
-                print(error)
+        PokemonKit.fetchBerry("1") { result in
+            switch result {
+            case .success(let berryInfo):
+                print(berryInfo.name)
+            case .failure(let error):
+                print(error.message)
+            }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
