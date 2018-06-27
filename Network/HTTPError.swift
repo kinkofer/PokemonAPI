@@ -129,18 +129,4 @@ import Foundation
     public convenience init(from nsError: NSError) {
         self.init(type: .httpError, code: nsError.code, description: nsError.localizedDescription)
     }
-    
-    
-    /// Returns a default alert controller with a user friendly message
-    public var alert: UIAlertController {
-        var message = self.message
-        
-        #if DEBUG
-        message.append("\n\n\(type.debugDescription)")
-        #endif
-        
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:nil))
-        return alert
-    }
 }
