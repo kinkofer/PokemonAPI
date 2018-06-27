@@ -20,7 +20,7 @@ class Network: NSObject {
     
     
     /**
-     Creates a URLRequest sending and receiving JSON by default.
+     Creates a URLRequest receiving JSON by default.
      
      - parameter url: The RESTful URL
      - parameter method: A RESTful HTTP request method
@@ -32,7 +32,6 @@ class Network: NSObject {
         
         request.httpMethod = method.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         return request
     }

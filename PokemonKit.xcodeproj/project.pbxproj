@@ -47,6 +47,10 @@
 		59DA03DD20E2909E00D98471 /* Data+JSONPretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */; };
 		59DA03DE20E2909E00D98471 /* Data+JSONPretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */; };
 		59DA03DF20E2909E00D98471 /* Data+JSONPretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */; };
+		59DA03E320E3681D00D98471 /* Berries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03E220E3681D00D98471 /* Berries.swift */; };
+		59DA03E420E3681D00D98471 /* Berries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03E220E3681D00D98471 /* Berries.swift */; };
+		59DA03E520E3681D00D98471 /* Berries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03E220E3681D00D98471 /* Berries.swift */; };
+		59DA03E620E3681D00D98471 /* Berries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03E220E3681D00D98471 /* Berries.swift */; };
 		74B038071D56714D00F48B92 /* PokemonKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B038061D56714D00F48B92 /* PokemonKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B0380E1D56714D00F48B92 /* PokemonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B038031D56714D00F48B92 /* PokemonKit.framework */; };
 		74B038131D56714D00F48B92 /* PokemonKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B038121D56714D00F48B92 /* PokemonKitTests.swift */; };
@@ -136,6 +140,7 @@
 		59DA03B220E27F7A00D98471 /* Decodable+Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Decodable+Decode.swift"; path = "Utilities/Decodable+Decode.swift"; sourceTree = "<group>"; };
 		59DA03D320E27FD300D98471 /* HTTPError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPError.swift; path = Network/HTTPError.swift; sourceTree = "<group>"; };
 		59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Data+JSONPretty.swift"; path = "Utilities/Data+JSONPretty.swift"; sourceTree = "<group>"; };
+		59DA03E220E3681D00D98471 /* Berries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Berries.swift; path = Classes/Berries.swift; sourceTree = "<group>"; };
 		74B038031D56714D00F48B92 /* PokemonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PokemonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B038061D56714D00F48B92 /* PokemonKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokemonKit.h; sourceTree = "<group>"; };
 		74B038081D56714D00F48B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -290,6 +295,7 @@
 		74B038211D5672B300F48B92 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				59DA03E220E3681D00D98471 /* Berries.swift */,
 				74B0381F1D5672B000F48B92 /* PokemonKit.swift */,
 			);
 			name = Classes;
@@ -645,6 +651,7 @@
 				59DA03BF20E27FA300D98471 /* HTTPHeader.swift in Sources */,
 				74B038201D5672B000F48B92 /* PokemonKit.swift in Sources */,
 				59DA03CB20E27FB000D98471 /* Pagination.swift in Sources */,
+				59DA03E320E3681D00D98471 /* Berries.swift in Sources */,
 				59DA03C720E27FAC00D98471 /* Network.swift in Sources */,
 				59DA03D420E27FD300D98471 /* HTTPError.swift in Sources */,
 				59DA03BB20E27F7A00D98471 /* Decodable+Decode.swift in Sources */,
@@ -671,6 +678,7 @@
 				59DA03C020E27FA400D98471 /* HTTPHeader.swift in Sources */,
 				74B038671D5678C400F48B92 /* PokemonKit.swift in Sources */,
 				59DA03CC20E27FB100D98471 /* Pagination.swift in Sources */,
+				59DA03E420E3681D00D98471 /* Berries.swift in Sources */,
 				59DA03C820E27FAC00D98471 /* Network.swift in Sources */,
 				59DA03D520E27FD300D98471 /* HTTPError.swift in Sources */,
 				59DA03BC20E27F7A00D98471 /* Decodable+Decode.swift in Sources */,
@@ -689,6 +697,7 @@
 				59DA03C120E27FA400D98471 /* HTTPHeader.swift in Sources */,
 				74B038691D5678CA00F48B92 /* PokemonKit.swift in Sources */,
 				59DA03CD20E27FB100D98471 /* Pagination.swift in Sources */,
+				59DA03E520E3681D00D98471 /* Berries.swift in Sources */,
 				59DA03C920E27FAD00D98471 /* Network.swift in Sources */,
 				59DA03D620E27FD300D98471 /* HTTPError.swift in Sources */,
 				59DA03BD20E27F7A00D98471 /* Decodable+Decode.swift in Sources */,
@@ -715,6 +724,7 @@
 				59DA03C220E27FA500D98471 /* HTTPHeader.swift in Sources */,
 				74B038681D5678C500F48B92 /* PokemonKit.swift in Sources */,
 				59DA03CE20E27FB200D98471 /* Pagination.swift in Sources */,
+				59DA03E620E3681D00D98471 /* Berries.swift in Sources */,
 				59DA03CA20E27FAD00D98471 /* Network.swift in Sources */,
 				59DA03D720E27FD300D98471 /* HTTPError.swift in Sources */,
 				59DA03BE20E27F7A00D98471 /* Decodable+Decode.swift in Sources */,
@@ -917,7 +927,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darkcl.PokemonKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -930,7 +940,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darkcl.PokemonKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -1046,6 +1056,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Debug;
@@ -1059,6 +1070,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Release;

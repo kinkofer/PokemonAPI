@@ -20,16 +20,9 @@
     "watchos": "2.0"
   },
   "requires_arc": true,
-  "source_files": "Classes/**/*",
-  "dependencies": {
-    "Alamofire": [
-      "~> 4.2"
-    ],
-    "AlamofireObjectMapper": [
-      "~> 4.0"
-    ],
-    "PromiseKit": [
-      "~> 4.0"
-    ]
-  }
+  "source_files": [
+    "Classes/**/*",
+    "Network/**/*",
+    "Utilities/**/*"
+  ]
 }

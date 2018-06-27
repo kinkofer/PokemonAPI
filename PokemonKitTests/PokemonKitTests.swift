@@ -58,6 +58,23 @@ class PokemonKitTests: XCTestCase {
         }
     }
     
+    func testFetchingEvolutionChain() {
+        let asyncExpectation = expectation(description: "Fetch Evo Chains")
+        PokemonKit.fetchEvolutionChains() { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
+                asyncExpectation.fulfill();
+            }
+        }
+        
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
+            XCTAssertNil(err, "Something went wrong")
+        }
+    }
+    
     func testFetchingEvolution() {
         let asyncExpectation = expectation(description: "Fetch Evo Chain")
         PokemonKit.fetchEvolutionChain("1") { result in

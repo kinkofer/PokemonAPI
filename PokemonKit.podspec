@@ -35,7 +35,7 @@ PokemonKit use Alamofire web requests handling.
 
   s.requires_arc = true
 
-  s.source_files = 'Classes/**/*'
+  s.source_files = 'Classes/**/*', 'Network/**/*', 'Utilities/**/*'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

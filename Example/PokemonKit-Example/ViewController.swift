@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         PokemonKit.fetchBerry("1") { result in
             switch result {
             case .success(let berryInfo):
-                print(berryInfo.name)
+                print(berryInfo.name!)
             case .failure(let error):
                 print(error.message)
             }
