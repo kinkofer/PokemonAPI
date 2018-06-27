@@ -20,10 +20,10 @@ class ViewController: UIViewController {
             case .success(let berryList):
                 print(berryList)
             case .failure(let error):
-            print(error.message)
+                print(error.message)
             }
         }
-
+        
         PokemonKit.fetchBerry("1") { result in
             switch result {
             case .success(let berryInfo):
