@@ -25,11 +25,14 @@ class PokemonKitTests: XCTestCase {
     func testFetchingBerries() {
         let asyncExpectation = expectation(description: "Fetch berries")
         
-        PokemonKit.fetchBerryList().then { response in
-            asyncExpectation.fulfill()
-        }.onError { err in
-            XCTFail("Should not failed with \(err)")
-            asyncExpectation.fulfill();
+        PokemonKit.fetchBerryList() { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
+                asyncExpectation.fulfill();
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -40,14 +43,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFectingBerryInfo() {
         let asyncExpectation = expectation(description: "Fetch berries")
-        PokemonKit.fetchBerry("1")
-            .then { response  -> Void in
-                XCTAssertNotNil(response);
+        PokemonKit.fetchBerry("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
             }
-            .onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -57,14 +60,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchingEvolution() {
         let asyncExpectation = expectation(description: "Fetch Evo Chain")
-        PokemonKit.fetchEvolutionChain("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
+        PokemonKit.fetchEvolutionChain("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -74,14 +77,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchVersionGroup() {
         let asyncExpectation = expectation(description: "Fetch Version Group")
-        PokemonKit.fetchVersionGroup("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
+        PokemonKit.fetchVersionGroup("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -89,16 +92,16 @@ class PokemonKitTests: XCTestCase {
         }
     }
     
-    func testFetchitem() {
+    func testFetchItem() {
         let asyncExpectation = expectation(description: "Fetch Item")
-        PokemonKit.fetchItem("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
+        PokemonKit.fetchItem("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -106,16 +109,16 @@ class PokemonKitTests: XCTestCase {
         }
     }
     
-    func testFetchitemAttr() {
+    func testFetchItemAttr() {
         let asyncExpectation = expectation(description: "Fetch Item Attr")
-        PokemonKit.fetchItemAttribute("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
+        PokemonKit.fetchItemAttribute("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -123,16 +126,16 @@ class PokemonKitTests: XCTestCase {
         }
     }
     
-    func testFetchitemCategory() {
+    func testFetchItemCategory() {
         let asyncExpectation = expectation(description: "Fetch Item Category")
-        PokemonKit.fetchItemCategory("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
+        PokemonKit.fetchItemCategory("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -140,16 +143,16 @@ class PokemonKitTests: XCTestCase {
         }
     }
     
-    func testFetchitemFlingEffect() {
+    func testFetchItemFlingEffect() {
         let asyncExpectation = expectation(description: "Fetch Item Fling Effect")
-        PokemonKit.fetchItemFlingEffect("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
+        PokemonKit.fetchItemFlingEffect("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -159,14 +162,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchItemPocket() {
         let asyncExpectation = expectation(description: "Fetch Item Pocket")
-        PokemonKit.fetchItemPocket("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
+        PokemonKit.fetchItemPocket("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -176,15 +179,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMove() {
         let asyncExpectation = expectation(description: "Fetch Move")
-        PokemonKit.fetchMove("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchMove("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -194,15 +196,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveAilment() {
         let asyncExpectation = expectation(description: "Fetch Move Ailment")
-        PokemonKit.fetchMoveAilment("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchMoveAilment("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -212,15 +213,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveBattleStyle() {
         let asyncExpectation = expectation(description: "Fetch Move Battle Style")
-        PokemonKit.fetchMoveBattleStyle("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchMoveBattleStyle("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -230,15 +230,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveCategory() {
         let asyncExpectation = expectation(description: "Fetch move category")
-        PokemonKit.fetchMoveCategory("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchMoveCategory("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -248,15 +247,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveDamageClass() {
         let asyncExpectation = expectation(description: "Fetch move damage class")
-        PokemonKit.fetchMoveDamageClass("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchMoveDamageClass("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -266,15 +264,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveLearnMethod() {
         let asyncExpectation = expectation(description: "Fetch move learn method")
-        PokemonKit.fetchMoveLearnMethod("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchMoveLearnMethod("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -284,15 +281,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveTarget() {
         let asyncExpectation = expectation(description: "Fetch move target")
-        PokemonKit.fetchMoveTarget("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchMoveTarget("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -302,15 +298,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchLocation() {
         let asyncExpectation = expectation(description: "Fetch location")
-        PokemonKit.fetchLocation("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchLocation("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -320,15 +315,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchLocationArea() {
         let asyncExpectation = expectation(description: "Fetch location area")
-        PokemonKit.fetchLocationArea("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchLocationArea("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -338,15 +332,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPalPark() {
         let asyncExpectation = expectation(description: "Fetch pal park area")
-        PokemonKit.fetchPalParkArea("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchPalParkArea("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -356,15 +349,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchRegion() {
         let asyncExpectation = expectation(description: "Fetch Region")
-        PokemonKit.fetchRegion("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchRegion("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -374,15 +366,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchAbility() {
         let asyncExpectation = expectation(description: "Fetch Ability")
-        PokemonKit.fetchAbility("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchAbility("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -392,15 +383,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchCharacteristic() {
         let asyncExpectation = expectation(description: "Fetch Ability")
-        PokemonKit.fetchCharacteristic("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchCharacteristic("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -410,15 +400,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchEggGroup() {
         let asyncExpectation = expectation(description: "Fetch Egg Group")
-        PokemonKit.fetchEggGroup("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchEggGroup("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -428,15 +417,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchGender() {
         let asyncExpectation = expectation(description: "Fetch Gender")
-        PokemonKit.fetchGender("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchGender("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -446,15 +434,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchGrowthRate() {
         let asyncExpectation = expectation(description: "Fetch Growth Rate")
-        PokemonKit.fetchGrowthRate("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchGrowthRate("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -464,15 +451,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchNature() {
         let asyncExpectation = expectation(description: "Fetch Nature")
-        PokemonKit.fetchNature("2")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchNature("2") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -482,15 +468,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokeathlonStat() {
         let asyncExpectation = expectation(description: "Fetch Pokeathlon Stat")
-        PokemonKit.fetchPokeathlonStat("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchPokeathlonStat("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -500,15 +485,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemon() {
         let asyncExpectation = expectation(description: "Fetch Pokemon")
-        PokemonKit.fetchPokemon("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchPokemon("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -518,15 +502,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonColor() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Color")
-        PokemonKit.fetchPokemonColor("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchPokemonColor("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -536,15 +519,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonForm() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Form")
-        PokemonKit.fetchPokemonForm("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchPokemonForm("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -554,15 +536,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonHabitat() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Habitat")
-        PokemonKit.fetchPokemonHabitat("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchPokemonHabitat("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -572,15 +553,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonShape() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Shape")
-        PokemonKit.fetchPokemonShape("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchPokemonShape("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -590,15 +570,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonSpecies() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Species")
-        PokemonKit.fetchPokemonSpecies("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchPokemonSpecies("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -608,15 +587,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonStat() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Stat")
-        PokemonKit.fetchStat("2")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchStat("2") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -626,15 +604,14 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonType() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Type")
-        PokemonKit.fetchType("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchType("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in
@@ -644,15 +621,14 @@ class PokemonKitTests: XCTestCase {
     
     func testLanguage() {
         let asyncExpectation = expectation(description: "Fetch Language")
-        PokemonKit.fetchLanguage("1")
-            .then{ response -> Void in
-                XCTAssertNotNil(response);
-                
+        PokemonKit.fetchLanguage("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
                 asyncExpectation.fulfill();
-            }.onError { err in
-                XCTFail("Should not failed with \(err)")
-                asyncExpectation.fulfill();
-                
+            }
         }
         
         self.waitForExpectations(timeout: 30) { (err) -> Void in

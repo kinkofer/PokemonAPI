@@ -104,11 +104,11 @@
 		7412E0181D58E3B30086DD94 /* PokemonKit-Example */ = {
 			isa = PBXGroup;
 			children = (
-				7412E0191D58E3B30086DD94 /* AppDelegate.swift */,
-				7412E01B1D58E3B30086DD94 /* ViewController.swift */,
-				7412E01D1D58E3B30086DD94 /* Main.storyboard */,
 				7412E0201D58E3B30086DD94 /* Assets.xcassets */,
 				7412E0221D58E3B30086DD94 /* LaunchScreen.storyboard */,
+				7412E01D1D58E3B30086DD94 /* Main.storyboard */,
+				7412E0191D58E3B30086DD94 /* AppDelegate.swift */,
+				7412E01B1D58E3B30086DD94 /* ViewController.swift */,
 				7412E0251D58E3B30086DD94 /* Info.plist */,
 			);
 			path = "PokemonKit-Example";

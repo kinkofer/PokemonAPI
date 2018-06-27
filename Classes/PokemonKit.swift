@@ -39,6 +39,7 @@ open class PKMLanguage: Codable {
     open var names: [PKMName]?
 }
 
+
 /// Pokemon Type
 open class PKMTypePokemon: Codable {
     
@@ -49,8 +50,9 @@ open class PKMTypePokemon: Codable {
     open var pokemon: PKMNamedAPIResource?
 }
 
+
 /// Pokemon Type Relations
-open class PKMTypeRelations: Codable {
+open class PKMTypeRelations: Codable, SelfDecodable {
     
     /// A list of types this type has no effect on
     open var noDamageTo: [PKMNamedAPIResource]?
@@ -70,15 +72,16 @@ open class PKMTypeRelations: Codable {
     /// A list of types that are very effective against this type
     open var doubleDamageFrom: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Types are properties for Pokémon and their moves. Each type has three properties: which types of Pokémon it is super effective against, which types of Pokémon it is not very effective against, and which types of Pokémon it is completely ineffective against.
-open class PKMType: Codable {
+open class PKMType: Codable, SelfDecodable {
     
     /// The identifier for this type resource
     open var id: Int?
@@ -107,7 +110,7 @@ open class PKMType: Codable {
     /// A list of moves that have this type
     open var moves: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -127,7 +130,7 @@ open class PKMNatureStatAffectSets: Codable {
 
 
 /// Nature Stat Affect
-open class PKMNatureStatAffect: Codable {
+open class PKMNatureStatAffect: Codable, SelfDecodable {
     
     /// The maximum amount of change to the referenced stat
     open var maxChange: Int?
@@ -135,15 +138,16 @@ open class PKMNatureStatAffect: Codable {
     /// The nature causing the change
     open var nature: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Move Stat Affect
-open class PKMMoveStatAffect: Codable {
+open class PKMMoveStatAffect: Codable, SelfDecodable {
     
     /// The maximum amount of change to the referenced stat
     open var maxChange: Int?
@@ -151,12 +155,13 @@ open class PKMMoveStatAffect: Codable {
     /// The move causing the change
     open var move: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Move Stat Affect Sets
 open class PKMMoveStatAffectSets: Codable {
@@ -168,8 +173,9 @@ open class PKMMoveStatAffectSets: Codable {
     open var decrease: [PKMMoveStatAffect]?
 }
 
+
 /// Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.
-open class PKMStat: Codable {
+open class PKMStat: Codable, SelfDecodable {
     
     /// The identifier for this stat resource
     open var id: Int?
@@ -198,15 +204,16 @@ open class PKMStat: Codable {
     /// The name of this region listed in different languages
     open var names: [PKMName]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Pokemon Species Dex Entry
-open class PKMPokemonSpeciesDexEntry: Codable {
+open class PKMPokemonSpeciesDexEntry: Codable, SelfDecodable {
     
     /// The index number within the Pokédex
     open var entryNumber: Int?
@@ -214,15 +221,16 @@ open class PKMPokemonSpeciesDexEntry: Codable {
     /// The Pokédex the referenced Pokémon species can be found in
     open var name: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// PalPark Encounter Area
-open class PKMPalParkEncounterArea: Codable {
+open class PKMPalParkEncounterArea: Codable, SelfDecodable {
     
     /// The base score given to the player when the referenced Pokémon is caught during a pal park run
     open var baseScore: Int?
@@ -233,15 +241,16 @@ open class PKMPalParkEncounterArea: Codable {
     /// The pal park area where this encounter happens
     open var area: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Pokemon Species Flavor Text
-open class PKMPokemonSpeciesFlavorText: Codable {
+open class PKMPokemonSpeciesFlavorText: Codable, SelfDecodable {
     
     /// The localized flavor text for an API resource in a specific language
     open var flavorText: String?
@@ -252,12 +261,13 @@ open class PKMPokemonSpeciesFlavorText: Codable {
     /// The version this flavor text entry is used in
     open var version: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Genus
 open class PKMGenus: Codable {
@@ -269,8 +279,9 @@ open class PKMGenus: Codable {
     open var language: PKMNamedAPIResource?
 }
 
+
 /// A Pokémon Species forms the basis for at least one Pokémon. Attributes of a Pokémon species are shared across all varieties of Pokémon within the species. A good example is Wormadam; Wormadam is the species which can be found in three different varieties, Wormadam-Trash, Wormadam-Sandy and Wormadam-Plant.
-open class PKMPokemonSpecies: Codable {
+open class PKMPokemonSpecies: Codable, SelfDecodable {
     
     /// The identifier for this Pokémon species resource
     open var id: Int?
@@ -347,15 +358,16 @@ open class PKMPokemonSpecies: Codable {
     /// A list of the Pokémon that exist within this Pokémon species
     open var varieties: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// An Awesome Name
-open class PKMAwesomeName: Codable {
+open class PKMAwesomeName: Codable, SelfDecodable {
     
     /// The localized "scientific" name for an API resource in a specific language
     open var awesomeName: String?
@@ -363,15 +375,16 @@ open class PKMAwesomeName: Codable {
     /// The language this "scientific" name is in
     open var language: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Shapes used for sorting Pokémon in a Pokédex.
-open class PKMPokemonShape: Codable {
+open class PKMPokemonShape: Codable, SelfDecodable {
     
     /// The identifier for this Pokémon shape
     open var id: Int?
@@ -388,15 +401,16 @@ open class PKMPokemonShape: Codable {
     /// A list of the Pokémon species that have this shape
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Habitats are generally different terrain Pokémon can be found in but can also be areas designated for rare or legendary Pokémon.
-open class PKMPokemonHabitat: Codable {
+open class PKMPokemonHabitat: Codable, SelfDecodable {
     
     /// The identifier for this Pokémon habitat resource
     open var id: Int?
@@ -410,15 +424,16 @@ open class PKMPokemonHabitat: Codable {
     /// A list of the Pokémon species that can be found in this habitat
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Pokemon Form Sprites
-open class PKMPokemonFormSprites: Codable {
+open class PKMPokemonFormSprites: Codable, SelfDecodable {
     
     /// The default depiction of this Pokémon form from the front in battle
     open var frontDefault: String?
@@ -432,15 +447,16 @@ open class PKMPokemonFormSprites: Codable {
     /// The shiny depiction of this Pokémon form from the back in battle
     open var backShiny: String?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Some Pokémon have the ability to take on different forms. At times, these differences are purely cosmetic and have no bearing on the difference in the Pokémon's stats from another; however, several Pokémon differ in stats (other than HP), type, and Ability depending on their form.
-open class PKMPokemonForm: Codable {
+open class PKMPokemonForm: Codable, SelfDecodable {
     
     /// The identifier for this Pokémon form resource
     open var id: Int?
@@ -475,15 +491,16 @@ open class PKMPokemonForm: Codable {
     /// The version group this Pokémon form was introduced in
     open var versionGroup: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Colors used for sorting Pokémon in a Pokédex. The color listed in the Pokédex is usually the color most apparent or covering each Pokémon's body. No orange category exists; Pokémon that are primarily orange are listed as red or brown.
-open class PKMPokemonColor: Codable {
+open class PKMPokemonColor: Codable, SelfDecodable {
     
     /// The identifier for this Pokémon color resource
     open var id: Int?
@@ -497,15 +514,16 @@ open class PKMPokemonColor: Codable {
     /// A list of the Pokémon species that have this color
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Version Game Index
-open class PKMVersionGameIndex: Codable {
+open class PKMVersionGameIndex: Codable, SelfDecodable {
     
     /// The internal id of an API resource within game data
     open var gameIndex: Int?
@@ -513,15 +531,16 @@ open class PKMVersionGameIndex: Codable {
     /// The version relevent to this game index
     open var version: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Pokemon Ability
-open class PKMPokemonAbility: Codable {
+open class PKMPokemonAbility: Codable, SelfDecodable {
     
     /// Whether or not this is a hidden ability
     open var isHidden: Bool?
@@ -532,31 +551,33 @@ open class PKMPokemonAbility: Codable {
     /// The ability the Pokémon may have
     open var ability: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Location Area Encounter
-open class PKMLocationAreaEncounter: Codable {
+open class PKMLocationAreaEncounter: Codable, SelfDecodable {
     
     /// The location area the referenced Pokémon can be encountered in
-    open var locationArea: PKMAPIResource?
+    open var locationArea: PKMNamedAPIResource?
     
     /// A list of versions and encounters with the referenced Pokémon that might happen
     open var versionDetails: [PKMVersionEncounterDetail]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Pokemon Sprites
-open class PKMPokemonSprites: Codable {
+open class PKMPokemonSprites: Codable, SelfDecodable {
     
     /// The default depiction of this Pokémon from the front in battle
     open var frontDefault: String?
@@ -582,12 +603,13 @@ open class PKMPokemonSprites: Codable {
     /// The shiny female depiction of this Pokémon from the back in battle
     open var backShinyFemale: String?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Pokemon Type
 open class PKMPokemonType: Codable {
@@ -596,11 +618,12 @@ open class PKMPokemonType: Codable {
     open var slot: Int?
     
     /// The type the referenced Pokémon has
-    open var type: String?
+    open var type: PKMNamedAPIResource?
 }
 
+
 /// Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. See Bulbapedia for greater detail.
-open class PKMPokemon: Codable {
+open class PKMPokemon: Codable, SelfDecodable {
     
     /// The identifier for this Pokémon resource
     open var id: Int?
@@ -609,7 +632,7 @@ open class PKMPokemon: Codable {
     open var name: String?
     
     /// The base experience gained for defeating this Pokémon
-    open var base_experience: Int?
+    open var baseExperience: Int?
     
     /// The height of this Pokémon
     open var height: Int?
@@ -628,40 +651,106 @@ open class PKMPokemon: Codable {
     
     /// A list of forms this Pokémon can take on
     open var forms: [PKMNamedAPIResource]?
-    
+
     /// A list of game indices relevent to Pokémon item by generation
     open var gameIndices: [PKMVersionGameIndex]?
-    
+
     /// A list of items this Pokémon may be holding when encountered
-    open var heldItems: [PKMNamedAPIResource]?
-    
+    open var heldItems: [PKMPokemonHeldItem]?
+
     /// A list of location areas as well as encounter details pertaining to specific versions
-    open var locationAreaEncounters: [PKMLocationAreaEncounter]?
-    
+    open var locationAreaEncounters: String?
+
     /// A list of moves along with learn methods and level details pertaining to specific version groups
-    open var moves: [PKMNamedAPIResource]?
-    
+    open var moves: [PKMPokemonMove]?
+
     /// A set of sprites used to depict this Pokémon in the game
     open var sprites: PKMPokemonSprites?
-    
+
     /// The species this Pokémon belongs to
     open var species: PKMNamedAPIResource?
-    
+
     /// A list of base stat values for this Pokémon
-    open var stats: [PKMNamedAPIResource]?
-    
+    open var stats: [PKMPokemonStat]?
+
     /// A list of details showing types this Pokémon has
     open var types: [PKMPokemonType]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
+/// Pokemon Held Item
+open class PKMPokemonHeldItem: Codable, SelfDecodable {
+    
+    /// The item the referenced Pokémon holds
+    open var item: PKMNamedAPIResource?
+    
+    /// The details of the different versions in which the item is held
+    open var versionDetails: [PKMPokemonHeldItemVersion]?
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+
+/// Pokemon Held Item Version
+open class PKMPokemonHeldItemVersion: Codable {
+    
+    /// The version in which the item is held
+    open var version: PKMNamedAPIResource?
+    
+    /// How often the item is held
+    open var rarity: Int?
+}
+
+
+/// Pokemon Move
+open class PKMPokemonMove: Codable, SelfDecodable {
+    
+    /// The move the Pokémon can learn
+    open var move: PKMNamedAPIResource?
+    
+    /// The details of the version in which the Pokémon can learn the move
+    open var versionGroupDetails: [PKMPokemonMoveVersion]?
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+
+/// Pokemon Move Version
+open class PKMPokemonMoveVersion: Codable, SelfDecodable {
+    
+    /// The method by which the move is learned
+    open var moveLearnMethod: PKMNamedAPIResource?
+    
+    /// The version group in which the move is learned
+    open var versionGroup: PKMNamedAPIResource?
+    
+    /// The version group in which the move is learned
+    open var levelLearnedAt: Int?
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+
 /// Nature Pokeathlon Stat Affect
-open class PKMNaturePokeathlonStatAffect: Codable {
+open class PKMNaturePokeathlonStatAffect: Codable, SelfDecodable {
     
     /// The maximum amount of change to the referenced Pokéathlon stat
     open var maxChange: Int?
@@ -669,12 +758,33 @@ open class PKMNaturePokeathlonStatAffect: Codable {
     /// The nature causing the change
     open var nature: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
+
+/// Pokemon Stat
+open class PKMPokemonStat: Codable, SelfDecodable {
+    
+    /// The stat the Pokémon has
+    open var stat: PKMNamedAPIResource?
+    
+    /// The effort points (EV) the Pokémon has in the stat
+    open var effort: Int?
+    
+    /// The base value of the stat
+    open var baseStat: Int?
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
 
 /// Nature Pokeathlon Stat Affect Sets
 open class PKMNaturePokeathlonStatAffectSets: Codable {
@@ -686,8 +796,9 @@ open class PKMNaturePokeathlonStatAffectSets: Codable {
     open var decrease: [PKMNaturePokeathlonStatAffect]?
 }
 
+
 /// Pokeathlon Stats are different attributes of a Pokémon's performance in Pokéathlons. In Pokéathlons, competitions happen on different courses; one for each of the different Pokéathlon stats. See Bulbapedia for greater detail.
-open class PKMPokeathlonStat: Codable {
+open class PKMPokeathlonStat: Codable, SelfDecodable {
     
     /// The identifier for this Pokéathlon stat resource
     open var id: Int?
@@ -701,15 +812,16 @@ open class PKMPokeathlonStat: Codable {
     /// A detail of natures which affect this Pokéathlon stat positively or negatively
     open var affectingNatures: PKMNaturePokeathlonStatAffectSets?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Move Battle Style Preference
-open class PKMMoveBattleStylePreference: Codable {
+open class PKMMoveBattleStylePreference: Codable, SelfDecodable {
     
     /// Chance of using the move, in percent, if HP is under one half
     open var lowHpPreference: Int?
@@ -720,7 +832,7 @@ open class PKMMoveBattleStylePreference: Codable {
     /// The move battle style
     open var moveBattleStyle: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -728,23 +840,25 @@ open class PKMMoveBattleStylePreference: Codable {
 }
 
 
-/*
-change	The amount of change	integer
-stat	The stat being affected	NamedAPIResource (PokeathlonStat)
-*/
-open class PKMNatureStatChange: Codable {
+/// Nature Stat Change
+open class PKMNatureStatChange: Codable, SelfDecodable {
+    
+    /// The amount of change
     open var maxChange: Int?
+    
+    /// The stat being affected
     open var pokeathlonStat: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Natures influence how a Pokémon's stats grow. See Bulbapedia ( http://bulbapedia.bulbagarden.net/wiki/Nature ) for greater detail.
-open class PKMNature: Codable {
+open class PKMNature: Codable, SelfDecodable {
     
     /// The identifier for this nature resource
     open var id: Int?
@@ -773,18 +887,13 @@ open class PKMNature: Codable {
     /// The name of this nature listed in different languages
     open var names: [PKMName]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
-
-/*
-level	The level gained	integer
-experience	The amount of experience required to reach the referenced level	integer
-*/
 
 /// Growth Rate Experience Level
 open class PKMGrowthRateExperienceLevel: Codable {
@@ -799,7 +908,7 @@ open class PKMGrowthRateExperienceLevel: Codable {
 
 
 /// Growth rates are the speed with which Pokémon gain levels through experience. Check out Bulbapedia ( http://bulbapedia.bulbagarden.net/wiki/Experience ) for greater detail.
-open class PKMGrowthRate: Codable {
+open class PKMGrowthRate: Codable, SelfDecodable {
     
     /// The identifier for this gender resource
     open var id: Int?
@@ -819,7 +928,7 @@ open class PKMGrowthRate: Codable {
     /// A list of Pokémon species that gain levels at this growth rate
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -827,9 +936,8 @@ open class PKMGrowthRate: Codable {
 }
 
 
-
 /// Pokemon Species Gender
-open class PKMPokemonSpeciesGender: Codable {
+open class PKMPokemonSpeciesGender: Codable, SelfDecodable {
     
     /// The chance of this Pokémon being female, in eighths; or -1 for genderless
     open var rate: Int?
@@ -837,15 +945,16 @@ open class PKMPokemonSpeciesGender: Codable {
     /// A Pokémon species that can be the referenced gender
     open var pokemonSpecies: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Genders were introduced in Generation II for the purposes of breeding Pokémon but can also result in visual differences or even different evolutionary lines. Check out Bulbapedia for greater detail.
-open class PKMGender: Codable {
+open class PKMGender: Codable, SelfDecodable {
     
     /// The identifier for this gender resource
     open var id: Int?
@@ -859,15 +968,16 @@ open class PKMGender: Codable {
     /// A list of Pokémon species that required this gender in order for a Pokémon to evolve into them
     open var requiredForEvolution: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Egg Groups are categories which determine which Pokémon are able to interbreed. Pokémon may belong to either one or two Egg Groups. Check out Bulbapedia for greater detail.
-open class PKMEggGroup: Codable {
+open class PKMEggGroup: Codable, SelfDecodable {
     
     /// The identifier for this egg group resource
     open var id: Int?
@@ -881,15 +991,16 @@ open class PKMEggGroup: Codable {
     /// A list of all Pokémon species that are members of this egg group
     open var pokemonSpecies: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Characteristics indicate which stat contains a Pokémon's highest IV. A Pokémon's Characteristic is determined by the remainder of its highest IV divided by 5 (gene_modulo). Check out Bulbapedia for greater detail.
-open class PKMCharacteristic: Codable {
+open class PKMCharacteristic: Codable, SelfDecodable {
     
     /// The identifier for this characteristic resource
     open var id: Int?
@@ -903,15 +1014,16 @@ open class PKMCharacteristic: Codable {
     /// The descriptions of this characteristic listed in different languages
     open var descriptions: [PKMDescription]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Ability Pokemon
-open class PKMAbilityPokemon: Codable {
+open class PKMAbilityPokemon: Codable, SelfDecodable {
     
     /// Whether or not this a hidden ability for the referenced Pokémon
     open var isHidden: Bool?
@@ -922,15 +1034,16 @@ open class PKMAbilityPokemon: Codable {
     /// The Pokémon this ability could belong to
     open var pokemon: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Abilities provide passive effects for Pokémon in battle or in the overworld. Pokémon have mutiple possible abilities but can have only one ability at a time. Check out Bulbapedia for greater detail.
-open class PKMAbility: Codable {
+open class PKMAbility: Codable, SelfDecodable {
     
     /// The identifier for this ability resource
     open var id: Int?
@@ -954,23 +1067,44 @@ open class PKMAbility: Codable {
     open var effectChanges: [PKMAbilityEffectChange]?
     
     /// The flavor text of this ability listed in different languages
-    open var flavorTextEntries: [PKMVersionGroupFlavorText]?
+    open var flavorTextEntries: [PKMAbilityFlavorText]?
     
     /// A list of Pokémon that could potentially have this ability
     open var pokemon: [PKMAbilityPokemon]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
+/// Ability Flavor Text
+open class PKMAbilityFlavorText: Codable, SelfDecodable {
+    
+    /// The localized name for an API resource in a specific language
+    open var flavorText: String?
+    
+    /// The language this name is in
+    open var language: PKMNamedAPIResource?
+    
+    /// The language this name is in
+    open var versionGroup: PKMNamedAPIResource?
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+
 /// A region is an organized area of the Pokémon world. Most often, the main difference between regions is the species of Pokémon that can be encountered within them.
-open class PKMRegion: Codable {
+open class PKMRegion: Codable, SelfDecodable {
     
     /// The identifier for this region resource
-    open var id: Bool?
+    open var id: Int?
     
     /// The name for this region resource
     open var name: String?
@@ -979,7 +1113,7 @@ open class PKMRegion: Codable {
     open var locations: [PKMNamedAPIResource]?
     
     /// The generation this region was introduced in
-    open var mainGeneration: [PKMNamedAPIResource]?
+    open var mainGeneration: PKMNamedAPIResource?
     
     /// The name of this region listed in different languages
     open var names: [PKMName]?
@@ -990,15 +1124,16 @@ open class PKMRegion: Codable {
     /// A list of version groups where this region can be visited
     open var versionGroups: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Areas used for grouping Pokémon encounters in Pal Park. They're like habitats that are specific to Pal Park.
-open class PKMPalParkEncounterSpecies: Codable {
+open class PKMPalParkEncounterSpecies: Codable, SelfDecodable {
     
     /// The base score given to the player when this Pokémon is caught during a pal park run
     open var baseScore: Int?
@@ -1009,15 +1144,16 @@ open class PKMPalParkEncounterSpecies: Codable {
     /// The Pokémon species being encountered
     open var pokemonSpecies: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Pal Park Area
-open class PKMPalParkArea: Codable {
+open class PKMPalParkArea: Codable, SelfDecodable {
     
     /// The identifier for this pal park area resource
     open var id: Int?
@@ -1031,15 +1167,16 @@ open class PKMPalParkArea: Codable {
     /// A list of Pokémon encountered in thi pal park area along with details
     open var pokemonEncounters: [PKMPalParkEncounterSpecies]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Locations that can be visited within the games. Locations make up sizable portions of regions, like cities or routes.
-open class PKMLocation: Codable {
+open class PKMLocation: Codable, SelfDecodable {
     
     /// The identifier for this location resource
     open var id: Int?
@@ -1059,15 +1196,16 @@ open class PKMLocation: Codable {
     /// Areas that can be found within this location
     open var areas: PKMAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Encounter
-open class PKMEncounter: Codable {
+open class PKMEncounter: Codable, SelfDecodable {
     
     /// The lowest level the Pokémon could be encountered at
     open var minLevel: Int?
@@ -1084,15 +1222,16 @@ open class PKMEncounter: Codable {
     /// The method by which this encounter happens
     open var method: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Version Encounter Detail
-open class PKMVersionEncounterDetail: Codable {
+open class PKMVersionEncounterDetail: Codable, SelfDecodable {
     
     /// The game version this encounter happens in
     open var version: PKMNamedAPIResource?
@@ -1103,15 +1242,16 @@ open class PKMVersionEncounterDetail: Codable {
     /// A list of encounters and their specifics
     open var encounterDetails: [PKMEncounter]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Pokemon Encounter
-open class PKMPokemonEncounter: Codable {
+open class PKMPokemonEncounter: Codable, SelfDecodable {
     
     /// The Pokémon being encountered
     open var pokemon: PKMNamedAPIResource?
@@ -1119,12 +1259,13 @@ open class PKMPokemonEncounter: Codable {
     /// A list of versions and encounters with Pokémon that might happen in the referenced location area
     open var versionDetails: [PKMVersionEncounterDetail]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Encounter Version Details
 open class PKMEncounterVersionDetails: Codable {
@@ -1136,8 +1277,9 @@ open class PKMEncounterVersionDetails: Codable {
     open var version: PKMNamedAPIResource?
 }
 
+
 /// Encounter Method Rate
-open class PKMEncounterMethodRate: Codable {
+open class PKMEncounterMethodRate: Codable, SelfDecodable {
     
     /// The method in which Pokémon may be encountered in an area.
     open var encounterEethod: PKMEncounterMethod?
@@ -1145,15 +1287,16 @@ open class PKMEncounterMethodRate: Codable {
     /// The chance of the encounter to occur on a version of the game.
     open var versionDetails: [PKMEncounterVersionDetails]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Location areas are sections of areas, such as floors in a building or cave. Each area has its own set of possible Pokémon encounters.
-open class PKMLocationArea: Codable {
+open class PKMLocationArea: Codable, SelfDecodable {
     
     /// The identifier for this location resource
     open var id: Int?
@@ -1176,12 +1319,13 @@ open class PKMLocationArea: Codable {
     /// A list of Pokémon that can be encountered in this area along with version specific details about the encounter
     open var pokemonEncounters: [PKMPokemonEncounter]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Targets moves can be directed at during battle. Targets can be Pokémon, environments or even other moves.
 open class PKMMoveTarget: Codable {
@@ -1202,8 +1346,9 @@ open class PKMMoveTarget: Codable {
     open var names: [PKMName]?
 }
 
+
 /// Methods by which Pokémon can learn moves.
-open class PKMMoveLearnMethod: Codable {
+open class PKMMoveLearnMethod: Codable, SelfDecodable {
     
     /// The identifier for this move learn method resource
     open var id: Int?
@@ -1220,12 +1365,13 @@ open class PKMMoveLearnMethod: Codable {
     /// A list of version groups where moves can be learned through this method
     open var versionGroups: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Damage classes moves can have, e.g. physical, special, or non-damaging.
 open class PKMMoveDamageClass: Codable {
@@ -1246,6 +1392,7 @@ open class PKMMoveDamageClass: Codable {
     open var names: [PKMName]?
 }
 
+
 /// Very general categories that loosely group move effects.
 open class PKMMoveCategory: Codable {
     
@@ -1262,6 +1409,7 @@ open class PKMMoveCategory: Codable {
     open var descriptions: [PKMDescription]?
 }
 
+
 /// Styles of moves when used in the Battle Palace. See Bulbapedia for greater detail.
 open class PKMMoveBattleStyle: Codable {
     
@@ -1274,6 +1422,7 @@ open class PKMMoveBattleStyle: Codable {
     /// The name of this move battle style listed in different languages
     open var names: [PKMName]?
 }
+
 
 /// Move Ailments are status conditions caused by moves used during battle. See Bulbapedia for greater detail.
 open class PKMMoveAilment: Codable {
@@ -1291,6 +1440,7 @@ open class PKMMoveAilment: Codable {
     open var names: [PKMName]?
 }
 
+
 /// Move Stat Change
 open class PKMMoveStatChange: Codable {
     
@@ -1301,8 +1451,9 @@ open class PKMMoveStatChange: Codable {
     open var stat: PKMNamedAPIResource?
 }
 
+
 /// Past Move Stat Values
-open class PKMPastMoveStatValues: Codable {
+open class PKMPastMoveStatValues: Codable, SelfDecodable {
     
     /// The percent value of how likely this move is to be successful
     open var accuracy: Int?
@@ -1325,15 +1476,16 @@ open class PKMPastMoveStatValues: Codable {
     /// The version group in which these move stat values were in effect
     open var versionGroup: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Move Meta Data
-open class PKMMoveMetaData: Codable {
+open class PKMMoveMetaData: Codable, SelfDecodable {
     
     /// The status ailment this move inflicts on its target
     open var ailment: PKMNamedAPIResource?
@@ -1371,31 +1523,33 @@ open class PKMMoveMetaData: Codable {
     /// The likelyhood this attack will cause a stat change in the target pokemon
     open var statChance: Int?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Ability Effect Change
-open class PKMAbilityEffectChange: Codable {
+open class PKMAbilityEffectChange: Codable, SelfDecodable {
     
     /// The previous effect of this ability listed in different languages
-    open var effectEntries: PKMEffect?
+    open var effectEntries: [PKMEffect]?
     
     /// The version group in which the previous effect of this ability originated
     open var versionGroup: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Contest Combo Detail
-open class PKMContestComboDetail: Codable {
+open class PKMContestComboDetail: Codable, SelfDecodable {
     
     /// A list of moves to use before this move
     open var useBefore: [PKMNamedAPIResource]?
@@ -1403,25 +1557,27 @@ open class PKMContestComboDetail: Codable {
     /// A list of moves to use after this move
     open var useAfter: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Contest Combo Sets
 open class PKMContestComboSets: Codable {
     
     /// A detail of moves this move can be used before or after, granting additional appeal points in contests
-    open var normal: [PKMContestComboDetail]?
+    open var normal: PKMContestComboDetail?
     
     /// A detail of moves this move can be used before or after, granting additional appeal points in super contests
-    open var `super`: [PKMContestComboDetail]?
+    open var `super`: PKMContestComboDetail?
 }
 
+
 /// Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.
-open class PKMMove: Codable {
+open class PKMMove: Codable, SelfDecodable {
     
     /// The identifier for this move resource
     open var id: Int?
@@ -1445,53 +1601,80 @@ open class PKMMove: Codable {
     open var power: Int?
     
     /// A detail of normal and super contest combos that require this move
-    open var contestCombos: [PKMContestComboSets]?
-    
+    open var contestCombos: PKMContestComboSets?
+
     /// The type of appeal this move gives a Pokémon when used in a contest
     open var contestType: PKMNamedAPIResource?
-    
+
     /// The effect the move has when used in a contest
-    open var contestEffect: PKMNamedAPIResource?
-    
+    open var contestEffect: PKMAPIResource?
+
     /// The type of damage the move inflicts on the target, e.g. physical
     open var damageClass: PKMNamedAPIResource?
     
     /// The effect of this move listed in different languages
     open var effectEntries: [PKMVerboseEffect]?
-    
+
     /// The list of previous effects this move has had across version groups of the games
     open var effectChanges: [PKMAbilityEffectChange]?
-    
+
+    /// The flavor text of this move listed in different languages
+    open var flavorTextEntries: [PKMMoveFlavorText]?
+
     /// The generation in which this move was introduced
     open var generation: PKMNamedAPIResource?
-    
+
+    /// A list of the machines that teach this move
+    open var machines: [PKMMachineVersionDetail]?
+
     /// Metadata about this move
     open var meta: PKMMoveMetaData?
-    
+
     /// The name of this move listed in different languages
     open var names: [PKMName]?
-    
+
     /// A list of move resource value changes across ersion groups of the game
     open var pastValues: [PKMPastMoveStatValues]?
-    
+
     /// A list of stats this moves effects and how much it effects them
     open var statChanges: [PKMMoveStatChange]?
-    
+
     /// The effect the move has when used in a super contest
     open var superContestEffect: PKMAPIResource?
-    
+
     /// The type of target that will recieve the effects of the attack
     open var target: PKMNamedAPIResource?
-    
-    /// The elemental type of this move	NamedAPIResource
+
+    /// The elemental type of this move    NamedAPIResource
     open var type: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
+
+/// Move Flavor Text
+open class PKMMoveFlavorText: Codable, SelfDecodable {
+    
+    /// The localized flavor text for an api resource in a specific language
+    open var flavorText: String?
+    
+    /// The language this name is in
+    open var language: PKMNamedAPIResource?
+    
+    /// The version group that uses this flavor text
+    open var versionGroup: PKMNamedAPIResource?
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
 
 /// Pockets within the players bag used for storing items by category.
 open class PKMItemPocket: Codable {
@@ -1509,6 +1692,7 @@ open class PKMItemPocket: Codable {
     open var names: [PKMName]?
 }
 
+
 /// Effect
 open class PKMEffect: Codable {
     
@@ -1519,8 +1703,9 @@ open class PKMEffect: Codable {
     open var language: PKMNamedAPIResource?
 }
 
+
 /// The various effects of the move "Fling" when used with different items.
-open class PKMItemFlingEffect: Codable {
+open class PKMItemFlingEffect: Codable, SelfDecodable {
     
     /// The identifier for this fling effect resource
     open var id: Int?
@@ -1534,12 +1719,13 @@ open class PKMItemFlingEffect: Codable {
     /// A list of items that have this fling effect	list
     open var items: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Item categories determine where items will be placed in the players bag.
 open class PKMItemCategory: Codable {
@@ -1560,6 +1746,7 @@ open class PKMItemCategory: Codable {
     open var pocket: PKMNamedAPIResource?
 }
 
+
 /// Item attributes define particular aspects of items, e.g. "usable in battle" or "consumable".
 open class PKMItemAttribute: Codable {
     
@@ -1579,8 +1766,9 @@ open class PKMItemAttribute: Codable {
     open var descriptions: [PKMDescription]?
 }
 
+
 /// Verbose Effect
-open class PKMVerboseEffect: Codable {
+open class PKMVerboseEffect: Codable, SelfDecodable {
     
     /// The localized effect text for an API resource in a specific language
     open var effect: String?
@@ -1589,17 +1777,18 @@ open class PKMVerboseEffect: Codable {
     open var shortEffect: String?
     
     /// The language this effect is in
-    open var language: Bool?
+    open var language: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Version Group Flavor Text
-open class PKMVersionGroupFlavorText: Codable {
+open class PKMVersionGroupFlavorText: Codable, SelfDecodable {
     
     /// The localized name for an API resource in a specific language
     open var text: String?
@@ -1610,15 +1799,16 @@ open class PKMVersionGroupFlavorText: Codable {
     /// The version group which uses this flavor text
     open var versionGroup: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Generation Game Index
-open class PKMGenerationGameIndex: Codable {
+open class PKMGenerationGameIndex: Codable, SelfDecodable {
     
     /// The internal id of an API resource within game data
     open var gameIndex: Int?
@@ -1626,12 +1816,13 @@ open class PKMGenerationGameIndex: Codable {
     /// The generation relevent to this game index
     open var generation: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Item Sprites
 open class PKMItemSprites: Codable {
@@ -1646,8 +1837,9 @@ open class PKMAPIResource: Codable {
     open var url: String?
 }
 
+
 /// An item is an object in the games which the player can pick up, keep in their bag, and use in some manner. They have various uses, including healing, powering up, helping catch Pokémon, or to access a new area.
-open class PKMItem: Codable {
+open class PKMItem: Codable, SelfDecodable {
     
     /// The identifier for this item resource
     open var id: Int?
@@ -1686,20 +1878,69 @@ open class PKMItem: Codable {
     open var sprites: PKMItemSprites?
     
     /// A list of Pokémon that might be found in the wild holding this item
-    open var heldByPokemon: [PKMNamedAPIResource]?
+    open var heldByPokemon: [PKMItemHolderPokemon]?
     
     /// An evolution chain this item requires to produce a bay during mating
-    open var babyTriggerFor: [PKMAPIResource]?
+    open var babyTriggerFor: PKMAPIResource?
     
-    static var decoder: JSONDecoder = {
+    /// A list of the machines related to this item
+    open var machines: [PKMMachineVersionDetail]?
+    
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
+/// Machine Version Detail
+open class PKMMachineVersionDetail: Codable, SelfDecodable {
+    
+    /// The machine that teaches a move from an item
+    open var machine: PKMAPIResource?
+    
+    /// The version group of this specific machine
+    open var versionGroup: PKMNamedAPIResource?
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+
+/// Item Holder Pokemon
+open class PKMItemHolderPokemon: Codable, SelfDecodable {
+    
+    /// The Pokémon that holds this item
+    open var pokemon: String?
+    
+    /// The details for the version that this item is held in by the Pokémon
+    open var versionDetails: [PKMItemHolderPokemonVersionDetail]?
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+
+/// Item Holder Pokemon Version Detail
+open class PKMItemHolderPokemonVersionDetail: Codable {
+    
+    /// How often this Pokémon holds this item in this version
+    open var rarity: String?
+    
+    /// The version that this item is held in by the Pokémon
+    open var version: PKMNamedAPIResource?
+}
+
+
 /// Version groups categorize highly similar versions of the games.
-open class PKMVersionGroup: Codable {
+open class PKMVersionGroup: Codable, SelfDecodable {
     
     /// The identifier for this version group resource
     open var id: Int?
@@ -1711,7 +1952,7 @@ open class PKMVersionGroup: Codable {
     open var order: Int?
     
     /// The generation this version was introduced in
-    open var generation: [PKMNamedAPIResource]?
+    open var generation: PKMNamedAPIResource?
     
     /// A list of methods in which Pokémon can learn moves in this version group
     open var moveLearnMethods: [PKMNamedAPIResource]?
@@ -1728,15 +1969,16 @@ open class PKMVersionGroup: Codable {
     /// The versions this version group owns
     open var versions: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Versions of the games, e.g., Red, Blue or Yellow.
-open class PKMVersion: Codable {
+open class PKMVersion: Codable, SelfDecodable {
     
     /// The identifier for this version resource
     open var id: Int?
@@ -1750,12 +1992,13 @@ open class PKMVersion: Codable {
     /// The version group this version belongs to
     open var versionGroup: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Description
 open class PKMDescription: Codable {
@@ -1767,8 +2010,9 @@ open class PKMDescription: Codable {
     open var language: PKMNamedAPIResource?
 }
 
+
 /// Entry
-open class PKMEntry: Codable {
+open class PKMEntry: Codable, SelfDecodable {
     
     /// The index of this pokemon species entry within the Pokédex
     open var entryNumber: Int?
@@ -1776,15 +2020,16 @@ open class PKMEntry: Codable {
     /// The Pokémon species being encountered
     open var pokemonSpecies: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and retaining information of the various Pokémon in a given region with the exception of the national dex and some smaller dexes related to portions of a region. See Bulbapedia for greater detail.
-open class PKMPokedex: Codable {
+open class PKMPokedex: Codable, SelfDecodable {
     
     /// The identifier for this Pokédex resource
     open var id: Int?
@@ -1810,15 +2055,16 @@ open class PKMPokedex: Codable {
     /// A list of version groups this Pokédex is relevent to
     open var versionGroups: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// A generation is a grouping of the Pokémon games that separates them based on the Pokémon they include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not exist in the previous generation are released.
-open class PKMGeneration: Codable {
+open class PKMGeneration: Codable, SelfDecodable {
     
     /// The identifier for this generation resource
     open var id: Int?
@@ -1847,15 +2093,16 @@ open class PKMGeneration: Codable {
     /// A list of version groups that were introduced in this generation
     open var versionGroups: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Evolution triggers are the events and conditions that cause a pokemon to evolve. Check out Bulbapedia for greater detail.
-open class PKMEvolutionTrigger: Codable {
+open class PKMEvolutionTrigger: Codable, SelfDecodable {
     
     /// The identifier for this evolution trigger resource
     open var id: Int?
@@ -1869,15 +2116,16 @@ open class PKMEvolutionTrigger: Codable {
     /// A list of pokemon species that result from this evolution trigger
     open var pokemonSpecies: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Evolution Detail
-open class PKMEvolutionDetail: Codable {
+open class PKMEvolutionDetail: Codable, SelfDecodable {
     
     /// The item required to cause evolution this into Pokémon species
     open var item: PKMNamedAPIResource?
@@ -1933,15 +2181,16 @@ open class PKMEvolutionDetail: Codable {
     /// Whether or not the 3DS needs to be turned upside-down as this Pokémon levels up.
     open var turnUpsideDown: Bool?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Clain Link
-open class PKMClainLink: Codable {
+open class PKMClainLink: Codable, SelfDecodable {
     
     /// Whether or not this link is for a baby Pokémon. This would only ever be true on the base link.
     open var isBaby: Bool?
@@ -1950,20 +2199,21 @@ open class PKMClainLink: Codable {
     open var species: PKMNamedAPIResource?
     
     /// All details regarding the specific details of the referenced Pokémon species evolution
-    open var evolutionDetails: PKMEvolutionDetail?
+    open var evolutionDetails: [PKMEvolutionDetail]?
     
     /// A List of chain objects.
     open var evolvesTo: [PKMClainLink]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Evolution Chain
-open class PKMEvolutionChain: Codable {
+open class PKMEvolutionChain: Codable, SelfDecodable {
     
     /// The identifier for this evolution chain resource
     open var id: Int?
@@ -1974,7 +2224,7 @@ open class PKMEvolutionChain: Codable {
     /// The base chain link object. Each link contains evolution details for a Pokémon in the chain. Each link references the next Pokémon in the natural evolution order.
     open var chain: PKMClainLink?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -1998,6 +2248,7 @@ open class PKMEncounterConditionValue: Codable {
     open var names: [PKMName]?
 }
 
+
 /// Encounter Condition
 open class PKMEncounterCondition: Codable {
     
@@ -2013,6 +2264,7 @@ open class PKMEncounterCondition: Codable {
     /// The name of this encounter method listed in different languages
     open var names: [PKMName]?
 }
+
 
 /// Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass. Check out Bulbapedia for greater detail.
 open class PKMEncounterMethod: Codable {
@@ -2030,8 +2282,9 @@ open class PKMEncounterMethod: Codable {
     open var names: [PKMName]?
 }
 
+
 /// Super contest effects refer to the effects of moves when used in super contests.
-open class PKMSuperContestEffect: Codable {
+open class PKMSuperContestEffect: Codable, SelfDecodable {
     
     /// The identifier for this super contest effect resource
     open var id: Int?
@@ -2045,7 +2298,7 @@ open class PKMSuperContestEffect: Codable {
     /// A list of moves that have the effect when used in super contests
     open var moves: [PKMNamedAPIResource]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -2054,7 +2307,7 @@ open class PKMSuperContestEffect: Codable {
 
 
 /// Flavor Text
-open class PKMFlavorText: Codable {
+open class PKMFlavorText: Codable, SelfDecodable {
     
     /// The localized flavor text for an API resource in a specific language
     open var flavorText: String?
@@ -2062,7 +2315,7 @@ open class PKMFlavorText: Codable {
     /// The language this name is in
     open var language: PKMName?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -2080,8 +2333,9 @@ open class PKMEffectEntry: Codable {
     open var language: PKMName?
 }
 
+
 /// Contest effects refer to the effects of moves when used in contests.
-open class PKMContestEffect: Codable {
+open class PKMContestEffect: Codable, SelfDecodable {
     
     /// The identifier for this contest type resource
     open var id: Int?
@@ -2098,15 +2352,16 @@ open class PKMContestEffect: Codable {
     /// The flavor text of this contest effect listed in different languages
     open var flavorTextEntries: [PKMFlavorText]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Contest types are categories judges used to weigh a Pokémon's condition in Pokémon contests. Check out Bulbapedia for greater detail.
-open class PKMContestType: Codable {
+open class PKMContestType: Codable, SelfDecodable {
     
     /// The identifier for this contest type resource
     open var id: Int?
@@ -2120,15 +2375,16 @@ open class PKMContestType: Codable {
     /// The name of this contest type listed in different languages
     open var names: [PKMName]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
+
 /// Paged Object
-open class PKMPagedObject: Codable{
+open class PKMPagedObject: Codable {
     
     /// The total number of resources abailable from this API
     open var count: Int?
@@ -2143,8 +2399,9 @@ open class PKMPagedObject: Codable{
     open var results: [PKMNamedAPIResource]?
 }
 
+
 /// Name
-open class PKMName: Codable{
+open class PKMName: Codable {
     
     /// The localized name for an API resource in a specific language
     open var name: String?
@@ -2155,7 +2412,7 @@ open class PKMName: Codable{
 
 
 /// Named API Resource
-open class PKMNamedAPIResource: Codable{
+open class PKMNamedAPIResource: Codable {
     
     /// The name of the referenced resource
     open var name: String?
@@ -2164,7 +2421,9 @@ open class PKMNamedAPIResource: Codable{
     open var url: String?
 }
 
-open class PKMBerryFlavorMap: Codable{
+
+/// Berry Flavor Map
+open class PKMBerryFlavorMap: Codable {
     
     /// How powerful the referenced flavor is for this berry
     open var potency: Int?
@@ -2173,8 +2432,9 @@ open class PKMBerryFlavorMap: Codable{
     open var flavor: PKMNamedAPIResource?
 }
 
+
 /// Flavors determine whether a Pokémon will benefit or suffer from eating a berry based on their nature. Check out Bulbapedia for greater detail.
-open class PKMBerryFlavor: Codable{
+open class PKMBerryFlavor: Codable, SelfDecodable {
     
     /// The identifier for this berry flavor resource
     open var id: Int?
@@ -2191,14 +2451,15 @@ open class PKMBerryFlavor: Codable{
     /// The name of this berry flavor listed in different languages
     open var names:[PKMName]?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
 
-/// Flavour Berry Map
+
+/// Flavor Berry Map
 open class PKMFlavorBerryMap: Codable {
     
     /// How powerful the referenced flavor is for this berry
@@ -2208,8 +2469,9 @@ open class PKMFlavorBerryMap: Codable {
     open var berry: PKMNamedAPIResource?
 }
 
+
 /// Berries are small fruits that can provide HP and status condition restoration, stat enhancement, and even damage negation when eaten by Pokémon. Check out Bulbapedia for greater detail.
-open class PKMBerry: Codable{
+open class PKMBerry: Codable, SelfDecodable {
     
     /// The identifier for this berry resource
     open var id: Int?
@@ -2247,12 +2509,13 @@ open class PKMBerry: Codable{
     /// The Type the move "Natural Gift" has when used with this Berry
     open var naturalGiftType: PKMNamedAPIResource?
     
-    static var decoder: JSONDecoder = {
+    public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 }
+
 
 /// Berry Firmness
 open class PKMBerryFirmness: Codable {

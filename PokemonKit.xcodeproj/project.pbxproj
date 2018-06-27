@@ -7,6 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59DA03B320E27F7A00D98471 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B020E27F7A00D98471 /* URL+Query.swift */; };
+		59DA03B420E27F7A00D98471 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B020E27F7A00D98471 /* URL+Query.swift */; };
+		59DA03B520E27F7A00D98471 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B020E27F7A00D98471 /* URL+Query.swift */; };
+		59DA03B620E27F7A00D98471 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B020E27F7A00D98471 /* URL+Query.swift */; };
+		59DA03B720E27F7A00D98471 /* SelfDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B120E27F7A00D98471 /* SelfDecodable.swift */; };
+		59DA03B820E27F7A00D98471 /* SelfDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B120E27F7A00D98471 /* SelfDecodable.swift */; };
+		59DA03B920E27F7A00D98471 /* SelfDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B120E27F7A00D98471 /* SelfDecodable.swift */; };
+		59DA03BA20E27F7A00D98471 /* SelfDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B120E27F7A00D98471 /* SelfDecodable.swift */; };
+		59DA03BB20E27F7A00D98471 /* Decodable+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B220E27F7A00D98471 /* Decodable+Decode.swift */; };
+		59DA03BC20E27F7A00D98471 /* Decodable+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B220E27F7A00D98471 /* Decodable+Decode.swift */; };
+		59DA03BD20E27F7A00D98471 /* Decodable+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B220E27F7A00D98471 /* Decodable+Decode.swift */; };
+		59DA03BE20E27F7A00D98471 /* Decodable+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B220E27F7A00D98471 /* Decodable+Decode.swift */; };
+		59DA03BF20E27FA300D98471 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83F20E27F42003FD793 /* HTTPHeader.swift */; };
+		59DA03C020E27FA400D98471 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83F20E27F42003FD793 /* HTTPHeader.swift */; };
+		59DA03C120E27FA400D98471 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83F20E27F42003FD793 /* HTTPHeader.swift */; };
+		59DA03C220E27FA500D98471 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83F20E27F42003FD793 /* HTTPHeader.swift */; };
+		59DA03C320E27FA800D98471 /* HTTPWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83E20E27F42003FD793 /* HTTPWebService.swift */; };
+		59DA03C420E27FA800D98471 /* HTTPWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83E20E27F42003FD793 /* HTTPWebService.swift */; };
+		59DA03C520E27FA900D98471 /* HTTPWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83E20E27F42003FD793 /* HTTPWebService.swift */; };
+		59DA03C620E27FA900D98471 /* HTTPWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83E20E27F42003FD793 /* HTTPWebService.swift */; };
+		59DA03C720E27FAC00D98471 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83C20E27F42003FD793 /* Network.swift */; };
+		59DA03C820E27FAC00D98471 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83C20E27F42003FD793 /* Network.swift */; };
+		59DA03C920E27FAD00D98471 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83C20E27F42003FD793 /* Network.swift */; };
+		59DA03CA20E27FAD00D98471 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83C20E27F42003FD793 /* Network.swift */; };
+		59DA03CB20E27FB000D98471 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83D20E27F42003FD793 /* Pagination.swift */; };
+		59DA03CC20E27FB100D98471 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83D20E27F42003FD793 /* Pagination.swift */; };
+		59DA03CD20E27FB100D98471 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83D20E27F42003FD793 /* Pagination.swift */; };
+		59DA03CE20E27FB200D98471 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC83D20E27F42003FD793 /* Pagination.swift */; };
+		59DA03CF20E27FB400D98471 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC84020E27F42003FD793 /* Result.swift */; };
+		59DA03D020E27FB500D98471 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC84020E27F42003FD793 /* Result.swift */; };
+		59DA03D120E27FB500D98471 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC84020E27F42003FD793 /* Result.swift */; };
+		59DA03D220E27FB600D98471 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599FC84020E27F42003FD793 /* Result.swift */; };
+		59DA03D420E27FD300D98471 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03D320E27FD300D98471 /* HTTPError.swift */; };
+		59DA03D520E27FD300D98471 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03D320E27FD300D98471 /* HTTPError.swift */; };
+		59DA03D620E27FD300D98471 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03D320E27FD300D98471 /* HTTPError.swift */; };
+		59DA03D720E27FD300D98471 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03D320E27FD300D98471 /* HTTPError.swift */; };
+		59DA03DC20E2909E00D98471 /* Data+JSONPretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */; };
+		59DA03DD20E2909E00D98471 /* Data+JSONPretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */; };
+		59DA03DE20E2909E00D98471 /* Data+JSONPretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */; };
+		59DA03DF20E2909E00D98471 /* Data+JSONPretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */; };
 		74B038071D56714D00F48B92 /* PokemonKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B038061D56714D00F48B92 /* PokemonKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B0380E1D56714D00F48B92 /* PokemonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B038031D56714D00F48B92 /* PokemonKit.framework */; };
 		74B038131D56714D00F48B92 /* PokemonKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B038121D56714D00F48B92 /* PokemonKitTests.swift */; };
@@ -20,9 +60,6 @@
 		74B038691D5678CA00F48B92 /* PokemonKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B0381F1D5672B000F48B92 /* PokemonKit.swift */; };
 		74B0388B1D56798100F48B92 /* PokemonKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B038121D56714D00F48B92 /* PokemonKitTests.swift */; };
 		74B0388C1D56798300F48B92 /* PokemonKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B038121D56714D00F48B92 /* PokemonKitTests.swift */; };
-		74B038AC1D5683BB00F48B92 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74B038A91D5683BB00F48B92 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		74B038AD1D5683BB00F48B92 /* AlamofireObjectMapper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74B038AA1D5683BB00F48B92 /* AlamofireObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		74B038AE1D5683BB00F48B92 /* ObjectMapper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 74B038AB1D5683BB00F48B92 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,15 +120,22 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				74B038AC1D5683BB00F48B92 /* Alamofire.framework in CopyFiles */,
-				74B038AD1D5683BB00F48B92 /* AlamofireObjectMapper.framework in CopyFiles */,
-				74B038AE1D5683BB00F48B92 /* ObjectMapper.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		599FC83C20E27F42003FD793 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Network.swift; path = Network/Network.swift; sourceTree = "<group>"; };
+		599FC83D20E27F42003FD793 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pagination.swift; path = Network/Pagination.swift; sourceTree = "<group>"; };
+		599FC83E20E27F42003FD793 /* HTTPWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTTPWebService.swift; path = Network/HTTPWebService.swift; sourceTree = "<group>"; };
+		599FC83F20E27F42003FD793 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTTPHeader.swift; path = Network/HTTPHeader.swift; sourceTree = "<group>"; };
+		599FC84020E27F42003FD793 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Network/Result.swift; sourceTree = "<group>"; };
+		59DA03B020E27F7A00D98471 /* URL+Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URL+Query.swift"; path = "Utilities/URL+Query.swift"; sourceTree = "<group>"; };
+		59DA03B120E27F7A00D98471 /* SelfDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelfDecodable.swift; path = Utilities/SelfDecodable.swift; sourceTree = "<group>"; };
+		59DA03B220E27F7A00D98471 /* Decodable+Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Decodable+Decode.swift"; path = "Utilities/Decodable+Decode.swift"; sourceTree = "<group>"; };
+		59DA03D320E27FD300D98471 /* HTTPError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPError.swift; path = Network/HTTPError.swift; sourceTree = "<group>"; };
+		59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Data+JSONPretty.swift"; path = "Utilities/Data+JSONPretty.swift"; sourceTree = "<group>"; };
 		74B038031D56714D00F48B92 /* PokemonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PokemonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B038061D56714D00F48B92 /* PokemonKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokemonKit.h; sourceTree = "<group>"; };
 		74B038081D56714D00F48B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,10 +155,6 @@
 		74B038541D5678AE00F48B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74B038591D5678AE00F48B92 /* PokemonKit OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PokemonKit OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B038601D5678AE00F48B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74B0386D1D56790500F48B92 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
-		74B038A91D5683BB00F48B92 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
-		74B038AA1D5683BB00F48B92 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/Mac/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
-		74B038AB1D5683BB00F48B92 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/Mac/ObjectMapper.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,12 +213,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		599FC83A20E27F01003FD793 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				59DA03DB20E2909E00D98471 /* Data+JSONPretty.swift */,
+				59DA03B220E27F7A00D98471 /* Decodable+Decode.swift */,
+				59DA03B120E27F7A00D98471 /* SelfDecodable.swift */,
+				59DA03B020E27F7A00D98471 /* URL+Query.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		599FC83B20E27F0B003FD793 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				59DA03D320E27FD300D98471 /* HTTPError.swift */,
+				599FC83F20E27F42003FD793 /* HTTPHeader.swift */,
+				599FC83E20E27F42003FD793 /* HTTPWebService.swift */,
+				599FC83C20E27F42003FD793 /* Network.swift */,
+				599FC83D20E27F42003FD793 /* Pagination.swift */,
+				599FC84020E27F42003FD793 /* Result.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		74B037F91D56714D00F48B92 = {
 			isa = PBXGroup;
 			children = (
-				74B0388D1D567A3F00F48B92 /* Tests */,
-				74B0388A1D56794300F48B92 /* Frameworks */,
 				74B038211D5672B300F48B92 /* Classes */,
+				599FC83B20E27F0B003FD793 /* Network */,
+				599FC83A20E27F01003FD793 /* Utilities */,
+				74B0388A1D56794300F48B92 /* Frameworks */,
+				74B0388D1D567A3F00F48B92 /* Tests */,
 				74B038051D56714D00F48B92 /* PokemonKit */,
 				74B038111D56714D00F48B92 /* PokemonKitTests */,
 				74B038281D5677FE00F48B92 /* PokemonKit watchOS */,
@@ -274,10 +340,6 @@
 		74B0388A1D56794300F48B92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				74B038A91D5683BB00F48B92 /* Alamofire.framework */,
-				74B038AA1D5683BB00F48B92 /* AlamofireObjectMapper.framework */,
-				74B038AB1D5683BB00F48B92 /* ObjectMapper.framework */,
-				74B0386D1D56790500F48B92 /* PromiseKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -473,6 +535,7 @@
 					};
 					74B0380C1D56714D00F48B92 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Q8N5TWD49X;
 						LastSwiftMigration = 0810;
 					};
 					74B038261D5677FE00F48B92 = {
@@ -483,12 +546,14 @@
 					};
 					74B0383C1D56788200F48B92 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Q8N5TWD49X;
 					};
 					74B0384F1D5678AE00F48B92 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					74B038581D5678AE00F48B92 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Q8N5TWD49X;
 					};
 				};
 			};
@@ -572,7 +637,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DA03CF20E27FB400D98471 /* Result.swift in Sources */,
+				59DA03DC20E2909E00D98471 /* Data+JSONPretty.swift in Sources */,
+				59DA03B320E27F7A00D98471 /* URL+Query.swift in Sources */,
+				59DA03B720E27F7A00D98471 /* SelfDecodable.swift in Sources */,
+				59DA03C320E27FA800D98471 /* HTTPWebService.swift in Sources */,
+				59DA03BF20E27FA300D98471 /* HTTPHeader.swift in Sources */,
 				74B038201D5672B000F48B92 /* PokemonKit.swift in Sources */,
+				59DA03CB20E27FB000D98471 /* Pagination.swift in Sources */,
+				59DA03C720E27FAC00D98471 /* Network.swift in Sources */,
+				59DA03D420E27FD300D98471 /* HTTPError.swift in Sources */,
+				59DA03BB20E27F7A00D98471 /* Decodable+Decode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +663,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DA03D020E27FB500D98471 /* Result.swift in Sources */,
+				59DA03DD20E2909E00D98471 /* Data+JSONPretty.swift in Sources */,
+				59DA03B420E27F7A00D98471 /* URL+Query.swift in Sources */,
+				59DA03B820E27F7A00D98471 /* SelfDecodable.swift in Sources */,
+				59DA03C420E27FA800D98471 /* HTTPWebService.swift in Sources */,
+				59DA03C020E27FA400D98471 /* HTTPHeader.swift in Sources */,
 				74B038671D5678C400F48B92 /* PokemonKit.swift in Sources */,
+				59DA03CC20E27FB100D98471 /* Pagination.swift in Sources */,
+				59DA03C820E27FAC00D98471 /* Network.swift in Sources */,
+				59DA03D520E27FD300D98471 /* HTTPError.swift in Sources */,
+				59DA03BC20E27F7A00D98471 /* Decodable+Decode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +681,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DA03D120E27FB500D98471 /* Result.swift in Sources */,
+				59DA03DE20E2909E00D98471 /* Data+JSONPretty.swift in Sources */,
+				59DA03B520E27F7A00D98471 /* URL+Query.swift in Sources */,
+				59DA03B920E27F7A00D98471 /* SelfDecodable.swift in Sources */,
+				59DA03C520E27FA900D98471 /* HTTPWebService.swift in Sources */,
+				59DA03C120E27FA400D98471 /* HTTPHeader.swift in Sources */,
 				74B038691D5678CA00F48B92 /* PokemonKit.swift in Sources */,
+				59DA03CD20E27FB100D98471 /* Pagination.swift in Sources */,
+				59DA03C920E27FAD00D98471 /* Network.swift in Sources */,
+				59DA03D620E27FD300D98471 /* HTTPError.swift in Sources */,
+				59DA03BD20E27F7A00D98471 /* Decodable+Decode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,7 +707,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DA03D220E27FB600D98471 /* Result.swift in Sources */,
+				59DA03DF20E2909E00D98471 /* Data+JSONPretty.swift in Sources */,
+				59DA03B620E27F7A00D98471 /* URL+Query.swift in Sources */,
+				59DA03BA20E27F7A00D98471 /* SelfDecodable.swift in Sources */,
+				59DA03C620E27FA900D98471 /* HTTPWebService.swift in Sources */,
+				59DA03C220E27FA500D98471 /* HTTPHeader.swift in Sources */,
 				74B038681D5678C500F48B92 /* PokemonKit.swift in Sources */,
+				59DA03CE20E27FB200D98471 /* Pagination.swift in Sources */,
+				59DA03CA20E27FAD00D98471 /* Network.swift in Sources */,
+				59DA03D720E27FD300D98471 /* HTTPError.swift in Sources */,
+				59DA03BE20E27F7A00D98471 /* Decodable+Decode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,7 +862,7 @@
 				INFOPLIST_FILE = PokemonKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.darkcl.PokemonKit;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit";
 				PRODUCT_NAME = PokemonKit;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -781,7 +886,7 @@
 				INFOPLIST_FILE = PokemonKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.darkcl.PokemonKit;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit";
 				PRODUCT_NAME = PokemonKit;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -791,6 +896,7 @@
 		74B0381B1D56714D00F48B92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = PokemonKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darkcl.PokemonKitTests;
@@ -802,6 +908,7 @@
 		74B0381C1D56714D00F48B92 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = PokemonKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darkcl.PokemonKitTests;
@@ -826,7 +933,7 @@
 				INFOPLIST_FILE = "PokemonKit watchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-watchOS";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -851,7 +958,7 @@
 				INFOPLIST_FILE = "PokemonKit watchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-watchOS";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -875,7 +982,7 @@
 				INFOPLIST_FILE = "PokemonKit tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-tvOS";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -899,7 +1006,7 @@
 				INFOPLIST_FILE = "PokemonKit tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-tvOS";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -911,6 +1018,7 @@
 		74B038491D56788200F48B92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "PokemonKit tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-tvOSTests";
@@ -923,6 +1031,7 @@
 		74B0384A1D56788200F48B92 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "PokemonKit tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-tvOSTests";
@@ -950,7 +1059,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-OSX";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -975,7 +1084,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darkcl.PokemonKit-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-OSX";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -987,6 +1096,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "PokemonKit OSXTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;

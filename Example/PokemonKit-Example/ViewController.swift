@@ -23,11 +23,20 @@ class ViewController: UIViewController {
             print(error.message)
             }
         }
-        
+
         PokemonKit.fetchBerry("1") { result in
             switch result {
             case .success(let berryInfo):
                 print(berryInfo.name)
+            case .failure(let error):
+                print(error.message)
+            }
+        }
+        
+        PokemonKit.fetchPokemon("1") { result in
+            switch result {
+            case .success(let decoded):
+                print(decoded)
             case .failure(let error):
                 print(error.message)
             }

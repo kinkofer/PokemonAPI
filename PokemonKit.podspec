@@ -39,7 +39,4 @@ PokemonKit use Alamofire web requests handling.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'Alamofire', '~> 4.2'
-  s.dependency 'AlamofireObjectMapper', '~> 4.0'
-  s.dependency 'PromiseKit', '~> 4.0'
 end

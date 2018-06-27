@@ -29,6 +29,8 @@ import Foundation
         case stringParsingError
         /// HTTP error 401
         case unauthorized
+        /// HTTP error 403
+        case forbidden
         
         /// A network connection could not be made
         case noNetwork
@@ -38,19 +40,21 @@ import Foundation
         var description: String {
             switch self {
             case .invalidRequest:
-                return NSLocalizedString("There was a problem connecting to the server. Please try again or contact support.", comment: "Invalid Request")
+                return NSLocalizedString("The request could not be made. Please change and try again.", comment: "Invalid Request")
             case .unexpectedBody:
-                return NSLocalizedString("There was a problem with your input. Please change, try again or contact support.", comment: "Unexpected Input")
+                return NSLocalizedString("There was a problem with your input. Please change and try again.", comment: "Unexpected Input")
             case .httpError:
-                return NSLocalizedString("The web service returned a unknown error. Please contact support", comment: "HTTP Error")
+                return NSLocalizedString("The web service returned a unknown error.", comment: "HTTP Error")
             case .unexpectedResponse:
-                return NSLocalizedString("There was a problem retrieving your data. Please try again or contact support.", comment: "Unexpected Response Data")
+                return NSLocalizedString("The web service returned unexpected data.", comment: "Unexpected Response Data")
             case .jsonParsingError:
-                return NSLocalizedString("There was a problem retrieving your data. Please try again or contact support.", comment: "JSON Parsing Error")
+                return NSLocalizedString("The web service response could not be parsed.", comment: "JSON Parsing Error")
             case .stringParsingError:
-                return NSLocalizedString("There was a problem retrieving your data. Please try again or contact support.", comment: "String Parsing Error")
+                return NSLocalizedString("The web service response could not be parsed.", comment: "String Parsing Error")
             case .unauthorized:
                 return NSLocalizedString("Unauthorized, please login again.", comment: "Unauthorized")
+            case .forbidden:
+                return NSLocalizedString("You have not granted this app permission to access this data.", comment: "Forbidden")
             case .noNetwork:
                 return NSLocalizedString("A network connection could not be established. Please try again when you have a sufficient internet connection.", comment: "No Network")
             }
@@ -74,6 +78,8 @@ import Foundation
                 return NSLocalizedString("DEBUG (stringParsingError): The data could not be read.", comment: "DEBUG String Parsing Error")
             case .unauthorized:
                 return NSLocalizedString("DEBUG (unauthorized): Unauthorized, please login again.", comment: "DEBUG Unauthorized")
+            case .forbidden:
+                return NSLocalizedString("DEBUG (forbidden): You have not granted this app permission to access this data.", comment: "DEBUG Forbidden")
             case .noNetwork:
                 return NSLocalizedString("DEBUG (noNetwork): A network connection could not be established.", comment: "DEBUG No Network")
             }
@@ -85,6 +91,8 @@ import Foundation
             switch self {
             case .unauthorized:
                 return 401
+            case .forbidden:
+                return 403
             case .httpError:
                 return 599
             default:
