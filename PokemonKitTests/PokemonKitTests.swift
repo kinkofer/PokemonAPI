@@ -657,7 +657,7 @@ class PokemonKitTests: XCTestCase {
     
     func testLanguage() {
         let asyncExpectation = expectation(description: "Fetch Language")
-        PokemonKit.utlityService.fetchLanguage("1") { result in
+        PokemonKit.utilityService.fetchLanguage("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()

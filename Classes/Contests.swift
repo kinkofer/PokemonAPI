@@ -18,7 +18,7 @@ open class PKMContestType: Codable, SelfDecodable {
     open var name: String?
     
     /// The berry flavor that correlates with this contest type
-    open var berryFlavor: PKMNamedAPIResource?
+    open var berryFlavor: PKMNamedAPIResource<PKMBerryFlavor>?
     
     /// The name of this contest type listed in different languages
     open var names: [PKMContestName]?
@@ -41,7 +41,7 @@ open class PKMContestName: Codable {
     open var color: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
 }
 
 
@@ -84,7 +84,7 @@ open class PKMSuperContestEffect: Codable, SelfDecodable {
     open var flavorTextEntries: [PKMFlavorText]?
     
     /// A list of moves that have the effect when used in super contests
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource<PKMMove>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -101,7 +101,7 @@ open class ContestService {
     /**
      Fetch Contest list
      */
-    public func fetchContestList(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void){
+    public func fetchContestList(completion: @escaping (_ result: Result<PKMPagedObject<PKMContestType>>) -> Void){
         let urlStr = baseURL + "/contest-type"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -127,7 +127,7 @@ open class ContestService {
     /**
      Fetch Contest Effects list
      */
-    public func fetchContestEffects(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchContestEffects(completion: @escaping (_ result: Result<PKMPagedObject<PKMContestEffect>>) -> Void) {
         let urlStr = baseURL + "/contest-effect"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -153,7 +153,7 @@ open class ContestService {
     /**
      Fetch Super Contest Effects list
      */
-    public func fetchSuperContestEffects(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchSuperContestEffects(completion: @escaping (_ result: Result<PKMPagedObject<PKMSuperContestEffect>>) -> Void) {
         let urlStr = baseURL + "/contest-effect"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

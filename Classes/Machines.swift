@@ -13,13 +13,13 @@ open class PKMMachine: Codable, SelfDecodable {
     open var id: Int?
     
     /// The TM or HM item that corresponds to this machine
-    open var item: PKMNamedAPIResource?
+    open var item: PKMNamedAPIResource<PKMItem>?
     
     /// The move that is taught by this machine
-    open var move: PKMNamedAPIResource?
+    open var move: PKMNamedAPIResource<PKMMove>?
     
     /// The version group that this machine applies to
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -36,7 +36,7 @@ open class MachineService {
     /**
      Fetch Machines list
      */
-    public func fetchMachinesList(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchMachinesList(completion: @escaping (_ result: Result<PKMPagedObject<PKMMachine>>) -> Void) {
         let urlStr = baseURL + "/machine"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

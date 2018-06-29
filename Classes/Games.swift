@@ -22,22 +22,22 @@ open class PKMGeneration: Codable, SelfDecodable {
     open var names: [PKMName]?
     
     /// A list of abilities that were introduced in this generation
-    open var abilities: [PKMNamedAPIResource]?
+    open var abilities: [PKMNamedAPIResource<PKMAbility>]?
     
     /// The main region travelled in this generation
-    open var mainRegion: PKMNamedAPIResource?
+    open var mainRegion: PKMNamedAPIResource<PKMRegion>?
     
     /// A list of moves that were introduced in this generation
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource<PKMMove>]?
     
     /// A list of Pokémon species that were introduced in this generation
-    open var pokemonSpecies: [PKMNamedAPIResource]?
+    open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
     /// A list of types that were introduced in this generation
-    open var types: [PKMNamedAPIResource]?
+    open var types: [PKMNamedAPIResource<PKMType>]?
     
     /// A list of version groups that were introduced in this generation
-    open var versionGroups: [PKMNamedAPIResource]?
+    open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -69,10 +69,10 @@ open class PKMPokedex: Codable, SelfDecodable {
     open var pokemonEntries: [PKMPokemonEntry]?
     
     /// The region this Pokédex catalogues pokemon for
-    open var region: PKMNamedAPIResource?
+    open var region: PKMNamedAPIResource<PKMRegion>?
     
     /// A list of version groups this Pokédex is relevent to
-    open var versionGroups: [PKMNamedAPIResource]?
+    open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -89,7 +89,7 @@ open class PKMPokemonEntry: Codable, SelfDecodable {
     open var entryNumber: Int?
     
     /// The Pokémon species being encountered
-    open var pokemonSpecies: PKMNamedAPIResource?
+    open var pokemonSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -112,7 +112,7 @@ open class PKMVersion: Codable, SelfDecodable {
     open var names: [PKMName]?
     
     /// The version group this version belongs to
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -135,22 +135,22 @@ open class PKMVersionGroup: Codable, SelfDecodable {
     open var order: Int?
     
     /// The generation this version was introduced in
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource<PKMGeneration>?
     
     /// A list of methods in which Pokémon can learn moves in this version group
-    open var moveLearnMethods: [PKMNamedAPIResource]?
+    open var moveLearnMethods: [PKMNamedAPIResource<PKMMoveLearnMethod>]?
     
     /// The name of this version group listed in different languages
     open var names: [PKMName]?
     
     /// A list of Pokédexes introduces in this version group
-    open var pokedexes: [PKMNamedAPIResource]?
+    open var pokedexes: [PKMNamedAPIResource<PKMPokedex>]?
     
     /// A list of regions that can be visited in this version group    list
-    open var regions: [PKMNamedAPIResource]?
+    open var regions: [PKMNamedAPIResource<PKMRegion>]?
     
     /// The versions this version group owns
-    open var versions: [PKMNamedAPIResource]?
+    open var versions: [PKMNamedAPIResource<PKMVersion>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -167,7 +167,7 @@ open class GameService {
     /**
      Fetch Generations list
      */
-    public func fetchGenerations(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchGenerations(completion: @escaping (_ result: Result<PKMPagedObject<PKMGeneration>>) -> Void) {
         let urlStr = baseURL + "/generation"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -193,7 +193,7 @@ open class GameService {
     /**
      Fetch Pokedexes list
      */
-    public func fetchPokedexes(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchPokedexes(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokedex>>) -> Void) {
         let urlStr = baseURL + "/pokedex"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -219,7 +219,7 @@ open class GameService {
     /**
      Fetch Versions list
      */
-    public func fetchVersions(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchVersions(completion: @escaping (_ result: Result<PKMPagedObject<PKMVersion>>) -> Void) {
         let urlStr = baseURL + "/version"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -245,7 +245,7 @@ open class GameService {
     /**
      Fetch Versions Groups list
      */
-    public func fetchVersionGroups(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchVersionGroups(completion: @escaping (_ result: Result<PKMPagedObject<PKMVersionGroup>>) -> Void) {
         let urlStr = baseURL + "/version-group"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

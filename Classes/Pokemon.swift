@@ -23,7 +23,7 @@ open class PKMAbility: Codable, SelfDecodable {
     open var isMainSeries: Bool?
     
     /// The generation this ability originated in
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource<PKMGeneration>?
     
     /// The name of this ability listed in different languages
     open var names: [PKMName]?
@@ -55,7 +55,7 @@ open class PKMAbilityEffectChange: Codable, SelfDecodable {
     open var effectEntries: [PKMEffect]?
     
     /// The version group in which the previous effect of this ability originated
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -72,10 +72,10 @@ open class PKMAbilityFlavorText: Codable, SelfDecodable {
     open var flavorText: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
     
     /// The language this name is in
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -95,7 +95,7 @@ open class PKMAbilityPokemon: Codable, SelfDecodable {
     open var slot: Int?
     
     /// The Pokémon this ability could belong to
-    open var pokemon: PKMNamedAPIResource?
+    open var pokemon: PKMNamedAPIResource<PKMPokemon>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -147,7 +147,7 @@ open class PKMEggGroup: Codable, SelfDecodable {
     open var names: [PKMName]?
     
     /// A list of all Pokémon species that are members of this egg group
-    open var pokemonSpecies: [PKMNamedAPIResource]?
+    open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -173,7 +173,7 @@ open class PKMGender: Codable, SelfDecodable {
     open var pokemonSpeciesDetails: [PKMPokemonSpeciesGender]?
     
     /// A list of Pokémon species that required this gender in order for a Pokémon to evolve into them
-    open var requiredForEvolution: [PKMNamedAPIResource]?
+    open var requiredForEvolution: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -190,7 +190,7 @@ open class PKMPokemonSpeciesGender: Codable, SelfDecodable {
     open var rate: Int?
     
     /// A Pokémon species that can be the referenced gender
-    open var pokemonSpecies: PKMNamedAPIResource?
+    open var pokemonSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -222,7 +222,7 @@ open class PKMGrowthRate: Codable, SelfDecodable {
     open var levels: [PKMGrowthRateExperienceLevel]?
     
     /// A list of Pokémon species that gain levels at this growth rate
-    open var pokemonSpecies: [PKMNamedAPIResource]?
+    open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -256,16 +256,16 @@ open class PKMNature: Codable, SelfDecodable {
     open var name: String?
     
     /// The stat decreased by 10% in Pokémon with this nature
-    open var decreasedStat: PKMNamedAPIResource?
+    open var decreasedStat: PKMNamedAPIResource<PKMStat>?
     
     /// The stat increased by 10% in Pokémon with this nature
-    open var increasedStat: PKMNamedAPIResource?
+    open var increasedStat: PKMNamedAPIResource<PKMStat>?
     
     /// The flavor hated by Pokémon with this nature
-    open var hatesFlavor: PKMNamedAPIResource?
+    open var hatesFlavor: PKMNamedAPIResource<PKMBerryFlavor>?
     
     /// he flavor liked by Pokémon with this nature
-    open var likesFlavor: PKMNamedAPIResource?
+    open var likesFlavor: PKMNamedAPIResource<PKMBerryFlavor>?
     
     /// A list of Pokéathlon stats this nature effects and how much it effects them
     open var pokeathlonStatChanges: [PKMNatureStatChange]?
@@ -291,7 +291,7 @@ open class PKMNatureStatChange: Codable, SelfDecodable {
     open var maxChange: Int?
     
     /// The stat being affected
-    open var pokeathlonStat: PKMNamedAPIResource?
+    open var pokeathlonStat: PKMNamedAPIResource<PKMPokeathlonStat>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -311,7 +311,7 @@ open class PKMMoveBattleStylePreference: Codable, SelfDecodable {
     open var highHpPreference: Int?
     
     /// The move battle style
-    open var moveBattleStyle: PKMNamedAPIResource?
+    open var moveBattleStyle: PKMNamedAPIResource<PKMMoveBattleStyle>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -365,7 +365,7 @@ open class PKMNaturePokeathlonStatAffect: Codable, SelfDecodable {
     open var maxChange: Int?
     
     /// The nature causing the change
-    open var nature: PKMNamedAPIResource?
+    open var nature: PKMNamedAPIResource<PKMNature>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -406,7 +406,7 @@ open class PKMPokemon: Codable, SelfDecodable {
     open var abilities: [PKMPokemonAbility]?
     
     /// A list of forms this Pokémon can take on
-    open var forms: [PKMNamedAPIResource]?
+    open var forms: [PKMNamedAPIResource<PKMPokemonForm>]?
     
     /// A list of game indices relevent to Pokémon item by generation
     open var gameIndices: [PKMVersionGameIndex]?
@@ -424,7 +424,7 @@ open class PKMPokemon: Codable, SelfDecodable {
     open var sprites: PKMPokemonSprites?
     
     /// The species this Pokémon belongs to
-    open var species: PKMNamedAPIResource?
+    open var species: PKMNamedAPIResource<PKMPokemonSpecies>?
     
     /// A list of base stat values for this Pokémon
     open var stats: [PKMPokemonStat]?
@@ -450,7 +450,7 @@ open class PKMPokemonAbility: Codable, SelfDecodable {
     open var slot: Int?
     
     /// The ability the Pokémon may have
-    open var ability: PKMNamedAPIResource?
+    open var ability: PKMNamedAPIResource<PKMAbility>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -467,7 +467,7 @@ open class PKMPokemonType: Codable {
     open var slot: Int?
     
     /// The type the referenced Pokémon has
-    open var type: PKMNamedAPIResource?
+    open var type: PKMNamedAPIResource<PKMType>?
 }
 
 
@@ -475,7 +475,7 @@ open class PKMPokemonType: Codable {
 open class PKMPokemonHeldItem: Codable, SelfDecodable {
     
     /// The item the referenced Pokémon holds
-    open var item: PKMNamedAPIResource?
+    open var item: PKMNamedAPIResource<PKMItem>?
     
     /// The details of the different versions in which the item is held
     open var versionDetails: [PKMPokemonHeldItemVersion]?
@@ -492,7 +492,7 @@ open class PKMPokemonHeldItem: Codable, SelfDecodable {
 open class PKMPokemonHeldItemVersion: Codable {
     
     /// The version in which the item is held
-    open var version: PKMNamedAPIResource?
+    open var version: PKMNamedAPIResource<PKMVersion>?
     
     /// How often the item is held
     open var rarity: Int?
@@ -503,7 +503,7 @@ open class PKMPokemonHeldItemVersion: Codable {
 open class PKMPokemonMove: Codable, SelfDecodable {
     
     /// The move the Pokémon can learn
-    open var move: PKMNamedAPIResource?
+    open var move: PKMNamedAPIResource<PKMMove>?
     
     /// The details of the version in which the Pokémon can learn the move
     open var versionGroupDetails: [PKMPokemonMoveVersion]?
@@ -520,10 +520,10 @@ open class PKMPokemonMove: Codable, SelfDecodable {
 open class PKMPokemonMoveVersion: Codable, SelfDecodable {
     
     /// The method by which the move is learned
-    open var moveLearnMethod: PKMNamedAPIResource?
+    open var moveLearnMethod: PKMNamedAPIResource<PKMMoveLearnMethod>?
     
     /// The version group in which the move is learned
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
     /// The version group in which the move is learned
     open var levelLearnedAt: Int?
@@ -540,7 +540,7 @@ open class PKMPokemonMoveVersion: Codable, SelfDecodable {
 open class PKMPokemonStat: Codable, SelfDecodable {
     
     /// The stat the Pokémon has
-    open var stat: PKMNamedAPIResource?
+    open var stat: PKMNamedAPIResource<PKMStat>?
     
     /// The effort points (EV) the Pokémon has in the stat
     open var effort: Int?
@@ -595,7 +595,7 @@ open class PKMPokemonSprites: Codable, SelfDecodable {
 open class PKMLocationAreaEncounter: Codable, SelfDecodable {
     
     /// The location area the referenced Pokémon can be encountered in
-    open var locationArea: PKMNamedAPIResource?
+    open var locationArea: PKMNamedAPIResource<PKMLocationArea>?
     
     /// A list of versions and encounters with the referenced Pokémon that might happen
     open var versionDetails: [PKMVersionEncounterDetail]?
@@ -624,7 +624,7 @@ open class PKMPokemonColor: Codable, SelfDecodable {
     open var names: [PKMName]?
     
     /// A list of the Pokémon species that have this color
-    open var pokemonSpecies: [PKMNamedAPIResource]?
+    open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -665,13 +665,13 @@ open class PKMPokemonForm: Codable, SelfDecodable {
     open var formName: String?
     
     /// The Pokémon that can take on this form
-    open var pokemon: PKMNamedAPIResource?
+    open var pokemon: PKMNamedAPIResource<PKMPokemon>?
     
     /// A set of sprites used to depict this Pokémon form in the game
     open var sprites: PKMPokemonFormSprites?
     
     /// The version group this Pokémon form was introduced in
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersionGroup>?
     
     /// The form specific full name of this Pokémon form, or empty if the form does not have a specific name
     open var names: [PKMName]?
@@ -726,7 +726,7 @@ open class PKMPokemonHabitat: Codable, SelfDecodable {
     open var names: [PKMName]?
     
     /// A list of the Pokémon species that can be found in this habitat
-    open var pokemonSpecies: [PKMNamedAPIResource]?
+    open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -755,7 +755,7 @@ open class PKMPokemonShape: Codable, SelfDecodable {
     open var names: [PKMName]?
     
     /// A list of the Pokémon species that have this shape
-    open var pokemonSpecies: [PKMNamedAPIResource]?
+    open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -772,7 +772,7 @@ open class PKMAwesomeName: Codable, SelfDecodable {
     open var awesomeName: String?
     
     /// The language this "scientific" name is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -819,31 +819,31 @@ open class PKMPokemonSpecies: Codable, SelfDecodable {
     open var formsSwitchable: Bool?
     
     /// The rate at which this Pokémon species gains levels
-    open var growthRate: PKMNamedAPIResource?
+    open var growthRate: PKMNamedAPIResource<PKMGrowthRate>?
     
     /// A list of pokedexes and the indexes reserved within them for this Pokémon species
     open var pokedexNumbers: [PKMPokemonSpeciesDexEntry]?
     
     /// A list of egg groups this Pokémon species is a member of
-    open var eggGroups: [PKMNamedAPIResource]?
+    open var eggGroups: [PKMNamedAPIResource<PKMEggGroup>]?
     
     /// The color of this Pokémon for gimmicky Pokédex search
-    open var color: PKMNamedAPIResource?
+    open var color: PKMNamedAPIResource<PKMPokemonColor>?
     
     /// The shape of this Pokémon for gimmicky Pokédex search
-    open var shape: PKMNamedAPIResource?
+    open var shape: PKMNamedAPIResource<PKMPokemonShape>?
     
     /// The Pokémon species that evolves into this pokemon_species
-    open var evolvesFromSpecies: PKMNamedAPIResource?
+    open var evolvesFromSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
     /// The evolution chain this Pokémon species is a member of
-    open var evolutionChain: PKMAPIResource?
+    open var evolutionChain: PKMAPIResource<PKMEvolutionChain>?
     
     /// The habitat this Pokémon species can be encountered in
-    open var habitat: PKMNamedAPIResource?
+    open var habitat: PKMNamedAPIResource<PKMPokemonHabitat>?
     
     /// The generation this Pokémon species was introduced in
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource<PKMGeneration>?
     
     /// The name of this Pokémon species listed in different languages
     open var names: [PKMName]?
@@ -878,7 +878,7 @@ open class PKMGenus: Codable {
     open var genus: String?
     
     /// The language this genus is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
 }
 
 
@@ -889,7 +889,7 @@ open class PKMPokemonSpeciesDexEntry: Codable, SelfDecodable {
     open var entryNumber: Int?
     
     /// The Pokédex the referenced Pokémon species can be found in
-    open var name: PKMNamedAPIResource?
+    open var name: PKMNamedAPIResource<PKMName>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -909,7 +909,7 @@ open class PKMPalParkEncounterArea: Codable, SelfDecodable {
     open var rate: Int?
     
     /// The pal park area where this encounter happens
-    open var area: PKMNamedAPIResource?
+    open var area: PKMNamedAPIResource<PKMPalParkArea>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -926,7 +926,7 @@ open class PKMPokemonSpeciesVariety: Codable, SelfDecodable {
     open var isDefault: Bool?
     
     // The Pokémon variety
-    open var pokemon: PKMNamedAPIResource?
+    open var pokemon: PKMNamedAPIResource<PKMPokemon>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -961,10 +961,10 @@ open class PKMStat: Codable, SelfDecodable {
     open var affectingNatures: PKMNatureStatAffectSets?
     
     /// A list of characteristics that are set on a Pokémon when its highest base stat is this stat
-    open var characteristics: [PKMAPIResource]?
+    open var characteristics: [PKMAPIResource<PKMCharacteristic>]?
     
     /// The class of damage this stat is directly related to
-    open var moveDamageClass: PKMNamedAPIResource?
+    open var moveDamageClass: PKMNamedAPIResource<PKMMoveDamageClass>?
     
     /// The name of this region listed in different languages
     open var names: [PKMName]?
@@ -995,7 +995,7 @@ open class PKMMoveStatAffect: Codable, SelfDecodable {
     open var change: Int?
     
     /// The move causing the change
-    open var move: PKMNamedAPIResource?
+    open var move: PKMNamedAPIResource<PKMMove>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -1009,10 +1009,10 @@ open class PKMMoveStatAffect: Codable, SelfDecodable {
 open class PKMNatureStatAffectSets: Codable {
     
     /// A list of natures and how they change the referenced stat
-    open var increase: [PKMNamedAPIResource]?
+    open var increase: [PKMNamedAPIResource<PKMNature>]?
     
     /// A list of nature sand how they change the referenced stat
-    open var decrease: [PKMNamedAPIResource]?
+    open var decrease: [PKMNamedAPIResource<PKMNature>]?
 }
 
 
@@ -1035,10 +1035,10 @@ open class PKMType: Codable, SelfDecodable {
     open var gameIndices: [PKMGenerationGameIndex]?
     
     /// The generation this type was introduced in
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource<PKMGeneration>?
     
     /// The class of damage inflicted by this type
-    open var moveDamageClass: PKMNamedAPIResource?
+    open var moveDamageClass: PKMNamedAPIResource<PKMMoveDamageClass>?
     
     /// The name of this type listed in different languages
     open var names: [PKMName]?
@@ -1047,7 +1047,7 @@ open class PKMType: Codable, SelfDecodable {
     open var pokemon: [PKMTypePokemon]?
     
     /// A list of moves that have this type
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource<PKMMove>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -1064,7 +1064,7 @@ open class PKMTypePokemon: Codable {
     open var slot: Int?
     
     /// The Pokémon that has the referenced type
-    open var pokemon: PKMNamedAPIResource?
+    open var pokemon: PKMNamedAPIResource<PKMPokemon>?
 }
 
 
@@ -1072,22 +1072,22 @@ open class PKMTypePokemon: Codable {
 open class PKMTypeRelations: Codable, SelfDecodable {
     
     /// A list of types this type has no effect on
-    open var noDamageTo: [PKMNamedAPIResource]?
+    open var noDamageTo: [PKMNamedAPIResource<PKMType>]?
     
     /// A list of types this type is not very effect against
-    open var halfDamageTo: [PKMNamedAPIResource]?
+    open var halfDamageTo: [PKMNamedAPIResource<PKMType>]?
     
     /// A list of types this type is very effect against
-    open var doubleDamageTo: [PKMNamedAPIResource]?
+    open var doubleDamageTo: [PKMNamedAPIResource<PKMType>]?
     
     /// A list of types that have no effect on this type
-    open var noDamageFrom: [PKMNamedAPIResource]?
+    open var noDamageFrom: [PKMNamedAPIResource<PKMType>]?
     
     /// A list of types that are not very effective against this type
-    open var halfDamageFrom: [PKMNamedAPIResource]?
+    open var halfDamageFrom: [PKMNamedAPIResource<PKMType>]?
     
     /// A list of types that are very effective against this type
-    open var doubleDamageFrom: [PKMNamedAPIResource]?
+    open var doubleDamageFrom: [PKMNamedAPIResource<PKMType>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -1104,7 +1104,7 @@ open class PokemonService {
     /**
      Fetch Abilities list
      */
-    public func fetchAbilities(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchAbilities(completion: @escaping (_ result: Result<PKMPagedObject<PKMAbility>>) -> Void) {
         let urlStr = baseURL + "/ability"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1130,7 +1130,7 @@ open class PokemonService {
     /**
      Fetch Characteristics list
      */
-    public func fetchCharacteristics(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchCharacteristics(completion: @escaping (_ result: Result<PKMPagedObject<PKMCharacteristic>>) -> Void) {
         let urlStr = baseURL + "/characteristic"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1156,7 +1156,7 @@ open class PokemonService {
     /**
      Fetch Egg Group list
      */
-    public func fetchEggGroup(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchEggGroup(completion: @escaping (_ result: Result<PKMPagedObject<PKMEggGroup>>) -> Void) {
         let urlStr = baseURL + "/egg-group"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1182,7 +1182,7 @@ open class PokemonService {
     /**
      Fetch Genders list
      */
-    public func fetchGenders(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchGenders(completion: @escaping (_ result: Result<PKMPagedObject<PKMGender>>) -> Void) {
         let urlStr = baseURL + "/gender"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1208,7 +1208,7 @@ open class PokemonService {
     /**
      Fetch Growth Rate list
      */
-    public func fetchGrowthRates(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchGrowthRates(completion: @escaping (_ result: Result<PKMPagedObject<PKMGrowthRate>>) -> Void) {
         let urlStr = baseURL + "/growth-rate"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1234,7 +1234,7 @@ open class PokemonService {
     /**
      Fetch Nature list
      */
-    public func fetchNatures(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchNatures(completion: @escaping (_ result: Result<PKMPagedObject<PKMNature>>) -> Void) {
         let urlStr = baseURL + "/nature"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1259,7 +1259,7 @@ open class PokemonService {
     /**
      Fetch Pokeathlon Stat list
      */
-    public func fetchPokeathlonStats(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchPokeathlonStats(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokeathlonStat>>) -> Void) {
         let urlStr = baseURL + "/pokeathlon-stat"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1285,7 +1285,7 @@ open class PokemonService {
     /**
      Fetch Pokemon list
      */
-    public func fetchPokemons(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchPokemon(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemon>>) -> Void) {
         let urlStr = baseURL + "/pokemon"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1311,7 +1311,7 @@ open class PokemonService {
     /**
      Fetch Pokemon Color list
      */
-    public func fetchPokemonColors(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchPokemonColors(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonColor>>) -> Void) {
         let urlStr = baseURL + "/pokemon-color"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1337,7 +1337,7 @@ open class PokemonService {
     /**
      Fetch Pokemon Form list
      */
-    public func fetchPokemonForms(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchPokemonForms(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonForm>>) -> Void) {
         let urlStr = baseURL + "/pokemon-form"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1363,7 +1363,7 @@ open class PokemonService {
     /**
      Fetch Pokemon Habitat list
      */
-    public func fetchPokemonHabitats(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchPokemonHabitats(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonHabitat>>) -> Void) {
         let urlStr = baseURL + "/pokemon-habitat"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1389,7 +1389,7 @@ open class PokemonService {
     /**
      Fetch Pokemon Shape list
      */
-    public func fetchPokemonShapes(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchPokemonShapes(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonShape>>) -> Void) {
         let urlStr = baseURL + "/pokemon-shape"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1415,7 +1415,7 @@ open class PokemonService {
     /**
      Fetch Pokemon Species list
      */
-    public func fetchPokemonSpecies(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchPokemonSpecies(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonSpecies>>) -> Void) {
         let urlStr = baseURL + "/pokemon-species"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1441,7 +1441,7 @@ open class PokemonService {
     /**
      Fetch Stat list
      */
-    public func fetchStats(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchStats(completion: @escaping (_ result: Result<PKMPagedObject<PKMStat>>) -> Void) {
         let urlStr = baseURL + "/stat"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -1467,7 +1467,7 @@ open class PokemonService {
     /**
      Fetch Type list
      */
-    public func fetchType(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchType(completion: @escaping (_ result: Result<PKMPagedObject<PKMType>>) -> Void) {
         let urlStr = baseURL + "/type"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

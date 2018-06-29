@@ -19,6 +19,16 @@ class ViewController: UIViewController {
             switch result {
             case .success(let berryList):
                 print(berryList)
+                if let berryResource = berryList.results?.first {
+                    PokemonKit.utilityService.fetch(from: berryResource) { result in
+                        switch result {
+                        case .success(let berry):
+                            print(berry.name!)
+                        case .failure(let error):
+                            print(error.message)
+                        }
+                    }
+                }
             case .failure(let error):
                 print(error.message)
             }

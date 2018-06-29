@@ -15,7 +15,7 @@ open class PKMEvolutionChain: Codable, SelfDecodable {
     open var id: Int?
     
     /// The item that a Pokémon would be holding when mating that would trigger the egg hatching a baby Pokémon rather than a basic Pokémon
-    open var babyTriggerItem: PKMNamedAPIResource?
+    open var babyTriggerItem: PKMNamedAPIResource<PKMItem>?
     
     /// The base chain link object. Each link contains evolution details for a Pokémon in the chain. Each link references the next Pokémon in the natural evolution order.
     open var chain: PKMClainLink?
@@ -35,7 +35,7 @@ open class PKMClainLink: Codable, SelfDecodable {
     open var isBaby: Bool?
     
     /// The Pokémon species at this point in the evolution chain
-    open var species: PKMNamedAPIResource?
+    open var species: PKMNamedAPIResource<PKMPokemonSpecies>?
     
     /// All details regarding the specific details of the referenced Pokémon species evolution
     open var evolutionDetails: [PKMEvolutionDetail]?
@@ -55,25 +55,25 @@ open class PKMClainLink: Codable, SelfDecodable {
 open class PKMEvolutionDetail: Codable, SelfDecodable {
     
     /// The item required to cause evolution this into Pokémon species
-    open var item: PKMNamedAPIResource?
+    open var item: PKMNamedAPIResource<PKMItem>?
     
     /// The type of event that triggers evolution into this Pokémon species
-    open var trigger: PKMNamedAPIResource?
+    open var trigger: PKMNamedAPIResource<PKMEvolutionTrigger>?
     
     /// The id of the gender of the evolving Pokémon species must be in order to evolve into this Pokémon species
     open var gender: Int?
     
     /// The item the evolving Pokémon species must be holding during the evolution
-    open var heldItem: PKMNamedAPIResource?
+    open var heldItem: PKMNamedAPIResource<PKMItem>?
     
     /// The move that must be known by the evolving Pokémon species during the evolution trigger event in order to evolve into this Pokémon species
-    open var knownMove: PKMNamedAPIResource?
+    open var knownMove: PKMNamedAPIResource<PKMMove>?
     
     /// The evolving Pokémon species must know a move with this type during the evolution trigger event in order to evolve into this Pokémon species
-    open var knownMoveType: PKMNamedAPIResource?
+    open var knownMoveType: PKMNamedAPIResource<PKMType>?
     
     /// The location the evolution must be triggered at.
-    open var location: PKMNamedAPIResource?
+    open var location: PKMNamedAPIResource<PKMLocation>?
     
     /// The minimum required level of the evolving Pokémon species to evolve into this Pokémon species
     open var minLevel: Int?
@@ -91,10 +91,10 @@ open class PKMEvolutionDetail: Codable, SelfDecodable {
     open var needsOverworldRain: Bool?
     
     /// The pokemon species that must be in the players party in order for the evolving Pokémon species to evolve into this Pokémon species
-    open var partySpecies: PKMNamedAPIResource?
+    open var partySpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
     /// The player must have a pokemon of this type in their party during the evolution trigger event in order for the evolving Pokémon species to evolve into this Pokémon species
-    open var partyType: PKMNamedAPIResource?
+    open var partyType: PKMNamedAPIResource<PKMType>?
     
     /// The required relation between the Pokémon's Attack and Defense stats. 1 means Attack > Defense. 0 means Attack = Defense. -1 means Attack < Defense.
     open var relativePhysicalStats: Int?
@@ -103,7 +103,7 @@ open class PKMEvolutionDetail: Codable, SelfDecodable {
     open var timeOfDay: String?
     
     /// Pokémon species for which this one must be traded.
-    open var tradeSpecies: PKMNamedAPIResource?
+    open var tradeSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
     /// Whether or not the 3DS needs to be turned upside-down as this Pokémon levels up.
     open var turnUpsideDown: Bool?
@@ -129,7 +129,7 @@ open class PKMEvolutionTrigger: Codable, SelfDecodable {
     open var names: [PKMName]?
     
     /// A list of pokemon species that result from this evolution trigger
-    open var pokemonSpecies: PKMNamedAPIResource?
+    open var pokemonSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -146,7 +146,7 @@ open class EvolutionService {
     /**
      Fetch Encounter Chains list
      */
-    public func fetchEvolutionChains(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchEvolutionChains(completion: @escaping (_ result: Result<PKMPagedObject<PKMEvolutionChain>>) -> Void) {
         let urlStr = baseURL + "/evolution-chain"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -172,7 +172,7 @@ open class EvolutionService {
     /**
      Fetch Encounter Triggers list
      */
-    public func fetchEvolutionTriggers(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchEvolutionTriggers(completion: @escaping (_ result: Result<PKMPagedObject<PKMEvolutionTrigger>>) -> Void) {
         let urlStr = baseURL + "/evolution-trigger"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

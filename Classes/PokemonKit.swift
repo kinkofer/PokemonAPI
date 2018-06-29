@@ -23,7 +23,7 @@ public class PokemonKit {
     public static let machineService = MachineService()
     public static let moveService = MoveService()
     public static let pokemonService = PokemonService()
-    public static let utlityService = UtilityService()
+    public static let utilityService = UtilityService()
 }
 
 

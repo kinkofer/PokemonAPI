@@ -35,7 +35,7 @@ open class PKMEncounterCondition: Codable {
     open var name: String?
     
     /// A list of possible values for this encounter condition
-    open var values: [PKMNamedAPIResource]?
+    open var values: [PKMNamedAPIResource<PKMEncounterConditionValue>]?
     
     /// The name of this encounter method listed in different languages
     open var names: [PKMName]?
@@ -52,7 +52,7 @@ open class PKMEncounterConditionValue: Codable {
     open var name: String?
     
     /// The condition this encounter condition value pertains to
-    open var condition: [PKMNamedAPIResource]?
+    open var condition: [PKMNamedAPIResource<PKMEncounterCondition>]?
     
     /// The name of this encounter condition value listed in different languages
     open var names: [PKMName]?
@@ -66,7 +66,7 @@ open class EncounterService {
     /**
      Fetch Encounter Methods list
      */
-    public func fetchEncounterMethods(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchEncounterMethods(completion: @escaping (_ result: Result<PKMPagedObject<PKMEncounterMethod>>) -> Void) {
         let urlStr = baseURL + "/encounter-method"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -92,7 +92,7 @@ open class EncounterService {
     /**
      Fetch Encounter Conditions list
      */
-    public func fetchEncounterConditions(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchEncounterConditions(completion: @escaping (_ result: Result<PKMPagedObject<PKMEncounterCondition>>) -> Void) {
         let urlStr = baseURL + "/encounter-condition"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -118,7 +118,7 @@ open class EncounterService {
     /**
      Fetch Encounter Condition Values list
      */
-    public func fetchEncounterConditionValues(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchEncounterConditionValues(completion: @escaping (_ result: Result<PKMPagedObject<PKMEncounterConditionValue>>) -> Void) {
         let urlStr = baseURL + "/encounter-condition-value"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

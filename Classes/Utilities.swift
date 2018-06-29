@@ -37,7 +37,7 @@ open class PKMLanguage: Codable {
 // MARK - Common Models
 
 /// API Referenced Resource
-open class PKMAPIResource: Codable {
+open class PKMAPIResource<T>: Codable {
     /// The URL of the referenced resource
     open var url: String?
 }
@@ -50,7 +50,7 @@ open class PKMDescription: Codable {
     open var description: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
 }
 
 
@@ -61,7 +61,7 @@ open class PKMEffect: Codable {
     open var effect: String?
     
     /// The language this effect is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
 }
 
 
@@ -75,13 +75,13 @@ open class PKMEncounter: Codable, SelfDecodable {
     open var maxLevel: Int?
     
     /// A list of condition values that must be in effect for this encounter to occur
-    open var conditionValues: [PKMNamedAPIResource]?
+    open var conditionValues: [PKMNamedAPIResource<PKMEncounterConditionValue>]?
     
     /// percent chance that this encounter will occur
     open var chance: Int?
     
     /// The method by which this encounter happens
-    open var method: PKMNamedAPIResource?
+    open var method: PKMNamedAPIResource<PKMEncounterMethod>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -115,7 +115,7 @@ open class PKMGenerationGameIndex: Codable, SelfDecodable {
     open var gameIndex: Int?
     
     /// The generation relevent to this game index
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource<PKMGeneration>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -129,10 +129,10 @@ open class PKMGenerationGameIndex: Codable, SelfDecodable {
 open class PKMMachineVersionDetail: Codable, SelfDecodable {
     
     /// The machine that teaches a move from an item
-    open var machine: PKMAPIResource?
+    open var machine: PKMAPIResource<PKMMachine>?
     
     /// The version group of this specific machine
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -149,25 +149,22 @@ open class PKMName: Codable {
     open var name: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
 }
 
 
 /// Named API Resource
-open class PKMNamedAPIResource: Codable {
+open class PKMNamedAPIResource<T>: PKMAPIResource<T> {
     
     /// The name of the referenced resource
     open var name: String?
-    
-    /// The URL of the referenced resource
-    open var url: String?
 }
 
 
 /// Paged Object
-open class PKMPagedObject: Codable {
+open class PKMPagedObject<T>: Codable {
     
-    /// The total number of resources abailable from this API
+    /// The total number of resources available from this API
     open var count: Int?
     
     /// The url for the next 'page' in the list
@@ -176,8 +173,8 @@ open class PKMPagedObject: Codable {
     /// The url for the previous page in the list
     open var previous: String?
     
-    /// List of unnamed API resources
-    open var results: [PKMNamedAPIResource]?
+    /// List of named API resources
+    open var results: [PKMNamedAPIResource<T>]?
 }
 
 
@@ -191,7 +188,7 @@ open class PKMVerboseEffect: Codable, SelfDecodable {
     open var shortEffect: String?
     
     /// The language this effect is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -205,7 +202,7 @@ open class PKMVerboseEffect: Codable, SelfDecodable {
 open class PKMVersionEncounterDetail: Codable, SelfDecodable {
     
     /// The game version this encounter happens in
-    open var version: PKMNamedAPIResource?
+    open var version: PKMNamedAPIResource<PKMVersion>?
     
     /// The total percentage of all encounter potential
     open var maxChance: Int?
@@ -228,7 +225,7 @@ open class PKMVersionGameIndex: Codable, SelfDecodable {
     open var gameIndex: Int?
     
     /// The version relevent to this game index
-    open var version: PKMNamedAPIResource?
+    open var version: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -245,10 +242,10 @@ open class PKMVersionGroupFlavorText: Codable, SelfDecodable {
     open var text: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
     
     /// The version group which uses this flavor text
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -262,10 +259,12 @@ open class PKMVersionGroupFlavorText: Codable, SelfDecodable {
 // MARK: - Web Services
 
 open class UtilityService {
+    // MARK: - Language
+    
     /**
      Fetch Languages list
      */
-    public func fetchLanguages(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchLanguages(completion: @escaping (_ result: Result<PKMPagedObject<PKMLanguage>>) -> Void) {
         let urlStr = baseURL + "/language"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -281,6 +280,26 @@ open class UtilityService {
      */
     public func fetchLanguage(_ languageId: String, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
         let urlStr = baseURL + "/language/" + languageId
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    
+    // MARK: - API Resource
+    
+    /**
+     Fetch a resource from a named or unnamed resource url
+     
+     - parameter resource: PKMAPIResource or APINamedAPIResource
+     */
+    public func fetch<T: Decodable>(from resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T>) -> Void) {
+        guard let urlStr = resource.url else {
+            completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
+            return
+        }
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

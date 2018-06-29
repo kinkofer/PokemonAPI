@@ -24,10 +24,10 @@ open class PKMItem: Codable, SelfDecodable {
     open var flingPower: Int?
     
     /// The effect of the move Fling when used with this item
-    open var flingEffect: PKMNamedAPIResource?
+    open var flingEffect: PKMNamedAPIResource<PKMItemFlingEffect>?
     
     /// A list of attributes this item has
-    open var attributes: [PKMNamedAPIResource]?
+    open var attributes: [PKMNamedAPIResource<PKMItemAttribute>]?
     
     /// The category of items this item falls into
     open var category: PKMItemCategory?
@@ -51,7 +51,7 @@ open class PKMItem: Codable, SelfDecodable {
     open var heldByPokemon: [PKMItemHolderPokemon]?
     
     /// An evolution chain this item requires to produce a bay during mating
-    open var babyTriggerFor: PKMAPIResource?
+    open var babyTriggerFor: PKMAPIResource<PKMEvolutionChain>?
     
     /// A list of the machines related to this item
     open var machines: [PKMMachineVersionDetail]?
@@ -95,7 +95,7 @@ open class PKMItemHolderPokemonVersionDetail: Codable {
     open var rarity: String?
     
     /// The version that this item is held in by the Pokémon
-    open var version: PKMNamedAPIResource?
+    open var version: PKMNamedAPIResource<PKMVersion>?
 }
 
 
@@ -109,7 +109,7 @@ open class PKMItemAttribute: Codable {
     open var name: String?
     
     /// A list of items that have this attribute
-    open var items: [PKMNamedAPIResource]?
+    open var items: [PKMNamedAPIResource<PKMItem>]?
     
     /// The name of this item attribute listed in different languages
     open var names: [PKMName]?
@@ -129,13 +129,13 @@ open class PKMItemCategory: Codable {
     open var name: String?
     
     /// A list of items that are a part of this category
-    open var items: [PKMNamedAPIResource]?
+    open var items: [PKMNamedAPIResource<PKMItem>]?
     
     /// The name of this item category listed in different languages
     open var names: [PKMName]?
     
     /// The pocket items in this category would be put in
-    open var pocket: PKMNamedAPIResource?
+    open var pocket: PKMNamedAPIResource<PKMItemPocket>?
 }
 
 
@@ -152,7 +152,7 @@ open class PKMItemFlingEffect: Codable, SelfDecodable {
     open var effectEntries: [PKMEffect]?
     
     /// A list of items that have this fling effect    list
-    open var items: [PKMNamedAPIResource]?
+    open var items: [PKMNamedAPIResource<PKMItem>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -172,7 +172,7 @@ open class PKMItemPocket: Codable {
     open var name: String?
     
     /// A list of item categories that are relevent to this item pocket
-    open var categories: [PKMNamedAPIResource]?
+    open var categories: [PKMNamedAPIResource<PKMItemCategory>]?
     
     /// The name of this item pocket listed in different languages
     open var names: [PKMName]?
@@ -186,7 +186,7 @@ open class ItemService {
     /**
      Fetch Items list
      */
-    public func fetchItems(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchItems(completion: @escaping (_ result: Result<PKMPagedObject<PKMItem>>) -> Void) {
         let urlStr = baseURL + "/item"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -212,7 +212,7 @@ open class ItemService {
     /**
      Fetch Item Attributes list
      */
-    public func fetchItemAttributes(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchItemAttributes(completion: @escaping (_ result: Result<PKMPagedObject<PKMItemAttribute>>) -> Void) {
         let urlStr = baseURL + "/item-attribute"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -238,7 +238,7 @@ open class ItemService {
     /**
      Fetch Item Categories list
      */
-    public func fetchItemCategories(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchItemCategories(completion: @escaping (_ result: Result<PKMPagedObject<PKMItemCategory>>) -> Void) {
         let urlStr = baseURL + "/item-category"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -264,7 +264,7 @@ open class ItemService {
     /**
      Fetch Item Fling Effects list
      */
-    public func fetchItemFlingEffects(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchItemFlingEffects(completion: @escaping (_ result: Result<PKMPagedObject<PKMItemFlingEffect>>) -> Void) {
         let urlStr = baseURL + "/item-fling-effect"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -290,7 +290,7 @@ open class ItemService {
     /**
      Fetch Item Pockets list
      */
-    public func fetchItemPockets(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchItemPockets(completion: @escaping (_ result: Result<PKMPagedObject<PKMItemPocket>>) -> Void) {
         let urlStr = baseURL + "/item-pocket"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

@@ -36,13 +36,13 @@ open class PKMMove: Codable, SelfDecodable {
     open var contestCombos: PKMContestComboSets?
     
     /// The type of appeal this move gives a Pokémon when used in a contest
-    open var contestType: PKMNamedAPIResource?
+    open var contestType: PKMNamedAPIResource<PKMContestType>?
     
     /// The effect the move has when used in a contest
-    open var contestEffect: PKMAPIResource?
+    open var contestEffect: PKMAPIResource<PKMContestEffect>?
     
     /// The type of damage the move inflicts on the target, e.g. physical
-    open var damageClass: PKMNamedAPIResource?
+    open var damageClass: PKMNamedAPIResource<PKMMoveDamageClass>?
     
     /// The effect of this move listed in different languages
     open var effectEntries: [PKMVerboseEffect]?
@@ -54,7 +54,7 @@ open class PKMMove: Codable, SelfDecodable {
     open var flavorTextEntries: [PKMMoveFlavorText]?
     
     /// The generation in which this move was introduced
-    open var generation: PKMNamedAPIResource?
+    open var generation: PKMNamedAPIResource<PKMGeneration>?
     
     /// A list of the machines that teach this move
     open var machines: [PKMMachineVersionDetail]?
@@ -72,13 +72,13 @@ open class PKMMove: Codable, SelfDecodable {
     open var statChanges: [PKMMoveStatChange]?
     
     /// The effect the move has when used in a super contest
-    open var superContestEffect: PKMAPIResource?
+    open var superContestEffect: PKMAPIResource<PKMSuperContestEffect>?
     
     /// The type of target that will recieve the effects of the attack
-    open var target: PKMNamedAPIResource?
+    open var target: PKMNamedAPIResource<PKMMoveTarget>?
     
     /// The elemental type of this move    NamedAPIResource
-    open var type: PKMNamedAPIResource?
+    open var type: PKMNamedAPIResource<PKMType>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -103,10 +103,10 @@ open class PKMContestComboSets: Codable {
 open class PKMContestComboDetail: Codable, SelfDecodable {
     
     /// A list of moves to use before this move
-    open var useBefore: [PKMNamedAPIResource]?
+    open var useBefore: [PKMNamedAPIResource<PKMMove>]?
     
     /// A list of moves to use after this move
-    open var useAfter: [PKMNamedAPIResource]?
+    open var useAfter: [PKMNamedAPIResource<PKMMove>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -123,10 +123,10 @@ open class PKMMoveFlavorText: Codable, SelfDecodable {
     open var flavorText: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
     
     /// The version group that uses this flavor text
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -140,10 +140,10 @@ open class PKMMoveFlavorText: Codable, SelfDecodable {
 open class PKMMoveMetaData: Codable, SelfDecodable {
     
     /// The status ailment this move inflicts on its target
-    open var ailment: PKMNamedAPIResource?
+    open var ailment: PKMNamedAPIResource<PKMMoveAilment>?
     
     /// The category of move this move falls under, e.g. damage or ailment
-    open var category: PKMNamedAPIResource?
+    open var category: PKMNamedAPIResource<PKMMove>?
     
     /// The minimum number of times this move hits. Null if it always only hits once.
     open var minHits: Int?
@@ -190,7 +190,7 @@ open class PKMMoveStatChange: Codable {
     open var change: Int?
     
     /// The stat being affected
-    open var stat: PKMNamedAPIResource?
+    open var stat: PKMNamedAPIResource<PKMStat>?
 }
 
 
@@ -213,10 +213,10 @@ open class PKMPastMoveStatValues: Codable, SelfDecodable {
     open var effectEntries: [PKMVerboseEffect]?
     
     /// The elemental type of this move
-    open var type: PKMNamedAPIResource?
+    open var type: PKMNamedAPIResource<PKMType>?
     
     /// The version group in which these move stat values were in effect
-    open var versionGroup: PKMNamedAPIResource?
+    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -239,7 +239,7 @@ open class PKMMoveAilment: Codable {
     open var name: String?
     
     /// A list of moves that cause this ailment
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource<PKMMove>]?
     
     /// The name of this move ailment listed in different languages
     open var names: [PKMName]?
@@ -276,7 +276,7 @@ open class PKMMoveCategory: Codable {
     open var name: String?
     
     /// A list of moves that fall into this category
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource<PKMMove>]?
     
     /// The description of this move ailment listed in different languages
     open var descriptions: [PKMDescription]?
@@ -299,7 +299,7 @@ open class PKMMoveDamageClass: Codable {
     open var descriptions: [PKMDescription]?
     
     /// A list of moves that fall into this damage class
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource<PKMMove>]?
     
     /// The name of this move damage class listed in different languages
     open var names: [PKMName]?
@@ -325,7 +325,7 @@ open class PKMMoveLearnMethod: Codable, SelfDecodable {
     open var names: [PKMName]?
     
     /// A list of version groups where moves can be learned through this method
-    open var versionGroups: [PKMNamedAPIResource]?
+    open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -351,7 +351,7 @@ open class PKMMoveTarget: Codable {
     open var descriptions: [PKMDescription]?
     
     /// A list of moves that that are directed at this target
-    open var moves: [PKMNamedAPIResource]?
+    open var moves: [PKMNamedAPIResource<PKMMove>]?
     
     /// The name of this move target listed in different languages
     open var names: [PKMName]?
@@ -365,7 +365,7 @@ open class MoveService {
     /**
      Fetch Moves list
      */
-    public func fetchMoves(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchMoves(completion: @escaping (_ result: Result<PKMPagedObject<PKMMove>>) -> Void) {
         let urlStr = baseURL + "/move"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -391,7 +391,7 @@ open class MoveService {
     /**
      Fetch Moves Ailments list
      */
-    public func fetchMoveAilments(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchMoveAilments(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveAilment>>) -> Void) {
         let urlStr = baseURL + "/move-ailment"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -417,7 +417,7 @@ open class MoveService {
     /**
      Fetch Moves Battle Styles list
      */
-    public func fetchMoveBattleStyles(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchMoveBattleStyles(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveBattleStyle>>) -> Void) {
         let urlStr = baseURL + "/move-battle-style"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -443,7 +443,7 @@ open class MoveService {
     /**
      Fetch Moves Categories list
      */
-    public func fetchMoveCategories(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchMoveCategories(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveCategory>>) -> Void) {
         let urlStr = baseURL + "/move-category"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -469,7 +469,7 @@ open class MoveService {
     /**
      Fetch Moves Damage Classes list
      */
-    public func fetchMoveDamageClasses(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchMoveDamageClasses(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveDamageClass>>) -> Void) {
         let urlStr = baseURL + "/move-damage-class"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -495,7 +495,7 @@ open class MoveService {
     /**
      Fetch Moves Learn Methods list
      */
-    public func fetchMoveLearnMethods(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchMoveLearnMethods(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveLearnMethod>>) -> Void) {
         let urlStr = baseURL + "/move-learn-method"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -520,7 +520,7 @@ open class MoveService {
     /**
      Fetch Moves Targets list
      */
-    public func fetchMoveTargets(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchMoveTargets(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveTarget>>) -> Void) {
         let urlStr = baseURL + "/move-target"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

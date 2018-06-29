@@ -18,7 +18,7 @@ open class PKMLocation: Codable, SelfDecodable {
     open var name: String?
     
     /// The region this location can be found in
-    open var region: PKMNamedAPIResource?
+    open var region: PKMNamedAPIResource<PKMRegion>?
     
     /// The name of this language listed in different languages
     open var names: [PKMName]?
@@ -27,7 +27,7 @@ open class PKMLocation: Codable, SelfDecodable {
     open var gameIndices: [PKMGenerationGameIndex]?
     
     /// Areas that can be found within this location
-    open var areas: PKMAPIResource?
+    open var areas: PKMAPIResource<PKMLocationArea>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -56,7 +56,7 @@ open class PKMLocationArea: Codable, SelfDecodable {
     open var encounterMethodRates: [PKMEncounterMethodRate]?
     
     /// The region this location can be found in
-    open var location: PKMNamedAPIResource?
+    open var location: PKMNamedAPIResource<PKMLocation>?
     
     /// The name of this location area listed in different languages
     open var names: [PKMName]?
@@ -96,7 +96,7 @@ open class PKMEncounterVersionDetails: Codable {
     open var rate: Int?
     
     /// The version of the game in which the encounter can occur with the given chance.
-    open var version: PKMNamedAPIResource?
+    open var version: PKMNamedAPIResource<PKMVersion>?
 }
 
 
@@ -104,7 +104,7 @@ open class PKMEncounterVersionDetails: Codable {
 open class PKMPokemonEncounter: Codable, SelfDecodable {
     
     /// The Pokémon being encountered
-    open var pokemon: PKMNamedAPIResource?
+    open var pokemon: PKMNamedAPIResource<PKMPokemon>?
     
     /// A list of versions and encounters with Pokémon that might happen in the referenced location area
     open var versionDetails: [PKMVersionEncounterDetail]?
@@ -153,7 +153,7 @@ open class PKMPalParkEncounterSpecies: Codable, SelfDecodable {
     open var rate: Int?
     
     /// The Pokémon species being encountered
-    open var pokemonSpecies: PKMNamedAPIResource?
+    open var pokemonSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -176,19 +176,19 @@ open class PKMRegion: Codable, SelfDecodable {
     open var name: String?
     
     /// A list of locations that can be found in this region
-    open var locations: [PKMNamedAPIResource]?
+    open var locations: [PKMNamedAPIResource<PKMLocation>]?
     
     /// The generation this region was introduced in
-    open var mainGeneration: PKMNamedAPIResource?
+    open var mainGeneration: PKMNamedAPIResource<PKMGeneration>?
     
     /// The name of this region listed in different languages
     open var names: [PKMName]?
     
     /// A list of pokédexes that catalogue Pokémon in this region
-    open var pokedexes: [PKMNamedAPIResource]?
+    open var pokedexes: [PKMNamedAPIResource<PKMPokedex>]?
     
     /// A list of version groups where this region can be visited
-    open var versionGroups: [PKMNamedAPIResource]?
+    open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -205,7 +205,7 @@ open class LocationService {
     /**
      Fetch Locations list
      */
-    public func fetchLocations(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchLocations(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveTarget>>) -> Void) {
         let urlStr = baseURL + "/location"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -231,7 +231,7 @@ open class LocationService {
     /**
      Fetch Location Area list
      */
-    public func fetchLocationAreas(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchLocationAreas(completion: @escaping (_ result: Result<PKMPagedObject<PKMLocationArea>>) -> Void) {
         let urlStr = baseURL + "/location-area"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -257,7 +257,7 @@ open class LocationService {
     /**
      Fetch Pal Park Areas list
      */
-    public func fetchPalParkAreas(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchPalParkAreas(completion: @escaping (_ result: Result<PKMPagedObject<PKMPalParkArea>>) -> Void) {
         let urlStr = baseURL + "/pal-park-area"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -283,7 +283,7 @@ open class LocationService {
     /**
      Fetch Regions list
      */
-    public func fetchRegions(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+    public func fetchRegions(completion: @escaping (_ result: Result<PKMPagedObject<PKMRegion>>) -> Void) {
         let urlStr = baseURL + "/region"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
