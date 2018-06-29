@@ -22,6 +22,7 @@
 		593FD61C20E3EF3A00CF8862 /* Machines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD61B20E3EF3A00CF8862 /* Machines.swift */; };
 		593FD61E20E3EF4E00CF8862 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD61D20E3EF4E00CF8862 /* Locations.swift */; };
 		593FD62020E3EF5800CF8862 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD61F20E3EF5800CF8862 /* Pokemon.swift */; };
+		593FD64F20E54FE100CF8862 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD64E20E54FE100CF8862 /* Utilities.swift */; };
 		5EE295543C7F05212E9F9C4BC3BB0BC4 /* PokemonKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C752C776F973B57AA94842E8304A73F9 /* PokemonKit-dummy.m */; };
 		7994278B8546B0BAE5F9F8A474D0D606 /* PokemonKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B333FB497BE319A8628B30466701DA8 /* PokemonKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7DF9CB1323AB21F043EC615F25E4E8F3 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EA5E209B8DD0A63F10A17C80AFC33 /* URL+Query.swift */; };
@@ -68,6 +69,7 @@
 		593FD61B20E3EF3A00CF8862 /* Machines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Machines.swift; sourceTree = "<group>"; };
 		593FD61D20E3EF4E00CF8862 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		593FD61F20E3EF5800CF8862 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		593FD64E20E54FE100CF8862 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		686532B5CE2380537BB0257A74461755 /* HTTPHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 		6DFC99AB082A01C8800C87979E7D711F /* Berries.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Berries.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				593FD61B20E3EF3A00CF8862 /* Machines.swift */,
 				593FD61120E3EEF500CF8862 /* Moves.swift */,
 				593FD61F20E3EF5800CF8862 /* Pokemon.swift */,
+				593FD64E20E54FE100CF8862 /* Utilities.swift */,
 				7770BD94FD37F74B5B62268334A96A21 /* PokemonKit.swift */,
 			);
 			path = Classes;
@@ -354,6 +357,7 @@
 				C7457F9382A2BFECB81227F354B00CC4 /* HTTPHeader.swift in Sources */,
 				B27D49C1917BB9464F2BEC641EA20BFA /* HTTPWebService.swift in Sources */,
 				593FD61A20E3EF3100CF8862 /* Items.swift in Sources */,
+				593FD64F20E54FE100CF8862 /* Utilities.swift in Sources */,
 				593FD61620E3EF2400CF8862 /* Evolution.swift in Sources */,
 				C6A82D1105D11A548F9C80B0E3F491D3 /* Network.swift in Sources */,
 				593FD61220E3EEF500CF8862 /* Moves.swift in Sources */,

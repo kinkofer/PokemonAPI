@@ -137,3 +137,60 @@ open class PKMEvolutionTrigger: Codable, SelfDecodable {
         return decoder
     }()
 }
+
+
+
+// MARK: - Web Services
+
+open class EvolutionService {
+    /**
+     Fetch Encounter Chains list
+     */
+    public func fetchEvolutionChains(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+        let urlStr = baseURL + "/evolution-chain"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Evolution Chain Information
+     
+     - parameter evolutionChainId: Evolution Chain ID
+     */
+    public func fetchEvolutionChain(_ evolutionChainId: String, completion: @escaping (_ result: Result<PKMEvolutionChain>) -> Void) {
+        let urlStr = baseURL + "/evolution-chain/" + evolutionChainId
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Encounter Triggers list
+     */
+    public func fetchEvolutionTriggers(completion: @escaping (_ result: Result<PKMPagedObject>) -> Void) {
+        let urlStr = baseURL + "/evolution-trigger"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Evolution Trigger Information
+     
+     - parameter evolutionTriggerId: Evolution Trigger ID
+     */
+    public func fetchEvolutionTrigger(_ evolutionTriggerId: String, completion: @escaping (_ result: Result<PKMEvolutionTrigger>) -> Void) {
+        let urlStr = baseURL + "/evolution-trigger/" + evolutionTriggerId
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+}

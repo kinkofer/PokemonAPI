@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        PokemonKit.fetchBerryList() { result in
+        PokemonKit.berryService.fetchBerryList() { result in
             switch result {
             case .success(let berryList):
                 print(berryList)
@@ -24,7 +24,7 @@ class ViewController: UIViewController {
             }
         }
         
-        PokemonKit.fetchBerry("1") { result in
+        PokemonKit.berryService.fetchBerry("1") { result in
             switch result {
             case .success(let berryInfo):
                 print(berryInfo.name!)
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
             }
         }
         
-        PokemonKit.fetchPokemon("1") { result in
+        PokemonKit.pokemonService.fetchPokemon("1") { result in
             switch result {
             case .success(let decoded):
                 print(decoded)
