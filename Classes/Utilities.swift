@@ -161,23 +161,6 @@ open class PKMNamedAPIResource<T>: PKMAPIResource<T> {
 }
 
 
-/// Paged Object
-open class PKMPagedObject<T>: Codable {
-    
-    /// The total number of resources available from this API
-    open var count: Int?
-    
-    /// The url for the next 'page' in the list
-    open var next: String?
-    
-    /// The url for the previous page in the list
-    open var previous: String?
-    
-    /// List of named API resources
-    open var results: [PKMNamedAPIResource<T>]?
-}
-
-
 /// Verbose Effect
 open class PKMVerboseEffect: Codable, SelfDecodable {
     
@@ -264,11 +247,27 @@ open class UtilityService {
     /**
      Fetch Languages list
      */
-    public func fetchLanguages(completion: @escaping (_ result: Result<PKMPagedObject<PKMLanguage>>) -> Void) {
-        let urlStr = baseURL + "/language"
+    public func fetchLanguages<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLanguage {
+        let urlStr: String
+            
+        switch paginationState {
+        case .initial(pageLimit: let limit):
+            urlStr = baseURL + "/language" + "?limit=\(limit)"
+        case .continuing(let pagedObject, let relationship):
+            guard let pageLink = pagedObject.getPageLink(for: relationship) else {
+                completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
+                return
+            }
+            urlStr = pageLink
+        }
+        
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
+            result.decode(customDecode: { data in
+                let pagedObject = try PKMPagedObject<T>.decode(from: data)
+                pagedObject.update(with: paginationState)
+                return pagedObject
+                }, completion: completion)
         }
     }
     

@@ -51,6 +51,16 @@ class ViewController: UIViewController {
                 print(error.message)
             }
         }
+        
+        
+        PokemonKit.utilityService.fetchLanguages { result in
+            switch result {
+            case .success(let languages):
+                print(languages)
+            case .failure(let error):
+                print(error.message)
+            }
+        }
     }
 
 }

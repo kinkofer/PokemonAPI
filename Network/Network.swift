@@ -50,49 +50,49 @@ class Network: NSObject {
      - the web service returns an error status code
      - Error with type httpError
      */
-    func startPagination(_ request: URLRequest, pageLimit: Int, offset: Int, completion: @escaping (_ result: Result<PaginatedResult>) -> Void) {
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data,
-                let response = response as? HTTPURLResponse {
-                let headers = response.allHeaderFields
-                let statusCode = response.statusCode
-                
-                if self.statusCodeIsSuccess(statusCode) {
-                    guard let linksStr = headers["Link"] as? String,
-                        let totalCountStr = headers["X-Total-Count"] as? String,
-                        let totalCount = Int(totalCountStr) else {
-                            completion(Result(value: nil, error: HTTPError(type: .unexpectedResponse)))
-                            return
-                    }
-                    
-                    let firstUrlStr = self.getLinkUrl(from: linksStr, relationship: .first)
-                    let lastUrlStr = self.getLinkUrl(from: linksStr, relationship: .last)
-                    let nextUrlStr = self.getLinkUrl(from: linksStr, relationship: .next)
-                    let previousUrlStr = self.getLinkUrl(from: linksStr, relationship: .previous)
-                    
-                    let pageLink = PageLink(first: firstUrlStr, last: lastUrlStr, next: nextUrlStr, previous: previousUrlStr)
-                    
-                    let paginatedResult = PaginatedResult(value: data, pageLink: pageLink, pageLimit: pageLimit, offset: offset, total: totalCount)
-                    completion(Result(value: paginatedResult, error: nil))
-                }
-                else if statusCode == 401 {
-                    completion(Result(value: nil, error: HTTPError(type: .unauthorized)))
-                }
-                else {
-                    let description = self.errorDescription(for: statusCode, withResponse: data)
-                    let error = HTTPError(type: .httpError, code: statusCode, description: description)
-                    
-                    completion(Result(value: nil, error: error))
-                }
-            }
-            else if let error = error as NSError? {
-                completion(Result(value: nil, error: HTTPError(from: error)))
-            }
-            else {
-                completion(Result(value: nil, error: HTTPError(type: .httpError)))
-            }
-            }.resume()
-    }
+//    func startPagination<T>(_ request: URLRequest, pageLimit: Int, offset: Int, completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) {
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let data = data,
+//                let response = response as? HTTPURLResponse {
+//                let headers = response.allHeaderFields
+//                let statusCode = response.statusCode
+//                
+//                if self.statusCodeIsSuccess(statusCode) {
+//                    guard let linksStr = headers["Link"] as? String,
+//                        let totalCountStr = headers["X-Total-Count"] as? String,
+//                        let totalCount = Int(totalCountStr) else {
+//                            completion(Result(value: nil, error: HTTPError(type: .unexpectedResponse)))
+//                            return
+//                    }
+//                    
+//                    let firstUrlStr = self.getLinkUrl(from: linksStr, relationship: .first)
+//                    let lastUrlStr = self.getLinkUrl(from: linksStr, relationship: .last)
+//                    let nextUrlStr = self.getLinkUrl(from: linksStr, relationship: .next)
+//                    let previousUrlStr = self.getLinkUrl(from: linksStr, relationship: .previous)
+//                    
+//                    let pageLink = PageLink(first: firstUrlStr, last: lastUrlStr, next: nextUrlStr, previous: previousUrlStr)
+//                    
+//                    let paginatedResult = PaginatedResult(value: data, pageLink: pageLink, pageLimit: pageLimit, offset: offset, total: totalCount)
+//                    completion(Result(value: paginatedResult, error: nil))
+//                }
+//                else if statusCode == 401 {
+//                    completion(Result(value: nil, error: HTTPError(type: .unauthorized)))
+//                }
+//                else {
+//                    let description = self.errorDescription(for: statusCode, withResponse: data)
+//                    let error = HTTPError(type: .httpError, code: statusCode, description: description)
+//                    
+//                    completion(Result(value: nil, error: error))
+//                }
+//            }
+//            else if let error = error as NSError? {
+//                completion(Result(value: nil, error: HTTPError(from: error)))
+//            }
+//            else {
+//                completion(Result(value: nil, error: HTTPError(type: .httpError)))
+//            }
+//        }.resume()
+//    }
     
     
     func getLinkUrl(from linkString: String, relationship: PaginationRelationship) -> String? {

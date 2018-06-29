@@ -9,11 +9,11 @@ import Foundation
 
 
 /// The state of a paginated web service call.
-public enum PaginationState {
+public enum PaginationState<T> {
     /// Required state the first time you call the paginated web service.
     case initial(pageLimit: Int)
     /// Used on subsequent calls to the paginated web service, getting results for that relationship.
-    case continuing(PaginatedResult, PaginationRelationship)
+    case continuing(PKMPagedObject<T>, PaginationRelationship)
 }
 
 
@@ -50,51 +50,69 @@ struct PageLink {
 
 
 
-/// Struct representing the pagination state for a single call
-public struct PaginatedResult {
-    /// The Data from the web service result
-    public var value: Data
-    /// URLs available to call based on relationships to the current web service call.
-    private var pageLink: PageLink
+/// Paged Object
+open class PKMPagedObject<T>: Codable {
+    enum CodingKeys: String, CodingKey {
+        case count
+        case next
+        case previous
+        case results
+    }
     
-    /// The number of objects returned
-    public let pageLimit: Int
-    /// The current offset of the total results
-    private let offset: Int
+    /// The total number of resources available from this API
+    open var count: Int?
     
-    /// Total count of objects for that web service call
-    public let total: Int
+    /// The url for the next 'page' in the list
+    open var next: String?
+    
+    /// The url for the previous page in the list
+    open var previous: String?
+    
+    /// The url for the ucrrent page
+    private var current: String = ""
+    
+    /// List of named API resources
+    open var results: [PKMNamedAPIResource<T>]?
+    
+    open var limit: Int = 0
+    
+    private var offset: Int = 0
     
     /// The number of pages produced based of the pageLimit
     public var pages: Int {
-        return Int(Float(total / pageLimit).rounded(.up))
+        guard let count = count else {
+            return 0
+        }
+        return Int((Float(count) / Float(limit)).rounded(.up))
     }
     
     /// The current zero-index page based on the current offset and pageLimit
     public var currentPage: Int {
-        return Int(Float(offset / pageLimit).rounded(.down))
+        return offset / limit
     }
     
     /// True if there are additional results that can be retrieved
     public var hasNext: Bool {
-        return pageLink.next != nil
+        return next != nil
     }
     
     /// True if there are previous results that can be retrieved
     public var hasPrevious: Bool {
-        return pageLink.previous != nil
+        return previous != nil
     }
     
     
-    // MARK: - Init
     
-    init(value: Data, pageLink: PageLink, pageLimit: Int, offset: Int, total: Int) {
-        self.value = value
-        
-        self.pageLink = pageLink
-        self.pageLimit = pageLimit
-        self.offset = offset
-        self.total = total
+    // MARK: - Update
+    
+    func update<T>(with paginationState: PaginationState<T>) {
+        switch paginationState {
+        case .initial(let limit):
+            self.limit = limit
+        case .continuing(let pagedObject, let relationship):
+            self.offset = pagedObject.getOffset(for: relationship)
+            self.limit = pagedObject.limit
+        }
     }
     
     
@@ -106,10 +124,13 @@ public struct PaginatedResult {
         switch relationship {
         case .first: return 0
         case .last:
-            let remainingCount = total % pageLimit
-            return total - remainingCount
-        case .next: return min(offset + pageLimit, getOffset(for: .last))
-        case .previous: return max(offset - pageLimit, 0)
+            guard let count = count else {
+                return 0
+            }
+            let remainingCount = count % limit
+            return count - remainingCount
+        case .next: return min(offset + limit, getOffset(for: .last))
+        case .previous: return max(offset - limit, 0)
         case .page(let page):
             guard page >= 0 else {
                 return 0
@@ -119,7 +140,7 @@ public struct PaginatedResult {
                 return getOffset(for: .last)
             }
             
-            return page * pageLimit
+            return page * limit
         }
     }
     
@@ -127,14 +148,26 @@ public struct PaginatedResult {
     /// Returns the url string of a current relationship if it exists
     func getPageLink(for relationship: PaginationRelationship) -> String? {
         switch relationship {
-        case .first: return self.pageLink.first
-        case .last: return self.pageLink.last
-        case .next: return self.pageLink.next
-        case .previous: return self.pageLink.previous
+        case .first:
+            guard var url = URL(string: current) else {
+                return nil
+            }
+            url.appendQuery(parameters: ["offset": "0"])
+            return url.absoluteString
+        case .last:
+            guard var url = URL(string: current) else {
+                return nil
+            }
+            url.appendQuery(parameters: ["offset": String(getOffset(for: .last))])
+            return url.absoluteString
+        case .next: return self.next
+        case .previous: return self.previous
         case .page(let page):
-            let offset = getOffset(for: .page(page))
-            // FIXME: Replace offset for desired page
-            return nil
+            guard var url = URL(string: current) else {
+                return nil
+            }
+            url.appendQuery(parameters: ["offset": String(getOffset(for: .page(page)))])
+            return url.absoluteString
         }
     }
 }
