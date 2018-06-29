@@ -25,27 +25,6 @@ public enum PaginationRelationship {
     case previous
     /// - note: pages are zero-index
     case page(Int)
-    
-    
-    var name: String {
-        switch self {
-        case .first: return "first"
-        case .last: return "last"
-        case .next: return "next"
-        case .previous: return "previous"
-        default:
-            return ""
-        }
-    }
-}
-
-
-/// A struct containing optional url strings to relative links of a PaginatedResult
-struct PageLink {
-    var first: String?
-    var last: String?
-    var next: String?
-    var previous: String?
 }
 
 
@@ -62,13 +41,13 @@ open class PKMPagedObject<T>: Codable {
     /// The total number of resources available from this API
     open var count: Int?
     
-    /// The url for the next 'page' in the list
+    /// The url for the next page in the list
     open var next: String?
     
     /// The url for the previous page in the list
     open var previous: String?
     
-    /// The url for the ucrrent page
+    /// The url for the current page
     private var current: String = ""
     
     /// List of named API resources

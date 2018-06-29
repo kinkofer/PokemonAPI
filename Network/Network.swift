@@ -95,29 +95,6 @@ class Network: NSObject {
 //    }
     
     
-    func getLinkUrl(from linkString: String, relationship: PaginationRelationship) -> String? {
-        var linkUrlStr: String?
-        
-        let linkPairs = linkString.split(separator: ",")
-        
-        for pair in linkPairs {
-            let splitPairs = pair.split(separator: ";")
-            
-            if let urlSubStr = splitPairs.first {
-                var urlStr = String(describing: urlSubStr).trimmingCharacters(in: .whitespacesAndNewlines)
-                urlStr = urlStr.replacingOccurrences(of: "<", with: "")
-                urlStr = urlStr.replacingOccurrences(of: ">", with: "")
-                
-                if splitPairs.last?.contains(relationship.name) == true {
-                    linkUrlStr = urlStr
-                }
-            }
-        }
-        
-        return linkUrlStr
-    }
-    
-    
     /**
      Starts the URLRequest and returns the response from the server or an error.
      
