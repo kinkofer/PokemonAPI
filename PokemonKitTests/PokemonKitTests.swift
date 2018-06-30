@@ -60,7 +60,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchingEvolutionChain() {
         let asyncExpectation = expectation(description: "Fetch Evo Chains")
-        PokemonKit.evolutionService.fetchEvolutionChains() { result in
+        PokemonKit.evolutionService.fetchEvolutionChainList() { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()

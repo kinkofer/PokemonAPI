@@ -27,7 +27,7 @@ open class PKMLocation: Codable, SelfDecodable {
     open var gameIndices: [PKMGenerationGameIndex]?
     
     /// Areas that can be found within this location
-    open var areas: PKMAPIResource<PKMLocationArea>?
+    open var areas: [PKMNamedAPIResource<PKMLocationArea>]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
