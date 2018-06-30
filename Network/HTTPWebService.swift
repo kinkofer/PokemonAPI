@@ -64,47 +64,59 @@ public class HTTPWebService: NSObject {
      - parameter headers: Configures the HTTP request with the included headers. By default, the Accept and Content-Type headers are configured with json
      - parameter completion: Returns the web service response and error
      */
-//    static func callPaginatedWebService<T>(url: URL?, paginationState: PaginationState<T>, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) {
-//        guard var url = url else {
-//            completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
-//            return
-//        }
-//        
-//        // Append pageLimit and offset to url
-//        var pageLimit = 0
-//        var offset = 0
-//        
-//        switch paginationState {
-//        case .initial(pageLimit: let limit):
-//            pageLimit = limit
-//        case .continuing(let paginatedResult, let relationship):
-//            pageLimit = paginatedResult.limit
-//            offset = paginatedResult.getOffset(for: relationship)
-//        }
-//        
-//        url.appendQuery(parameters: ["limit": String(pageLimit),
-//                                     "offset": String(offset)])
-//        
-//        // Construct the default request
-//        if var request = Network.shared.getRequest(with: url, method: .get) {
-//            // Add (or overwrite default) headers
-//            for header in headers {
-//                switch header {
-//                case .contentType(let mediaType):
-//                    request.setValue(mediaType.headerValue, forHTTPHeaderField: header.key)
-//                case .accept(let mediaType):
-//                    request.setValue(mediaType.headerValue, forHTTPHeaderField: header.key)
-//                }
-//            }
-//            
-//            // Make the request
-//            Network.shared.startPagination(request, pageLimit: pageLimit, offset: offset) { result in
-//                completion(result)
-//            }
-//        }
-//        else {
-//            completion(Result(value: nil, error: HTTPError(type: .unauthorized)))
-//        }
-//    }
+    static func callPaginatedWebService<T>(url: URL?, paginationState: PaginationState<T>, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: Decodable {
+        guard var url = url else {
+            completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
+            return
+        }
+        
+        // Append pageLimit and offset to url
+        var pageLimit = 0
+        var offset = 0
+        
+        switch paginationState {
+        case .initial(pageLimit: let limit):
+            pageLimit = limit
+        case .continuing(let paginatedResult, let relationship):
+            pageLimit = paginatedResult.limit
+            offset = paginatedResult.getOffset(for: relationship)
+        }
+        
+        url.appendQuery(parameters: ["limit": String(pageLimit),
+                                     "offset": String(offset)])
+        
+        // Construct the default request
+        if var request = Network.shared.getRequest(with: url, method: .get) {
+            // Add (or overwrite default) headers
+            for header in headers {
+                switch header {
+                case .contentType(let mediaType):
+                    request.setValue(mediaType.headerValue, forHTTPHeaderField: header.key)
+                case .accept(let mediaType):
+                    request.setValue(mediaType.headerValue, forHTTPHeaderField: header.key)
+                }
+            }
+            
+            // Make the request
+            Network.shared.startData(request) { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let pagedObject = try PKMPagedObject<T>.decode(from: data)
+                        pagedObject.update(with: paginationState, currentUrl: url.absoluteString)
+                        completion(Result(value: pagedObject, error: nil))
+                    }
+                    catch {
+                        completion(Result(value: nil, error: HTTPError(type: .jsonParsingError)))
+                    }
+                case .failure(let error):
+                    completion(Result(value: nil, error: error))
+                }
+            }
+        }
+        else {
+            completion(Result(value: nil, error: HTTPError(type: .unauthorized)))
+        }
+    }
 }
 

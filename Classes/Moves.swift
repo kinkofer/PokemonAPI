@@ -365,12 +365,9 @@ open class MoveService {
     /**
      Fetch Moves list
      */
-    public func fetchMoves(completion: @escaping (_ result: Result<PKMPagedObject<PKMMove>>) -> Void) {
+    public func fetchMoveList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMMove {
         let urlStr = baseURL + "/move"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -391,12 +388,9 @@ open class MoveService {
     /**
      Fetch Moves Ailments list
      */
-    public func fetchMoveAilments(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveAilment>>) -> Void) {
+    public func fetchMoveAilmentList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMMoveAilment {
         let urlStr = baseURL + "/move-ailment"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -417,12 +411,9 @@ open class MoveService {
     /**
      Fetch Moves Battle Styles list
      */
-    public func fetchMoveBattleStyles(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveBattleStyle>>) -> Void) {
+    public func fetchMoveBattleStyleList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMMoveBattleStyle {
         let urlStr = baseURL + "/move-battle-style"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -443,12 +434,9 @@ open class MoveService {
     /**
      Fetch Moves Categories list
      */
-    public func fetchMoveCategories(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveCategory>>) -> Void) {
+    public func fetchMoveCategoryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMMoveCategory {
         let urlStr = baseURL + "/move-category"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -469,12 +457,9 @@ open class MoveService {
     /**
      Fetch Moves Damage Classes list
      */
-    public func fetchMoveDamageClasses(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveDamageClass>>) -> Void) {
+    public func fetchMoveDamageClassList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMMoveDamageClass {
         let urlStr = baseURL + "/move-damage-class"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -495,12 +480,9 @@ open class MoveService {
     /**
      Fetch Moves Learn Methods list
      */
-    public func fetchMoveLearnMethods(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveLearnMethod>>) -> Void) {
+    public func fetchMoveLearnMethodList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMMoveLearnMethod {
         let urlStr = baseURL + "/move-learn-method"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -520,12 +502,9 @@ open class MoveService {
     /**
      Fetch Moves Targets list
      */
-    public func fetchMoveTargets(completion: @escaping (_ result: Result<PKMPagedObject<PKMMoveTarget>>) -> Void) {
+    public func fetchMoveTargetList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMMoveTarget {
         let urlStr = baseURL + "/move-target"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     

@@ -146,12 +146,9 @@ open class EvolutionService {
     /**
      Fetch Encounter Chains list
      */
-    public func fetchEvolutionChains(completion: @escaping (_ result: Result<PKMPagedObject<PKMEvolutionChain>>) -> Void) {
+    public func fetchEvolutionChainList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEvolutionChain {
         let urlStr = baseURL + "/evolution-chain"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -172,12 +169,9 @@ open class EvolutionService {
     /**
      Fetch Encounter Triggers list
      */
-    public func fetchEvolutionTriggers(completion: @escaping (_ result: Result<PKMPagedObject<PKMEvolutionTrigger>>) -> Void) {
+    public func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEvolutionTrigger {
         let urlStr = baseURL + "/evolution-trigger"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     

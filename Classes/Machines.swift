@@ -36,12 +36,9 @@ open class MachineService {
     /**
      Fetch Machines list
      */
-    public func fetchMachinesList(completion: @escaping (_ result: Result<PKMPagedObject<PKMMachine>>) -> Void) {
+    public func fetchMachineList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMMachine {
         let urlStr = baseURL + "/machine"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     

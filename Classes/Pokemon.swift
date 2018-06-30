@@ -1104,12 +1104,9 @@ open class PokemonService {
     /**
      Fetch Abilities list
      */
-    public func fetchAbilities(completion: @escaping (_ result: Result<PKMPagedObject<PKMAbility>>) -> Void) {
+    public func fetchAbilityList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMAbility {
         let urlStr = baseURL + "/ability"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1130,12 +1127,9 @@ open class PokemonService {
     /**
      Fetch Characteristics list
      */
-    public func fetchCharacteristics(completion: @escaping (_ result: Result<PKMPagedObject<PKMCharacteristic>>) -> Void) {
+    public func fetchCharacteristicList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMCharacteristic {
         let urlStr = baseURL + "/characteristic"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1156,12 +1150,9 @@ open class PokemonService {
     /**
      Fetch Egg Group list
      */
-    public func fetchEggGroup(completion: @escaping (_ result: Result<PKMPagedObject<PKMEggGroup>>) -> Void) {
+    public func fetchEggGroupList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEggGroup {
         let urlStr = baseURL + "/egg-group"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1182,12 +1173,9 @@ open class PokemonService {
     /**
      Fetch Genders list
      */
-    public func fetchGenders(completion: @escaping (_ result: Result<PKMPagedObject<PKMGender>>) -> Void) {
+    public func fetchGenderList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMGender {
         let urlStr = baseURL + "/gender"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1208,12 +1196,9 @@ open class PokemonService {
     /**
      Fetch Growth Rate list
      */
-    public func fetchGrowthRates(completion: @escaping (_ result: Result<PKMPagedObject<PKMGrowthRate>>) -> Void) {
+    public func fetchGrowthRateList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMGrowthRate {
         let urlStr = baseURL + "/growth-rate"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1234,12 +1219,9 @@ open class PokemonService {
     /**
      Fetch Nature list
      */
-    public func fetchNatures(completion: @escaping (_ result: Result<PKMPagedObject<PKMNature>>) -> Void) {
+    public func fetchNatureList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMNature {
         let urlStr = baseURL + "/nature"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     /**
@@ -1259,12 +1241,9 @@ open class PokemonService {
     /**
      Fetch Pokeathlon Stat list
      */
-    public func fetchPokeathlonStats(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokeathlonStat>>) -> Void) {
+    public func fetchPokeathlonStatList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPokeathlonStat {
         let urlStr = baseURL + "/pokeathlon-stat"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1285,12 +1264,9 @@ open class PokemonService {
     /**
      Fetch Pokemon list
      */
-    public func fetchPokemon(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemon>>) -> Void) {
+    public func fetchPokemonList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPokemon {
         let urlStr = baseURL + "/pokemon"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1311,12 +1287,9 @@ open class PokemonService {
     /**
      Fetch Pokemon Color list
      */
-    public func fetchPokemonColors(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonColor>>) -> Void) {
+    public func fetchPokemonColorList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPokemonColor {
         let urlStr = baseURL + "/pokemon-color"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1337,12 +1310,9 @@ open class PokemonService {
     /**
      Fetch Pokemon Form list
      */
-    public func fetchPokemonForms(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonForm>>) -> Void) {
+    public func fetchPokemonFormList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPokemonForm {
         let urlStr = baseURL + "/pokemon-form"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1363,12 +1333,9 @@ open class PokemonService {
     /**
      Fetch Pokemon Habitat list
      */
-    public func fetchPokemonHabitats(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonHabitat>>) -> Void) {
+    public func fetchPokemonHabitatList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPokemonHabitat {
         let urlStr = baseURL + "/pokemon-habitat"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1389,12 +1356,9 @@ open class PokemonService {
     /**
      Fetch Pokemon Shape list
      */
-    public func fetchPokemonShapes(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonShape>>) -> Void) {
+    public func fetchPokemonShapeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPokemonShape {
         let urlStr = baseURL + "/pokemon-shape"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1415,12 +1379,9 @@ open class PokemonService {
     /**
      Fetch Pokemon Species list
      */
-    public func fetchPokemonSpecies(completion: @escaping (_ result: Result<PKMPagedObject<PKMPokemonSpecies>>) -> Void) {
+    public func fetchPokemonSpeciesList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPokemonSpecies {
         let urlStr = baseURL + "/pokemon-species"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1441,12 +1402,9 @@ open class PokemonService {
     /**
      Fetch Stat list
      */
-    public func fetchStats(completion: @escaping (_ result: Result<PKMPagedObject<PKMStat>>) -> Void) {
+    public func fetchStatList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMStat {
         let urlStr = baseURL + "/stat"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -1467,12 +1425,9 @@ open class PokemonService {
     /**
      Fetch Type list
      */
-    public func fetchType(completion: @escaping (_ result: Result<PKMPagedObject<PKMType>>) -> Void) {
+    public func fetchTypeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMType {
         let urlStr = baseURL + "/type"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     

@@ -247,28 +247,9 @@ open class UtilityService {
     /**
      Fetch Languages list
      */
-    public func fetchLanguages<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLanguage {
-        let urlStr: String
-            
-        switch paginationState {
-        case .initial(pageLimit: let limit):
-            urlStr = baseURL + "/language" + "?limit=\(limit)"
-        case .continuing(let pagedObject, let relationship):
-            guard let pageLink = pagedObject.getPageLink(for: relationship) else {
-                completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
-                return
-            }
-            urlStr = pageLink
-        }
-        
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(customDecode: { data in
-                let pagedObject = try PKMPagedObject<T>.decode(from: data)
-                pagedObject.update(with: paginationState)
-                return pagedObject
-                }, completion: completion)
-        }
+    public func fetchLanguageList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLanguage {
+        let urlStr = baseURL + "/language"
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -294,7 +275,7 @@ open class UtilityService {
      
      - parameter resource: PKMAPIResource or APINamedAPIResource
      */
-    public func fetch<T: Decodable>(from resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T>) -> Void) {
+    public func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T>) -> Void) {
         guard let urlStr = resource.url else {
             completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
             return

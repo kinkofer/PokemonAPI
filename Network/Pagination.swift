@@ -39,23 +39,25 @@ open class PKMPagedObject<T>: Codable {
     }
     
     /// The total number of resources available from this API
-    open var count: Int?
+    public private(set) var count: Int?
     
     /// The url for the next page in the list
-    open var next: String?
+    private(set) var next: String?
     
     /// The url for the previous page in the list
-    open var previous: String?
+    private(set) var previous: String?
     
     /// The url for the current page
-    private var current: String = ""
+    public private(set) var current: String = ""
     
     /// List of named API resources
-    open var results: [PKMNamedAPIResource<T>]?
+    public private(set) var results: [PKMNamedAPIResource<T>]?
     
-    open var limit: Int = 0
+    /// The number of results returned on each page
+    private(set) var limit: Int = 0
     
-    private var offset: Int = 0
+    /// The current offset for the web service
+    private(set) var offset: Int = 0
     
     /// The number of pages produced based of the pageLimit
     public var pages: Int {
@@ -84,14 +86,17 @@ open class PKMPagedObject<T>: Codable {
     
     // MARK: - Update
     
-    func update<T>(with paginationState: PaginationState<T>) {
+    func update<T>(with paginationState: PaginationState<T>, currentUrl: String) {
         switch paginationState {
         case .initial(let limit):
+            self.offset = 0
             self.limit = limit
         case .continuing(let pagedObject, let relationship):
             self.offset = pagedObject.getOffset(for: relationship)
             self.limit = pagedObject.limit
         }
+        
+        self.current = currentUrl
     }
     
     
@@ -125,7 +130,7 @@ open class PKMPagedObject<T>: Codable {
     
     
     /// Returns the url string of a current relationship if it exists
-    func getPageLink(for relationship: PaginationRelationship) -> String? {
+    open func getPageLink(for relationship: PaginationRelationship) -> String? {
         switch relationship {
         case .first:
             guard var url = URL(string: current) else {

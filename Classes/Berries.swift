@@ -127,12 +127,9 @@ public class BerryService {
     /**
      Fetch Berry list
      */
-    public func fetchBerryList(completion: @escaping (_ result: Result<PKMPagedObject<PKMBerry>>) -> Void) {
+    public func fetchBerryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerry {
         let urlStr = baseURL + "/berry"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -153,12 +150,9 @@ public class BerryService {
     /**
      Fetch Berry Firmness list
      */
-    public func fetchBerryFirmnessList(completion: @escaping (_ result: Result<PKMBerry>) -> Void) {
+    public func fetchBerryFirmnessList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerryFirmness {
         let urlStr = baseURL + "/berry-firmness"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -179,12 +173,9 @@ public class BerryService {
     /**
      Fetch Berry Flavors list
      */
-    public func fetchBerryFlavors(completion: @escaping (_ result: Result<PKMPagedObject<PKMBerryFlavor>>) -> Void) {
+    public func fetchBerryFlavorList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerryFlavor {
         let urlStr = baseURL + "/berry-flavor"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     

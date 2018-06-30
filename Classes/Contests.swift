@@ -101,12 +101,10 @@ open class ContestService {
     /**
      Fetch Contest list
      */
-    public func fetchContestList(completion: @escaping (_ result: Result<PKMPagedObject<PKMContestType>>) -> Void){
+    public func fetchContestList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMContestType {
         let urlStr = baseURL + "/contest-type"
         
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -127,12 +125,9 @@ open class ContestService {
     /**
      Fetch Contest Effects list
      */
-    public func fetchContestEffects(completion: @escaping (_ result: Result<PKMPagedObject<PKMContestEffect>>) -> Void) {
+    public func fetchContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMContestEffect {
         let urlStr = baseURL + "/contest-effect"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     
@@ -153,12 +148,9 @@ open class ContestService {
     /**
      Fetch Super Contest Effects list
      */
-    public func fetchSuperContestEffects(completion: @escaping (_ result: Result<PKMPagedObject<PKMSuperContestEffect>>) -> Void) {
+    public func fetchSuperContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMSuperContestEffect {
         let urlStr = baseURL + "/contest-effect"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
     
     

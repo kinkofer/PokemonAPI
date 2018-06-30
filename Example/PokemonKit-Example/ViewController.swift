@@ -20,7 +20,7 @@ class ViewController: UIViewController {
             case .success(let berryList):
                 print(berryList)
                 if let berryResource = berryList.results?.first {
-                    PokemonKit.utilityService.fetch(from: berryResource) { result in
+                    PokemonKit.utilityService.fetch(berryResource) { result in
                         switch result {
                         case .success(let berry):
                             print(berry.name!)
@@ -53,10 +53,20 @@ class ViewController: UIViewController {
         }
         
         
-        PokemonKit.utilityService.fetchLanguages { result in
+        PokemonKit.utilityService.fetchLanguageList(paginationState: .initial(pageLimit: 5)) { result in
             switch result {
-            case .success(let languages):
-                print(languages)
+            case .success(let pagedLanguages):
+                print(pagedLanguages)
+                print("Language count: \(pagedLanguages.count!)")
+                
+                PokemonKit.utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
+                    switch result {
+                    case .success(let pagedLanguagesNext):
+                        print("Language page: \(pagedLanguagesNext.currentPage)")
+                    case .failure(let error):
+                        print(error.message)
+                    }
+                }
             case .failure(let error):
                 print(error.message)
             }
