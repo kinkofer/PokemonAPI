@@ -1,54 +1,50 @@
-# PokemonKit
+# PokemonAPI
 
 [![Build Status](https://travis-ci.org/ContinuousLearning/PokemonKit.svg?branch=master)](https://travis-ci.org/ContinuousLearning/PokemonKit)
 [![Version](https://img.shields.io/cocoapods/v/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
 [![License](https://img.shields.io/cocoapods/l/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
 [![Platform](https://img.shields.io/cocoapods/p/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![codebeat badge](https://codebeat.co/badges/8394f59e-c142-4477-b535-3d0b58007f78)](https://codebeat.co/projects/github-com-continuouslearning-pokemonkit)
-[![ghit.me](https://ghit.me/badge.svg?repo=ContinuousLearning/PokemonKit)](https://ghit.me/repo/ContinuousLearning/PokemonKit)
 
 ## What is this?
-PokemonKit is a swift wrapper for Pokeapi. 
 
-PokemonKit use Alamofire and PromiseKit for async web requests handling.
+PokemonAPI is a swift wrapper for pokeapi.co
+
+
 
 ## Usage
 
 ```swift
-import PokemonKit
+import PokemonAPI
 
-PokemonKit.fetchBerry("1")
-            .then { berryInfo in
-                self.testLabel.text = berryInfo.name;
-            }.onError {error in
-                print(error)
-        }
+PokemonAPI.berryService.fetchBerry("1") { result in
+    switch result {
+    case .success(let berryInfo):
+        self.testLabel.text = berryInfo.name
+    case .failure(let error):
+        print(error)
+    }
+}
 ```
 
 ## TODO
 
-- [x] Wrap all API end points
-- [x] Fully [Documented](http://continuouslearning.github.io/PokemonKit/)
+- [ ] Fully [Documented](http://continuouslearning.github.io/PokemonKit/)
 - [ ] Fully tested
-- [x] Carthage Support
-- [ ] Unit test don't call server
-- [x] Remove PromiseKit (So many build errors, not worth it)
-- [ ] Porting back to Objective-C
 
 ## Installation
 
-PokemonKit is available through [CocoaPods](http://cocoapods.org). To install
+PokemonAPI is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'PokemonKit'
+pod 'PokemonAPI'
 ```
 
-If your using Carthage you can add a PokemonKit by adding it to your Cartfile:
+If you're using Carthage you can add PokemonKit by adding it to your Cartfile:
 
 ```ruby
-github "ContinuousLearning/PokemonKit" ~> 2.0
+github "kinkofer/PokemonAPI" ~> 3.0
 ```
 
 In your Info.plist, add
@@ -72,9 +68,10 @@ In your Info.plist, add
 
 ## Author
 
-Yeung Yiu Hung, hkclex@gmail.com
+Christopher Jennewein, kinkofer@gmail.com
+Orginal author from PokemonKit, Yeung Yiu Hung, hkclex@gmail.com
 
 ## License
 
-PokemonKit is available under the MIT license. See the LICENSE file for more info.
+PokemonAPI is available under the MIT license. See the LICENSE file for more info.
 

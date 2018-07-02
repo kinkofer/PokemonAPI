@@ -988,7 +988,7 @@
 				INFOPLIST_FILE = PokemonKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI";
 				PRODUCT_NAME = PokemonKit;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1012,7 +1012,7 @@
 				INFOPLIST_FILE = PokemonKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI";
 				PRODUCT_NAME = PokemonKit;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -1061,7 +1061,7 @@
 				INFOPLIST_FILE = "PokemonKit watchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-watchOS";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1087,7 +1087,7 @@
 				INFOPLIST_FILE = "PokemonKit watchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-watchOS";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1112,7 +1112,7 @@
 				INFOPLIST_FILE = "PokemonKit tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-tvOS";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1137,7 +1137,7 @@
 				INFOPLIST_FILE = "PokemonKit tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-tvOS";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1193,7 +1193,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-OSX";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1219,7 +1219,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonKit-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-OSX";
 				PRODUCT_NAME = PokemonKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
