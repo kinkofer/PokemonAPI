@@ -15,16 +15,35 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        PokemonKit.fetchBerryList() { result in
+        PokemonKit.moveService.fetchMove("1") { result in
+            switch result {
+            case .success(let move):
+                print(move)
+            case .failure(let error):
+                print(error.message)
+            }
+        }
+        
+        PokemonKit.berryService.fetchBerryList() { result in
             switch result {
             case .success(let berryList):
                 print(berryList)
+                if let berryResource = berryList.results?.first {
+                    PokemonKit.utilityService.fetch(berryResource) { result in
+                        switch result {
+                        case .success(let berry):
+                            print(berry.name!)
+                        case .failure(let error):
+                            print(error.message)
+                        }
+                    }
+                }
             case .failure(let error):
-            print(error.message)
+                print(error.message)
             }
         }
 
-        PokemonKit.fetchBerry("1") { result in
+        PokemonKit.berryService.fetchBerry("1") { result in
             switch result {
             case .success(let berryInfo):
                 print(berryInfo.name!)
@@ -32,11 +51,31 @@ class ViewController: UIViewController {
                 print(error.message)
             }
         }
-        
-        PokemonKit.fetchPokemon("1") { result in
+
+        PokemonKit.pokemonService.fetchPokemon("1") { result in
             switch result {
             case .success(let decoded):
                 print(decoded)
+            case .failure(let error):
+                print(error.message)
+            }
+        }
+
+
+        PokemonKit.utilityService.fetchLanguageList(paginationState: .initial(pageLimit: 5)) { result in
+            switch result {
+            case .success(let pagedLanguages):
+                print(pagedLanguages)
+                print("Language count: \(pagedLanguages.count!)")
+
+                PokemonKit.utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
+                    switch result {
+                    case .success(let pagedLanguagesNext):
+                        print("Language page: \(pagedLanguagesNext.currentPage)")
+                    case .failure(let error):
+                        print(error.message)
+                    }
+                }
             case .failure(let error):
                 print(error.message)
             }

@@ -15,7 +15,6 @@ public class HTTPWebService: NSObject {
      Configures and calls a web service and returns the response or an error through the completion.
      
      - parameter url: The web service url
-     - parameter embed: The optional array of keys to be exclusively included in the response object
      - parameter method: The HTTP method
      - parameter body: The body to be sent with the call
      - parameter headers: Configures the HTTP request with the included headers. By default, the Accept and Content-Type headers are configured with json
@@ -25,15 +24,10 @@ public class HTTPWebService: NSObject {
      
      `error`: Nil unless an error occured
      */
-    static func callWebService(url: URL?, embed: [String]? = nil, method: HTTPMethod, body: Data? = nil, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<Data>) -> Void) {
-        guard var url = url else {
+    static func callWebService(url: URL?, method: HTTPMethod, body: Data? = nil, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<Data>) -> Void) {
+        guard let url = url else {
             completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
             return
-        }
-        
-        // Append optional embed parameters to url
-        if let embed = embed {
-            url.appendQuery(parameters: ["embed": embed.joined(separator: ",")])
         }
         
         // Construct the default request
@@ -67,21 +61,14 @@ public class HTTPWebService: NSObject {
      
      - parameter url: The web service url
      - parameter paginationState: The state of a paginated web service call. Use .initial for the first call, then .continuing for subsequent calls.
-     - parameter embed: The optional array of keys to be exclusively included in the response object
      - parameter headers: Configures the HTTP request with the included headers. By default, the Accept and Content-Type headers are configured with json
      - parameter completion: Returns the web service response and error
      */
-    static func callPaginatedWebService(url: URL?, paginationState: PaginationState, embed: [String]? = nil, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<PaginatedResult>) -> Void) {
+    static func callPaginatedWebService<T>(url: URL?, paginationState: PaginationState<T>, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: Decodable {
         guard var url = url else {
             completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
             return
         }
-        
-        // Append optional embed parameters to url
-        if let embed = embed {
-            url.appendQuery(parameters: ["embed": embed.joined(separator: ",")])
-        }
-        
         
         // Append pageLimit and offset to url
         var pageLimit = 0
@@ -91,11 +78,11 @@ public class HTTPWebService: NSObject {
         case .initial(pageLimit: let limit):
             pageLimit = limit
         case .continuing(let paginatedResult, let relationship):
-            pageLimit = paginatedResult.pageLimit
+            pageLimit = paginatedResult.limit
             offset = paginatedResult.getOffset(for: relationship)
         }
         
-        url.appendQuery(parameters: ["pageLimit": String(pageLimit),
+        url.appendQuery(parameters: ["limit": String(pageLimit),
                                      "offset": String(offset)])
         
         // Construct the default request
@@ -111,8 +98,20 @@ public class HTTPWebService: NSObject {
             }
             
             // Make the request
-            Network.shared.startPagination(request, pageLimit: pageLimit, offset: offset) { result in
-                completion(result)
+            Network.shared.startData(request) { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        let pagedObject = try PKMPagedObject<T>.decode(from: data)
+                        pagedObject.update(with: paginationState, currentUrl: url.absoluteString)
+                        completion(Result(value: pagedObject, error: nil))
+                    }
+                    catch {
+                        completion(Result(value: nil, error: HTTPError(type: .jsonParsingError)))
+                    }
+                case .failure(let error):
+                    completion(Result(value: nil, error: error))
+                }
             }
         }
         else {

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		55AB2B50A918CA93980710A5 /* Pods_PokemonKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4DD2BB8BD710B7E93EDEA8 /* Pods_PokemonKit_Example.framework */; };
+		59B1D71020E8006700923DCB /* PaginatedResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B1D70F20E8006700923DCB /* PaginatedResultsViewController.swift */; };
+		59B1D71220E8372200923DCB /* PageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B1D71120E8372200923DCB /* PageTableViewController.swift */; };
 		7412E01A1D58E3B30086DD94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412E0191D58E3B30086DD94 /* AppDelegate.swift */; };
 		7412E01C1D58E3B30086DD94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412E01B1D58E3B30086DD94 /* ViewController.swift */; };
 		7412E01F1D58E3B30086DD94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7412E01D1D58E3B30086DD94 /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		4C4DD2BB8BD710B7E93EDEA8 /* Pods_PokemonKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59B1D70F20E8006700923DCB /* PaginatedResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResultsViewController.swift; sourceTree = "<group>"; };
+		59B1D71120E8372200923DCB /* PageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTableViewController.swift; sourceTree = "<group>"; };
 		72FFC05BE2E43CAB797CEBA3 /* Pods-PokemonKit-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonKit-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokemonKit-Example/Pods-PokemonKit-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		7412E0161D58E3B30086DD94 /* PokemonKit-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PokemonKit-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7412E0191D58E3B30086DD94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				7412E01D1D58E3B30086DD94 /* Main.storyboard */,
 				7412E0191D58E3B30086DD94 /* AppDelegate.swift */,
 				7412E01B1D58E3B30086DD94 /* ViewController.swift */,
+				59B1D70F20E8006700923DCB /* PaginatedResultsViewController.swift */,
+				59B1D71120E8372200923DCB /* PageTableViewController.swift */,
 				7412E0251D58E3B30086DD94 /* Info.plist */,
 			);
 			path = "PokemonKit-Example";
@@ -216,7 +222,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 1000;
-				ORGANIZATIONNAME = "Yeung Yiu Hung";
+				ORGANIZATIONNAME = "Prismatic Games";
 				TargetAttributes = {
 					7412E0151D58E3B30086DD94 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -341,8 +347,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59B1D71220E8372200923DCB /* PageTableViewController.swift in Sources */,
 				7412E01C1D58E3B30086DD94 /* ViewController.swift in Sources */,
 				7412E01A1D58E3B30086DD94 /* AppDelegate.swift in Sources */,
+				59B1D71020E8006700923DCB /* PaginatedResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

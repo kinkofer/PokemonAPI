@@ -25,7 +25,7 @@ class PokemonKitTests: XCTestCase {
     func testFetchingBerries() {
         let asyncExpectation = expectation(description: "Fetch berries")
         
-        PokemonKit.fetchBerryList() { result in
+        PokemonKit.berryService.fetchBerryList() { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -43,7 +43,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFectingBerryInfo() {
         let asyncExpectation = expectation(description: "Fetch berries")
-        PokemonKit.fetchBerry("1") { result in
+        PokemonKit.berryService.fetchBerry("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -60,7 +60,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchingEvolutionChain() {
         let asyncExpectation = expectation(description: "Fetch Evo Chains")
-        PokemonKit.fetchEvolutionChains() { result in
+        PokemonKit.evolutionService.fetchEvolutionChainList() { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -77,7 +77,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchingEvolution() {
         let asyncExpectation = expectation(description: "Fetch Evo Chain")
-        PokemonKit.fetchEvolutionChain("1") { result in
+        PokemonKit.evolutionService.fetchEvolutionChain("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -94,7 +94,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchVersionGroup() {
         let asyncExpectation = expectation(description: "Fetch Version Group")
-        PokemonKit.fetchVersionGroup("1") { result in
+        PokemonKit.gameService.fetchVersionGroup("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -111,7 +111,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchItem() {
         let asyncExpectation = expectation(description: "Fetch Item")
-        PokemonKit.fetchItem("1") { result in
+        PokemonKit.itemService.fetchItem("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -128,7 +128,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchItemAttr() {
         let asyncExpectation = expectation(description: "Fetch Item Attr")
-        PokemonKit.fetchItemAttribute("1") { result in
+        PokemonKit.itemService.fetchItemAttribute("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -145,7 +145,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchItemCategory() {
         let asyncExpectation = expectation(description: "Fetch Item Category")
-        PokemonKit.fetchItemCategory("1") { result in
+        PokemonKit.itemService.fetchItemCategory("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -162,7 +162,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchItemFlingEffect() {
         let asyncExpectation = expectation(description: "Fetch Item Fling Effect")
-        PokemonKit.fetchItemFlingEffect("1") { result in
+        PokemonKit.itemService.fetchItemFlingEffect("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -179,7 +179,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchItemPocket() {
         let asyncExpectation = expectation(description: "Fetch Item Pocket")
-        PokemonKit.fetchItemPocket("1") { result in
+        PokemonKit.itemService.fetchItemPocket("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -194,9 +194,28 @@ class PokemonKitTests: XCTestCase {
         }
     }
     
+    
+    func testFetchMachine() {
+        let asyncExpectation = expectation(description: "Fetch Machine")
+        PokemonKit.machineService.fetchMachine("1") { result in
+            switch result {
+            case .success(_):
+                asyncExpectation.fulfill()
+            case .failure(let error):
+                XCTFail("Should not failed with \(error.message)")
+                asyncExpectation.fulfill();
+            }
+        }
+        
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
+            XCTAssertNil(err, "Something went wrong")
+        }
+    }
+    
+    
     func testFetchMove() {
         let asyncExpectation = expectation(description: "Fetch Move")
-        PokemonKit.fetchMove("1") { result in
+        PokemonKit.moveService.fetchMove("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -213,7 +232,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveAilment() {
         let asyncExpectation = expectation(description: "Fetch Move Ailment")
-        PokemonKit.fetchMoveAilment("1") { result in
+        PokemonKit.moveService.fetchMoveAilment("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -230,7 +249,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveBattleStyle() {
         let asyncExpectation = expectation(description: "Fetch Move Battle Style")
-        PokemonKit.fetchMoveBattleStyle("1") { result in
+        PokemonKit.moveService.fetchMoveBattleStyle("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -247,7 +266,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveCategory() {
         let asyncExpectation = expectation(description: "Fetch move category")
-        PokemonKit.fetchMoveCategory("1") { result in
+        PokemonKit.moveService.fetchMoveCategory("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -264,7 +283,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveDamageClass() {
         let asyncExpectation = expectation(description: "Fetch move damage class")
-        PokemonKit.fetchMoveDamageClass("1") { result in
+        PokemonKit.moveService.fetchMoveDamageClass("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -281,7 +300,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveLearnMethod() {
         let asyncExpectation = expectation(description: "Fetch move learn method")
-        PokemonKit.fetchMoveLearnMethod("1") { result in
+        PokemonKit.moveService.fetchMoveLearnMethod("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -298,7 +317,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchMoveTarget() {
         let asyncExpectation = expectation(description: "Fetch move target")
-        PokemonKit.fetchMoveTarget("1") { result in
+        PokemonKit.moveService.fetchMoveTarget("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -315,7 +334,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchLocation() {
         let asyncExpectation = expectation(description: "Fetch location")
-        PokemonKit.fetchLocation("1") { result in
+        PokemonKit.locationService.fetchLocation("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -332,7 +351,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchLocationArea() {
         let asyncExpectation = expectation(description: "Fetch location area")
-        PokemonKit.fetchLocationArea("1") { result in
+        PokemonKit.locationService.fetchLocationArea("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -349,7 +368,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPalPark() {
         let asyncExpectation = expectation(description: "Fetch pal park area")
-        PokemonKit.fetchPalParkArea("1") { result in
+        PokemonKit.locationService.fetchPalParkArea("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -366,7 +385,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchRegion() {
         let asyncExpectation = expectation(description: "Fetch Region")
-        PokemonKit.fetchRegion("1") { result in
+        PokemonKit.locationService.fetchRegion("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -383,7 +402,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchAbility() {
         let asyncExpectation = expectation(description: "Fetch Ability")
-        PokemonKit.fetchAbility("1") { result in
+        PokemonKit.pokemonService.fetchAbility("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -400,7 +419,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchCharacteristic() {
         let asyncExpectation = expectation(description: "Fetch Ability")
-        PokemonKit.fetchCharacteristic("1") { result in
+        PokemonKit.pokemonService.fetchCharacteristic("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -417,7 +436,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchEggGroup() {
         let asyncExpectation = expectation(description: "Fetch Egg Group")
-        PokemonKit.fetchEggGroup("1") { result in
+        PokemonKit.pokemonService.fetchEggGroup("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -434,7 +453,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchGender() {
         let asyncExpectation = expectation(description: "Fetch Gender")
-        PokemonKit.fetchGender("1") { result in
+        PokemonKit.pokemonService.fetchGender("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -451,7 +470,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchGrowthRate() {
         let asyncExpectation = expectation(description: "Fetch Growth Rate")
-        PokemonKit.fetchGrowthRate("1") { result in
+        PokemonKit.pokemonService.fetchGrowthRate("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -468,7 +487,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchNature() {
         let asyncExpectation = expectation(description: "Fetch Nature")
-        PokemonKit.fetchNature("2") { result in
+        PokemonKit.pokemonService.fetchNature("2") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -485,7 +504,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokeathlonStat() {
         let asyncExpectation = expectation(description: "Fetch Pokeathlon Stat")
-        PokemonKit.fetchPokeathlonStat("1") { result in
+        PokemonKit.pokemonService.fetchPokeathlonStat("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -502,7 +521,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemon() {
         let asyncExpectation = expectation(description: "Fetch Pokemon")
-        PokemonKit.fetchPokemon("1") { result in
+        PokemonKit.pokemonService.fetchPokemon("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -519,7 +538,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonColor() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Color")
-        PokemonKit.fetchPokemonColor("1") { result in
+        PokemonKit.pokemonService.fetchPokemonColor("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -536,7 +555,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonForm() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Form")
-        PokemonKit.fetchPokemonForm("1") { result in
+        PokemonKit.pokemonService.fetchPokemonForm("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -553,7 +572,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonHabitat() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Habitat")
-        PokemonKit.fetchPokemonHabitat("1") { result in
+        PokemonKit.pokemonService.fetchPokemonHabitat("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -570,7 +589,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonShape() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Shape")
-        PokemonKit.fetchPokemonShape("1") { result in
+        PokemonKit.pokemonService.fetchPokemonShape("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -587,7 +606,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonSpecies() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Species")
-        PokemonKit.fetchPokemonSpecies("1") { result in
+        PokemonKit.pokemonService.fetchPokemonSpecies("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -604,7 +623,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonStat() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Stat")
-        PokemonKit.fetchStat("2") { result in
+        PokemonKit.pokemonService.fetchStat("2") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -621,7 +640,7 @@ class PokemonKitTests: XCTestCase {
     
     func testFetchPokemonType() {
         let asyncExpectation = expectation(description: "Fetch Pokemon Type")
-        PokemonKit.fetchType("1") { result in
+        PokemonKit.pokemonService.fetchType("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()
@@ -638,7 +657,7 @@ class PokemonKitTests: XCTestCase {
     
     func testLanguage() {
         let asyncExpectation = expectation(description: "Fetch Language")
-        PokemonKit.fetchLanguage("1") { result in
+        PokemonKit.utilityService.fetchLanguage("1") { result in
             switch result {
             case .success(_):
                 asyncExpectation.fulfill()

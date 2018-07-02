@@ -50,85 +50,6 @@ class Network: NSObject {
      - the web service returns an error status code
      - Error with type httpError
      */
-    func startPagination(_ request: URLRequest, pageLimit: Int, offset: Int, completion: @escaping (_ result: Result<PaginatedResult>) -> Void) {
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data,
-                let response = response as? HTTPURLResponse {
-                let headers = response.allHeaderFields
-                let statusCode = response.statusCode
-                
-                if self.statusCodeIsSuccess(statusCode) {
-                    guard let linksStr = headers["Link"] as? String,
-                        let totalCountStr = headers["X-Total-Count"] as? String,
-                        let totalCount = Int(totalCountStr) else {
-                            completion(Result(value: nil, error: HTTPError(type: .unexpectedResponse)))
-                            return
-                    }
-                    
-                    let firstUrlStr = self.getLinkUrl(from: linksStr, relationship: .first)
-                    let lastUrlStr = self.getLinkUrl(from: linksStr, relationship: .last)
-                    let nextUrlStr = self.getLinkUrl(from: linksStr, relationship: .next)
-                    let previousUrlStr = self.getLinkUrl(from: linksStr, relationship: .previous)
-                    
-                    let pageLink = PageLink(first: firstUrlStr, last: lastUrlStr, next: nextUrlStr, previous: previousUrlStr)
-                    
-                    let paginatedResult = PaginatedResult(value: data, pageLink: pageLink, pageLimit: pageLimit, offset: offset, total: totalCount)
-                    completion(Result(value: paginatedResult, error: nil))
-                }
-                else if statusCode == 401 {
-                    completion(Result(value: nil, error: HTTPError(type: .unauthorized)))
-                }
-                else {
-                    let description = self.errorDescription(for: statusCode, withResponse: data)
-                    let error = HTTPError(type: .httpError, code: statusCode, description: description)
-                    
-                    completion(Result(value: nil, error: error))
-                }
-            }
-            else if let error = error as NSError? {
-                completion(Result(value: nil, error: HTTPError(from: error)))
-            }
-            else {
-                completion(Result(value: nil, error: HTTPError(type: .httpError)))
-            }
-            }.resume()
-    }
-    
-    
-    func getLinkUrl(from linkString: String, relationship: PaginationRelationship) -> String? {
-        var linkUrlStr: String?
-        
-        let linkPairs = linkString.split(separator: ",")
-        
-        for pair in linkPairs {
-            let splitPairs = pair.split(separator: ";")
-            
-            if let urlSubStr = splitPairs.first {
-                var urlStr = String(describing: urlSubStr).trimmingCharacters(in: .whitespacesAndNewlines)
-                urlStr = urlStr.replacingOccurrences(of: "<", with: "")
-                urlStr = urlStr.replacingOccurrences(of: ">", with: "")
-                
-                if splitPairs.last?.contains(relationship.name) == true {
-                    linkUrlStr = urlStr
-                }
-            }
-        }
-        
-        return linkUrlStr
-    }
-    
-    
-    /**
-     Starts the URLRequest and returns the response from the server or an error.
-     
-     - parameter request: The URLRequest
-     - parameter completion: Returns the web service response and error
-     
-     `result`: Success returns the resulting Data, or Failure returns an error. The error is nil unless:
-     - the URLSession fails
-     - the web service returns an error status code
-     - Error with type httpError
-     */
     func startData(_ request: URLRequest, completion: @escaping (_ result: Result<Data>) -> Void) {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data,
@@ -154,7 +75,7 @@ class Network: NSObject {
             else {
                 completion(Result(value: nil, error: HTTPError(type: .httpError)))
             }
-            }.resume()
+        }.resume()
     }
     
     
@@ -271,7 +192,7 @@ class Network: NSObject {
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: [])
             if let dict = json as? [String: String] {
-                return dict["message"]
+                return dict["detail"]
             }
             else {
                 return nil

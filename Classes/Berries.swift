@@ -36,16 +36,16 @@ open class PKMBerry: Codable, SelfDecodable {
     open var soilDryness: Int?
     
     /// The firmness of this berry, used in making Pokéblocks or Poffins
-    open var firmness: PKMNamedAPIResource?
+    open var firmness: PKMNamedAPIResource<PKMBerryFirmness>?
     
     /// A list of references to each flavor a berry can have and the potency of each of those flavors in regard to this berry
     open var flavors: [PKMBerryFlavorMap]?
     
     /// Berries are actually items. This is a reference to the item specific data for this berry.
-    open var item: PKMNamedAPIResource?
+    open var item: PKMNamedAPIResource<PKMItem>?
     
     /// The Type the move "Natural Gift" has when used with this Berry
-    open var naturalGiftType: PKMNamedAPIResource?
+    open var naturalGiftType: PKMNamedAPIResource<PKMType>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -62,7 +62,7 @@ open class PKMBerryFlavorMap: Codable {
     open var potency: Int?
     
     /// The berry with the referenced flavor
-    open var flavor: PKMNamedAPIResource?
+    open var flavor: PKMNamedAPIResource<PKMBerryFlavor>?
 }
 
 
@@ -73,7 +73,7 @@ open class PKMBerryFirmness: Codable {
     open var id: Int?
     
     /// The name of this berry firmness listed in different languages
-    open var berries: [PKMNamedAPIResource]?
+    open var berries: [PKMNamedAPIResource<PKMBerry>]?
     
     /// A list of the berries with this firmness
     open var names: [PKMName]?
@@ -96,7 +96,7 @@ open class PKMBerryFlavor: Codable, SelfDecodable {
     open var berries: [PKMFlavorBerryMap]?
     
     /// The contest type that correlates with this berry flavor
-    open var contestType: PKMNamedAPIResource?
+    open var contestType: PKMNamedAPIResource<PKMContestType>?
     
     /// The name of this berry flavor listed in different languages
     open var names: [PKMName]?
@@ -116,5 +116,79 @@ open class PKMFlavorBerryMap: Codable {
     open var potency: Int?
     
     /// The berry with the referenced flavor
-    open var berry: PKMNamedAPIResource?
+    open var berry: PKMNamedAPIResource<PKMBerry>?
+}
+
+
+
+// MARK: - Web Services
+
+public class BerryService {
+    /**
+     Fetch Berry list
+     */
+    public func fetchBerryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerry {
+        let urlStr = baseURL + "/berry"
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
+    }
+    
+    
+    /**
+     Fetch Berry Information
+     
+     - parameter berryId: Berry ID
+     */
+    public func fetchBerry(_ berryId: String, completion: @escaping (_ result: Result<PKMBerry>) -> Void) {
+        let urlStr = baseURL + "/berry/" + berryId
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Berry Firmness list
+     */
+    public func fetchBerryFirmnessList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerryFirmness {
+        let urlStr = baseURL + "/berry-firmness"
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
+    }
+    
+    
+    /**
+     Fetch Berry Firmness Information
+     
+     - parameter berryFirmnessId: Berry Firmness ID
+     */
+    public func fetchBerryFirmness(_ berryFirmnessId: String, completion: @escaping (_ result: Result<PKMBerryFirmness>) -> Void) {
+        let urlStr = baseURL + "/berry-firmness/" + berryFirmnessId
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Berry Flavors list
+     */
+    public func fetchBerryFlavorList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerryFlavor {
+        let urlStr = baseURL + "/berry-flavor"
+        HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
+    }
+    
+    
+    /**
+     Fetch Berry Flavor Information
+     
+     - parameter berryFlavorId: Berry Flavor ID
+     */
+    public func fetchBerryFlavour(_ berryFlavorId: String, completion: @escaping (_ result: Result<PKMBerryFlavor>) -> Void) {
+        let urlStr = baseURL + "/berry-flavor/" + berryFlavorId
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
 }
