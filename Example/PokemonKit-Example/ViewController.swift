@@ -15,6 +15,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        PokemonKit.moveService.fetchMove("1") { result in
+            switch result {
+            case .success(let move):
+                print(move)
+            case .failure(let error):
+                print(error.message)
+            }
+        }
+        
         PokemonKit.berryService.fetchBerryList() { result in
             switch result {
             case .success(let berryList):
@@ -33,7 +42,7 @@ class ViewController: UIViewController {
                 print(error.message)
             }
         }
-        
+
         PokemonKit.berryService.fetchBerry("1") { result in
             switch result {
             case .success(let berryInfo):
@@ -42,7 +51,7 @@ class ViewController: UIViewController {
                 print(error.message)
             }
         }
-        
+
         PokemonKit.pokemonService.fetchPokemon("1") { result in
             switch result {
             case .success(let decoded):
@@ -51,14 +60,14 @@ class ViewController: UIViewController {
                 print(error.message)
             }
         }
-        
-        
+
+
         PokemonKit.utilityService.fetchLanguageList(paginationState: .initial(pageLimit: 5)) { result in
             switch result {
             case .success(let pagedLanguages):
                 print(pagedLanguages)
                 print("Language count: \(pagedLanguages.count!)")
-                
+
                 PokemonKit.utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
                     switch result {
                     case .success(let pagedLanguagesNext):
