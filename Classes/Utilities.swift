@@ -1,6 +1,6 @@
 //
 //  Utilities.swift
-//  PokemonKit
+//  PokemonAPI
 //
 //  Created by Christopher Jennewein on 6/28/18.
 //

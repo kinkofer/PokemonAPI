@@ -1,6 +1,0 @@
-framework module PokemonKit {
-  umbrella header "PokemonKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,0 +1,28 @@
+{
+  "name": "PokemonAPI",
+  "version": "3.0.0",
+  "summary": "A wrapper for pokeapi v2",
+  "description": "PokemonAPI is a swift wrapper for Pokeapi.",
+  "homepage": "https://github.com/kinkofer/PokemonAPI",
+  "license": "MIT",
+  "authors": {
+    "Yeung Yiu Hung": "hkclex@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/kinkofer/PokemonAPI.git",
+    "tag": "3.0.0"
+  },
+  "social_media_url": "https://twitter.com/kinkofer",
+  "platforms": {
+    "ios": "8.0",
+    "osx": "10.9",
+    "tvos": "9.0",
+    "watchos": "2.0"
+  },
+  "requires_arc": true,
+  "source_files": [
+    "Classes/**/*",
+    "Network/**/*",
+    "Utilities/**/*"
+  ]
+}

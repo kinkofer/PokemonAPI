@@ -1,6 +1,6 @@
 //
 //  Pagination.swift
-//  PokemonKit
+//  PokemonAPI
 //
 //  Created by Christopher Jennewein on 6/25/18.
 //
@@ -51,7 +51,7 @@ open class PKMPagedObject<T>: Codable {
     public private(set) var current: String = ""
     
     /// List of named API resources
-    public private(set) var results: [PKMNamedAPIResource<T>]?
+    public private(set) var results: [PKMAPIResource<T>]?
     
     /// The number of results returned on each page
     private(set) var limit: Int = 0
@@ -80,6 +80,22 @@ open class PKMPagedObject<T>: Codable {
     /// True if there are previous results that can be retrieved
     public var hasPrevious: Bool {
         return previous != nil
+    }
+    
+    
+    
+    // MARK: - Init
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.count = try container.decodeIfPresent(Int.self, forKey: .count)
+        self.next = try container.decodeIfPresent(String.self, forKey: .next)
+        self.previous = try container.decodeIfPresent(String.self, forKey: .previous)
+        do {
+            self.results = try container.decodeIfPresent([PKMNamedAPIResource].self, forKey: .results)
+        } catch {
+            self.results = try container.decodeIfPresent([PKMAPIResource].self, forKey: .results)
+        }
     }
     
     

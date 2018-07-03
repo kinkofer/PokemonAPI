@@ -1,6 +1,6 @@
 //
 //  Contests.swift
-//  Pods-PokemonKit-Example
+//  Pods-PokemonAPI-Example
 //
 //  Created by Christopher Jennewein on 6/27/18.
 //

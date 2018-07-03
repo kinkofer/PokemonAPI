@@ -1,9 +1,9 @@
 # PokemonAPI
 
-[![Build Status](https://travis-ci.org/ContinuousLearning/PokemonKit.svg?branch=master)](https://travis-ci.org/ContinuousLearning/PokemonKit)
-[![Version](https://img.shields.io/cocoapods/v/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
-[![License](https://img.shields.io/cocoapods/l/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
-[![Platform](https://img.shields.io/cocoapods/p/PokemonKit.svg?style=flat)](http://cocoapods.org/pods/PokemonKit)
+[![Build Status](https://travis-ci.org/ContinuousLearning/PokemonAPI.svg?branch=master)](https://travis-ci.org/ContinuousLearning/PokemonAPI)
+[![Version](https://img.shields.io/cocoapods/v/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
+[![License](https://img.shields.io/cocoapods/l/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
+[![Platform](https://img.shields.io/cocoapods/p/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ## What is this?
@@ -29,7 +29,7 @@ PokemonAPI.berryService.fetchBerry("1") { result in
 
 ## TODO
 
-- [ ] Fully [Documented](http://continuouslearning.github.io/PokemonKit/)
+- [ ] Fully [Documented](http://continuouslearning.github.io/PokemonAPI/)
 - [ ] Fully tested
 
 ## Installation
@@ -41,7 +41,7 @@ it, simply add the following line to your Podfile:
 pod 'PokemonAPI'
 ```
 
-If you're using Carthage you can add PokemonKit by adding it to your Cartfile:
+If you're using Carthage you can add PokemonAPI by adding it to your Cartfile:
 
 ```ruby
 github "kinkofer/PokemonAPI" ~> 3.0

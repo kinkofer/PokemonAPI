@@ -1,6 +1,6 @@
 //
 //  Machines.swift
-//  PokemonKit
+//  PokemonAPI
 //
 //  Created by Christopher Jennewein on 6/27/18.
 //
