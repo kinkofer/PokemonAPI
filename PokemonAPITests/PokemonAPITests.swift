@@ -22,7 +22,7 @@ class PokemonAPITests: XCTestCase {
         
     }
     
-    func testFetchingBerries() {
+    func testFetchBerries() {
         let asyncExpectation = expectation(description: "Fetch berries")
         
         PokemonAPI.berryService.fetchBerryList() { result in
@@ -41,7 +41,7 @@ class PokemonAPITests: XCTestCase {
         
     }
     
-    func testFectingBerryInfo() {
+    func testFetchBerryInfo() {
         let asyncExpectation = expectation(description: "Fetch berries")
         PokemonAPI.berryService.fetchBerry("1") { result in
             switch result {
@@ -58,7 +58,7 @@ class PokemonAPITests: XCTestCase {
         }
     }
     
-    func testFetchingEvolutionChain() {
+    func testFetchEvolutionChain() {
         let asyncExpectation = expectation(description: "Fetch Evo Chains")
         PokemonAPI.evolutionService.fetchEvolutionChainList() { result in
             switch result {
@@ -75,7 +75,7 @@ class PokemonAPITests: XCTestCase {
         }
     }
     
-    func testFetchingEvolution() {
+    func testFetchEvolution() {
         let asyncExpectation = expectation(description: "Fetch Evo Chain")
         PokemonAPI.evolutionService.fetchEvolutionChain("1") { result in
             switch result {

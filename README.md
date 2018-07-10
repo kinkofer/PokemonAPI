@@ -69,7 +69,8 @@ In your Info.plist, add
 ## Author
 
 Christopher Jennewein, kinkofer@gmail.com
-Orginal author from PokemonKit, Yeung Yiu Hung, hkclex@gmail.com
+
+Forked from PokemonKit, Yeung Yiu Hung, http://github.com/ContinuousLearning/PokemonKit
 
 ## License
 
