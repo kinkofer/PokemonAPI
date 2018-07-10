@@ -17,7 +17,10 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
-PokemonAPI is a swift wrapper for Pokeapi.
+PokemonAPI is a swift wrapper for Pokeapi (pokeapi.co). It supports paginated responses,
+allowing you to easily get the next results or a specific page. Linked resources can quickly
+be turned into their associated classes via a generic `fetch(_ resource:)` function.
+All code is Swift native with no third party frameworks.
                        DESC
 
   s.homepage         = "https://github.com/kinkofer/PokemonAPI"

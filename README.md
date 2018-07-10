@@ -8,7 +8,11 @@
 
 ## What is this?
 
-PokemonAPI is a swift wrapper for pokeapi.co
+PokemonAPI is a swift wrapper for Pokeapi (pokeapi.co). 
+It supports paginated responses, allowing you to easily get the next results or a specific page. 
+Linked resources can quickly be turned into their associated classes via a generic `fetch(_ resource:)` function.
+
+All code is Swift native with no third party frameworks.
 
 
 
