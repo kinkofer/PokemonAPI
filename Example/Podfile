@@ -1,5 +1,5 @@
 use_frameworks!
 
-target 'PokemonKit-Example' do
-  pod 'PokemonKit', :path => '../'
+target 'PokemonAPI-Example' do
+  pod 'PokemonAPI', :path => '../'
 end
