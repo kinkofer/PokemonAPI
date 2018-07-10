@@ -1,6 +1,6 @@
 # PokemonAPI
 
-[![Build Status](https://travis-ci.org/ContinuousLearning/PokemonAPI.svg?branch=master)](https://travis-ci.org/ContinuousLearning/PokemonAPI)
+[![Build Status](https://travis-ci.org/kinkofer/PokemonAPI.svg?branch=master)](https://travis-ci.org/kinkofer/PokemonAPI)
 [![Version](https://img.shields.io/cocoapods/v/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
 [![License](https://img.shields.io/cocoapods/l/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
 [![Platform](https://img.shields.io/cocoapods/p/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
@@ -29,7 +29,7 @@ PokemonAPI.berryService.fetchBerry("1") { result in
 
 ## TODO
 
-- [ ] Fully [Documented](http://continuouslearning.github.io/PokemonAPI/)
+- [ ] Fully [Documented](http://kinkofer.github.io/PokemonAPI/)
 - [ ] Fully tested
 
 ## Installation
@@ -60,7 +60,7 @@ In your Info.plist, add
 			<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 			<true/>
 			<key>NSTemporaryExceptionMinimumTLSVersion</key>
-			<string>TLSv1.1</string>
+			<string>TLSv1.2</string>
 		</dict>
 	</dict>
 </dict>
