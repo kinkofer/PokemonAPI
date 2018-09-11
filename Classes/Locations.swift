@@ -226,20 +226,6 @@ open class LocationService {
     
     
     /**
-     Fetch Location Information
-     
-     - parameter locationName: Location Name
-     */
-    public static func fetchLocation(_ locationName: String, completion: @escaping (_ result: Result<PKMLocation>) -> Void) {
-        let urlStr = baseURL + "/location/\(locationName)"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
      Fetch Location Area list
      */
     public static func fetchLocationAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLocationArea {
@@ -255,20 +241,6 @@ open class LocationService {
      */
     public static func fetchLocationArea(_ locationAreaId: Int, completion: @escaping (_ result: Result<PKMLocationArea>) -> Void) {
         let urlStr = baseURL + "/location-area/\(locationAreaId)"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
-     Fetch Location Area Information
-     
-     - parameter locationAreaName: Location Area Name
-     */
-    public static func fetchLocationArea(_ locationAreaName: String, completion: @escaping (_ result: Result<PKMLocationArea>) -> Void) {
-        let urlStr = baseURL + "/location-area/\(locationAreaName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

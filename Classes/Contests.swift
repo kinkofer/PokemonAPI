@@ -160,20 +160,6 @@ open class ContestService {
     
     
     /**
-     Fetch Contest Effect Information
-     
-     - parameter contestEffectName: Contest Effect Name
-     */
-    public static func fetchContestEffect(_ contestEffectName: String, completion: @escaping (_ result: Result<PKMContestEffect>) -> Void) {
-        let urlStr = baseURL + "/contest-effect/\(contestEffectName)"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
      Fetch Super Contest Effects list
      */
     public static func fetchSuperContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMSuperContestEffect {
@@ -189,20 +175,6 @@ open class ContestService {
      */
     public static func fetchSuperContestEffect(_ superContestEffectId: Int, completion: @escaping (_ result: Result<PKMSuperContestEffect>) -> Void) {
         let urlStr = baseURL + "/super-contest-effect/\(superContestEffectId)"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
-     Fetch Super Contest Effect Information
-     
-     - parameter superContestEffectName: Super Contest Effect Name
-     */
-    public static func fetchSuperContestEffect(_ superContestEffectName: String, completion: @escaping (_ result: Result<PKMSuperContestEffect>) -> Void) {
-        let urlStr = baseURL + "/super-contest-effect/\(superContestEffectName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

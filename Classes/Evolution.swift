@@ -167,20 +167,6 @@ open class EvolutionService {
     
     
     /**
-     Fetch Evolution Chain Information
-     
-     - parameter evolutionChainName: Evolution Chain Name
-     */
-    public static func fetchEvolutionChain(_ evolutionChainName: String, completion: @escaping (_ result: Result<PKMEvolutionChain>) -> Void) {
-        let urlStr = baseURL + "/evolution-chain/\(evolutionChainName)"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
      Fetch Encounter Triggers list
      */
     public static func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEvolutionTrigger {

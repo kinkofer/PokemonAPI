@@ -54,18 +54,4 @@ open class MachineService {
             result.decode(completion: completion)
         }
     }
-    
-    
-    /**
-     Fetch Machine Information
-     
-     - parameter machineName: Machine Name
-     */
-    public static func fetchMachine(_ machineName: String, completion: @escaping (_ result: Result<PKMMachine>) -> Void) {
-        let urlStr = baseURL + "/machine/\(machineName)"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
 }

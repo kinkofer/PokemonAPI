@@ -1162,20 +1162,6 @@ open class PokemonService {
     
     
     /**
-     Fetch Characteristic Information
-     
-     - parameter characteristicName: Characteristic Name
-     */
-    public static func fetchCharacteristic(_ characteristicName: String, completion: @escaping (_ result: Result<PKMCharacteristic>) -> Void) {
-        let urlStr = baseURL + "/characteristic/\(characteristicName)"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
      Fetch Egg Group list
      */
     public static func fetchEggGroupList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEggGroup {
