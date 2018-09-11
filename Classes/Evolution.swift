@@ -157,8 +157,22 @@ open class EvolutionService {
      
      - parameter evolutionChainId: Evolution Chain ID
      */
-    public func fetchEvolutionChain(_ evolutionChainId: String, completion: @escaping (_ result: Result<PKMEvolutionChain>) -> Void) {
-        let urlStr = baseURL + "/evolution-chain/" + evolutionChainId
+    public func fetchEvolutionChain(_ evolutionChainId: Int, completion: @escaping (_ result: Result<PKMEvolutionChain>) -> Void) {
+        let urlStr = baseURL + "/evolution-chain/\(evolutionChainId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Evolution Chain Information
+     
+     - parameter evolutionChainName: Evolution Chain Name
+     */
+    public func fetchEvolutionChain(_ evolutionChainName: String, completion: @escaping (_ result: Result<PKMEvolutionChain>) -> Void) {
+        let urlStr = baseURL + "/evolution-chain/\(evolutionChainName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -180,8 +194,22 @@ open class EvolutionService {
      
      - parameter evolutionTriggerId: Evolution Trigger ID
      */
-    public func fetchEvolutionTrigger(_ evolutionTriggerId: String, completion: @escaping (_ result: Result<PKMEvolutionTrigger>) -> Void) {
-        let urlStr = baseURL + "/evolution-trigger/" + evolutionTriggerId
+    public func fetchEvolutionTrigger(_ evolutionTriggerId: Int, completion: @escaping (_ result: Result<PKMEvolutionTrigger>) -> Void) {
+        let urlStr = baseURL + "/evolution-trigger/\(evolutionTriggerId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Evolution Trigger Information
+     
+     - parameter evolutionTriggerName: Evolution Trigger Name
+     */
+    public func fetchEvolutionTrigger(_ evolutionTriggerName: String, completion: @escaping (_ result: Result<PKMEvolutionTrigger>) -> Void) {
+        let urlStr = baseURL + "/evolution-trigger/\(evolutionTriggerName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

@@ -376,8 +376,22 @@ open class MoveService {
      
      - parameter moveId: Move ID
      */
-    public func fetchMove(_ moveId: String, completion: @escaping (_ result: Result<PKMMove>) -> Void) {
-        let urlStr = baseURL + "/move/" + moveId
+    public func fetchMove(_ moveId: Int, completion: @escaping (_ result: Result<PKMMove>) -> Void) {
+        let urlStr = baseURL + "/move/\(moveId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Move Information
+     
+     - parameter moveName: Move Name
+     */
+    public func fetchMove(_ moveName: String, completion: @escaping (_ result: Result<PKMMove>) -> Void) {
+        let urlStr = baseURL + "/move/\(moveName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -399,8 +413,22 @@ open class MoveService {
      
      - parameter moveAilmentId: Move Ailment ID
      */
-    public func fetchMoveAilment(_ moveAilmentId: String, completion: @escaping (_ result: Result<PKMMoveAilment>) -> Void) {
-        let urlStr = baseURL + "/move-ailment/" + moveAilmentId
+    public func fetchMoveAilment(_ moveAilmentId: Int, completion: @escaping (_ result: Result<PKMMoveAilment>) -> Void) {
+        let urlStr = baseURL + "/move-ailment/\(moveAilmentId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Move Ailment Information
+     
+     - parameter moveAilmentName: Move Ailment Name
+     */
+    public func fetchMoveAilment(_ moveAilmentName: String, completion: @escaping (_ result: Result<PKMMoveAilment>) -> Void) {
+        let urlStr = baseURL + "/move-ailment/\(moveAilmentName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -422,8 +450,22 @@ open class MoveService {
      
      - parameter moveBattleStyleId: Move Battle Style ID
      */
-    public func fetchMoveBattleStyle(_ moveBattleStyleId: String, completion: @escaping (_ result: Result<PKMMoveBattleStyle>) -> Void) {
-        let urlStr = baseURL + "/move-battle-style/" + moveBattleStyleId
+    public func fetchMoveBattleStyle(_ moveBattleStyleId: Int, completion: @escaping (_ result: Result<PKMMoveBattleStyle>) -> Void) {
+        let urlStr = baseURL + "/move-battle-style/\(moveBattleStyleId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Move Battle Style Information
+     
+     - parameter moveBattleStyleName: Move Battle Style Name
+     */
+    public func fetchMoveBattleStyle(_ moveBattleStyleName: String, completion: @escaping (_ result: Result<PKMMoveBattleStyle>) -> Void) {
+        let urlStr = baseURL + "/move-battle-style/\(moveBattleStyleName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -445,8 +487,22 @@ open class MoveService {
      
      - parameter moveCategoryId: Move Category ID
      */
-    public func fetchMoveCategory(_ moveCategoryId: String, completion: @escaping (_ result: Result<PKMMoveCategory>) -> Void) {
-        let urlStr = baseURL + "/move-category/" + moveCategoryId
+    public func fetchMoveCategory(_ moveCategoryId: Int, completion: @escaping (_ result: Result<PKMMoveCategory>) -> Void) {
+        let urlStr = baseURL + "/move-category/\(moveCategoryId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Move Category Information
+     
+     - parameter moveCategoryName: Move Category Name
+     */
+    public func fetchMoveCategory(_ moveCategoryName: String, completion: @escaping (_ result: Result<PKMMoveCategory>) -> Void) {
+        let urlStr = baseURL + "/move-category/\(moveCategoryName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -468,8 +524,22 @@ open class MoveService {
      
      - parameter moveDamageClassId: Move Damage Class ID
      */
-    public func fetchMoveDamageClass(_ moveDamageClassId: String, completion: @escaping (_ result: Result<PKMMoveDamageClass>) -> Void) {
-        let urlStr = baseURL + "/move-damage-class/" + moveDamageClassId
+    public func fetchMoveDamageClass(_ moveDamageClassId: Int, completion: @escaping (_ result: Result<PKMMoveDamageClass>) -> Void) {
+        let urlStr = baseURL + "/move-damage-class/\(moveDamageClassId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Move Damage Class Information
+     
+     - parameter moveDamageClassName: Move Damage Class Name
+     */
+    public func fetchMoveDamageClass(_ moveDamageClassName: String, completion: @escaping (_ result: Result<PKMMoveDamageClass>) -> Void) {
+        let urlStr = baseURL + "/move-damage-class/\(moveDamageClassName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -491,8 +561,21 @@ open class MoveService {
      
      - parameter moveLearnMethodId: Move Learn Method ID
      */
-    public func fetchMoveLearnMethod(_ moveLearnMethodId: String, completion: @escaping (_ result: Result<PKMMoveLearnMethod>) -> Void) {
-        let urlStr = baseURL + "/move-learn-method/" + moveLearnMethodId
+    public func fetchMoveLearnMethod(_ moveLearnMethodId: Int, completion: @escaping (_ result: Result<PKMMoveLearnMethod>) -> Void) {
+        let urlStr = baseURL + "/move-learn-method/\(moveLearnMethodId)"
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Move Learn Method Information
+     
+     - parameter moveLearnMethodName: Move Learn Method Name
+     */
+    public func fetchMoveLearnMethod(_ moveLearnMethodName: String, completion: @escaping (_ result: Result<PKMMoveLearnMethod>) -> Void) {
+        let urlStr = baseURL + "/move-learn-method/\(moveLearnMethodName)"
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
         }
@@ -513,8 +596,22 @@ open class MoveService {
      
      - parameter moveTargetId: Move Target ID
      */
-    public func fetchMoveTarget(_ moveTargetId: String, completion: @escaping (_ result: Result<PKMMoveTarget>) -> Void) {
-        let urlStr = baseURL + "/move-target/" + moveTargetId
+    public func fetchMoveTarget(_ moveTargetId: Int, completion: @escaping (_ result: Result<PKMMoveTarget>) -> Void) {
+        let urlStr = baseURL + "/move-target/\(moveTargetId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Move Target Information
+     
+     - parameter moveTargetName: Move Target Name
+     */
+    public func fetchMoveTarget(_ moveTargetName: String, completion: @escaping (_ result: Result<PKMMoveTarget>) -> Void) {
+        let urlStr = baseURL + "/move-target/\(moveTargetName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

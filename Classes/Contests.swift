@@ -113,8 +113,22 @@ open class ContestService {
      
      - parameter contestTypeId: Contest Type ID
      */
-    public func fetchContestType(_ contestTypeId: String, completion: @escaping (_ result: Result<PKMContestType>) -> Void) {
-        let urlStr = baseURL + "/contest-type/" + contestTypeId
+    public func fetchContestType(_ contestTypeId: Int, completion: @escaping (_ result: Result<PKMContestType>) -> Void) {
+        let urlStr = baseURL + "/contest-type/\(contestTypeId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Contest Type Information
+     
+     - parameter contestTypeName: Contest Type Name
+     */
+    public func fetchContestType(_ contestTypeName: String, completion: @escaping (_ result: Result<PKMContestType>) -> Void) {
+        let urlStr = baseURL + "/contest-type/\(contestTypeName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -136,8 +150,22 @@ open class ContestService {
      
      - parameter contestEffectId: Contest Effect ID
      */
-    public func fetchContestEffect(_ contestEffectId: String, completion: @escaping (_ result: Result<PKMContestEffect>) -> Void) {
-        let urlStr = baseURL + "/contest-effect/" + contestEffectId
+    public func fetchContestEffect(_ contestEffectId: Int, completion: @escaping (_ result: Result<PKMContestEffect>) -> Void) {
+        let urlStr = baseURL + "/contest-effect/\(contestEffectId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Contest Effect Information
+     
+     - parameter contestEffectName: Contest Effect Name
+     */
+    public func fetchContestEffect(_ contestEffectName: String, completion: @escaping (_ result: Result<PKMContestEffect>) -> Void) {
+        let urlStr = baseURL + "/contest-effect/\(contestEffectName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -159,8 +187,22 @@ open class ContestService {
      
      - parameter superContestEffectId: Super Contest Effect ID
      */
-    public func fetchSuperContestEffect(_ superContestEffectId: String, completion: @escaping (_ result: Result<PKMSuperContestEffect>) -> Void) {
-        let urlStr = baseURL + "/super-contest-effect/" + superContestEffectId
+    public func fetchSuperContestEffect(_ superContestEffectId: Int, completion: @escaping (_ result: Result<PKMSuperContestEffect>) -> Void) {
+        let urlStr = baseURL + "/super-contest-effect/\(superContestEffectId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Super Contest Effect Information
+     
+     - parameter superContestEffectName: Super Contest Effect Name
+     */
+    public func fetchSuperContestEffect(_ superContestEffectName: String, completion: @escaping (_ result: Result<PKMSuperContestEffect>) -> Void) {
+        let urlStr = baseURL + "/super-contest-effect/\(superContestEffectName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

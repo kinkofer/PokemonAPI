@@ -47,8 +47,22 @@ open class MachineService {
      
      - parameter machineId: Machine ID
      */
-    public func fetchMachine(_ machineId: String, completion: @escaping (_ result: Result<PKMMachine>) -> Void) {
-        let urlStr = baseURL + "/machine/" + machineId
+    public func fetchMachine(_ machineId: Int, completion: @escaping (_ result: Result<PKMMachine>) -> Void) {
+        let urlStr = baseURL + "/machine/\(machineId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Machine Information
+     
+     - parameter machineName: Machine Name
+     */
+    public func fetchMachine(_ machineName: String, completion: @escaping (_ result: Result<PKMMachine>) -> Void) {
+        let urlStr = baseURL + "/machine/\(machineName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

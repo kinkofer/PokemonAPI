@@ -138,8 +138,22 @@ public class BerryService {
      
      - parameter berryId: Berry ID
      */
-    public func fetchBerry(_ berryId: String, completion: @escaping (_ result: Result<PKMBerry>) -> Void) {
-        let urlStr = baseURL + "/berry/" + berryId
+    public func fetchBerry(_ berryId: Int, completion: @escaping (_ result: Result<PKMBerry>) -> Void) {
+        let urlStr = baseURL + "/berry/\(berryId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Berry Information
+     
+     - parameter berryName: Berry Name
+     */
+    public func fetchBerry(_ berryName: String, completion: @escaping (_ result: Result<PKMBerry>) -> Void) {
+        let urlStr = baseURL + "/berry/\(berryName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -161,8 +175,22 @@ public class BerryService {
      
      - parameter berryFirmnessId: Berry Firmness ID
      */
-    public func fetchBerryFirmness(_ berryFirmnessId: String, completion: @escaping (_ result: Result<PKMBerryFirmness>) -> Void) {
-        let urlStr = baseURL + "/berry-firmness/" + berryFirmnessId
+    public func fetchBerryFirmness(_ berryFirmnessId: Int, completion: @escaping (_ result: Result<PKMBerryFirmness>) -> Void) {
+        let urlStr = baseURL + "/berry-firmness/\(berryFirmnessId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Berry Firmness Information
+     
+     - parameter berryFirmnessName: Berry Firmness Name
+     */
+    public func fetchBerryFirmness(_ berryFirmnessName: String, completion: @escaping (_ result: Result<PKMBerryFirmness>) -> Void) {
+        let urlStr = baseURL + "/berry-firmness/\(berryFirmnessName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -184,8 +212,22 @@ public class BerryService {
      
      - parameter berryFlavorId: Berry Flavor ID
      */
-    public func fetchBerryFlavour(_ berryFlavorId: String, completion: @escaping (_ result: Result<PKMBerryFlavor>) -> Void) {
-        let urlStr = baseURL + "/berry-flavor/" + berryFlavorId
+    public func fetchBerryFlavour(_ berryFlavorId: Int, completion: @escaping (_ result: Result<PKMBerryFlavor>) -> Void) {
+        let urlStr = baseURL + "/berry-flavor/\(berryFlavorId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Berry Flavor Information
+     
+     - parameter berryFlavorName: Berry Flavor Name
+     */
+    public func fetchBerryFlavour(_ berryFlavorName: String, completion: @escaping (_ result: Result<PKMBerryFlavor>) -> Void) {
+        let urlStr = baseURL + "/berry-flavor/\(berryFlavorName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

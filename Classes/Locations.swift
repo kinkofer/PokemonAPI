@@ -216,8 +216,22 @@ open class LocationService {
      
      - parameter locationId: Location ID
      */
-    public func fetchLocation(_ locationId: String, completion: @escaping (_ result: Result<PKMLocation>) -> Void) {
-        let urlStr = baseURL + "/location/" + locationId
+    public func fetchLocation(_ locationId: Int, completion: @escaping (_ result: Result<PKMLocation>) -> Void) {
+        let urlStr = baseURL + "/location/\(locationId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Location Information
+     
+     - parameter locationName: Location Name
+     */
+    public func fetchLocation(_ locationName: String, completion: @escaping (_ result: Result<PKMLocation>) -> Void) {
+        let urlStr = baseURL + "/location/\(locationName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -239,8 +253,22 @@ open class LocationService {
      
      - parameter locationAreaId: Location Area ID
      */
-    public func fetchLocationArea(_ locationAreaId: String, completion: @escaping (_ result: Result<PKMLocationArea>) -> Void) {
-        let urlStr = baseURL + "/location-area/" + locationAreaId
+    public func fetchLocationArea(_ locationAreaId: Int, completion: @escaping (_ result: Result<PKMLocationArea>) -> Void) {
+        let urlStr = baseURL + "/location-area/\(locationAreaId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Location Area Information
+     
+     - parameter locationAreaName: Location Area Name
+     */
+    public func fetchLocationArea(_ locationAreaName: String, completion: @escaping (_ result: Result<PKMLocationArea>) -> Void) {
+        let urlStr = baseURL + "/location-area/\(locationAreaName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -262,8 +290,22 @@ open class LocationService {
      
      - parameter palParkAreaId: Pal Park Area ID
      */
-    public func fetchPalParkArea(_ palParkAreaId: String, completion: @escaping (_ result: Result<PKMPalParkArea>) -> Void) {
-        let urlStr = baseURL + "/pal-park-area/" + palParkAreaId
+    public func fetchPalParkArea(_ palParkAreaId: Int, completion: @escaping (_ result: Result<PKMPalParkArea>) -> Void) {
+        let urlStr = baseURL + "/pal-park-area/\(palParkAreaId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Pal Park Area Information
+     
+     - parameter palParkAreaName: Pal Park Area Name
+     */
+    public func fetchPalParkArea(_ palParkAreaName: String, completion: @escaping (_ result: Result<PKMPalParkArea>) -> Void) {
+        let urlStr = baseURL + "/pal-park-area/\(palParkAreaName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -285,8 +327,22 @@ open class LocationService {
      
      - parameter regionId: Region ID
      */
-    public func fetchRegion(_ regionId: String, completion: @escaping (_ result: Result<PKMRegion>) -> Void) {
-        let urlStr = baseURL + "/region/" + regionId
+    public func fetchRegion(_ regionId: Int, completion: @escaping (_ result: Result<PKMRegion>) -> Void) {
+        let urlStr = baseURL + "/region/\(regionId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Region Information
+     
+     - parameter regionName: Region Name
+     */
+    public func fetchRegion(_ regionName: String, completion: @escaping (_ result: Result<PKMRegion>) -> Void) {
+        let urlStr = baseURL + "/region/\(regionName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

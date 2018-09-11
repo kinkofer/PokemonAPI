@@ -197,8 +197,22 @@ open class ItemService {
      
      - parameter itemId: Item ID
      */
-    public func fetchItem(_ itemId: String, completion: @escaping (_ result: Result<PKMItem>) -> Void) {
-        let urlStr = baseURL + "/item/" + itemId
+    public func fetchItem(_ itemId: Int, completion: @escaping (_ result: Result<PKMItem>) -> Void) {
+        let urlStr = baseURL + "/item/\(itemId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Information
+     
+     - parameter itemName: Item Name
+     */
+    public func fetchItem(_ itemName: String, completion: @escaping (_ result: Result<PKMItem>) -> Void) {
+        let urlStr = baseURL + "/item/\(itemName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -220,8 +234,22 @@ open class ItemService {
      
      - parameter itemAttributeId: Item Attribute ID
      */
-    public func fetchItemAttribute(_ itemAttributeId: String, completion: @escaping (_ result: Result<PKMItemAttribute>) -> Void) {
-        let urlStr = baseURL + "/item-attribute/" + itemAttributeId
+    public func fetchItemAttribute(_ itemAttributeId: Int, completion: @escaping (_ result: Result<PKMItemAttribute>) -> Void) {
+        let urlStr = baseURL + "/item-attribute/\(itemAttributeId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Attribute Information
+     
+     - parameter itemAttributeName: Item Attribute Name
+     */
+    public func fetchItemAttribute(_ itemAttributeName: String, completion: @escaping (_ result: Result<PKMItemAttribute>) -> Void) {
+        let urlStr = baseURL + "/item-attribute/\(itemAttributeName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -243,8 +271,22 @@ open class ItemService {
      
      - parameter itemCategoryId: Item Category ID
      */
-    public func fetchItemCategory(_ itemCategoryId: String, completion: @escaping (_ result: Result<PKMItemCategory>) -> Void) {
-        let urlStr = baseURL + "/item-category/" + itemCategoryId
+    public func fetchItemCategory(_ itemCategoryId: Int, completion: @escaping (_ result: Result<PKMItemCategory>) -> Void) {
+        let urlStr = baseURL + "/item-category/\(itemCategoryId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Category Information
+     
+     - parameter itemCategoryName: Item Category Name
+     */
+    public func fetchItemCategory(_ itemCategoryName: String, completion: @escaping (_ result: Result<PKMItemCategory>) -> Void) {
+        let urlStr = baseURL + "/item-category/\(itemCategoryName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -266,8 +308,22 @@ open class ItemService {
      
      - parameter itemFlingEffectsId: Item Fling Effect ID
      */
-    public func fetchItemFlingEffect(_ itemFlingEffectsId: String, completion: @escaping (_ result: Result<PKMItemFlingEffect>) -> Void) {
-        let urlStr = baseURL + "/item-fling-effect/" + itemFlingEffectsId
+    public func fetchItemFlingEffect(_ itemFlingEffectsId: Int, completion: @escaping (_ result: Result<PKMItemFlingEffect>) -> Void) {
+        let urlStr = baseURL + "/item-fling-effect/\(itemFlingEffectsId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Fling Effect Information
+     
+     - parameter itemFlingEffectsName: Item Fling Effect Name
+     */
+    public func fetchItemFlingEffect(_ itemFlingEffectsName: String, completion: @escaping (_ result: Result<PKMItemFlingEffect>) -> Void) {
+        let urlStr = baseURL + "/item-fling-effect/\(itemFlingEffectsName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -289,8 +345,22 @@ open class ItemService {
      
      - parameter itemPocketId: Item Pocket ID
      */
-    public func fetchItemPocket(_ itemPocketId: String, completion: @escaping (_ result: Result<PKMItemPocket>) -> Void) {
-        let urlStr = baseURL + "/item-pocket/" + itemPocketId
+    public func fetchItemPocket(_ itemPocketId: Int, completion: @escaping (_ result: Result<PKMItemPocket>) -> Void) {
+        let urlStr = baseURL + "/item-pocket/\(itemPocketId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Pocket Information
+     
+     - parameter itemPocketName: Item Pocket Name
+     */
+    public func fetchItemPocket(_ itemPocketName: String, completion: @escaping (_ result: Result<PKMItemPocket>) -> Void) {
+        let urlStr = baseURL + "/item-pocket/\(itemPocketName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

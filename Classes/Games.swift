@@ -178,8 +178,22 @@ open class GameService {
      
      - parameter generationId: Generation ID
      */
-    public func fetchGeneration(_ generationId: String, completion: @escaping (_ result: Result<PKMGeneration>) -> Void) {
-        let urlStr = baseURL + "/generation/" + generationId
+    public func fetchGeneration(_ generationId: Int, completion: @escaping (_ result: Result<PKMGeneration>) -> Void) {
+        let urlStr = baseURL + "/generation/\(generationId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Generation Information
+     
+     - parameter generationName: Generation Name
+     */
+    public func fetchGeneration(_ generationName: String, completion: @escaping (_ result: Result<PKMGeneration>) -> Void) {
+        let urlStr = baseURL + "/generation/\(generationName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -201,8 +215,22 @@ open class GameService {
      
      - parameter pokedexId: Pokedex ID
      */
-    public func fetchPokedex(_ pokedexId: String, completion: @escaping (_ result: Result<PKMPokedex>) -> Void) {
-        let urlStr = baseURL + "/pokedex/" + pokedexId
+    public func fetchPokedex(_ pokedexId: Int, completion: @escaping (_ result: Result<PKMPokedex>) -> Void) {
+        let urlStr = baseURL + "/pokedex/\(pokedexId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Pokedex Information
+     
+     - parameter pokedexName: Pokedex Name
+     */
+    public func fetchPokedex(_ pokedexName: String, completion: @escaping (_ result: Result<PKMPokedex>) -> Void) {
+        let urlStr = baseURL + "/pokedex/\(pokedexName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -224,8 +252,22 @@ open class GameService {
      
      - parameter versionId: Version ID
      */
-    public func fetchVersion(_ versionId: String, completion: @escaping (_ result: Result<PKMVersion>) -> Void) {
-        let urlStr = baseURL + "/version/" + versionId
+    public func fetchVersion(_ versionId: Int, completion: @escaping (_ result: Result<PKMVersion>) -> Void) {
+        let urlStr = baseURL + "/version/\(versionId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Version Information
+     
+     - parameter versionName: Version Name
+     */
+    public func fetchVersion(_ versionName: String, completion: @escaping (_ result: Result<PKMVersion>) -> Void) {
+        let urlStr = baseURL + "/version/\(versionName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -247,8 +289,22 @@ open class GameService {
      
      - parameter versionGroupId: Version Group ID
      */
-    public func fetchVersionGroup(_ versionGroupId: String, completion: @escaping (_ result: Result<PKMVersionGroup>) -> Void) {
-        let urlStr = baseURL + "/version-group/" + versionGroupId
+    public func fetchVersionGroup(_ versionGroupId: Int, completion: @escaping (_ result: Result<PKMVersionGroup>) -> Void) {
+        let urlStr = baseURL + "/version-group/\(versionGroupId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Version Group Information
+     
+     - parameter versionGroupName: Version Group Name
+     */
+    public func fetchVersionGroup(_ versionGroupName: String, completion: @escaping (_ result: Result<PKMVersionGroup>) -> Void) {
+        let urlStr = baseURL + "/version-group/\(versionGroupName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
