@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  PokemonAPI-Example
 //
-//  Created by Yeung Yiu Hung on 8/8/2016.
-//  Copyright © 2016年 Yeung Yiu Hung. All rights reserved.
+//  Created by Christopher Jennewein on 6/30/18.
+//  Copyright © 2018 Prismatic Games. All rights reserved.
 //
 
 import UIKit
