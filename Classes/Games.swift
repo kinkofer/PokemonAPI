@@ -167,7 +167,7 @@ open class GameService {
     /**
      Fetch Generations list
      */
-    public func fetchGenerationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMGeneration {
+    public static func fetchGenerationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMGeneration {
         let urlStr = baseURL + "/generation"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -178,7 +178,7 @@ open class GameService {
      
      - parameter generationId: Generation ID
      */
-    public func fetchGeneration(_ generationId: Int, completion: @escaping (_ result: Result<PKMGeneration>) -> Void) {
+    public static func fetchGeneration(_ generationId: Int, completion: @escaping (_ result: Result<PKMGeneration>) -> Void) {
         let urlStr = baseURL + "/generation/\(generationId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -192,7 +192,7 @@ open class GameService {
      
      - parameter generationName: Generation Name
      */
-    public func fetchGeneration(_ generationName: String, completion: @escaping (_ result: Result<PKMGeneration>) -> Void) {
+    public static func fetchGeneration(_ generationName: String, completion: @escaping (_ result: Result<PKMGeneration>) -> Void) {
         let urlStr = baseURL + "/generation/\(generationName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -204,7 +204,7 @@ open class GameService {
     /**
      Fetch Pokedex list
      */
-    public func fetchPokedexList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPokedex {
+    public static func fetchPokedexList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPokedex {
         let urlStr = baseURL + "/pokedex"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -215,7 +215,7 @@ open class GameService {
      
      - parameter pokedexId: Pokedex ID
      */
-    public func fetchPokedex(_ pokedexId: Int, completion: @escaping (_ result: Result<PKMPokedex>) -> Void) {
+    public static func fetchPokedex(_ pokedexId: Int, completion: @escaping (_ result: Result<PKMPokedex>) -> Void) {
         let urlStr = baseURL + "/pokedex/\(pokedexId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -229,7 +229,7 @@ open class GameService {
      
      - parameter pokedexName: Pokedex Name
      */
-    public func fetchPokedex(_ pokedexName: String, completion: @escaping (_ result: Result<PKMPokedex>) -> Void) {
+    public static func fetchPokedex(_ pokedexName: String, completion: @escaping (_ result: Result<PKMPokedex>) -> Void) {
         let urlStr = baseURL + "/pokedex/\(pokedexName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -241,7 +241,7 @@ open class GameService {
     /**
      Fetch Versions list
      */
-    public func fetchVersionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMVersion {
+    public static func fetchVersionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMVersion {
         let urlStr = baseURL + "/version"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -252,7 +252,7 @@ open class GameService {
      
      - parameter versionId: Version ID
      */
-    public func fetchVersion(_ versionId: Int, completion: @escaping (_ result: Result<PKMVersion>) -> Void) {
+    public static func fetchVersion(_ versionId: Int, completion: @escaping (_ result: Result<PKMVersion>) -> Void) {
         let urlStr = baseURL + "/version/\(versionId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -266,7 +266,7 @@ open class GameService {
      
      - parameter versionName: Version Name
      */
-    public func fetchVersion(_ versionName: String, completion: @escaping (_ result: Result<PKMVersion>) -> Void) {
+    public static func fetchVersion(_ versionName: String, completion: @escaping (_ result: Result<PKMVersion>) -> Void) {
         let urlStr = baseURL + "/version/\(versionName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -278,7 +278,7 @@ open class GameService {
     /**
      Fetch Versions Groups list
      */
-    public func fetchVersionGroupList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMVersionGroup {
+    public static func fetchVersionGroupList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMVersionGroup {
         let urlStr = baseURL + "/version-group"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -289,7 +289,7 @@ open class GameService {
      
      - parameter versionGroupId: Version Group ID
      */
-    public func fetchVersionGroup(_ versionGroupId: Int, completion: @escaping (_ result: Result<PKMVersionGroup>) -> Void) {
+    public static func fetchVersionGroup(_ versionGroupId: Int, completion: @escaping (_ result: Result<PKMVersionGroup>) -> Void) {
         let urlStr = baseURL + "/version-group/\(versionGroupId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -303,7 +303,7 @@ open class GameService {
      
      - parameter versionGroupName: Version Group Name
      */
-    public func fetchVersionGroup(_ versionGroupName: String, completion: @escaping (_ result: Result<PKMVersionGroup>) -> Void) {
+    public static func fetchVersionGroup(_ versionGroupName: String, completion: @escaping (_ result: Result<PKMVersionGroup>) -> Void) {
         let urlStr = baseURL + "/version-group/\(versionGroupName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

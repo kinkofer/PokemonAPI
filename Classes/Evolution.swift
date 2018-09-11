@@ -146,7 +146,7 @@ open class EvolutionService {
     /**
      Fetch Encounter Chains list
      */
-    public func fetchEvolutionChainList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEvolutionChain {
+    public static func fetchEvolutionChainList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEvolutionChain {
         let urlStr = baseURL + "/evolution-chain"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -157,7 +157,7 @@ open class EvolutionService {
      
      - parameter evolutionChainId: Evolution Chain ID
      */
-    public func fetchEvolutionChain(_ evolutionChainId: Int, completion: @escaping (_ result: Result<PKMEvolutionChain>) -> Void) {
+    public static func fetchEvolutionChain(_ evolutionChainId: Int, completion: @escaping (_ result: Result<PKMEvolutionChain>) -> Void) {
         let urlStr = baseURL + "/evolution-chain/\(evolutionChainId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -171,7 +171,7 @@ open class EvolutionService {
      
      - parameter evolutionChainName: Evolution Chain Name
      */
-    public func fetchEvolutionChain(_ evolutionChainName: String, completion: @escaping (_ result: Result<PKMEvolutionChain>) -> Void) {
+    public static func fetchEvolutionChain(_ evolutionChainName: String, completion: @escaping (_ result: Result<PKMEvolutionChain>) -> Void) {
         let urlStr = baseURL + "/evolution-chain/\(evolutionChainName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -183,7 +183,7 @@ open class EvolutionService {
     /**
      Fetch Encounter Triggers list
      */
-    public func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEvolutionTrigger {
+    public static func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEvolutionTrigger {
         let urlStr = baseURL + "/evolution-trigger"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -194,7 +194,7 @@ open class EvolutionService {
      
      - parameter evolutionTriggerId: Evolution Trigger ID
      */
-    public func fetchEvolutionTrigger(_ evolutionTriggerId: Int, completion: @escaping (_ result: Result<PKMEvolutionTrigger>) -> Void) {
+    public static func fetchEvolutionTrigger(_ evolutionTriggerId: Int, completion: @escaping (_ result: Result<PKMEvolutionTrigger>) -> Void) {
         let urlStr = baseURL + "/evolution-trigger/\(evolutionTriggerId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -208,7 +208,7 @@ open class EvolutionService {
      
      - parameter evolutionTriggerName: Evolution Trigger Name
      */
-    public func fetchEvolutionTrigger(_ evolutionTriggerName: String, completion: @escaping (_ result: Result<PKMEvolutionTrigger>) -> Void) {
+    public static func fetchEvolutionTrigger(_ evolutionTriggerName: String, completion: @escaping (_ result: Result<PKMEvolutionTrigger>) -> Void) {
         let urlStr = baseURL + "/evolution-trigger/\(evolutionTriggerName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

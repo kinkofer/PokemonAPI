@@ -268,7 +268,7 @@ open class UtilityService {
     /**
      Fetch Languages list
      */
-    public func fetchLanguageList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLanguage {
+    public static func fetchLanguageList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLanguage {
         let urlStr = baseURL + "/language"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -279,7 +279,7 @@ open class UtilityService {
      
      - parameter languageId: Language ID
      */
-    public func fetchLanguage(_ languageId: String, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
+    public static func fetchLanguage(_ languageId: String, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
         let urlStr = baseURL + "/language/" + languageId
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -296,7 +296,7 @@ open class UtilityService {
      
      - parameter resource: PKMAPIResource or APINamedAPIResource
      */
-    public func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T>) -> Void) {
+    public static func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T>) -> Void) {
         guard let urlStr = resource.url else {
             completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
             return
