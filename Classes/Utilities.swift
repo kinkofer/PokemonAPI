@@ -279,8 +279,22 @@ open class UtilityService {
      
      - parameter languageId: Language ID
      */
-    public static func fetchLanguage(_ languageId: String, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
-        let urlStr = baseURL + "/language/" + languageId
+    public static func fetchLanguage(_ languageId: Int, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
+        let urlStr = baseURL + "/language/\(languageId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Language Information
+     
+     - parameter languageName: Language Name
+     */
+    public static func fetchLanguage(_ languageName: String, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
+        let urlStr = baseURL + "/language/\(languageName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
