@@ -127,7 +127,7 @@ public class BerryService {
     /**
      Fetch Berry list
      */
-    public func fetchBerryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerry {
+    public static func fetchBerryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerry {
         let urlStr = baseURL + "/berry"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -138,8 +138,22 @@ public class BerryService {
      
      - parameter berryId: Berry ID
      */
-    public func fetchBerry(_ berryId: String, completion: @escaping (_ result: Result<PKMBerry>) -> Void) {
-        let urlStr = baseURL + "/berry/" + berryId
+    public static func fetchBerry(_ berryId: Int, completion: @escaping (_ result: Result<PKMBerry>) -> Void) {
+        let urlStr = baseURL + "/berry/\(berryId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Berry Information
+     
+     - parameter berryName: Berry Name
+     */
+    public static func fetchBerry(_ berryName: String, completion: @escaping (_ result: Result<PKMBerry>) -> Void) {
+        let urlStr = baseURL + "/berry/\(berryName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -150,7 +164,7 @@ public class BerryService {
     /**
      Fetch Berry Firmness list
      */
-    public func fetchBerryFirmnessList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerryFirmness {
+    public static func fetchBerryFirmnessList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerryFirmness {
         let urlStr = baseURL + "/berry-firmness"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -161,8 +175,22 @@ public class BerryService {
      
      - parameter berryFirmnessId: Berry Firmness ID
      */
-    public func fetchBerryFirmness(_ berryFirmnessId: String, completion: @escaping (_ result: Result<PKMBerryFirmness>) -> Void) {
-        let urlStr = baseURL + "/berry-firmness/" + berryFirmnessId
+    public static func fetchBerryFirmness(_ berryFirmnessId: Int, completion: @escaping (_ result: Result<PKMBerryFirmness>) -> Void) {
+        let urlStr = baseURL + "/berry-firmness/\(berryFirmnessId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Berry Firmness Information
+     
+     - parameter berryFirmnessName: Berry Firmness Name
+     */
+    public static func fetchBerryFirmness(_ berryFirmnessName: String, completion: @escaping (_ result: Result<PKMBerryFirmness>) -> Void) {
+        let urlStr = baseURL + "/berry-firmness/\(berryFirmnessName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -173,7 +201,7 @@ public class BerryService {
     /**
      Fetch Berry Flavors list
      */
-    public func fetchBerryFlavorList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerryFlavor {
+    public static func fetchBerryFlavorList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMBerryFlavor {
         let urlStr = baseURL + "/berry-flavor"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -184,8 +212,22 @@ public class BerryService {
      
      - parameter berryFlavorId: Berry Flavor ID
      */
-    public func fetchBerryFlavour(_ berryFlavorId: String, completion: @escaping (_ result: Result<PKMBerryFlavor>) -> Void) {
-        let urlStr = baseURL + "/berry-flavor/" + berryFlavorId
+    public static func fetchBerryFlavour(_ berryFlavorId: Int, completion: @escaping (_ result: Result<PKMBerryFlavor>) -> Void) {
+        let urlStr = baseURL + "/berry-flavor/\(berryFlavorId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Berry Flavor Information
+     
+     - parameter berryFlavorName: Berry Flavor Name
+     */
+    public static func fetchBerryFlavour(_ berryFlavorName: String, completion: @escaping (_ result: Result<PKMBerryFlavor>) -> Void) {
+        let urlStr = baseURL + "/berry-flavor/\(berryFlavorName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

@@ -101,7 +101,7 @@ open class ContestService {
     /**
      Fetch Contest list
      */
-    public func fetchContestList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMContestType {
+    public static func fetchContestList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMContestType {
         let urlStr = baseURL + "/contest-type"
         
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
@@ -113,8 +113,22 @@ open class ContestService {
      
      - parameter contestTypeId: Contest Type ID
      */
-    public func fetchContestType(_ contestTypeId: String, completion: @escaping (_ result: Result<PKMContestType>) -> Void) {
-        let urlStr = baseURL + "/contest-type/" + contestTypeId
+    public static func fetchContestType(_ contestTypeId: Int, completion: @escaping (_ result: Result<PKMContestType>) -> Void) {
+        let urlStr = baseURL + "/contest-type/\(contestTypeId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Contest Type Information
+     
+     - parameter contestTypeName: Contest Type Name
+     */
+    public static func fetchContestType(_ contestTypeName: String, completion: @escaping (_ result: Result<PKMContestType>) -> Void) {
+        let urlStr = baseURL + "/contest-type/\(contestTypeName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -125,7 +139,7 @@ open class ContestService {
     /**
      Fetch Contest Effects list
      */
-    public func fetchContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMContestEffect {
+    public static func fetchContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMContestEffect {
         let urlStr = baseURL + "/contest-effect"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -136,8 +150,8 @@ open class ContestService {
      
      - parameter contestEffectId: Contest Effect ID
      */
-    public func fetchContestEffect(_ contestEffectId: String, completion: @escaping (_ result: Result<PKMContestEffect>) -> Void) {
-        let urlStr = baseURL + "/contest-effect/" + contestEffectId
+    public static func fetchContestEffect(_ contestEffectId: Int, completion: @escaping (_ result: Result<PKMContestEffect>) -> Void) {
+        let urlStr = baseURL + "/contest-effect/\(contestEffectId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -148,7 +162,7 @@ open class ContestService {
     /**
      Fetch Super Contest Effects list
      */
-    public func fetchSuperContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMSuperContestEffect {
+    public static func fetchSuperContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMSuperContestEffect {
         let urlStr = baseURL + "/contest-effect"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -159,8 +173,8 @@ open class ContestService {
      
      - parameter superContestEffectId: Super Contest Effect ID
      */
-    public func fetchSuperContestEffect(_ superContestEffectId: String, completion: @escaping (_ result: Result<PKMSuperContestEffect>) -> Void) {
-        let urlStr = baseURL + "/super-contest-effect/" + superContestEffectId
+    public static func fetchSuperContestEffect(_ superContestEffectId: Int, completion: @escaping (_ result: Result<PKMSuperContestEffect>) -> Void) {
+        let urlStr = baseURL + "/super-contest-effect/\(superContestEffectId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

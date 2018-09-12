@@ -21,6 +21,7 @@ class PaginatedResultsViewController: UIViewController {
     
     @IBOutlet weak var pageBtn: UIButton!
     
+    /// The current pagedObject returned from the paginated web service call.
     var pagedObject: PKMPagedObject<PKMPokemon>? {
         didSet {
             if let pagedObject = pagedObject {
@@ -85,6 +86,7 @@ class PaginatedResultsViewController: UIViewController {
     }
     
     
+    /// Presents a modal or popover to list the pages the user can select. The selected page index is passed in PageSelectDelegate.didSelectPageIndex(_:).
     @IBAction func showPages(_ sender: Any) {
         guard let pagedObject = pagedObject else {
             return

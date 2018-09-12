@@ -205,7 +205,7 @@ open class LocationService {
     /**
      Fetch Locations list
      */
-    public func fetchLocationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLocation {
+    public static func fetchLocationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLocation {
         let urlStr = baseURL + "/location"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -216,8 +216,8 @@ open class LocationService {
      
      - parameter locationId: Location ID
      */
-    public func fetchLocation(_ locationId: String, completion: @escaping (_ result: Result<PKMLocation>) -> Void) {
-        let urlStr = baseURL + "/location/" + locationId
+    public static func fetchLocation(_ locationId: Int, completion: @escaping (_ result: Result<PKMLocation>) -> Void) {
+        let urlStr = baseURL + "/location/\(locationId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -228,7 +228,7 @@ open class LocationService {
     /**
      Fetch Location Area list
      */
-    public func fetchLocationAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLocationArea {
+    public static func fetchLocationAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLocationArea {
         let urlStr = baseURL + "/location-area"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -239,8 +239,8 @@ open class LocationService {
      
      - parameter locationAreaId: Location Area ID
      */
-    public func fetchLocationArea(_ locationAreaId: String, completion: @escaping (_ result: Result<PKMLocationArea>) -> Void) {
-        let urlStr = baseURL + "/location-area/" + locationAreaId
+    public static func fetchLocationArea(_ locationAreaId: Int, completion: @escaping (_ result: Result<PKMLocationArea>) -> Void) {
+        let urlStr = baseURL + "/location-area/\(locationAreaId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -251,7 +251,7 @@ open class LocationService {
     /**
      Fetch Pal Park Areas list
      */
-    public func fetchPalParkAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPalParkArea {
+    public static func fetchPalParkAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPalParkArea {
         let urlStr = baseURL + "/pal-park-area"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -262,8 +262,22 @@ open class LocationService {
      
      - parameter palParkAreaId: Pal Park Area ID
      */
-    public func fetchPalParkArea(_ palParkAreaId: String, completion: @escaping (_ result: Result<PKMPalParkArea>) -> Void) {
-        let urlStr = baseURL + "/pal-park-area/" + palParkAreaId
+    public static func fetchPalParkArea(_ palParkAreaId: Int, completion: @escaping (_ result: Result<PKMPalParkArea>) -> Void) {
+        let urlStr = baseURL + "/pal-park-area/\(palParkAreaId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Pal Park Area Information
+     
+     - parameter palParkAreaName: Pal Park Area Name
+     */
+    public static func fetchPalParkArea(_ palParkAreaName: String, completion: @escaping (_ result: Result<PKMPalParkArea>) -> Void) {
+        let urlStr = baseURL + "/pal-park-area/\(palParkAreaName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -274,7 +288,7 @@ open class LocationService {
     /**
      Fetch Regions list
      */
-    public func fetchRegionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMRegion {
+    public static func fetchRegionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMRegion {
         let urlStr = baseURL + "/region"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -285,8 +299,22 @@ open class LocationService {
      
      - parameter regionId: Region ID
      */
-    public func fetchRegion(_ regionId: String, completion: @escaping (_ result: Result<PKMRegion>) -> Void) {
-        let urlStr = baseURL + "/region/" + regionId
+    public static func fetchRegion(_ regionId: Int, completion: @escaping (_ result: Result<PKMRegion>) -> Void) {
+        let urlStr = baseURL + "/region/\(regionId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Region Information
+     
+     - parameter regionName: Region Name
+     */
+    public static func fetchRegion(_ regionName: String, completion: @escaping (_ result: Result<PKMRegion>) -> Void) {
+        let urlStr = baseURL + "/region/\(regionName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

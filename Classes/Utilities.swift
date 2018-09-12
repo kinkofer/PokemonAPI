@@ -36,23 +36,6 @@ open class PKMLanguage: Codable {
 
 // MARK - Common Models
 
-/// API Referenced Resource
-open class PKMAPIResource<T>: Codable {
-    private enum CodingKeys: String, CodingKey {
-        case url
-    }
-    
-    /// The URL of the referenced resource
-    open var url: String?
-    
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.url = try container.decode(String.self, forKey: .url)
-    }
-}
-
-
 /// Description
 open class PKMDescription: Codable {
     
@@ -163,25 +146,6 @@ open class PKMName: Codable {
 }
 
 
-/// Named API Resource
-open class PKMNamedAPIResource<T>: PKMAPIResource<T> {
-    private enum CodingKeys: String, CodingKey {
-        case name
-    }
-
-    /// The name of the referenced resource
-    open var name: String?
-
-
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode(String.self, forKey: .name)
-        
-        try super.init(from: decoder)
-    }
-}
-
-
 /// Verbose Effect
 open class PKMVerboseEffect: Codable, SelfDecodable {
     
@@ -268,7 +232,7 @@ open class UtilityService {
     /**
      Fetch Languages list
      */
-    public func fetchLanguageList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLanguage {
+    public static func fetchLanguageList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLanguage {
         let urlStr = baseURL + "/language"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -279,8 +243,8 @@ open class UtilityService {
      
      - parameter languageId: Language ID
      */
-    public func fetchLanguage(_ languageId: String, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
-        let urlStr = baseURL + "/language/" + languageId
+    public static func fetchLanguage(_ languageId: Int, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
+        let urlStr = baseURL + "/language/\(languageId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -288,19 +252,13 @@ open class UtilityService {
     }
     
     
-    
-    // MARK: - API Resource
-    
     /**
-     Fetch a resource from a named or unnamed resource url
+     Fetch Language Information
      
-     - parameter resource: PKMAPIResource or APINamedAPIResource
+     - parameter languageName: Language Name
      */
-    public func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T>) -> Void) {
-        guard let urlStr = resource.url else {
-            completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
-            return
-        }
+    public static func fetchLanguage(_ languageName: String, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
+        let urlStr = baseURL + "/language/\(languageName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

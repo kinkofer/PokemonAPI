@@ -186,7 +186,7 @@ open class ItemService {
     /**
      Fetch Items list
      */
-    public func fetchItemList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMItem {
+    public static func fetchItemList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMItem {
         let urlStr = baseURL + "/item"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -197,8 +197,22 @@ open class ItemService {
      
      - parameter itemId: Item ID
      */
-    public func fetchItem(_ itemId: String, completion: @escaping (_ result: Result<PKMItem>) -> Void) {
-        let urlStr = baseURL + "/item/" + itemId
+    public static func fetchItem(_ itemId: Int, completion: @escaping (_ result: Result<PKMItem>) -> Void) {
+        let urlStr = baseURL + "/item/\(itemId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Information
+     
+     - parameter itemName: Item Name
+     */
+    public static func fetchItem(_ itemName: String, completion: @escaping (_ result: Result<PKMItem>) -> Void) {
+        let urlStr = baseURL + "/item/\(itemName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -209,7 +223,7 @@ open class ItemService {
     /**
      Fetch Item Attributes list
      */
-    public func fetchItemAttributeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMItemAttribute {
+    public static func fetchItemAttributeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMItemAttribute {
         let urlStr = baseURL + "/item-attribute"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -220,8 +234,22 @@ open class ItemService {
      
      - parameter itemAttributeId: Item Attribute ID
      */
-    public func fetchItemAttribute(_ itemAttributeId: String, completion: @escaping (_ result: Result<PKMItemAttribute>) -> Void) {
-        let urlStr = baseURL + "/item-attribute/" + itemAttributeId
+    public static func fetchItemAttribute(_ itemAttributeId: Int, completion: @escaping (_ result: Result<PKMItemAttribute>) -> Void) {
+        let urlStr = baseURL + "/item-attribute/\(itemAttributeId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Attribute Information
+     
+     - parameter itemAttributeName: Item Attribute Name
+     */
+    public static func fetchItemAttribute(_ itemAttributeName: String, completion: @escaping (_ result: Result<PKMItemAttribute>) -> Void) {
+        let urlStr = baseURL + "/item-attribute/\(itemAttributeName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -232,7 +260,7 @@ open class ItemService {
     /**
      Fetch Item Categories list
      */
-    public func fetchItemCategoryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMItemCategory {
+    public static func fetchItemCategoryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMItemCategory {
         let urlStr = baseURL + "/item-category"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -243,8 +271,22 @@ open class ItemService {
      
      - parameter itemCategoryId: Item Category ID
      */
-    public func fetchItemCategory(_ itemCategoryId: String, completion: @escaping (_ result: Result<PKMItemCategory>) -> Void) {
-        let urlStr = baseURL + "/item-category/" + itemCategoryId
+    public static func fetchItemCategory(_ itemCategoryId: Int, completion: @escaping (_ result: Result<PKMItemCategory>) -> Void) {
+        let urlStr = baseURL + "/item-category/\(itemCategoryId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Category Information
+     
+     - parameter itemCategoryName: Item Category Name
+     */
+    public static func fetchItemCategory(_ itemCategoryName: String, completion: @escaping (_ result: Result<PKMItemCategory>) -> Void) {
+        let urlStr = baseURL + "/item-category/\(itemCategoryName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -255,7 +297,7 @@ open class ItemService {
     /**
      Fetch Item Fling Effects list
      */
-    public func fetchItemFlingEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void)  where T: PKMItemFlingEffect {
+    public static func fetchItemFlingEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void)  where T: PKMItemFlingEffect {
         let urlStr = baseURL + "/item-fling-effect"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -266,8 +308,22 @@ open class ItemService {
      
      - parameter itemFlingEffectsId: Item Fling Effect ID
      */
-    public func fetchItemFlingEffect(_ itemFlingEffectsId: String, completion: @escaping (_ result: Result<PKMItemFlingEffect>) -> Void) {
-        let urlStr = baseURL + "/item-fling-effect/" + itemFlingEffectsId
+    public static func fetchItemFlingEffect(_ itemFlingEffectsId: Int, completion: @escaping (_ result: Result<PKMItemFlingEffect>) -> Void) {
+        let urlStr = baseURL + "/item-fling-effect/\(itemFlingEffectsId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Fling Effect Information
+     
+     - parameter itemFlingEffectsName: Item Fling Effect Name
+     */
+    public static func fetchItemFlingEffect(_ itemFlingEffectsName: String, completion: @escaping (_ result: Result<PKMItemFlingEffect>) -> Void) {
+        let urlStr = baseURL + "/item-fling-effect/\(itemFlingEffectsName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
@@ -278,7 +334,7 @@ open class ItemService {
     /**
      Fetch Item Pockets list
      */
-    public func fetchItemPocketList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMItemPocket {
+    public static func fetchItemPocketList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMItemPocket {
         let urlStr = baseURL + "/item-pocket"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -289,8 +345,22 @@ open class ItemService {
      
      - parameter itemPocketId: Item Pocket ID
      */
-    public func fetchItemPocket(_ itemPocketId: String, completion: @escaping (_ result: Result<PKMItemPocket>) -> Void) {
-        let urlStr = baseURL + "/item-pocket/" + itemPocketId
+    public static func fetchItemPocket(_ itemPocketId: Int, completion: @escaping (_ result: Result<PKMItemPocket>) -> Void) {
+        let urlStr = baseURL + "/item-pocket/\(itemPocketId)"
+        
+        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+            result.decode(completion: completion)
+        }
+    }
+    
+    
+    /**
+     Fetch Item Pocket Information
+     
+     - parameter itemPocketName: Item Pocket Name
+     */
+    public static func fetchItemPocket(_ itemPocketName: String, completion: @escaping (_ result: Result<PKMItemPocket>) -> Void) {
+        let urlStr = baseURL + "/item-pocket/\(itemPocketName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
