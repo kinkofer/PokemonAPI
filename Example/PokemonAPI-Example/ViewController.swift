@@ -86,13 +86,13 @@ class ViewController: UIViewController {
             switch result {
             case .success(let pagedLanguages):
                 print(pagedLanguages)
-                print("Language count: \(pagedLanguages.count!)")
+                print("Language count: \(pagedLanguages.count!)") // Language count: 12
 
                 PokemonAPI.utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
                     switch result {
                     case .success(let pagedLanguagesNext):
                         print(pagedLanguagesNext)
-                        print("Language page: \(pagedLanguagesNext.currentPage)")
+                        print("Language page: \(pagedLanguagesNext.currentPage)") // Language page: 1
                     case .failure(let error):
                         print(error.message)
                     }
