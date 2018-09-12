@@ -47,6 +47,10 @@
 		593FD65220E57BD500CF8862 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD65020E57BD400CF8862 /* Utilities.swift */; };
 		593FD65320E57BD500CF8862 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD65020E57BD400CF8862 /* Utilities.swift */; };
 		593FD65420E57BD500CF8862 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD65020E57BD400CF8862 /* Utilities.swift */; };
+		59B1161A2148BDFF00ABE0C4 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B116192148BDFF00ABE0C4 /* Resource.swift */; };
+		59B1161B2148BDFF00ABE0C4 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B116192148BDFF00ABE0C4 /* Resource.swift */; };
+		59B1161C2148BDFF00ABE0C4 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B116192148BDFF00ABE0C4 /* Resource.swift */; };
+		59B1161D2148BDFF00ABE0C4 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B116192148BDFF00ABE0C4 /* Resource.swift */; };
 		59DA03B320E27F7A00D98471 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B020E27F7A00D98471 /* URL+Query.swift */; };
 		59DA03B420E27F7A00D98471 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B020E27F7A00D98471 /* URL+Query.swift */; };
 		59DA03B520E27F7A00D98471 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA03B020E27F7A00D98471 /* URL+Query.swift */; };
@@ -185,6 +189,7 @@
 		599FC83E20E27F42003FD793 /* HTTPWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTTPWebService.swift; path = Network/HTTPWebService.swift; sourceTree = "<group>"; };
 		599FC83F20E27F42003FD793 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTTPHeader.swift; path = Network/HTTPHeader.swift; sourceTree = "<group>"; };
 		599FC84020E27F42003FD793 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Network/Result.swift; sourceTree = "<group>"; };
+		59B116192148BDFF00ABE0C4 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Classes/Resource.swift; sourceTree = "<group>"; };
 		59DA03B020E27F7A00D98471 /* URL+Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URL+Query.swift"; path = "Utilities/URL+Query.swift"; sourceTree = "<group>"; };
 		59DA03B120E27F7A00D98471 /* SelfDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelfDecodable.swift; path = Utilities/SelfDecodable.swift; sourceTree = "<group>"; };
 		59DA03B220E27F7A00D98471 /* Decodable+Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Decodable+Decode.swift"; path = "Utilities/Decodable+Decode.swift"; sourceTree = "<group>"; };
@@ -356,6 +361,7 @@
 				593FD62420E54EBB00CF8862 /* Moves.swift */,
 				593FD62320E54EBB00CF8862 /* Pokemon.swift */,
 				74B0381F1D5672B000F48B92 /* PokemonAPI.swift */,
+				59B116192148BDFF00ABE0C4 /* Resource.swift */,
 				593FD65020E57BD400CF8862 /* Utilities.swift */,
 			);
 			name = Classes;
@@ -711,6 +717,7 @@
 				59DA03B320E27F7A00D98471 /* URL+Query.swift in Sources */,
 				59DA03B720E27F7A00D98471 /* SelfDecodable.swift in Sources */,
 				593FD62A20E54EBB00CF8862 /* Evolution.swift in Sources */,
+				59B1161A2148BDFF00ABE0C4 /* Resource.swift in Sources */,
 				593FD63220E54EBB00CF8862 /* Pokemon.swift in Sources */,
 				593FD64620E54EBB00CF8862 /* Contests.swift in Sources */,
 				593FD63A20E54EBB00CF8862 /* Encounters.swift in Sources */,
@@ -748,6 +755,7 @@
 				59DA03B420E27F7A00D98471 /* URL+Query.swift in Sources */,
 				59DA03B820E27F7A00D98471 /* SelfDecodable.swift in Sources */,
 				593FD62B20E54EBB00CF8862 /* Evolution.swift in Sources */,
+				59B1161B2148BDFF00ABE0C4 /* Resource.swift in Sources */,
 				593FD63320E54EBB00CF8862 /* Pokemon.swift in Sources */,
 				593FD64720E54EBB00CF8862 /* Contests.swift in Sources */,
 				593FD63B20E54EBB00CF8862 /* Encounters.swift in Sources */,
@@ -777,6 +785,7 @@
 				59DA03B520E27F7A00D98471 /* URL+Query.swift in Sources */,
 				59DA03B920E27F7A00D98471 /* SelfDecodable.swift in Sources */,
 				593FD62C20E54EBB00CF8862 /* Evolution.swift in Sources */,
+				59B1161C2148BDFF00ABE0C4 /* Resource.swift in Sources */,
 				593FD63420E54EBB00CF8862 /* Pokemon.swift in Sources */,
 				593FD64820E54EBB00CF8862 /* Contests.swift in Sources */,
 				593FD63C20E54EBB00CF8862 /* Encounters.swift in Sources */,
@@ -814,6 +823,7 @@
 				59DA03B620E27F7A00D98471 /* URL+Query.swift in Sources */,
 				59DA03BA20E27F7A00D98471 /* SelfDecodable.swift in Sources */,
 				593FD62D20E54EBB00CF8862 /* Evolution.swift in Sources */,
+				59B1161D2148BDFF00ABE0C4 /* Resource.swift in Sources */,
 				593FD63520E54EBB00CF8862 /* Pokemon.swift in Sources */,
 				593FD64920E54EBB00CF8862 /* Contests.swift in Sources */,
 				593FD63D20E54EBB00CF8862 /* Encounters.swift in Sources */,

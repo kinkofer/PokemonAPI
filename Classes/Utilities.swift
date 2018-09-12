@@ -36,23 +36,6 @@ open class PKMLanguage: Codable {
 
 // MARK - Common Models
 
-/// API Referenced Resource
-open class PKMAPIResource<T>: Codable {
-    private enum CodingKeys: String, CodingKey {
-        case url
-    }
-    
-    /// The URL of the referenced resource
-    open var url: String?
-    
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.url = try container.decode(String.self, forKey: .url)
-    }
-}
-
-
 /// Description
 open class PKMDescription: Codable {
     
@@ -160,25 +143,6 @@ open class PKMName: Codable {
     
     /// The language this name is in
     open var language: PKMNamedAPIResource<PKMLanguage>?
-}
-
-
-/// Named API Resource
-open class PKMNamedAPIResource<T>: PKMAPIResource<T> {
-    private enum CodingKeys: String, CodingKey {
-        case name
-    }
-
-    /// The name of the referenced resource
-    open var name: String?
-
-
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode(String.self, forKey: .name)
-        
-        try super.init(from: decoder)
-    }
 }
 
 
@@ -295,26 +259,6 @@ open class UtilityService {
      */
     public static func fetchLanguage(_ languageName: String, completion: @escaping (_ result: Result<PKMLanguage>) -> Void) {
         let urlStr = baseURL + "/language/\(languageName)"
-        
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    
-    // MARK: - API Resource
-    
-    /**
-     Fetch a resource from a named or unnamed resource url
-     
-     - parameter resource: PKMAPIResource or APINamedAPIResource
-     */
-    public static func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T>) -> Void) {
-        guard let urlStr = resource.url else {
-            completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
-            return
-        }
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)

@@ -37,6 +37,27 @@ class ViewController: UIViewController {
         }
         
         
+        // Example of fetching a PKMNamedAPIResource (or PKMAPIResource)
+        PokemonAPI.gameService.fetchPokedex(14) { result in
+            switch result {
+            case .success(let pokedex):
+                print(pokedex.name!) // kalos-mountain
+                
+                PokemonAPI.resourceService.fetch(pokedex.region!) { result in
+                    switch result {
+                    case .success(let region):
+                        print(region.name!) // kalos
+                    case .failure(let error):
+                        print(error.message)
+                    }
+                }
+                
+            case .failure(let error):
+                print(error.message)
+            }
+        }
+        
+        
         // Example of calling a paginated web service, then taking the first result and fetching the underlying resource
         PokemonAPI.berryService.fetchBerryList() { result in
             switch result {
@@ -45,10 +66,10 @@ class ViewController: UIViewController {
                 if let berryResource = pagedBerries.results?.first {
                     
                     // Fetching the underlying PKMBerry resource
-                    PokemonAPI.utilityService.fetch(berryResource) { result in
+                    PokemonAPI.resourceService.fetch(berryResource) { result in
                         switch result {
                         case .success(let berry):
-                            print(berry.name!)
+                            print(berry.name!) // cheri
                         case .failure(let error):
                             print(error.message)
                         }

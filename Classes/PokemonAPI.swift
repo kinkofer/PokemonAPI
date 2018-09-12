@@ -23,6 +23,7 @@ public class PokemonAPI {
     public static let machineService = MachineService.self
     public static let moveService = MoveService.self
     public static let pokemonService = PokemonService.self
+    public static let resourceService = ResourceService.self
     public static let utilityService = UtilityService.self
 }
 
