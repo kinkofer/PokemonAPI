@@ -9,11 +9,11 @@
 import UIKit
 import PokemonAPI
 
-class ViewController: UIViewController {
 
+class ViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         // Example of calling a web service using an ID
         PokemonAPI.moveService.fetchMove(1) { result in
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
             case .success(let move):
                 print(move)
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
             }
         }
         
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
             case .success(let pokemon):
                 print(pokemon)
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
             }
         }
         
@@ -48,12 +48,12 @@ class ViewController: UIViewController {
                     case .success(let region):
                         print(region.name!) // kalos
                     case .failure(let error):
-                        print(error.message)
+                        print(error.localizedDescription)
                     }
                 }
                 
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
             }
         }
         
@@ -71,12 +71,12 @@ class ViewController: UIViewController {
                         case .success(let berry):
                             print(berry.name!) // cheri
                         case .failure(let error):
-                            print(error.message)
+                            print(error.localizedDescription)
                         }
                     }
                 }
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
             }
         }
         
@@ -94,14 +94,13 @@ class ViewController: UIViewController {
                         print(pagedLanguagesNext)
                         print("Language page: \(pagedLanguagesNext.currentPage)") // Language page: 1
                     case .failure(let error):
-                        print(error.message)
+                        print(error.localizedDescription)
                     }
                 }
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
             }
         }
     }
-
 }
 

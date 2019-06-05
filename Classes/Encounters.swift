@@ -66,7 +66,7 @@ open class EncounterService {
     /**
      Fetch Encounter Methods list
      */
-    public static func fetchEncounterMethodList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEncounterMethod {
+    public static func fetchEncounterMethodList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, HTTPError>) -> Void) where T: PKMEncounterMethod {
         let urlStr = baseURL + "/encounter-method"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -77,7 +77,7 @@ open class EncounterService {
      
      - parameter encounterMethodId: Encounter Method ID
      */
-    public static func fetchEncounterMethod(_ encounterMethodId: Int, completion: @escaping (_ result: Result<PKMEncounterMethod>) -> Void) {
+    public static func fetchEncounterMethod(_ encounterMethodId: Int, completion: @escaping (_ result: Result<PKMEncounterMethod, HTTPError>) -> Void) {
         let urlStr = baseURL + "/encounter-method/\(encounterMethodId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -91,7 +91,7 @@ open class EncounterService {
      
      - parameter encounterMethodName: Encounter Method Name
      */
-    public static func fetchEncounterMethod(_ encounterMethodName: String, completion: @escaping (_ result: Result<PKMEncounterMethod>) -> Void) {
+    public static func fetchEncounterMethod(_ encounterMethodName: String, completion: @escaping (_ result: Result<PKMEncounterMethod, HTTPError>) -> Void) {
         let urlStr = baseURL + "/encounter-method/\(encounterMethodName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -103,7 +103,7 @@ open class EncounterService {
     /**
      Fetch Encounter Conditions list
      */
-    public static func fetchEncounterConditionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEncounterCondition {
+    public static func fetchEncounterConditionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, HTTPError>) -> Void) where T: PKMEncounterCondition {
         let urlStr = baseURL + "/encounter-condition"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -114,7 +114,7 @@ open class EncounterService {
      
      - parameter encounterConditionId: Encounter Condition ID
      */
-    public static func fetchEncounterCondition(_ encounterConditionId: Int, completion: @escaping (_ result: Result<PKMEncounterCondition>) -> Void) {
+    public static func fetchEncounterCondition(_ encounterConditionId: Int, completion: @escaping (_ result: Result<PKMEncounterCondition, HTTPError>) -> Void) {
         let urlStr = baseURL + "/encounter-condition/\(encounterConditionId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -128,7 +128,7 @@ open class EncounterService {
      
      - parameter encounterConditionName: Encounter Condition Name
      */
-    public static func fetchEncounterCondition(_ encounterConditionName: String, completion: @escaping (_ result: Result<PKMEncounterCondition>) -> Void) {
+    public static func fetchEncounterCondition(_ encounterConditionName: String, completion: @escaping (_ result: Result<PKMEncounterCondition, HTTPError>) -> Void) {
         let urlStr = baseURL + "/encounter-condition/\(encounterConditionName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -140,7 +140,7 @@ open class EncounterService {
     /**
      Fetch Encounter Condition Values list
      */
-    public static func fetchEncounterConditionValueList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMEncounterConditionValue {
+    public static func fetchEncounterConditionValueList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, HTTPError>) -> Void) where T: PKMEncounterConditionValue {
         let urlStr = baseURL + "/encounter-condition-value"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -151,7 +151,7 @@ open class EncounterService {
      
      - parameter encounterConditionValueId: Encounter Condition Value ID
      */
-    public static func fetchEncounterConditionValue(_ encounterConditionValueId: Int, completion: @escaping (_ result: Result<PKMEncounterConditionValue>) -> Void) {
+    public static func fetchEncounterConditionValue(_ encounterConditionValueId: Int, completion: @escaping (_ result: Result<PKMEncounterConditionValue, HTTPError>) -> Void) {
         let urlStr = baseURL + "/encounter-condition-value/\(encounterConditionValueId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -165,7 +165,7 @@ open class EncounterService {
      
      - parameter encounterConditionValueName: Encounter Condition Value Name
      */
-    public static func fetchEncounterConditionValue(_ encounterConditionValueName: String, completion: @escaping (_ result: Result<PKMEncounterConditionValue>) -> Void) {
+    public static func fetchEncounterConditionValue(_ encounterConditionValueName: String, completion: @escaping (_ result: Result<PKMEncounterConditionValue, HTTPError>) -> Void) {
         let urlStr = baseURL + "/encounter-condition-value/\(encounterConditionValueName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in

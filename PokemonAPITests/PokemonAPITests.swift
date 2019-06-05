@@ -30,7 +30,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -48,7 +48,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -65,7 +65,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -82,7 +82,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -99,7 +99,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -116,7 +116,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -133,7 +133,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -150,7 +150,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -167,7 +167,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -184,7 +184,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -202,7 +202,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -220,7 +220,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -237,7 +237,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -254,7 +254,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -271,7 +271,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -288,7 +288,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -305,7 +305,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -322,7 +322,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -339,7 +339,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -356,7 +356,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -373,7 +373,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -390,7 +390,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -407,7 +407,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -424,7 +424,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -441,7 +441,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -458,7 +458,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -475,7 +475,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -492,7 +492,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -509,7 +509,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -526,7 +526,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -543,7 +543,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -560,7 +560,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -577,7 +577,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -594,7 +594,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -611,7 +611,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -628,7 +628,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -645,7 +645,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }
@@ -662,7 +662,7 @@ class PokemonAPITests: XCTestCase {
             case .success(_):
                 asyncExpectation.fulfill()
             case .failure(let error):
-                XCTFail("Should not failed with \(error.message)")
+                XCTFail("Should not failed with \(error.localizedDescription)")
                 asyncExpectation.fulfill();
             }
         }

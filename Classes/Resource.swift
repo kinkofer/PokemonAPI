@@ -53,9 +53,9 @@ open class ResourceService {
      
      - parameter resource: PKMAPIResource or APINamedAPIResource
      */
-    public static func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T>) -> Void) {
+    public static func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T, HTTPError>) -> Void) {
         guard let urlStr = resource.url else {
-            completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
+            completion(.failure(.invalidRequest))
             return
         }
         

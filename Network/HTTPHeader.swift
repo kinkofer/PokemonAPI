@@ -32,6 +32,7 @@ struct MediaType: OptionSet {
     static let plainText = MediaType(rawValue: 1 << 2)
     static let png = MediaType(rawValue: 1 << 3)
     static let jpeg = MediaType(rawValue: 1 << 4)
+    static let form = MediaType(rawValue: 1 << 5)
     
     init(rawValue: Int) {
         self.rawValue = rawValue
@@ -59,6 +60,10 @@ struct MediaType: OptionSet {
         
         if self.contains(.jpeg) {
             values.append("image/jpeg")
+        }
+        
+        if self.contains(.form) {
+            values.append("application/x-www-form-urlencoded")
         }
         
         return values.joined(separator: "; ")

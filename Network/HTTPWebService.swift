@@ -24,9 +24,9 @@ public class HTTPWebService: NSObject {
      
      `error`: Nil unless an error occured
      */
-    static func callWebService(url: URL?, method: HTTPMethod, body: Data? = nil, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<Data>) -> Void) {
+    static func callWebService(url: URL?, method: HTTPMethod, body: Data? = nil, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<Data, HTTPError>) -> Void) {
         guard let url = url else {
-            completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
+            completion(.failure(.invalidRequest))
             return
         }
         
@@ -51,7 +51,7 @@ public class HTTPWebService: NSObject {
             }
         }
         else {
-            completion(Result(value: nil, error: HTTPError(type: .unauthorized)))
+            completion(.failure(.unauthorized))
         }
     }
     
@@ -64,9 +64,9 @@ public class HTTPWebService: NSObject {
      - parameter headers: Configures the HTTP request with the included headers. By default, the Accept and Content-Type headers are configured with json
      - parameter completion: Returns the web service response and error
      */
-    static func callPaginatedWebService<T>(url: URL?, paginationState: PaginationState<T>, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: Decodable {
+    static func callPaginatedWebService<T>(url: URL?, paginationState: PaginationState<T>, headers: [HTTPHeader] = [], completion: @escaping (_ result: Result<PKMPagedObject<T>, HTTPError>) -> Void) where T: Decodable {
         guard var url = url else {
-            completion(Result(value: nil, error: HTTPError(type: .invalidRequest)))
+            completion(.failure(.invalidRequest))
             return
         }
         
@@ -104,18 +104,18 @@ public class HTTPWebService: NSObject {
                     do {
                         let pagedObject = try PKMPagedObject<T>.decode(from: data)
                         pagedObject.update(with: paginationState, currentUrl: url.absoluteString)
-                        completion(Result(value: pagedObject, error: nil))
+                        completion(.success(pagedObject))
                     }
                     catch {
-                        completion(Result(value: nil, error: HTTPError(type: .jsonParsingError)))
+                        completion(.failure(.jsonParsingError))
                     }
                 case .failure(let error):
-                    completion(Result(value: nil, error: error))
+                    completion(.failure(error))
                 }
             }
         }
         else {
-            completion(Result(value: nil, error: HTTPError(type: .unauthorized)))
+            completion(.failure(.unauthorized))
         }
     }
 }

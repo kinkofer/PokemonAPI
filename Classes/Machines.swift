@@ -36,7 +36,7 @@ open class MachineService {
     /**
      Fetch Machines list
      */
-    public static func fetchMachineList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMMachine {
+    public static func fetchMachineList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, HTTPError>) -> Void) where T: PKMMachine {
         let urlStr = baseURL + "/machine"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -47,7 +47,7 @@ open class MachineService {
      
      - parameter machineId: Machine ID
      */
-    public static func fetchMachine(_ machineId: Int, completion: @escaping (_ result: Result<PKMMachine>) -> Void) {
+    public static func fetchMachine(_ machineId: Int, completion: @escaping (_ result: Result<PKMMachine, HTTPError>) -> Void) {
         let urlStr = baseURL + "/machine/\(machineId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
