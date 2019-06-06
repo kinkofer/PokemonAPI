@@ -1,3 +1,10 @@
+## 5.0.0
+Updated for Swift 5
+
+Using Swift Result
+
+Made HTTPError an Enum
+
 ## 4.0.0
 Update web services that use IDs to accept Ints, and create new web service functions that accept Strings
 
