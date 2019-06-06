@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.4
+osx_image: xcode10.2
 xcode_project: PokemonAPI.xcodeproj
 cache: cocoapods
 podfile: Example/Podfile
@@ -13,15 +13,15 @@ before_install:
   - pod install --project-directory=Example
 script:
 # xctool error for iOS: NSURLSession/NSURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9807)
-# - xcodebuild -project PokemonAPI.xcodeproj -scheme "PokemonAPI iOS" -sdk iphonesimulator11.4 build-for-testing
-# - xctool -project PokemonAPI.xcodeproj -scheme "PokemonAPI iOS" run-tests -sdk iphonesimulator11.4
+  - xcodebuild -project PokemonAPI.xcodeproj -scheme "PokemonAPI iOS" -sdk iphonesimulator12.2 build-for-testing
+  - xctool -project PokemonAPI.xcodeproj -scheme "PokemonAPI iOS" run-tests -sdk iphonesimulator12.2
 
-  - xcodebuild -project PokemonAPI.xcodeproj -scheme "PokemonAPI OSX" -sdk macosx10.13 build-for-testing
-  - xctool -project PokemonAPI.xcodeproj -scheme "PokemonAPI OSX" run-tests -sdk macosx10.13
+  - xcodebuild -project PokemonAPI.xcodeproj -scheme "PokemonAPI OSX" -sdk macosx10.14 build-for-testing
+  - xctool -project PokemonAPI.xcodeproj -scheme "PokemonAPI OSX" run-tests -sdk macosx10.14
 
 # xctool error for tvOS: NSURLSession/NSURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9807)
-# - xcodebuild -project PokemonAPI.xcodeproj -scheme "PokemonAPI tvOS" -sdk appletvsimulator11.4 build-for-testing
-# - xctool -project PokemonAPI.xcodeproj -scheme "PokemonAPI tvOS" run-tests -sdk appletvsimulator11.4
+  - xcodebuild -project PokemonAPI.xcodeproj -scheme "PokemonAPI tvOS" -sdk appletvsimulator12.2 build-for-testing
+  - xctool -project PokemonAPI.xcodeproj -scheme "PokemonAPI tvOS" run-tests -sdk appletvsimulator12.2
 
   - pod lib lint --allow-warnings --quick
 before_deploy:
