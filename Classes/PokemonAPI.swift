@@ -9,7 +9,7 @@
 import Foundation
 
 
-let baseURL: String = "http://pokeapi.co/api/v2"
+let baseURL: String = "https://pokeapi.co/api/v2"
 
 
 public class PokemonAPI {
