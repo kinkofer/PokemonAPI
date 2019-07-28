@@ -58,27 +58,27 @@ public enum HTTPError: Error, LocalizedError {
         case .invalidRequest:
             return NSLocalizedString("The request could not be made. Please change and try again.", comment: "Invalid Request")
         case .unexpectedBody:
-            return NSLocalizedString("There was a problem with your input. Please change and try again.", comment: "Unexpected Input")
+            return NSLocalizedString("There was a problem with the input. Please change and try again.", comment: "Unexpected Body")
         case .httpError:
-            return NSLocalizedString("The web service returned a unknown error.", comment: "HTTP Error")
+            return NSLocalizedString("The web service returned an error.", comment: "HTTP Error")
         case .unexpectedResponse:
-            return NSLocalizedString("The web service returned unexpected data.", comment: "Unexpected Response Data")
+            return NSLocalizedString("The data returned was an unexpected response.", comment: "Unexpected Response")
         case .jsonParsingError:
-            return NSLocalizedString("The web service response could not be parsed.", comment: "JSON Parsing Error")
+            return NSLocalizedString("The json could not be parsed.", comment: "JSON Parsing Error")
         case .stringParsingError:
-            return NSLocalizedString("The web service response could not be parsed.", comment: "String Parsing Error")
+            return NSLocalizedString("The string could not be parsed.", comment: "String Parsing Error")
         case .unauthorized:
-            return NSLocalizedString("Unauthorized, please login again.", comment: "Unauthorized")
+            return NSLocalizedString("Unauthorized, please sign in again.", comment: "Unauthorized")
         case .forbidden:
             return NSLocalizedString("You have not granted this app permission to access this data.", comment: "Forbidden")
         case .timeout:
             return NSLocalizedString("The request timed out.", comment: "Timeout")
         case .noNetwork:
-            return NSLocalizedString("A network connection could not be established. Please try again when you have a sufficient internet connection.", comment: "No Network")
+            return NSLocalizedString("A network connection could not be established.", comment: "No Network")
         case .serverResponse(let status, _):
             return NSLocalizedString("The web service returned status code \(status.rawValue)", comment: "Server Response Error")
         case .other(let error):
-            return NSLocalizedString("The web service returned an error: \(error.localizedDescription)", comment: "Other Error")
+            return NSLocalizedString("An error occured: \(error.localizedDescription)", comment: "Other Error")
         }
     }
     
@@ -87,19 +87,19 @@ public enum HTTPError: Error, LocalizedError {
     var debugDescription: String {
         switch self {
         case .invalidRequest:
-            return NSLocalizedString("DEBUG (invalidRequest): The request could not be formed. Check for any invalid data or url.", comment: "DEBUG Invalid Request")
+            return NSLocalizedString("DEBUG (invalidRequest): The request could not be made. Please change and try again.", comment: "DEBUG Invalid Request")
         case .unexpectedBody:
-            return NSLocalizedString("DEBUG (unexpectedBody): The request body could not be formed. Check for any invalid input.", comment: "DEBUG Unexpected Input")
+            return NSLocalizedString("DEBUG (unexpectedBody): There was a problem with the input. Please change and try again.", comment: "DEBUG Unexpected Body")
         case .httpError:
-            return NSLocalizedString("DEBUG (httpError): The web service returned a unknown error, like a 500.", comment: "DEBUG HTTP Error")
+            return NSLocalizedString("DEBUG (httpError): The web service returned an error.", comment: "DEBUG HTTP Error")
         case .unexpectedResponse:
-            return NSLocalizedString("DEBUG (unexpectedResponse): The response data did not have the expected format, value, or type.", comment: "DEBUG Unexpected Response Data")
+            return NSLocalizedString("DEBUG (unexpectedResponse): The data returned was an unexpected response.", comment: "DEBUG Unexpected Response")
         case .jsonParsingError:
-            return NSLocalizedString("DEBUG (jsonParsingError): The data could not be read.", comment: "DEBUG JSON Parsing Error")
+            return NSLocalizedString("DEBUG (jsonParsingError): The json could not be parsed.", comment: "DEBUG JSON Parsing Error")
         case .stringParsingError:
-            return NSLocalizedString("DEBUG (stringParsingError): The data could not be read.", comment: "DEBUG String Parsing Error")
+            return NSLocalizedString("DEBUG (stringParsingError): The string could not be parsed.", comment: "DEBUG String Parsing Error")
         case .unauthorized:
-            return NSLocalizedString("DEBUG (unauthorized): Unauthorized, please login again.", comment: "DEBUG Unauthorized")
+            return NSLocalizedString("DEBUG (unauthorized): Unauthorized, please sign in again.", comment: "DEBUG Unauthorized")
         case .forbidden:
             return NSLocalizedString("DEBUG (forbidden): You have not granted this app permission to access this data.", comment: "DEBUG Forbidden")
         case .timeout:
@@ -109,7 +109,7 @@ public enum HTTPError: Error, LocalizedError {
         case .serverResponse(let status, _):
             return NSLocalizedString("DEBUG (serverResponse): The web service returned status code \(status.rawValue)", comment: "DEBUG Server Response Error")
         case .other(let error):
-            return NSLocalizedString("DEBUG (other): \(error.localizedDescription)", comment: "DEBUG Other Error")
+            return NSLocalizedString("DEBUG (other): An error occured: \(error.localizedDescription)", comment: "DEBUG Other Error")
         }
     }
     
