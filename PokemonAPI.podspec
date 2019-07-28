@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PokemonAPI"
-  s.version          = "4.0.0"
+  s.version          = "5.0.0"
   s.summary          = "A wrapper for pokeapi v2"
 
 # This description is used to generate tags and improve search results.
@@ -36,12 +36,9 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.2'
   s.watchos.deployment_target = '2.2'
 
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
 
   s.requires_arc = true
 
   s.source_files = 'Classes/**/*', 'Network/**/*', 'Utilities/**/*'
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
 end

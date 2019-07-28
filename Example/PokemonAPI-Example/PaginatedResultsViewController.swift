@@ -126,7 +126,7 @@ class PaginatedResultsViewController: UIViewController {
                     self.tableView.reloadData()
                 }
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
             }
         }
     }

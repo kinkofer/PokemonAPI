@@ -205,7 +205,7 @@ open class LocationService {
     /**
      Fetch Locations list
      */
-    public static func fetchLocationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLocation {
+    public static func fetchLocationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, HTTPError>) -> Void) where T: PKMLocation {
         let urlStr = baseURL + "/location"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -216,7 +216,7 @@ open class LocationService {
      
      - parameter locationId: Location ID
      */
-    public static func fetchLocation(_ locationId: Int, completion: @escaping (_ result: Result<PKMLocation>) -> Void) {
+    public static func fetchLocation(_ locationId: Int, completion: @escaping (_ result: Result<PKMLocation, HTTPError>) -> Void) {
         let urlStr = baseURL + "/location/\(locationId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -228,7 +228,7 @@ open class LocationService {
     /**
      Fetch Location Area list
      */
-    public static func fetchLocationAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMLocationArea {
+    public static func fetchLocationAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, HTTPError>) -> Void) where T: PKMLocationArea {
         let urlStr = baseURL + "/location-area"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -239,7 +239,7 @@ open class LocationService {
      
      - parameter locationAreaId: Location Area ID
      */
-    public static func fetchLocationArea(_ locationAreaId: Int, completion: @escaping (_ result: Result<PKMLocationArea>) -> Void) {
+    public static func fetchLocationArea(_ locationAreaId: Int, completion: @escaping (_ result: Result<PKMLocationArea, HTTPError>) -> Void) {
         let urlStr = baseURL + "/location-area/\(locationAreaId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -251,7 +251,7 @@ open class LocationService {
     /**
      Fetch Pal Park Areas list
      */
-    public static func fetchPalParkAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMPalParkArea {
+    public static func fetchPalParkAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, HTTPError>) -> Void) where T: PKMPalParkArea {
         let urlStr = baseURL + "/pal-park-area"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -262,7 +262,7 @@ open class LocationService {
      
      - parameter palParkAreaId: Pal Park Area ID
      */
-    public static func fetchPalParkArea(_ palParkAreaId: Int, completion: @escaping (_ result: Result<PKMPalParkArea>) -> Void) {
+    public static func fetchPalParkArea(_ palParkAreaId: Int, completion: @escaping (_ result: Result<PKMPalParkArea, HTTPError>) -> Void) {
         let urlStr = baseURL + "/pal-park-area/\(palParkAreaId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -276,7 +276,7 @@ open class LocationService {
      
      - parameter palParkAreaName: Pal Park Area Name
      */
-    public static func fetchPalParkArea(_ palParkAreaName: String, completion: @escaping (_ result: Result<PKMPalParkArea>) -> Void) {
+    public static func fetchPalParkArea(_ palParkAreaName: String, completion: @escaping (_ result: Result<PKMPalParkArea, HTTPError>) -> Void) {
         let urlStr = baseURL + "/pal-park-area/\(palParkAreaName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -288,7 +288,7 @@ open class LocationService {
     /**
      Fetch Regions list
      */
-    public static func fetchRegionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>>) -> Void) where T: PKMRegion {
+    public static func fetchRegionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, HTTPError>) -> Void) where T: PKMRegion {
         let urlStr = baseURL + "/region"
         HTTPWebService.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
     }
@@ -299,7 +299,7 @@ open class LocationService {
      
      - parameter regionId: Region ID
      */
-    public static func fetchRegion(_ regionId: Int, completion: @escaping (_ result: Result<PKMRegion>) -> Void) {
+    public static func fetchRegion(_ regionId: Int, completion: @escaping (_ result: Result<PKMRegion, HTTPError>) -> Void) {
         let urlStr = baseURL + "/region/\(regionId)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
@@ -313,7 +313,7 @@ open class LocationService {
      
      - parameter regionName: Region Name
      */
-    public static func fetchRegion(_ regionName: String, completion: @escaping (_ result: Result<PKMRegion>) -> Void) {
+    public static func fetchRegion(_ regionName: String, completion: @escaping (_ result: Result<PKMRegion, HTTPError>) -> Void) {
         let urlStr = baseURL + "/region/\(regionName)"
         
         HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
