@@ -77,9 +77,8 @@ public enum HTTPError: Error, LocalizedError {
             return NSLocalizedString("A network connection could not be established. Please try again when you have a sufficient internet connection.", comment: "No Network")
         case .serverResponse(let status, _):
             return NSLocalizedString("The web service returned status code \(status.rawValue)", comment: "Server Response Error")
-        case .other(_):
-            return NSLocalizedString("The web service returned a unknown error. Please contact support", comment: "Other Error")
-            
+        case .other(let error):
+            return NSLocalizedString("The web service returned an error: \(error.localizedDescription)", comment: "Other Error")
         }
     }
     
