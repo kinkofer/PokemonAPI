@@ -88,7 +88,7 @@ PokemonAPI.gameService.fetchPokedex(14) { result in
 }
 ```
 
-```
+```swift
 // Example of calling a paginated web service with a pageLimit, then using the pagedObject to fetch the next page in the list
 PokemonAPI.utilityService.fetchLanguageList(paginationState: .initial(pageLimit: 5)) { result in
     switch result {
@@ -127,7 +127,7 @@ pod 'PokemonAPI'
 If you're using Carthage you can add PokemonAPI by adding it to your Cartfile:
 
 ```ruby
-github "kinkofer/PokemonAPI" ~> 4.0
+github "kinkofer/PokemonAPI" ~> 5.0.0
 ```
 
 In your Info.plist, add
