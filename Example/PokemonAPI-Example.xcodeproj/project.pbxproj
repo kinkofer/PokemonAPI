@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		423FBCF0E7D45023E57044FE /* Pods_PokemonAPI_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F706D420717D4F9586488C /* Pods_PokemonAPI_Example.framework */; };
+		596475C824958CAF004C7E93 /* CombineExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596475C724958CAF004C7E93 /* CombineExampleViewController.swift */; };
 		59B1D71020E8006700923DCB /* PaginatedResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B1D70F20E8006700923DCB /* PaginatedResultsViewController.swift */; };
 		59B1D71220E8372200923DCB /* PageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B1D71120E8372200923DCB /* PageTableViewController.swift */; };
 		7412E01A1D58E3B30086DD94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412E0191D58E3B30086DD94 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		596475C724958CAF004C7E93 /* CombineExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExampleViewController.swift; sourceTree = "<group>"; };
 		59B1D70F20E8006700923DCB /* PaginatedResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResultsViewController.swift; sourceTree = "<group>"; };
 		59B1D71120E8372200923DCB /* PageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTableViewController.swift; sourceTree = "<group>"; };
 		61F706D420717D4F9586488C /* Pods_PokemonAPI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonAPI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,7 @@
 				7412E01D1D58E3B30086DD94 /* Main.storyboard */,
 				7412E0191D58E3B30086DD94 /* AppDelegate.swift */,
 				7412E01B1D58E3B30086DD94 /* ViewController.swift */,
+				596475C724958CAF004C7E93 /* CombineExampleViewController.swift */,
 				59B1D70F20E8006700923DCB /* PaginatedResultsViewController.swift */,
 				59B1D71120E8372200923DCB /* PageTableViewController.swift */,
 				7412E0251D58E3B30086DD94 /* Info.plist */,
@@ -332,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59B1D71220E8372200923DCB /* PageTableViewController.swift in Sources */,
+				596475C824958CAF004C7E93 /* CombineExampleViewController.swift in Sources */,
 				7412E01C1D58E3B30086DD94 /* ViewController.swift in Sources */,
 				7412E01A1D58E3B30086DD94 /* AppDelegate.swift in Sources */,
 				59B1D71020E8006700923DCB /* PaginatedResultsViewController.swift in Sources */,

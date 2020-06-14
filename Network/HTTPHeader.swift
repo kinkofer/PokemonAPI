@@ -8,38 +8,59 @@
 import Foundation
 
 
-enum HTTPHeader {
+public enum HTTPHeader {
     case contentType(MediaType)
     case accept(MediaType)
+    case acceptVersion(String)
+    case ifModifiedSince(Date)
     
-    var key: String {
+    public var key: String {
         switch self {
-        case .contentType(_):
+        case .contentType:
             return "Content-Type"
-        case .accept(_):
+        case .accept, .acceptVersion:
             return "Accept"
+        case .ifModifiedSince:
+            return "If-Modified-Since"
+        }
+    }
+    
+    public var value: String {
+        switch self {
+        case .contentType(let mediaType):
+            return mediaType.headerValue
+        case .accept(let mediaType):
+            return mediaType.headerValue
+        case .acceptVersion(let value):
+            return value
+        case .ifModifiedSince(let date):
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+            dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
+            return dateFormatter.string(from: date)
         }
     }
 }
 
 
 
-struct MediaType: OptionSet {
-    let rawValue: Int
+public struct MediaType: OptionSet {
+    public let rawValue: Int
     
-    static let json = MediaType(rawValue: 1 << 0)
-    static let html = MediaType(rawValue: 1 << 1)
-    static let plainText = MediaType(rawValue: 1 << 2)
-    static let png = MediaType(rawValue: 1 << 3)
-    static let jpeg = MediaType(rawValue: 1 << 4)
-    static let form = MediaType(rawValue: 1 << 5)
+    public static let json = MediaType(rawValue: 1 << 0)
+    public static let html = MediaType(rawValue: 1 << 1)
+    public static let plainText = MediaType(rawValue: 1 << 2)
+    public static let png = MediaType(rawValue: 1 << 3)
+    public static let jpeg = MediaType(rawValue: 1 << 4)
+    public static let form = MediaType(rawValue: 1 << 5)
     
-    init(rawValue: Int) {
+    public init(rawValue: Int) {
         self.rawValue = rawValue
     }
     
     
-    var headerValue: String {
+    /// The format required for the HTTP header
+    public var headerValue: String {
         var values = [String]()
         
         if self.contains(.json) {

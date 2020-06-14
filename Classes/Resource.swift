@@ -53,13 +53,13 @@ open class ResourceService {
      
      - parameter resource: PKMAPIResource or APINamedAPIResource
      */
-    public static func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T, HTTPError>) -> Void) {
+    public static func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T, Error>) -> Void) {
         guard let urlStr = resource.url else {
-            completion(.failure(.invalidRequest))
+            completion(.failure(HTTPError.invalidRequest))
             return
         }
         
-        HTTPWebService.callWebService(url: URL(string: urlStr), method: .get) { result in
+        HTTPWebServiceClient.callWebService(url: URL(string: urlStr), method: .get) { result in
             result.decode(completion: completion)
         }
     }

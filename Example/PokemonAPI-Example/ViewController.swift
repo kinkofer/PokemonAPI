@@ -86,7 +86,7 @@ class ViewController: UIViewController {
             switch result {
             case .success(let pagedLanguages):
                 print(pagedLanguages)
-                print("Language count: \(pagedLanguages.count!)") // Language count: 12
+                print("Language count: \(pagedLanguages.count!)") // Language count: 13
 
                 PokemonAPI.utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
                     switch result {
@@ -100,6 +100,20 @@ class ViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard identifier == "ToCombineExampleVC" else { return true }
+        
+        if #available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *) {
+            return true
+        }
+        else {
+            let alertController = UIAlertController(title: "Combine Examples Unavailable", message: "Combine is only available on for these versions or greater: OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0", preferredStyle: .alert)
+            self.present(alertController, animated: true)
+            return false
         }
     }
 }

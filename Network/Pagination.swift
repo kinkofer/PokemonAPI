@@ -30,7 +30,7 @@ public enum PaginationRelationship {
 
 
 /// Paged Object
-open class PKMPagedObject<T>: Codable {
+public class PKMPagedObject<T>: Codable {
     enum CodingKeys: String, CodingKey {
         case count
         case next
@@ -102,6 +102,8 @@ open class PKMPagedObject<T>: Codable {
     
     // MARK: - Update
     
+    /// Update PagedObject's offset, limit, and current url. These properties are not returned from the web service
+    /// so must be updated from the previous values.
     func update<T>(with paginationState: PaginationState<T>, currentUrl: String) {
         switch paginationState {
         case .initial(let limit):
@@ -146,7 +148,7 @@ open class PKMPagedObject<T>: Codable {
     
     
     /// Returns the url string of a current relationship if it exists
-    open func getPageLink(for relationship: PaginationRelationship) -> String? {
+    public func getPageLink(for relationship: PaginationRelationship) -> String? {
         switch relationship {
         case .first:
             guard var url = URL(string: current) else {

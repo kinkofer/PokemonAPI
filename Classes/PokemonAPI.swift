@@ -13,13 +13,15 @@ let baseURL: String = "https://pokeapi.co/api/v2"
 
 
 public class PokemonAPI {
-    public static let berryService = BerryService.self
-    public static let contestService = ContestService.self
-    public static let encounterService = EncounterService.self
-    public static let evolutionService = EvolutionService.self
-    public static let gameService = GameService.self
-    public static let itemService = ItemService.self
-    public static let locationService = LocationService.self
+    public static let baseURL: String = "https://pokeapi.co/api/v2"
+    
+    public static let berryService = BerryService(session: URLSession.shared, baseURL: baseURL)
+    public static let contestService = ContestService(session: URLSession.shared, baseURL: baseURL)
+    public static let encounterService = EncounterService(session: URLSession.shared, baseURL: baseURL)
+    public static let evolutionService = EvolutionService(session: URLSession.shared, baseURL: baseURL)
+    public static let gameService = GameService(session: URLSession.shared, baseURL: baseURL)
+    public static let itemService = ItemService(session: URLSession.shared, baseURL: baseURL)
+    public static let locationService = LocationService(session: URLSession.shared, baseURL: baseURL)
     public static let machineService = MachineService.self
     public static let moveService = MoveService.self
     public static let pokemonService = PokemonService.self
