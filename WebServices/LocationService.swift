@@ -49,7 +49,7 @@ protocol PKMLocationService: HTTPWebService {
 // MARK: - Web Services
 
 public struct LocationService: PKMLocationService {
-    private enum API: APICall {
+    enum API: APICall {
         case fetchLocationList
         case fetchLocation(Int)
         case fetchLocationAreaList
@@ -204,9 +204,11 @@ public struct LocationService: PKMLocationService {
 
 
 
+// MARK: - Combine Services
+
 extension LocationService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchLocationList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLocation {
+    func fetchLocationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLocation {
         callPaginated(endpoint: API.fetchLocationList, paginationState: paginationState)
     }
     
@@ -218,7 +220,7 @@ extension LocationService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchLocationAreaList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLocationArea {
+    func fetchLocationAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLocationArea {
         callPaginated(endpoint: API.fetchLocationAreaList, paginationState: paginationState)
     }
     
@@ -230,7 +232,7 @@ extension LocationService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchPalParkAreaList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPalParkArea {
+    func fetchPalParkAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPalParkArea {
         callPaginated(endpoint: API.fetchPalParkAreaList, paginationState: paginationState)
     }
     
@@ -248,7 +250,7 @@ extension LocationService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchRegionList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMRegion {
+    func fetchRegionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMRegion {
         callPaginated(endpoint: API.fetchRegionList, paginationState: paginationState)
     }
     

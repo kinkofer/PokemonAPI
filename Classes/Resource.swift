@@ -43,24 +43,3 @@ open class PKMNamedAPIResource<T>: PKMAPIResource<T> {
     }
 }
 
-
-
-// MARK: - Web Services
-
-open class ResourceService {
-    /**
-     Fetch a resource from a named or unnamed resource url
-     
-     - parameter resource: PKMAPIResource or APINamedAPIResource
-     */
-    public static func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T, Error>) -> Void) {
-        guard let urlStr = resource.url else {
-            completion(.failure(HTTPError.invalidRequest))
-            return
-        }
-        
-        HTTPWebServiceClient.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
-}

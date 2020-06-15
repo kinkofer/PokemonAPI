@@ -64,7 +64,7 @@ protocol PKMItemService: HTTPWebService {
 // MARK: - Web Services
 
 public struct ItemService: PKMItemService {
-    private enum API: APICall {
+    enum API: APICall {
         case fetchItemList
         case fetchItemByID(Int)
         case fetchItemByName(String)
@@ -290,9 +290,11 @@ public struct ItemService: PKMItemService {
 
 
 
+// MARK: - Combine Services
+
 extension ItemService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchItemList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItem {
+    func fetchItemList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItem {
         callPaginated(endpoint: API.fetchItemList, paginationState: paginationState)
     }
     
@@ -310,7 +312,7 @@ extension ItemService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchItemAttributeList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemAttribute {
+    func fetchItemAttributeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemAttribute {
         callPaginated(endpoint: API.fetchItemAttributeList, paginationState: paginationState)
     }
     
@@ -328,7 +330,7 @@ extension ItemService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchItemCategoryList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemCategory {
+    func fetchItemCategoryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemCategory {
         callPaginated(endpoint: API.fetchItemCategoryList, paginationState: paginationState)
     }
     
@@ -346,7 +348,7 @@ extension ItemService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchItemFlingEffectList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error>  where T: PKMItemFlingEffect {
+    func fetchItemFlingEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error>  where T: PKMItemFlingEffect {
         callPaginated(endpoint: API.fetchItemFlingEffectList, paginationState: paginationState)
     }
     
@@ -364,7 +366,7 @@ extension ItemService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchItemPocketList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemPocket {
+    func fetchItemPocketList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemPocket {
         callPaginated(endpoint: API.fetchItemPocketList, paginationState: paginationState)
     }
     

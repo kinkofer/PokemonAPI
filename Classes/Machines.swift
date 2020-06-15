@@ -27,31 +27,3 @@ open class PKMMachine: Codable, SelfDecodable {
         return decoder
     }()
 }
-
-
-
-// MARK: - Web Services
-
-open class MachineService {
-    /**
-     Fetch Machines list
-     */
-    public static func fetchMachineList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMMachine {
-        let urlStr = baseURL + "/machine"
-        HTTPWebServiceClient.callPaginatedWebService(url: URL(string: urlStr), paginationState: paginationState, completion: completion)
-    }
-    
-    
-    /**
-     Fetch Machine Information
-     
-     - parameter machineId: Machine ID
-     */
-    public static func fetchMachine(_ machineId: Int, completion: @escaping (_ result: Result<PKMMachine, Error>) -> Void) {
-        let urlStr = baseURL + "/machine/\(machineId)"
-        
-        HTTPWebServiceClient.callWebService(url: URL(string: urlStr), method: .get) { result in
-            result.decode(completion: completion)
-        }
-    }
-}

@@ -34,7 +34,7 @@ protocol PKMEvolutionService: HTTPWebService {
 // MARK: - Web Services
 
 public struct EvolutionService: PKMEvolutionService {
-    private enum API: APICall {
+    enum API: APICall {
         case fetchEvolutionChainList
         case fetchEvolutionChain(Int)
         case fetchEvolutionTriggerList
@@ -123,9 +123,11 @@ public struct EvolutionService: PKMEvolutionService {
 
 
 
+// MARK: - Combine Services
+
 extension EvolutionService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionChainList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionChain {
+    func fetchEvolutionChainList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionChain {
         callPaginated(endpoint: API.fetchEvolutionChainList, paginationState: paginationState)
     }
     
@@ -137,7 +139,7 @@ extension EvolutionService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionTrigger {
+    func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionTrigger {
         callPaginated(endpoint: API.fetchEvolutionTriggerList, paginationState: paginationState)
     }
     

@@ -9,8 +9,8 @@
 import XCTest
 import PokemonAPI
 
+
 class PokemonAPITests: XCTestCase {
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -19,8 +19,9 @@ class PokemonAPITests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-        
     }
+    
+    
     
     func testFetchBerries() {
         let asyncExpectation = expectation(description: "Fetch berries")
@@ -35,8 +36,8 @@ class PokemonAPITests: XCTestCase {
         self.waitForExpectations(timeout: 30) { (err) -> Void in
             XCTAssertNil(err, "Something went wrong")
         }
-        
     }
+    
     
     func testFetchBerryInfo() {
         let asyncExpectation = expectation(description: "Fetch berries")

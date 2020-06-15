@@ -55,7 +55,7 @@ protocol PKMGameService: HTTPWebService {
 // MARK: - Web Services
 
 public struct GameService: PKMGameService {
-    private enum API: APICall {
+    enum API: APICall {
         case fetchGenerationList
         case fetchGenerationByID(Int)
         case fetchGenerationByName(String)
@@ -241,9 +241,11 @@ public struct GameService: PKMGameService {
 
 
 
+// MARK: - Combine Services
+
 extension GameService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchGenerationList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMGeneration {
+    func fetchGenerationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMGeneration {
         callPaginated(endpoint: API.fetchGenerationList, paginationState: paginationState)
     }
     
@@ -260,7 +262,7 @@ extension GameService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchPokedexList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokedex {
+    func fetchPokedexList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokedex {
         callPaginated(endpoint: API.fetchPokedexList, paginationState: paginationState)
     }
     
@@ -278,7 +280,7 @@ extension GameService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchVersionList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMVersion {
+    func fetchVersionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMVersion {
         callPaginated(endpoint: API.fetchVersionList, paginationState: paginationState)
     }
     
@@ -296,7 +298,7 @@ extension GameService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchVersionGroupList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMVersionGroup {
+    func fetchVersionGroupList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMVersionGroup {
         callPaginated(endpoint: API.fetchVersionGroupList, paginationState: paginationState)
     }
     

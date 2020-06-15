@@ -47,7 +47,7 @@ protocol PKMEncounterService: HTTPWebService {
 // MARK: - Web Services
 
 public struct EncounterService: PKMEncounterService {
-    private enum API: APICall {
+    enum API: APICall {
         case fetchEncounterMethodList
         case fetchEncounterMethodByID(Int)
         case fetchEncounterMethodByName(String)
@@ -193,9 +193,11 @@ public struct EncounterService: PKMEncounterService {
 
 
 
+// MARK: - Combine Services
+
 extension EncounterService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterMethodList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterMethod {
+    func fetchEncounterMethodList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterMethod {
         callPaginated(endpoint: API.fetchEncounterMethodList, paginationState: paginationState)
     }
     
@@ -213,7 +215,7 @@ extension EncounterService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterConditionList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterCondition {
+    func fetchEncounterConditionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterCondition {
         callPaginated(endpoint: API.fetchEncounterConditionList, paginationState: paginationState)
     }
     
@@ -231,7 +233,7 @@ extension EncounterService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterConditionValueList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterConditionValue {
+    func fetchEncounterConditionValueList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterConditionValue {
         callPaginated(endpoint: API.fetchEncounterConditionValueList, paginationState: paginationState)
     }
     

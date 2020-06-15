@@ -48,7 +48,7 @@ public protocol PKMBerryService: HTTPWebService {
 // MARK: - Web Services
 
 public struct BerryService: PKMBerryService {
-    private enum API: APICall {
+    enum API: APICall {
         case fetchBerryList
         case fetchBerryByID(Int)
         case fetchBerryByName(String)
@@ -192,9 +192,12 @@ public struct BerryService: PKMBerryService {
 }
 
 
+
+// MARK: - Combine Services
+
 extension BerryService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerry {
+    public func fetchBerryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerry {
         callPaginated(endpoint: API.fetchBerryList, paginationState: paginationState)
     }
     
@@ -209,7 +212,7 @@ extension BerryService {
     }
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryFirmnessList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerryFirmness {
+    public func fetchBerryFirmnessList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerryFirmness {
         callPaginated(endpoint: API.fetchBerryFirmnessList, paginationState: paginationState)
     }
     
@@ -224,7 +227,7 @@ extension BerryService {
     }
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryFlavorList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerryFlavor {
+    public func fetchBerryFlavorList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerryFlavor {
         callPaginated(endpoint: API.fetchBerryFlavorList, paginationState: paginationState)
     }
     
