@@ -169,7 +169,7 @@
 				7412E0121D58E3B30086DD94 /* Sources */,
 				7412E0131D58E3B30086DD94 /* Frameworks */,
 				7412E0141D58E3B30086DD94 /* Resources */,
-				1F6BA80C12C817A557E3EEA0 /* [CP] Embed Pods Frameworks */,
+				7CF01B168E3E1A5EAA83800D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -291,13 +291,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1F6BA80C12C817A557E3EEA0 /* [CP] Embed Pods Frameworks */ = {
+		7CF01B168E3E1A5EAA83800D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PokemonAPI-Example/Pods-PokemonAPI-Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PokemonAPI-Example/Pods-PokemonAPI-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PokemonAPI/PokemonAPI.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -306,7 +306,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PokemonAPI-Example/Pods-PokemonAPI-Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PokemonAPI-Example/Pods-PokemonAPI-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7B0CFB9A87F3C46909F3E46 /* [CP] Check Pods Manifest.lock */ = {
