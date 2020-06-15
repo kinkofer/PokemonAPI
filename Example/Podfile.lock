@@ -1,5 +1,5 @@
 PODS:
-  - PokemonAPI (5.0.0)
+  - PokemonAPI (6.0.0)
 
 DEPENDENCIES:
   - PokemonAPI (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PokemonAPI: 7e8004628361fd4add04be1ef8754f68347d5396
+  PokemonAPI: 2f016212730049caac8f662afe0cec580fbd46e8
 
 PODFILE CHECKSUM: 053b0ae2b83b9f59db73778dd00f11ab5128d232
 

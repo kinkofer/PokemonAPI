@@ -21,7 +21,7 @@ class CombineExampleViewController: UIViewController {
         
         PokemonAPI.berryService.fetchBerry(5)
             .sink(receiveCompletion: { completion in
-                if let error = try? completion.getError() {
+                if case .failure(let error) = completion {
                     print(error.localizedDescription)
                 }
             }, receiveValue: { berry in

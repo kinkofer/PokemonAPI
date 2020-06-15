@@ -22,12 +22,13 @@ All code is Swift native with no third party frameworks.
 Use the `PokemonAPI` class to access web service classes organized by categories found on pokeapi.co (Berries, Pokemon, Games, etc.).
 
 ### Response
-All web service functions use a competion handler that return a `Result` enum value of either case `.success(T)` or `.failure(HTTPError)` where `T` is an instance of the class returned by the response, decoded from JSON.
+All web service functions are duplicated for compatibility with the Combine framework starting in iOS 13.
 
+Combine functions return an `AnyPublisher`. Non-Combine functions use a completion handler with type `Result`. Both success values from these functions contain a custom class decoded from the JSON response. The error value is custom enum type `HTTPError`.
 
 ### Resources
 
-Some properties on the returned object are type `PKMNamedAPIResource<T>` or `PKMAPIResource<T>` where `T` is another class with additional information. Passing that property to `PokemonAPI.resourceService.fetch(_ resource:)` will return that object in the function's completion handler. An example is provided below.
+Some properties on the returned object are type `PKMNamedAPIResource<T>` or `PKMAPIResource<T>` where `T` is another class with additional information. Passing that property to `PokemonAPI.resourceService.fetch(_ resource:)` will return that underlying class. An example is provided below.
 
 ### Lists
 
@@ -47,9 +48,19 @@ PokemonAPI.berryService.fetchBerry(1) { result in
     case .success(let berry):
         self.berryLabel.text = berry.name // cheri
     case .failure(let error):
-        print(error)
+        print(error.localizedDescription)
     }
 }
+
+// Same example using Combine
+let cancellable = PokemonAPI.berryService.fetchBerry(1)
+	.sink(receiveCompletion: { completion in
+        if case .failure(let error) = completion {
+            print(error.localizedDescription)
+        }
+	}, receiveValue: { berry in
+		self.berryName = berry.name! // cheri
+	})
 ```
 
 
@@ -60,7 +71,7 @@ PokemonAPI.pokemonService.fetchPokemon("bulbasaur") { result in
     case .success(let pokemon):
         self.pokemonLabel.text = pokemon.name // bulbasaur
     case .failure(let error):
-        print(error)
+        print(error.localizedDescription)
     }
 }
 ```
@@ -78,12 +89,12 @@ PokemonAPI.gameService.fetchPokedex(14) { result in
             case .success(let region):
                 print(region.name!) // kalos
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
             }
         }
         
     case .failure(let error):
-        print(error.message)
+        print(error.localizedDescription)
     }
 }
 ```
@@ -93,18 +104,18 @@ PokemonAPI.gameService.fetchPokedex(14) { result in
 PokemonAPI.utilityService.fetchLanguageList(paginationState: .initial(pageLimit: 5)) { result in
     switch result {
     case .success(let pagedLanguages):
-        print("\(pagedLanguages.count!)") // 12
+        print("\(pagedLanguages.count!)") // 13
 
         PokemonAPI.utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
             switch result {
             case .success(let pagedLanguagesNext):
                 print("Page: \(pagedLanguagesNext.currentPage)") // Page: 1
             case .failure(let error):
-                print(error.message)
+                print(error.localizedDescription)
             }
         }
     case .failure(let error):
-        print(error.message)
+        print(error.localizedDescription)
     }
 }
 ```
@@ -127,7 +138,7 @@ pod 'PokemonAPI'
 If you're using Carthage you can add PokemonAPI by adding it to your Cartfile:
 
 ```ruby
-github "kinkofer/PokemonAPI" ~> 5.0.0
+github "kinkofer/PokemonAPI" ~> 6.0.0
 ```
 
 In your Info.plist, add
