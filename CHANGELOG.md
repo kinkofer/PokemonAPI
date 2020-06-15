@@ -1,3 +1,12 @@
+## 6.0.0
+Updated with Combine functions
+
+iOS deployment target raised to iOS 11
+
+Refactored network and web service architecture
+
+Reorganized project files
+
 ## 5.0.0
 Updated for Swift 5
 
