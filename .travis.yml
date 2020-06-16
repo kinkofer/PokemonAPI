@@ -1,8 +1,28 @@
 os: osx
 language: swift
-osx_image: xcode10.2
+osx_image: xcode11.5
 xcode_project: PokemonAPI.xcodeproj
-xcode_scheme: PokemonAPI
+
+matrix:
+    include:
+      - xcode_scheme: "PokemonAPI iOS"
+        xcode_sdk: iphoneos13.5
+        xcode_destination: "platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max"
+        script: xcodebuild clean test -project PokemonAPI.xcodeproj -scheme "PokemonAPI iOS" -destination "platform=iOS Simulator,OS=13.5,name=iPhone 11 Pro Max"
+
+      - xcode_scheme: "PokemonAPI OSX"
+        xcode_sdk: macosx10.15
+        xcode_destination: platform=macOS
+        script: xcodebuild clean test -project PokemonAPI.xcodeproj -scheme "PokemonAPI OSX" -destination "platform=macOS"
+
+      - xcode_scheme: "PokemonAPI tvOS"
+        xcode_sdk: appletvos13.4
+        xcode_destination: "platform=tvOS Simulator,OS=13.4,name=Apple TV 4K"
+        script: xcodebuild clean test -project PokemonAPI.xcodeproj -scheme "PokemonAPI tvOS" -destination "platform=tvOS Simulator,OS=13.4,name=Apple TV 4K"
+        
+      - xcode_scheme: "PokemonAPI watchOS"
+        xcode_sdk: watchos6.2
+
 cache: cocoapods
 podfile: Example/Podfile
 env:
@@ -14,17 +34,6 @@ before_install:
   - gem install cocoapods
   - pod install --project-directory=Example
 script:
-  # Commented out due to error NSURLSession/NSURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9807)
-  # - xcodebuild -project PokemonAPI.xcodeproj -scheme "PokemonAPI iOS" -sdk iphonesimulator12.2 build-for-testing
-  # - xctool -project PokemonAPI.xcodeproj -scheme "PokemonAPI iOS" run-tests -sdk iphonesimulator12.2 -destination 'platform=iOS Simulator,name=iPhone Xs'
-
-  - xcodebuild -project PokemonAPI.xcodeproj -scheme "PokemonAPI OSX" -sdk macosx10.14 build-for-testing
-  - xctool -project PokemonAPI.xcodeproj -scheme "PokemonAPI OSX" run-tests -sdk macosx10.14
-
-  # Commented out due to error NSURLSession/NSURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9807)
-  # - xcodebuild -project PokemonAPI.xcodeproj -scheme "PokemonAPI tvOS" -sdk appletvsimulator12.2 build-for-testing
-  # - xctool -project PokemonAPI.xcodeproj -scheme "PokemonAPI tvOS" run-tests -sdk appletvsimulator12.2 -destination 'platform=tvOS Simulator,OS=12.2,name=Apple TV 4K'
-
   - pod lib lint --allow-warnings --quick
 before_deploy:
   - carthage build --no-skip-current
