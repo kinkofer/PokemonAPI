@@ -2,8 +2,24 @@ os: osx
 language: swift
 osx_image: xcode11.5
 xcode_project: PokemonAPI.xcodeproj
-xcode_scheme: "PokemonAPI OSX"
-xcode_destination: platform=macOS
+
+matrix:
+    include:
+      - xcode_scheme: "PokemonAPI iOS"
+        xcode_sdk: iphoneos13.5
+        xcode_destination: "platform=iOS Simulator,OS=13.5,name=iPhone Xs"
+
+      - xcode_scheme: "PokemonAPI OSX"
+        xcode_sdk: macosx10.15
+        xcode_destination: platform=macOS
+
+      - xcode_scheme: "PokemonAPI tvOS"
+        xcode_sdk: appletvos13.4
+        xcode_destination: "platform=tvOS Simulator,OS=13.4,name=Apple TV 4K"
+
+      - xcode_scheme: "PokemonAPI watchOS"
+        xcode_sdk: watchos6.2
+
 cache: cocoapods
 podfile: Example/Podfile
 env:
