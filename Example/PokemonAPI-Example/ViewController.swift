@@ -11,12 +11,13 @@ import PokemonAPI
 
 
 class ViewController: UIViewController {
+    let pokemonAPI = PokemonAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Example of calling a web service using an ID
-        PokemonAPI.moveService.fetchMove(1) { result in
+        pokemonAPI.moveService.fetchMove(1) { result in
             switch result {
             case .success(let move):
                 print(move)
@@ -27,7 +28,7 @@ class ViewController: UIViewController {
         
         
         // Example of calling a web service using a name
-        PokemonAPI.pokemonService.fetchPokemon("bulbasaur") { result in
+        pokemonAPI.pokemonService.fetchPokemon("bulbasaur") { result in
             switch result {
             case .success(let pokemon):
                 print(pokemon)
@@ -38,12 +39,12 @@ class ViewController: UIViewController {
         
         
         // Example of fetching a PKMNamedAPIResource (or PKMAPIResource)
-        PokemonAPI.gameService.fetchPokedex(14) { result in
+        pokemonAPI.gameService.fetchPokedex(14) { result in
             switch result {
             case .success(let pokedex):
                 print(pokedex.name!) // kalos-mountain
                 
-                PokemonAPI.resourceService.fetch(pokedex.region!) { result in
+                self.pokemonAPI.resourceService.fetch(pokedex.region!) { result in
                     switch result {
                     case .success(let region):
                         print(region.name!) // kalos
@@ -59,14 +60,14 @@ class ViewController: UIViewController {
         
         
         // Example of calling a paginated web service, then taking the first result and fetching the underlying resource
-        PokemonAPI.berryService.fetchBerryList() { result in
+        pokemonAPI.berryService.fetchBerryList() { result in
             switch result {
             case .success(let pagedBerries):
                 print(pagedBerries)
                 if let berryResource = pagedBerries.results?.first {
                     
                     // Fetching the underlying PKMBerry resource
-                    PokemonAPI.resourceService.fetch(berryResource) { result in
+                    self.pokemonAPI.resourceService.fetch(berryResource) { result in
                         switch result {
                         case .success(let berry):
                             print(berry.name!) // cheri
@@ -82,13 +83,13 @@ class ViewController: UIViewController {
         
 
         // Example of calling a paginated web service with a pageLimit, then using the pagedObject to fetch the next page in the list
-        PokemonAPI.utilityService.fetchLanguageList(paginationState: .initial(pageLimit: 5)) { result in
+        pokemonAPI.utilityService.fetchLanguageList(paginationState: .initial(pageLimit: 5)) { result in
             switch result {
             case .success(let pagedLanguages):
                 print(pagedLanguages)
                 print("Language count: \(pagedLanguages.count!)") // Language count: 13
 
-                PokemonAPI.utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
+                self.pokemonAPI.utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
                     switch result {
                     case .success(let pagedLanguagesNext):
                         print(pagedLanguagesNext)

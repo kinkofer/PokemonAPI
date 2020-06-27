@@ -43,7 +43,7 @@ Web service functions for lists take a `PaginationState` enum parameter. There a
 import PokemonAPI
 
 // Example of calling a web service using an ID
-PokemonAPI.berryService.fetchBerry(1) { result in
+PokemonAPI().berryService.fetchBerry(1) { result in
     switch result {
     case .success(let berry):
         self.berryLabel.text = berry.name // cheri
@@ -53,7 +53,7 @@ PokemonAPI.berryService.fetchBerry(1) { result in
 }
 
 // Same example using Combine
-let cancellable = PokemonAPI.berryService.fetchBerry(1)
+let cancellable = PokemonAPI().berryService.fetchBerry(1)
 	.sink(receiveCompletion: { completion in
         if case .failure(let error) = completion {
             print(error.localizedDescription)
@@ -66,7 +66,7 @@ let cancellable = PokemonAPI.berryService.fetchBerry(1)
 
 ```swift
 // Example of calling a web service using a name
-PokemonAPI.pokemonService.fetchPokemon("bulbasaur") { result in
+PokemonAPI().pokemonService.fetchPokemon("bulbasaur") { result in
     switch result {
     case .success(let pokemon):
         self.pokemonLabel.text = pokemon.name // bulbasaur
@@ -79,12 +79,12 @@ PokemonAPI.pokemonService.fetchPokemon("bulbasaur") { result in
 
 ```swift
 // Example of fetching a PKMNamedAPIResource (or PKMAPIResource)
-PokemonAPI.gameService.fetchPokedex(14) { result in
+PokemonAPI().gameService.fetchPokedex(14) { result in
     switch result {
     case .success(let pokedex):
         print(pokedex.name!) // kalos-mountain
         
-        PokemonAPI.resourceService.fetch(pokedex.region!) { result in
+        PokemonAPI().resourceService.fetch(pokedex.region!) { result in
             switch result {
             case .success(let region):
                 print(region.name!) // kalos
@@ -101,12 +101,12 @@ PokemonAPI.gameService.fetchPokedex(14) { result in
 
 ```swift
 // Example of calling a paginated web service with a pageLimit, then using the pagedObject to fetch the next page in the list
-PokemonAPI.utilityService.fetchLanguageList(paginationState: .initial(pageLimit: 5)) { result in
+PokemonAPI().utilityService.fetchLanguageList(paginationState: .initial(pageLimit: 5)) { result in
     switch result {
     case .success(let pagedLanguages):
         print("\(pagedLanguages.count!)") // 13
 
-        PokemonAPI.utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
+        PokemonAPI().utilityService.fetchLanguageList(paginationState: .continuing(pagedLanguages, .next)) { result in
             switch result {
             case .success(let pagedLanguagesNext):
                 print("Page: \(pagedLanguagesNext.currentPage)") // Page: 1
