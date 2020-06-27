@@ -47,7 +47,7 @@ protocol PKMEncounterService: HTTPWebService {
 // MARK: - Web Services
 
 public struct EncounterService: PKMEncounterService {
-    enum API: APICall {
+    public enum API: APICall {
         case fetchEncounterMethodList
         case fetchEncounterMethodByID(Int)
         case fetchEncounterMethodByName(String)
@@ -81,17 +81,11 @@ public struct EncounterService: PKMEncounterService {
                 return "/encounter-condition-value/\(name)"
             }
         }
-        
-        var method: HTTPMethod { return .get }
-        
-        var headers: [HTTPHeader]? { return nil}
-        
-        func body() throws -> Data? { return nil }
     }
     
     public var session: URLSession
     
-    public var baseURL: String
+    public var baseURL: String = "https://pokeapi.co/api/v2"
     
     
     

@@ -125,6 +125,8 @@ public enum HTTPError: Error, LocalizedError {
             return 599
         case .timeout:
             return -1001
+        case .noNetwork:
+            return -1009
         case .serverResponse(let status, _):
             return status.rawValue
         case .other(let error as NSError):

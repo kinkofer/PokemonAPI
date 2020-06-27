@@ -34,7 +34,7 @@ protocol PKMEvolutionService: HTTPWebService {
 // MARK: - Web Services
 
 public struct EvolutionService: PKMEvolutionService {
-    enum API: APICall {
+    public enum API: APICall {
         case fetchEvolutionChainList
         case fetchEvolutionChain(Int)
         case fetchEvolutionTriggerList
@@ -55,17 +55,11 @@ public struct EvolutionService: PKMEvolutionService {
                 return "/evolution-trigger/\(name)"
             }
         }
-        
-        var method: HTTPMethod { return .get }
-        
-        var headers: [HTTPHeader]? { return nil }
-        
-        func body() throws -> Data? { return nil }
     }
     
     public var session: URLSession
     
-    public var baseURL: String
+    public var baseURL: String = "https://pokeapi.co/api/v2"
     
     
     

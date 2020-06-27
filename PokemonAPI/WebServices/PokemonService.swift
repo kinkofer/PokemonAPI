@@ -152,7 +152,7 @@ protocol PKMPokemonService: HTTPWebService {
 // MARK: - Web Services
 
 public struct PokemonService: PKMPokemonService {
-    enum API: APICall {
+    public enum API: APICall {
         case fetchAbilityList
         case fetchAbilityByID(Int)
         case fetchAbilityByName(String)
@@ -290,17 +290,11 @@ public struct PokemonService: PKMPokemonService {
                 return "/type/\(name)"
             }
         }
-        
-        var method: HTTPMethod { return .get }
-        
-        var headers: [HTTPHeader]? { return nil }
-        
-        func body() throws -> Data? { return nil }
     }
     
     public var session: URLSession
     
-    public var baseURL: String
+    public var baseURL: String = "https://pokeapi.co/api/v2"
     
     
     

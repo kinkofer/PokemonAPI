@@ -55,7 +55,7 @@ protocol PKMGameService: HTTPWebService {
 // MARK: - Web Services
 
 public struct GameService: PKMGameService {
-    enum API: APICall {
+    public enum API: APICall {
         case fetchGenerationList
         case fetchGenerationByID(Int)
         case fetchGenerationByName(String)
@@ -98,17 +98,11 @@ public struct GameService: PKMGameService {
                 return "/version-group/\(name)"
             }
         }
-        
-        var method: HTTPMethod { return .get }
-        
-        var headers: [HTTPHeader]? { return nil }
-        
-        func body() throws -> Data? { return nil }
     }
     
     public var session: URLSession
     
-    public var baseURL: String
+    public var baseURL: String = "https://pokeapi.co/api/v2"
     
     
     /**
