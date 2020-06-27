@@ -19,7 +19,7 @@ class CombineExampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PokemonAPI.berryService.fetchBerry(5)
+        PokemonAPI().berryService.fetchBerry(5)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
                     print(error.localizedDescription)

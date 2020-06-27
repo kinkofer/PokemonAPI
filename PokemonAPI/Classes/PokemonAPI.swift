@@ -10,20 +10,24 @@ import Foundation
 
 
 public class PokemonAPI {
-    public static let baseURL: String = "https://pokeapi.co/api/v2"
+    public let session: URLSession
     
-    public static let berryService = BerryService(session: URLSession.shared, baseURL: baseURL)
-    public static let contestService = ContestService(session: URLSession.shared, baseURL: baseURL)
-    public static let encounterService = EncounterService(session: URLSession.shared, baseURL: baseURL)
-    public static let evolutionService = EvolutionService(session: URLSession.shared, baseURL: baseURL)
-    public static let gameService = GameService(session: URLSession.shared, baseURL: baseURL)
-    public static let itemService = ItemService(session: URLSession.shared, baseURL: baseURL)
-    public static let locationService = LocationService(session: URLSession.shared, baseURL: baseURL)
-    public static let machineService = MachineService(session: URLSession.shared, baseURL: baseURL)
-    public static let moveService = MoveService(session: URLSession.shared, baseURL: baseURL)
-    public static let pokemonService = PokemonService(session: URLSession.shared, baseURL: baseURL)
-    public static let resourceService = ResourceService(session: URLSession.shared, baseURL: baseURL)
-    public static let utilityService = UtilityService(session: URLSession.shared, baseURL: baseURL)
+    public init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
+    
+    public lazy private(set) var berryService = BerryService(session: session)
+    public lazy private(set) var contestService = ContestService(session: session)
+    public lazy private(set) var encounterService = EncounterService(session: session)
+    public lazy private(set) var evolutionService = EvolutionService(session: session)
+    public lazy private(set) var gameService = GameService(session: session)
+    public lazy private(set) var itemService = ItemService(session: session)
+    public lazy private(set) var locationService = LocationService(session: session)
+    public lazy private(set) var machineService = MachineService(session: session)
+    public lazy private(set) var moveService = MoveService(session: session)
+    public lazy private(set) var pokemonService = PokemonService(session: session)
+    public lazy private(set) var resourceService = ResourceService(session: session)
+    public lazy private(set) var utilityService = UtilityService(session: session)
 }
 
 

@@ -17,6 +17,7 @@ extension Publisher where Output == URLSession.DataTaskPublisher.Output {
                 return $0.data
             }
             .extractUnderlyingError()
+            .convertToHTTPError()
             .decodeJSON(type: Value.self)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
@@ -39,6 +40,27 @@ extension Publisher {
 
 @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
+    /// Converts the error to an HTTP error
+    func convertToHTTPError() -> Publishers.MapError<Self, Failure> {
+        mapError { error in
+            if let nsError = error as NSError?,
+                nsError.code == HTTPError.noNetwork.code {
+                return HTTPError.noNetwork as? Failure ?? error
+            }
+            else if let nsError = error as NSError?,
+                nsError.code == HTTPError.timeout.code {
+                return HTTPError.timeout as? Failure ?? error
+            }
+            else if let httpError = error as? HTTPError {
+                return httpError as? Failure ?? error
+            }
+            else {
+                return HTTPError.other(error) as? Failure ?? error
+            }
+        }
+    }
+    
+    /// If a mock error was assigned extract it from userInfo[NSUnderlyingErrorKey]
     func extractUnderlyingError() -> Publishers.MapError<Self, Failure> {
         mapError {
             ($0.underlyingError as? Failure) ?? $0

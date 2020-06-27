@@ -9,6 +9,11 @@ import Foundation
 import Combine
 
 
+enum HTTPMethod: String {
+    case get, post, put, delete, patch, head
+}
+
+
 public protocol HTTPWebService {
     var session: URLSession { get }
     var baseURL: String { get }
@@ -16,9 +21,9 @@ public protocol HTTPWebService {
 
 
 extension HTTPWebService {
-    func call(endpoint: APICall, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
+    func call(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
         do {
-            let request = try endpoint.getUrlRequest(baseURL: baseURL)
+            let request = try endpoint.createUrlRequest(baseURL: baseURL, method: method, headers: headers, body: body)
             // Make the request
             session.startData(request) { result in
                 completion(result)
@@ -30,9 +35,9 @@ extension HTTPWebService {
     }
     
     
-    func callPaginated<T>(endpoint: APICall, paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) {
+    func callPaginated<T>(endpoint: APICall, paginationState: PaginationState<T>, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) {
         do {
-            let request = try endpoint.getPaginatedUrlRequest(baseURL: baseURL, paginationState: paginationState)
+            let request = try endpoint.createUrlRequest(baseURL: baseURL, paginationState: paginationState, method: method, headers: headers, body: body)
             
             guard let url = request.url else {
                 return completion(.failure(HTTPError.invalidRequest))
@@ -65,9 +70,9 @@ extension HTTPWebService {
 
 extension HTTPWebService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func call<Value>(endpoint: APICall) -> AnyPublisher<Value, Error> where Value: Decodable {
+    func call<Value>(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) -> AnyPublisher<Value, Error> where Value: Decodable {
         do {
-            let request = try endpoint.getUrlRequest(baseURL: baseURL)
+            let request = try endpoint.createUrlRequest(baseURL: baseURL, method: method, headers: headers, body: body)
             return session
                 .dataTaskPublisher(for: request)
                 .requestJSON()
@@ -78,9 +83,9 @@ extension HTTPWebService {
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func callPaginated<Value>(endpoint: APICall, paginationState: PaginationState<Value>) -> AnyPublisher<PKMPagedObject<Value>, Error> where Value: Decodable {
+    func callPaginated<Value>(endpoint: APICall, paginationState: PaginationState<Value>, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) -> AnyPublisher<PKMPagedObject<Value>, Error> where Value: Decodable {
         do {
-            let request = try endpoint.getPaginatedUrlRequest(baseURL: baseURL, paginationState: paginationState)
+            let request = try endpoint.createUrlRequest(baseURL: baseURL, paginationState: paginationState, method: method, headers: headers, body: body)
             return session
                 .dataTaskPublisher(for: request)
                 .requestJSON()

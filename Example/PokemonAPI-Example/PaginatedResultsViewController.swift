@@ -39,6 +39,8 @@ class PaginatedResultsViewController: UIViewController {
     }
     
     
+    let pokemonAPI = PokemonAPI()
+    
     
     // MARK: - View Lifecycle
     
@@ -117,7 +119,7 @@ class PaginatedResultsViewController: UIViewController {
     // MARK: - Data
     
     func fetchPokemon(paginationState: PaginationState<PKMPokemon> = .initial(pageLimit: 20)) {
-        PokemonAPI.pokemonService.fetchPokemonList(paginationState: paginationState) { result in
+        pokemonAPI.pokemonService.fetchPokemonList(paginationState: paginationState) { result in
             switch result {
             case .success(let pagedObject):
                 self.pagedObject = pagedObject

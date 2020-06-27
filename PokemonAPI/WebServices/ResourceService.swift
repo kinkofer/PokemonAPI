@@ -22,7 +22,7 @@ protocol PKMResourceService: HTTPWebService {
 // MARK: - Web Services
 
 public struct ResourceService: PKMResourceService {
-    enum API<T>: APICall {
+    public enum API<T>: APICall {
         case fetchResource(PKMAPIResource<T>)
         
         var path: String {
@@ -31,17 +31,11 @@ public struct ResourceService: PKMResourceService {
                 return resource.url ?? ""
             }
         }
-        
-        var method: HTTPMethod { return .get }
-        
-        var headers: [HTTPHeader]? { return nil }
-        
-        func body() throws -> Data? { return nil }
     }
     
     public var session: URLSession
     
-    public var baseURL: String
+    public var baseURL: String = "https://pokeapi.co/api/v2"
     
     
     /**

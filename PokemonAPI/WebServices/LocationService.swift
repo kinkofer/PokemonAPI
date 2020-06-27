@@ -49,7 +49,7 @@ protocol PKMLocationService: HTTPWebService {
 // MARK: - Web Services
 
 public struct LocationService: PKMLocationService {
-    enum API: APICall {
+    public enum API: APICall {
         case fetchLocationList
         case fetchLocation(Int)
         case fetchLocationAreaList
@@ -85,17 +85,11 @@ public struct LocationService: PKMLocationService {
                 return "/region/\(name)"
             }
         }
-        
-        var method: HTTPMethod { return .get }
-        
-        var headers: [HTTPHeader]? { return nil }
-        
-        func body() throws -> Data? { return nil }
     }
     
     public var session: URLSession
     
-    public var baseURL: String
+    public var baseURL: String = "https://pokeapi.co/api/v2"
     
     
     /**

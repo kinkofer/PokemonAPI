@@ -67,4 +67,17 @@ extension URL {
     public mutating func removeQueryParameter(_ key: String) {
         self.appendQueryParameter(key: key, value: nil)
     }
+    
+    
+    /// Compares components, which doesn't require query parameters to be in any particular order
+    public func compareComponents(_ url: URL) -> Bool {
+        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false),
+            let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return false }
+        
+        return components.scheme == urlComponents.scheme &&
+            components.host == urlComponents.host &&
+            components.path == urlComponents.path &&
+            components.queryItems?.enumerated().compactMap { $0.element.name }.sorted() == urlComponents.queryItems?.enumerated().compactMap { $0.element.name }.sorted() &&
+            components.queryItems?.enumerated().compactMap { $0.element.value }.sorted() == urlComponents.queryItems?.enumerated().compactMap { $0.element.value }.sorted()
+    }
 }

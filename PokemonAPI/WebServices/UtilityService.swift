@@ -28,7 +28,7 @@ protocol PKMUtilityService: HTTPWebService {
 // MARK: - Web Services
 
 public struct UtilityService: PKMUtilityService {
-    enum API: APICall {
+    public enum API: APICall {
         case fetchLanuageList
         case fetchLanguageByID(Int)
         case fetchLanguageByName(String)
@@ -43,17 +43,11 @@ public struct UtilityService: PKMUtilityService {
                 return "/language/\(name)"
             }
         }
-        
-        var method: HTTPMethod { return .get }
-        
-        var headers: [HTTPHeader]? { return nil }
-        
-        func body() throws -> Data? { return nil }
     }
     
     public var session: URLSession
     
-    public var baseURL: String
+    public var baseURL: String = "https://pokeapi.co/api/v2"
     
     
     
