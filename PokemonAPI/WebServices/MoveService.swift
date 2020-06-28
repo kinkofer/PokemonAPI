@@ -389,127 +389,127 @@ public struct MoveService: PKMMoveService {
 
 extension MoveService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMove {
+    public func fetchMoveList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMove {
         callPaginated(endpoint: API.fetchMoveList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMove(_ moveID: Int) -> AnyPublisher<PKMMove, Error> {
+    public func fetchMove(_ moveID: Int) -> AnyPublisher<PKMMove, Error> {
         call(endpoint: API.fetchMoveByID(moveID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMove(_ moveName: String) -> AnyPublisher<PKMMove, Error> {
+    public func fetchMove(_ moveName: String) -> AnyPublisher<PKMMove, Error> {
         call(endpoint: API.fetchMoveByName(moveName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveAilmentList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveAilment {
+    public func fetchMoveAilmentList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveAilment {
         callPaginated(endpoint: API.fetchMoveAilmentList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveAilment(_ moveAilmentID: Int) -> AnyPublisher<PKMMoveAilment, Error> {
+    public func fetchMoveAilment(_ moveAilmentID: Int) -> AnyPublisher<PKMMoveAilment, Error> {
         call(endpoint: API.fetchMoveAilmentByID(moveAilmentID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveAilment(_ moveAilmentName: String) -> AnyPublisher<PKMMoveAilment, Error> {
+    public func fetchMoveAilment(_ moveAilmentName: String) -> AnyPublisher<PKMMoveAilment, Error> {
         call(endpoint: API.fetchMoveAilmentByName(moveAilmentName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveBattleStyleList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveBattleStyle {
+    public func fetchMoveBattleStyleList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveBattleStyle {
         callPaginated(endpoint: API.fetchMoveBattleStyleList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveBattleStyle(_ moveBattleStyleID: Int) -> AnyPublisher<PKMMoveBattleStyle, Error> {
+    public func fetchMoveBattleStyle(_ moveBattleStyleID: Int) -> AnyPublisher<PKMMoveBattleStyle, Error> {
         call(endpoint: API.fetchMoveBattleStyleByID(moveBattleStyleID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveBattleStyle(_ moveBattleStyleName: String) -> AnyPublisher<PKMMoveBattleStyle, Error> {
+    public func fetchMoveBattleStyle(_ moveBattleStyleName: String) -> AnyPublisher<PKMMoveBattleStyle, Error> {
         call(endpoint: API.fetchMoveBattleStyleByName(moveBattleStyleName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveCategoryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveCategory {
+    public func fetchMoveCategoryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveCategory {
         callPaginated(endpoint: API.fetchMoveCategoryList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveCategory(_ moveCategoryID: Int) -> AnyPublisher<PKMMoveCategory, Error> {
+    public func fetchMoveCategory(_ moveCategoryID: Int) -> AnyPublisher<PKMMoveCategory, Error> {
         call(endpoint: API.fetchMoveCategoryByID(moveCategoryID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveCategory(_ moveCategoryName: String) -> AnyPublisher<PKMMoveCategory, Error> {
+    public func fetchMoveCategory(_ moveCategoryName: String) -> AnyPublisher<PKMMoveCategory, Error> {
         call(endpoint: API.fetchMoveCategoryByName(moveCategoryName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveDamageClassList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveDamageClass {
+    public func fetchMoveDamageClassList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveDamageClass {
         callPaginated(endpoint: API.fetchMoveDamageClassList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveDamageClass(_ moveDamageClassID: Int) -> AnyPublisher<PKMMoveDamageClass, Error> {
+    public func fetchMoveDamageClass(_ moveDamageClassID: Int) -> AnyPublisher<PKMMoveDamageClass, Error> {
         call(endpoint: API.fetchMoveDamageClassByID(moveDamageClassID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveDamageClass(_ moveDamageClassName: String) -> AnyPublisher<PKMMoveDamageClass, Error> {
+    public func fetchMoveDamageClass(_ moveDamageClassName: String) -> AnyPublisher<PKMMoveDamageClass, Error> {
         call(endpoint: API.fetchMoveDamageClassByName(moveDamageClassName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveLearnMethodList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveLearnMethod {
+    public func fetchMoveLearnMethodList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveLearnMethod {
         callPaginated(endpoint: API.fetchMoveLearnMethodList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveLearnMethod(_ moveLearnMethodID: Int) -> AnyPublisher<PKMMoveLearnMethod, Error> {
+    public func fetchMoveLearnMethod(_ moveLearnMethodID: Int) -> AnyPublisher<PKMMoveLearnMethod, Error> {
         call(endpoint: API.fetchMoveLearnMethodByID(moveLearnMethodID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveLearnMethod(_ moveLearnMethodName: String) -> AnyPublisher<PKMMoveLearnMethod, Error> {
+    public func fetchMoveLearnMethod(_ moveLearnMethodName: String) -> AnyPublisher<PKMMoveLearnMethod, Error> {
         call(endpoint: API.fetchMoveLearnMethodByName(moveLearnMethodName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveTargetList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveTarget {
+    public func fetchMoveTargetList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMoveTarget {
         callPaginated(endpoint: API.fetchMoveTargetList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveTarget(_ moveTargetID: Int) -> AnyPublisher<PKMMoveTarget, Error> {
+    public func fetchMoveTarget(_ moveTargetID: Int) -> AnyPublisher<PKMMoveTarget, Error> {
         call(endpoint: API.fetchMoveTargetByID(moveTargetID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMoveTarget(_ moveTargetName: String) -> AnyPublisher<PKMMoveTarget, Error> {
+    public func fetchMoveTarget(_ moveTargetName: String) -> AnyPublisher<PKMMoveTarget, Error> {
         call(endpoint: API.fetchMoveTargetByName(moveTargetName))
     }
 }

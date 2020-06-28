@@ -70,13 +70,13 @@ public struct MachineService: PKMMachineService {
 
 extension MachineService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMachineList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMachine {
+    public func fetchMachineList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMMachine {
         callPaginated(endpoint: API.fetchMachineList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchMachine(_ machineID: Int) -> AnyPublisher<PKMMachine, Error> {
+    public func fetchMachine(_ machineID: Int) -> AnyPublisher<PKMMachine, Error> {
         call(endpoint: API.fetchMachine(machineID))
     }
 }

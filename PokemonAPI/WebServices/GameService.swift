@@ -239,72 +239,72 @@ public struct GameService: PKMGameService {
 
 extension GameService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchGenerationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMGeneration {
+    public func fetchGenerationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMGeneration {
         callPaginated(endpoint: API.fetchGenerationList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchGeneration(_ generationID: Int) -> AnyPublisher<PKMGeneration, Error> {
+    public func fetchGeneration(_ generationID: Int) -> AnyPublisher<PKMGeneration, Error> {
         call(endpoint: API.fetchGenerationByID(generationID))
     }
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchGeneration(_ generationName: String) -> AnyPublisher<PKMGeneration, Error> {
+    public func fetchGeneration(_ generationName: String) -> AnyPublisher<PKMGeneration, Error> {
         call(endpoint: API.fetchGenerationByName(generationName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchPokedexList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokedex {
+    public func fetchPokedexList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokedex {
         callPaginated(endpoint: API.fetchPokedexList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchPokedex(_ pokedexID: Int) -> AnyPublisher<PKMPokedex, Error> {
+    public func fetchPokedex(_ pokedexID: Int) -> AnyPublisher<PKMPokedex, Error> {
         call(endpoint: API.fetchPokedexByID(pokedexID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchPokedex(_ pokedexName: String) -> AnyPublisher<PKMPokedex, Error> {
+    public func fetchPokedex(_ pokedexName: String) -> AnyPublisher<PKMPokedex, Error> {
         call(endpoint: API.fetchPokedexByName(pokedexName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchVersionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMVersion {
+    public func fetchVersionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMVersion {
         callPaginated(endpoint: API.fetchVersionList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchVersion(_ versionID: Int) -> AnyPublisher<PKMVersion, Error> {
+    public func fetchVersion(_ versionID: Int) -> AnyPublisher<PKMVersion, Error> {
         call(endpoint: API.fetchVersionByID(versionID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchVersion(_ versionName: String) -> AnyPublisher<PKMVersion, Error> {
+    public func fetchVersion(_ versionName: String) -> AnyPublisher<PKMVersion, Error> {
         call(endpoint: API.fetchVersionByName(versionName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchVersionGroupList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMVersionGroup {
+    public func fetchVersionGroupList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMVersionGroup {
         callPaginated(endpoint: API.fetchVersionGroupList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchVersionGroup(_ versionGroupID: Int) -> AnyPublisher<PKMVersionGroup, Error> {
+    public func fetchVersionGroup(_ versionGroupID: Int) -> AnyPublisher<PKMVersionGroup, Error> {
         call(endpoint: API.fetchVersionGroupByID(versionGroupID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchVersionGroup(_ versionGroupName: String) -> AnyPublisher<PKMVersionGroup, Error> {
+    public func fetchVersionGroup(_ versionGroupName: String) -> AnyPublisher<PKMVersionGroup, Error> {
         call(endpoint: API.fetchVersionGroupByName(versionGroupName))
     }
 }

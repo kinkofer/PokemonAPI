@@ -191,55 +191,55 @@ public struct EncounterService: PKMEncounterService {
 
 extension EncounterService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterMethodList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterMethod {
+    public func fetchEncounterMethodList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterMethod {
         callPaginated(endpoint: API.fetchEncounterMethodList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterMethod(_ encounterMethodID: Int) -> AnyPublisher<PKMEncounterMethod, Error> {
+    public func fetchEncounterMethod(_ encounterMethodID: Int) -> AnyPublisher<PKMEncounterMethod, Error> {
         call(endpoint: API.fetchEncounterMethodByID(encounterMethodID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterMethod(_ encounterMethodName: String) -> AnyPublisher<PKMEncounterMethod, Error> {
+    public func fetchEncounterMethod(_ encounterMethodName: String) -> AnyPublisher<PKMEncounterMethod, Error> {
         call(endpoint: API.fetchEncounterMethodByName(encounterMethodName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterConditionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterCondition {
+    public func fetchEncounterConditionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterCondition {
         callPaginated(endpoint: API.fetchEncounterConditionList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterCondition(_ encounterConditionID: Int) -> AnyPublisher<PKMEncounterCondition, Error> {
+    public func fetchEncounterCondition(_ encounterConditionID: Int) -> AnyPublisher<PKMEncounterCondition, Error> {
         call(endpoint: API.fetchEncounterConditionByID(encounterConditionID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterCondition(_ encounterConditionName: String) -> AnyPublisher<PKMEncounterCondition, Error> {
+    public func fetchEncounterCondition(_ encounterConditionName: String) -> AnyPublisher<PKMEncounterCondition, Error> {
         call(endpoint: API.fetchEncounterConditionByName(encounterConditionName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterConditionValueList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterConditionValue {
+    public func fetchEncounterConditionValueList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEncounterConditionValue {
         callPaginated(endpoint: API.fetchEncounterConditionValueList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterConditionValue(_ encounterConditionValueID: Int) -> AnyPublisher<PKMEncounterConditionValue, Error> {
+    public func fetchEncounterConditionValue(_ encounterConditionValueID: Int) -> AnyPublisher<PKMEncounterConditionValue, Error> {
         call(endpoint: API.fetchEncounterConditionValueByID(encounterConditionValueID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEncounterConditionValue(_ encounterConditionValueName: String) -> AnyPublisher<PKMEncounterConditionValue, Error> {
+    public func fetchEncounterConditionValue(_ encounterConditionValueName: String) -> AnyPublisher<PKMEncounterConditionValue, Error> {
         call(endpoint: API.fetchEncounterConditionValueByName(encounterConditionValueName))
     }
 }
