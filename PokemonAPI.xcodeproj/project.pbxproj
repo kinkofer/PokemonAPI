@@ -419,7 +419,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		596476422497338E004C7E93 /* Unit Tests */ = {
+		596476422497338E004C7E93 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				74B038111D56714D00F48B92 /* PokemonAPITests */,
@@ -427,7 +427,7 @@
 				74B0385D1D5678AE00F48B92 /* PokemonAPI OSXTests */,
 				59647643249733CB004C7E93 /* PokemonAPI iOSTests */,
 			);
-			path = "Unit Tests";
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		59647643249733CB004C7E93 /* PokemonAPI iOSTests */ = {
@@ -497,7 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				74B038051D56714D00F48B92 /* PokemonAPI */,
-				596476422497338E004C7E93 /* Unit Tests */,
+				596476422497338E004C7E93 /* Tests */,
 				59647641249732E1004C7E93 /* Resources */,
 				74B038041D56714D00F48B92 /* Products */,
 				5964764424975122004C7E93 /* Frameworks */,

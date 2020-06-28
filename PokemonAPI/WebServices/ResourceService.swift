@@ -61,7 +61,7 @@ public struct ResourceService: PKMResourceService {
 
 extension ResourceService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) -> AnyPublisher<T, Error> {
+    public func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) -> AnyPublisher<T, Error> {
         call(endpoint: API.fetchResource(resource))
     }
 }

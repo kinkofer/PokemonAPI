@@ -91,19 +91,19 @@ public struct UtilityService: PKMUtilityService {
 
 extension UtilityService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchLanguageList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLanguage {
+    public func fetchLanguageList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLanguage {
         callPaginated(endpoint: API.fetchLanuageList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchLanguage(_ languageID: Int) -> AnyPublisher<PKMLanguage, Error> {
+    public func fetchLanguage(_ languageID: Int) -> AnyPublisher<PKMLanguage, Error> {
         call(endpoint: API.fetchLanguageByID(languageID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchLanguage(_ languageName: String) -> AnyPublisher<PKMLanguage, Error> {
+    public func fetchLanguage(_ languageName: String) -> AnyPublisher<PKMLanguage, Error> {
         call(endpoint: API.fetchLanguageByName(languageName))
     }
 }

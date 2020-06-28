@@ -154,43 +154,43 @@ public struct ContestService: PKMContestService {
 
 extension ContestService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchContestList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMContestType {
+    public func fetchContestList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMContestType {
         callPaginated(endpoint: API.fetchContestList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchContestType(_ contestTypeID: Int) -> AnyPublisher<PKMContestType, Error> {
+    public func fetchContestType(_ contestTypeID: Int) -> AnyPublisher<PKMContestType, Error> {
         call(endpoint: API.fetchContestTypeByID(contestTypeID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchContestType(_ contestTypeName: String) -> AnyPublisher<PKMContestType, Error> {
+    public func fetchContestType(_ contestTypeName: String) -> AnyPublisher<PKMContestType, Error> {
         call(endpoint: API.fetchContestTypeByName(contestTypeName))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMContestEffect {
+    public func fetchContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMContestEffect {
         callPaginated(endpoint: API.fetchContestEffectList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchContestEffect(_ contestEffectID: Int) -> AnyPublisher<PKMContestEffect, Error> {
+    public func fetchContestEffect(_ contestEffectID: Int) -> AnyPublisher<PKMContestEffect, Error> {
         call(endpoint: API.fetchContestEffect(contestEffectID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchSuperContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMSuperContestEffect {
+    public func fetchSuperContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMSuperContestEffect {
         callPaginated(endpoint: API.fetchSuperContestEffectList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchSuperContestEffect(_ superContestEffectID: Int) -> AnyPublisher<PKMSuperContestEffect, Error> {
+    public func fetchSuperContestEffect(_ superContestEffectID: Int) -> AnyPublisher<PKMSuperContestEffect, Error> {
         call(endpoint: API.fetchSuperContestEffect(superContestEffectID))
     }
 }

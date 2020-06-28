@@ -121,31 +121,31 @@ public struct EvolutionService: PKMEvolutionService {
 
 extension EvolutionService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionChainList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionChain {
+    public func fetchEvolutionChainList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionChain {
         callPaginated(endpoint: API.fetchEvolutionChainList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionChain(_ evolutionChainID: Int) -> AnyPublisher<PKMEvolutionChain, Error> {
+    public func fetchEvolutionChain(_ evolutionChainID: Int) -> AnyPublisher<PKMEvolutionChain, Error> {
         call(endpoint: API.fetchEvolutionChain(evolutionChainID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionTrigger {
+    public func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionTrigger {
         callPaginated(endpoint: API.fetchEvolutionTriggerList, paginationState: paginationState)
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionTrigger(_ evolutionTriggerID: Int) -> AnyPublisher<PKMEvolutionTrigger, Error> {
+    public func fetchEvolutionTrigger(_ evolutionTriggerID: Int) -> AnyPublisher<PKMEvolutionTrigger, Error> {
         call(endpoint: API.fetchEvolutionTriggerByID(evolutionTriggerID))
     }
     
     
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionTrigger(_ evolutionTriggerName: String) -> AnyPublisher<PKMEvolutionTrigger, Error> {
+    public func fetchEvolutionTrigger(_ evolutionTriggerName: String) -> AnyPublisher<PKMEvolutionTrigger, Error> {
         call(endpoint: API.fetchEvolutionTriggerByName(evolutionTriggerName))
     }
 }
