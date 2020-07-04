@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "PokemomAPI",
+    name: "PokemonAPI",
     platforms: [
         .macOS(.v10_11),
         .iOS(.v11),
@@ -10,7 +10,7 @@ let package = Package(
         .tvOS(.v9),
     ],
     products: [
-        .library(name: "PokemomAPI",
+        .library(name: "PokemonAPI",
                  targets: ["PokemonAPI"]),
     ],
     targets: [

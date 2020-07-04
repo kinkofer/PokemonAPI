@@ -1,9 +1,10 @@
 # PokemonAPI
 
 [![Build Status](https://travis-ci.org/kinkofer/PokemonAPI.svg?branch=master)](https://travis-ci.org/kinkofer/PokemonAPI)
-[![Version](https://img.shields.io/cocoapods/v/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
 [![License](https://img.shields.io/cocoapods/l/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
 [![Platform](https://img.shields.io/cocoapods/p/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
+[![Version](https://img.shields.io/cocoapods/v/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ## What is this?
@@ -37,6 +38,30 @@ Fetching lists will return a `PagedObject<T>` containing a page of results, plus
 Web service functions for lists take a `PaginationState` enum parameter. There are two cases for this enum, `.initial(pageLimit: Int)` for the first call, and `.continuing(PKMPagedObject<T>, PaginationRelationship)` for subsequent calls. Each function sets a default value of `.initial(pageLimit: 20)`, but you can pass your own page limit. After the first call, you use `.continuing()` with the PagedObject from the last response, and a `PaginationRelationship` for navigation (`.next`, `.previous`, `.first`, `.last`, or a specific `.page(Int)`).
 
 
+### Network Calls
+
+Allow your app to make calls to PokéAPI (pokeapi.co) by making an App Transport Security domain exception.
+
+In your Info.plist, add
+```plist
+<key>NSAppTransportSecurity</key>
+<dict>
+	<key>NSExceptionDomains</key>
+	<dict>
+		<key>pokeapi.co</key>
+		<dict>
+			<key>NSIncludesSubdomains</key>
+			<true/>
+			<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+			<key>NSTemporaryExceptionMinimumTLSVersion</key>
+			<string>TLSv1.2</string>
+		</dict>
+	</dict>
+</dict>
+```
+
+
 ## Examples
 
 ```swift
@@ -52,7 +77,7 @@ PokemonAPI().berryService.fetchBerry(1) { result in
     }
 }
 
-// Same example using Combine
+// Same example using Combine. Don't forget to store your cancellable.
 let cancellable = PokemonAPI().berryService.fetchBerry(1)
 	.sink(receiveCompletion: { completion in
         if case .failure(let error) = completion {
@@ -128,6 +153,18 @@ PokemonAPI().utilityService.fetchLanguageList(paginationState: .initial(pageLimi
 
 ## Installation
 
+### Swift Package Manager
+
+Search for this repository URL in Xcode:
+
+File->Swift Packages->Add Package Dependency...
+
+```
+https://github.com/kinkofer/PokemonAPI
+```
+
+### Cocoapods
+
 PokemonAPI is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
@@ -135,29 +172,13 @@ it, simply add the following line to your Podfile:
 pod 'PokemonAPI'
 ```
 
+
+### Carthage
+
 If you're using Carthage you can add PokemonAPI by adding it to your Cartfile:
 
 ```ruby
 github "kinkofer/PokemonAPI" ~> 6.0.0
-```
-
-In your Info.plist, add
-```plist
-<key>NSAppTransportSecurity</key>
-<dict>
-	<key>NSExceptionDomains</key>
-	<dict>
-		<key>pokeapi.co</key>
-		<dict>
-			<key>NSIncludesSubdomains</key>
-			<true/>
-			<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-			<true/>
-			<key>NSTemporaryExceptionMinimumTLSVersion</key>
-			<string>TLSv1.2</string>
-		</dict>
-	</dict>
-</dict>
 ```
 
 ## Author
