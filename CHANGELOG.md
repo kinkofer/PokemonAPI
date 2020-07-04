@@ -7,6 +7,8 @@ Refactored network and web service architecture
 
 Reorganized project files
 
+Supports Swift Package Manager
+
 ## 5.0.0
 Updated for Swift 5
 
