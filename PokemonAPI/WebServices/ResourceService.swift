@@ -28,7 +28,16 @@ public struct ResourceService: PKMResourceService {
         var path: String {
             switch self {
             case .fetchResource(let resource):
-                return resource.url ?? ""
+                if var url = resource.url{
+                    if !url.hasPrefix("https://pokeapi.co/api/v2") {
+                        return ""
+                    } else {
+                        url.removeFirst("https://pokeapi.co/api/v2".count)
+                        return url
+                    }
+                } else {
+                    return ""
+                }
             }
         }
     }
@@ -48,7 +57,7 @@ public struct ResourceService: PKMResourceService {
             completion(.failure(HTTPError.invalidRequest))
             return
         }
-        
+
         call(endpoint: API.fetchResource(resource)) { result in
             result.decode(completion: completion)
         }
