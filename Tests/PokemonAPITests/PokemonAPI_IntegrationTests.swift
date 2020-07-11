@@ -558,5 +558,29 @@ class PokemonAPITests: XCTestCase {
             XCTAssertNil(err, "Something went wrong")
         }
     }
+    
+    func testResource() {
+        let asyncExpectation = expectation(description: "Fetch Resource")
+        PokemonAPI().pokemonService.fetchPokemon("bulbasaur"){ result in
+            switch result {
+            case .failure(let error):
+                XCTFail("The service should not fail: \(error.localizedDescription)")
+            case .success(let pokemon):
+                if let speciesResource = pokemon.species{
+                    PokemonAPI().resourceService.fetch(speciesResource){ result in
+                        if case let .failure(error) = result {
+                            XCTFail("The service should not fail: \(error.localizedDescription)")
+                        }
+                        asyncExpectation.fulfill()
+                    }
+                } else {
+                    XCTFail("Pokemon species was returned as nil")
+                }
+            }
+        }
+        self.waitForExpectations(timeout: 30) { (err) -> Void in
+            XCTAssertNil(err, "Something went wrong")
+        }
+    }
 }
 
