@@ -13,21 +13,31 @@ import Combine
 
 @available(iOS 13, *)
 class CombineExampleViewController: UIViewController {
+    let pokemonAPI = PokemonAPI()
     var cancellables = Set<AnyCancellable>()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PokemonAPI().berryService.fetchBerry(5)
+        pokemonAPI.berryService.fetchBerry(5)
+            .tryMap { berry -> PKMNamedAPIResource<PKMBerryFirmness> in
+                print(berry)
+                guard let berryFirmness = berry.firmness else {
+                    throw HTTPError.unexpectedResponse
+                }
+                return berryFirmness
+            }
+            .flatMap { berryFirmness in
+                return self.pokemonAPI.resourceService.fetch(berryFirmness)
+            }
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
                     print(error.localizedDescription)
                 }
-            }, receiveValue: { berry in
-                print(berry)
+            }, receiveValue: { berryFirmness in
+                print(berryFirmness)
             })
             .store(in: &cancellables)
     }
-    
 }

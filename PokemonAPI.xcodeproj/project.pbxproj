@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5926AD3024BB83D9000CD4BC /* ResourceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5926AD2F24BB83D9000CD4BC /* ResourceServiceTests.swift */; };
+		5926AD3124BB83D9000CD4BC /* ResourceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5926AD2F24BB83D9000CD4BC /* ResourceServiceTests.swift */; };
+		5926AD3224BB83D9000CD4BC /* ResourceServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5926AD2F24BB83D9000CD4BC /* ResourceServiceTests.swift */; };
 		593FD62A20E54EBB00CF8862 /* Evolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD62120E54EBA00CF8862 /* Evolution.swift */; };
 		593FD62B20E54EBB00CF8862 /* Evolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD62120E54EBA00CF8862 /* Evolution.swift */; };
 		593FD62C20E54EBB00CF8862 /* Evolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FD62120E54EBA00CF8862 /* Evolution.swift */; };
@@ -262,6 +265,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5926AD2F24BB83D9000CD4BC /* ResourceServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceServiceTests.swift; sourceTree = "<group>"; };
 		593FD62120E54EBA00CF8862 /* Evolution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Evolution.swift; sourceTree = "<group>"; };
 		593FD62220E54EBB00CF8862 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		593FD62320E54EBB00CF8862 /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
@@ -459,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				596476382496FF9F004C7E93 /* BerryServiceTests.swift */,
+				5926AD2F24BB83D9000CD4BC /* ResourceServiceTests.swift */,
 			);
 			path = ServiceTests;
 			sourceTree = "<group>";
@@ -939,6 +944,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				596476392496FF9F004C7E93 /* BerryServiceTests.swift in Sources */,
+				5926AD3024BB83D9000CD4BC /* ResourceServiceTests.swift in Sources */,
 				597CEC5824A3EA5C00E90A7C /* MockedResponse.swift in Sources */,
 				597CEC5424A3B78A00E90A7C /* RequestMocking.swift in Sources */,
 				74B038131D56714D00F48B92 /* PokemonAPI_IntegrationTests.swift in Sources */,
@@ -1047,6 +1053,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5964763A2496FFA0004C7E93 /* BerryServiceTests.swift in Sources */,
+				5926AD3124BB83D9000CD4BC /* ResourceServiceTests.swift in Sources */,
 				597CEC5924A3EA5C00E90A7C /* MockedResponse.swift in Sources */,
 				597CEC5524A3B78A00E90A7C /* RequestMocking.swift in Sources */,
 				74B0388B1D56798100F48B92 /* PokemonAPI_IntegrationTests.swift in Sources */,
@@ -1107,6 +1114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5964763B2496FFA0004C7E93 /* BerryServiceTests.swift in Sources */,
+				5926AD3224BB83D9000CD4BC /* ResourceServiceTests.swift in Sources */,
 				597CEC5A24A3EA5C00E90A7C /* MockedResponse.swift in Sources */,
 				597CEC5624A3B78A00E90A7C /* RequestMocking.swift in Sources */,
 				74B0388C1D56798300F48B92 /* PokemonAPI_IntegrationTests.swift in Sources */,
