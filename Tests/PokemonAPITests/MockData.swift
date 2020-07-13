@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PokemonAPI
 
 
 struct MockBerryData {
@@ -531,7 +532,15 @@ struct MockPokemonData {
 
 
 struct MockResourceData {
-    
+    static var berryResource: PKMNamedAPIResource<PKMBerry> {
+        let resourceData = """
+        {
+            "name": "cherri",
+            "url": "https://pokeapi.co/api/v2/berry/1/"
+        }
+        """.data(using: .utf8)!
+        return try! PKMNamedAPIResource<PKMBerry>.decode(from: resourceData)
+    }
 }
 
 

@@ -35,7 +35,8 @@ public struct ResourceService: PKMResourceService {
     
     public var session: URLSession
     
-    public var baseURL: String = "https://pokeapi.co/api/v2"
+    // Resources do not need a baseURL, the full URL is in the PKMAPIResource itself.
+    public var baseURL: String = ""
     
     
     /**
