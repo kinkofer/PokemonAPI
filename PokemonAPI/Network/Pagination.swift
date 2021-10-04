@@ -61,7 +61,7 @@ public class PKMPagedObject<T>: Codable {
     
     /// The number of pages produced based of the pageLimit
     public var pages: Int {
-        guard let count = count else {
+        guard let count = count, limit != 0 else {
             return 0
         }
         return Int((Float(count) / Float(limit)).rounded(.up))
@@ -69,6 +69,7 @@ public class PKMPagedObject<T>: Codable {
     
     /// The current zero-index page based on the current offset and pageLimit
     public var currentPage: Int {
+        guard limit != 0 else { return 0 }
         return offset / limit
     }
     
@@ -126,7 +127,7 @@ public class PKMPagedObject<T>: Codable {
         switch relationship {
         case .first: return 0
         case .last:
-            guard let count = count else {
+            guard let count = count, limit != 0 else {
                 return 0
             }
             let remainingCount = count % limit

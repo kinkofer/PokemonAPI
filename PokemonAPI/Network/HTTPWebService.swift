@@ -20,6 +20,9 @@ public protocol HTTPWebService {
 }
 
 
+
+// MARK: - Completion Calls
+
 extension HTTPWebService {
     func call(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
         do {
@@ -68,8 +71,10 @@ extension HTTPWebService {
 
 
 
+// MARK: - Publisher Calls
+
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension HTTPWebService {
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
     func call<Value>(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) -> AnyPublisher<Value, Error> where Value: Decodable {
         do {
             let request = try endpoint.createUrlRequest(baseURL: baseURL, method: method, headers: headers, body: body)
@@ -82,7 +87,6 @@ extension HTTPWebService {
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
     func callPaginated<Value>(endpoint: APICall, paginationState: PaginationState<Value>, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) -> AnyPublisher<PKMPagedObject<Value>, Error> where Value: Decodable {
         do {
             let request = try endpoint.createUrlRequest(baseURL: baseURL, paginationState: paginationState, method: method, headers: headers, body: body)
@@ -92,5 +96,31 @@ extension HTTPWebService {
         } catch let error {
             return Fail<PKMPagedObject<Value>, Error>(error: error).eraseToAnyPublisher()
         }
+    }
+}
+
+
+
+// MARK: - Async Calls
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension HTTPWebService {
+    func call(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) async throws -> Data {
+        let request = try endpoint.createUrlRequest(baseURL: baseURL, method: method, headers: headers, body: body)
+        return try await session.startData(request)
+    }
+    
+    
+    func callPaginated<Value>(endpoint: APICall, paginationState: PaginationState<Value>, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) async throws -> PKMPagedObject<Value> where Value: Decodable {
+        let request = try endpoint.createUrlRequest(baseURL: baseURL, paginationState: paginationState, method: method, headers: headers, body: body)
+        
+        guard let url = request.url else {
+            throw HTTPError.invalidRequest
+        }
+        
+        let data = try await session.startData(request)
+        let pagedObject = try PKMPagedObject<Value>.decode(from: data)
+        pagedObject.update(with: paginationState, currentUrl: url.absoluteString)
+        return pagedObject
     }
 }

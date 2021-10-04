@@ -13,8 +13,11 @@ import Foundation
 protocol PKMResourceService: HTTPWebService {
     func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T, Error>) -> Void)
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) -> AnyPublisher<T, Error>
+    
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) async throws -> T
 }
 
 
@@ -35,9 +38,12 @@ public struct ResourceService: PKMResourceService {
     
     public var session: URLSession
     
-    // Resources do not need a baseURL, the full URL is in the PKMAPIResource itself.
+    // Resources do not need a baseURL, the full URL is in the PKMAPIResource itself, provided by the path.
     public var baseURL: String = ""
     
+    
+    
+    // MARK: - Completion Services
     
     /**
      Fetch a resource from a named or unnamed resource url
@@ -64,5 +70,16 @@ extension ResourceService {
     @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
     public func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) -> AnyPublisher<T, Error> {
         call(endpoint: API.fetchResource(resource))
+    }
+}
+
+
+
+// MARK: - Async Services
+
+extension ResourceService {
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) async throws -> T {
+        try await T.decode(from: call(endpoint: API.fetchResource(resource)))
     }
 }

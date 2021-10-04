@@ -57,94 +57,184 @@ protocol PKMPokemonService: HTTPWebService {
     func fetchType(_ typeName: String, completion: @escaping (_ result: Result<PKMType, Error>) -> Void)
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchAbilityList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMAbility
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchAbility(_ abilityID: Int) -> AnyPublisher<PKMAbility, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchAbility(_ abilityName: String) -> AnyPublisher<PKMAbility, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchCharacteristicList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMCharacteristic
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchCharacteristic(_ characteristicID: Int) -> AnyPublisher<PKMCharacteristic, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchEggGroupList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEggGroup
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchEggGroup(_ eggGroupID: Int) -> AnyPublisher<PKMEggGroup, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchEggGroup(_ eggGroupName: String) -> AnyPublisher<PKMEggGroup, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchGenderList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMGender
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchGender(_ genderID: Int) -> AnyPublisher<PKMGender, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchGender(_ genderName: String) -> AnyPublisher<PKMGender, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchGrowthRateList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMGrowthRate
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchGrowthRate(_ growthRateID: Int) -> AnyPublisher<PKMGrowthRate, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchGrowthRate(_ growthRateName: String) -> AnyPublisher<PKMGrowthRate, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchNatureList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMNature
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchNature(_ natureID: Int) -> AnyPublisher<PKMNature, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchNature(_ natureName: String) -> AnyPublisher<PKMNature, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokeathlonStatList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokeathlonStat
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokeathlonStat(_ pokeathlonStatID: Int) -> AnyPublisher<PKMPokeathlonStat, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokeathlonStat(_ pokeathlonStatName: String) -> AnyPublisher<PKMPokeathlonStat, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemon
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemon(_ pokemonID: Int) -> AnyPublisher<PKMPokemon, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemon(_ pokemonName: String) -> AnyPublisher<PKMPokemon, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonColorList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonColor
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonColor(_ pokemonColorID: Int) -> AnyPublisher<PKMPokemonColor, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonColor(_ pokemonColorName: String) -> AnyPublisher<PKMPokemonColor, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonFormList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonForm
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonForm(_ pokemonFormID: Int) -> AnyPublisher<PKMPokemonForm, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonForm(_ pokemonFormName: String) -> AnyPublisher<PKMPokemonForm, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonHabitatList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonHabitat
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonHabitat(_ pokemonHabitatID: Int) -> AnyPublisher<PKMPokemonHabitat, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonHabitat(_ pokemonHabitatName: String) -> AnyPublisher<PKMPokemonHabitat, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonShapeList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonShape
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonShape(_ pokemonShapeID: Int) -> AnyPublisher<PKMPokemonShape, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonShape(_ pokemonShapeName: String) -> AnyPublisher<PKMPokemonShape, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonSpeciesList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonSpecies
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonSpecies(_ pokemonSpeciesID: Int) -> AnyPublisher<PKMPokemonSpecies, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchPokemonSpecies(_ pokemonSpeciesName: String) -> AnyPublisher<PKMPokemonSpecies, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchStatList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMStat
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchStat(_ statID: Int) -> AnyPublisher<PKMStat, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchStat(_ statName: String) -> AnyPublisher<PKMStat, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchTypeList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMType
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchType(_ typeID: Int) -> AnyPublisher<PKMType, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchType(_ typeName: String) -> AnyPublisher<PKMType, Error>
+    
+    
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchAbilityList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMAbility
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchAbility(_ abilityID: Int) async throws -> PKMAbility
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchAbility(_ abilityName: String) async throws -> PKMAbility
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchCharacteristicList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMCharacteristic
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchCharacteristic(_ characteristicID: Int) async throws -> PKMCharacteristic
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchEggGroupList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEggGroup
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchEggGroup(_ eggGroupID: Int) async throws -> PKMEggGroup
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchEggGroup(_ eggGroupName: String) async throws -> PKMEggGroup
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchGenderList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGender
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchGender(_ genderID: Int) async throws -> PKMGender
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchGender(_ genderName: String) async throws -> PKMGender
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchGrowthRateList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGrowthRate
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchGrowthRate(_ growthRateID: Int) async throws -> PKMGrowthRate
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchGrowthRate(_ growthRateName: String) async throws -> PKMGrowthRate
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchNatureList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMNature
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchNature(_ natureID: Int) async throws -> PKMNature
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchNature(_ natureName: String) async throws -> PKMNature
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokeathlonStatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokeathlonStat
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokeathlonStat(_ pokeathlonStatID: Int) async throws -> PKMPokeathlonStat
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokeathlonStat(_ pokeathlonStatName: String) async throws -> PKMPokeathlonStat
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemon
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemon(_ pokemonID: Int) async throws -> PKMPokemon
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemon(_ pokemonName: String) async throws -> PKMPokemon
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonColorList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonColor
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonColor(_ pokemonColorID: Int) async throws -> PKMPokemonColor
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonColor(_ pokemonColorName: String) async throws -> PKMPokemonColor
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonFormList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonForm
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonForm(_ pokemonFormID: Int) async throws -> PKMPokemonForm
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonForm(_ pokemonFormName: String) async throws -> PKMPokemonForm
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonHabitatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonHabitat
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonHabitat(_ pokemonHabitatID: Int) async throws -> PKMPokemonHabitat
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonHabitat(_ pokemonHabitatName: String) async throws -> PKMPokemonHabitat
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonShapeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonShape
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonShape(_ pokemonShapeID: Int) async throws -> PKMPokemonShape
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonShape(_ pokemonShapeName: String) async throws -> PKMPokemonShape
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonSpeciesList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonSpecies
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonSpecies(_ pokemonSpeciesID: Int) async throws -> PKMPokemonSpecies
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchPokemonSpecies(_ pokemonSpeciesName: String) async throws -> PKMPokemonSpecies
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchStatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMStat
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchStat(_ statID: Int) async throws -> PKMStat
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchStat(_ statName: String) async throws -> PKMStat
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchTypeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMType
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchType(_ typeID: Int) async throws -> PKMType
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchType(_ typeName: String) async throws -> PKMType
 }
 
 
@@ -297,6 +387,8 @@ public struct PokemonService: PKMPokemonService {
     public var baseURL: String = "https://pokeapi.co/api/v2"
     
     
+    
+    // MARK: - Completion Services
     
     /**
      Fetch Abilities list
@@ -770,266 +862,915 @@ public struct PokemonService: PKMPokemonService {
 // MARK: - Combine Services
 
 extension PokemonService {
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Abilities list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchAbilityList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMAbility {
         callPaginated(endpoint: API.fetchAbilityList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Ability Information
+     
+     - parameter abilityID: Ability ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchAbility(_ abilityID: Int) -> AnyPublisher<PKMAbility, Error> {
         call(endpoint: API.fetchAbilityByID(abilityID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Ability Information
+     
+     - parameter abilityName: Ability Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchAbility(_ abilityName: String) -> AnyPublisher<PKMAbility, Error> {
         call(endpoint: API.fetchAbilityByName(abilityName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Characteristics list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchCharacteristicList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMCharacteristic {
         callPaginated(endpoint: API.fetchCharacteristicList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Characteristic Information
+     
+     - parameter characteristicID: Characteristic ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchCharacteristic(_ characteristicID: Int) -> AnyPublisher<PKMCharacteristic, Error> {
         call(endpoint: API.fetchCharacteristic(characteristicID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Egg Group list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchEggGroupList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEggGroup {
         callPaginated(endpoint: API.fetchEggGroupList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Egg Group Information
+     
+     - parameter eggGroupID: Egg Group ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchEggGroup(_ eggGroupID: Int) -> AnyPublisher<PKMEggGroup, Error> {
         call(endpoint: API.fetchEggGroupByID(eggGroupID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Egg Group Information
+     
+     - parameter eggGroupName: Egg Group Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchEggGroup(_ eggGroupName: String) -> AnyPublisher<PKMEggGroup, Error> {
         call(endpoint: API.fetchEggGroupByName(eggGroupName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Genders list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchGenderList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMGender {
         callPaginated(endpoint: API.fetchGenderList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Gender Information
+     
+     - parameter genderID: Gender ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchGender(_ genderID: Int) -> AnyPublisher<PKMGender, Error> {
         call(endpoint: API.fetchGenderByID(genderID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Gender Information
+     
+     - parameter genderName: Gender Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchGender(_ genderName: String) -> AnyPublisher<PKMGender, Error> {
         call(endpoint: API.fetchGenderByName(genderName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Growth Rate list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchGrowthRateList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMGrowthRate {
         callPaginated(endpoint: API.fetchGrowthRateList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Growth Rate Information
+     
+     - parameter growthRateID: Growth Rate ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchGrowthRate(_ growthRateID: Int) -> AnyPublisher<PKMGrowthRate, Error> {
         call(endpoint: API.fetchGrowthRateByID(growthRateID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Growth Rate Information
+     
+     - parameter growthRateName: Growth Rate Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchGrowthRate(_ growthRateName: String) -> AnyPublisher<PKMGrowthRate, Error> {
         call(endpoint: API.fetchGrowthRateByName(growthRateName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Nature list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchNatureList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMNature {
         callPaginated(endpoint: API.fetchNatureList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Nature Information
+     
+     - parameter natureID: Nature ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchNature(_ natureID: Int) -> AnyPublisher<PKMNature, Error> {
         call(endpoint: API.fetchNatureByID(natureID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Nature Information
+     
+     - parameter natureName: Nature Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchNature(_ natureName: String) -> AnyPublisher<PKMNature, Error> {
         call(endpoint: API.fetchNatureByName(natureName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokeathlon Stat list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokeathlonStatList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokeathlonStat {
         callPaginated(endpoint: API.fetchPokeathlonStatList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokeathlon Stat Information
+     
+     - parameter pokeathlonStatID: Pokeathlon Stat ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokeathlonStat(_ pokeathlonStatID: Int) -> AnyPublisher<PKMPokeathlonStat, Error> {
         call(endpoint: API.fetchPokeathlonStatByID(pokeathlonStatID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokeathlon Stat Information
+     
+     - parameter pokeathlonStatName: Pokeathlon Stat Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokeathlonStat(_ pokeathlonStatName: String) -> AnyPublisher<PKMPokeathlonStat, Error> {
         call(endpoint: API.fetchPokeathlonStatByName(pokeathlonStatName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemon {
         callPaginated(endpoint: API.fetchPokemonList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Information
+     
+     - parameter pokemonID: Pokemon ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemon(_ pokemonID: Int) -> AnyPublisher<PKMPokemon, Error> {
         call(endpoint: API.fetchPokemonByID(pokemonID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Information
+     
+     - parameter pokemonName: Pokemon Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemon(_ pokemonName: String) -> AnyPublisher<PKMPokemon, Error> {
         call(endpoint: API.fetchPokemonByName(pokemonName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Color list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonColorList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonColor {
         callPaginated(endpoint: API.fetchPokemonColorList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Color Information
+     
+     - parameter pokemonColorID: Pokemon Color ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonColor(_ pokemonColorID: Int) -> AnyPublisher<PKMPokemonColor, Error> {
         call(endpoint: API.fetchPokemonColorByID(pokemonColorID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Color Information
+     
+     - parameter pokemonColorName: Pokemon Color Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonColor(_ pokemonColorName: String) -> AnyPublisher<PKMPokemonColor, Error> {
         call(endpoint: API.fetchPokemonColorByName(pokemonColorName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Form list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonFormList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonForm {
         callPaginated(endpoint: API.fetchPokemonFormList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Form Information
+     
+     - parameter pokemonFormID: Pokemon Form ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonForm(_ pokemonFormID: Int) -> AnyPublisher<PKMPokemonForm, Error> {
         call(endpoint: API.fetchPokemonFormByID(pokemonFormID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Form Information
+     
+     - parameter pokemonFormName: Pokemon Form Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonForm(_ pokemonFormName: String) -> AnyPublisher<PKMPokemonForm, Error> {
         call(endpoint: API.fetchPokemonFormByName(pokemonFormName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Habitat list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonHabitatList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonHabitat {
         callPaginated(endpoint: API.fetchPokemonHabitatList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Habitat Information
+     
+     - parameter pokemonHabitatID: Pokemon Habitat ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonHabitat(_ pokemonHabitatID: Int) -> AnyPublisher<PKMPokemonHabitat, Error> {
         call(endpoint: API.fetchPokemonHabitatByID(pokemonHabitatID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Habitat Information
+     
+     - parameter pokemonHabitatName: Pokemon Habitat Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonHabitat(_ pokemonHabitatName: String) -> AnyPublisher<PKMPokemonHabitat, Error> {
         call(endpoint: API.fetchPokemonHabitatByName(pokemonHabitatName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Shape list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonShapeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonShape {
         callPaginated(endpoint: API.fetchPokemonShapeList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Shape Information
+     
+     - parameter pokemonShapeID: Pokemon Shape ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonShape(_ pokemonShapeID: Int) -> AnyPublisher<PKMPokemonShape, Error> {
         call(endpoint: API.fetchPokemonShapeByID(pokemonShapeID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Shape Information
+     
+     - parameter pokemonShapeName: Pokemon Shape Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonShape(_ pokemonShapeName: String) -> AnyPublisher<PKMPokemonShape, Error> {
         call(endpoint: API.fetchPokemonShapeByName(pokemonShapeName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Species list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonSpeciesList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPokemonSpecies {
         callPaginated(endpoint: API.fetchPokemonSpeciesList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Species Information
+     
+     - parameter pokemonSpeciesID: Pokemon Species ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonSpecies(_ pokemonSpeciesID: Int) -> AnyPublisher<PKMPokemonSpecies, Error> {
         call(endpoint: API.fetchPokemonSpeciesByID(pokemonSpeciesID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Pokemon Species Information
+     
+     - parameter pokemonSpeciesName: Pokemon Species Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchPokemonSpecies(_ pokemonSpeciesName: String) -> AnyPublisher<PKMPokemonSpecies, Error> {
         call(endpoint: API.fetchPokemonSpeciesByName(pokemonSpeciesName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Stat list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchStatList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMStat {
         callPaginated(endpoint: API.fetchStatList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Stat Information
+     
+     - parameter statID: Stat ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchStat(_ statID: Int) -> AnyPublisher<PKMStat, Error> {
         call(endpoint: API.fetchStatByID(statID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Stat Information
+     
+     - parameter statName: Stat Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchStat(_ statName: String) -> AnyPublisher<PKMStat, Error> {
         call(endpoint: API.fetchStatByName(statName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Type list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchTypeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMType {
         callPaginated(endpoint: API.fetchTypeList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Type Information
+     
+     - parameter typeID: Type ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchType(_ typeID: Int) -> AnyPublisher<PKMType, Error> {
         call(endpoint: API.fetchTypeByID(typeID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Type Information
+     
+     - parameter typeName: Type Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchType(_ typeName: String) -> AnyPublisher<PKMType, Error> {
         call(endpoint: API.fetchTypeByName(typeName))
+    }
+}
+
+
+
+// MARK: - Async Services
+
+extension PokemonService {
+    /**
+     Fetch Abilities list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchAbilityList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMAbility {
+        try await callPaginated(endpoint: API.fetchAbilityList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Ability Information
+     
+     - parameter abilityID: Ability ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchAbility(_ abilityID: Int) async throws -> PKMAbility {
+        try await PKMAbility.decode(from: call(endpoint: API.fetchAbilityByID(abilityID)))
+    }
+    
+    
+    /**
+     Fetch Ability Information
+     
+     - parameter abilityName: Ability Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchAbility(_ abilityName: String) async throws -> PKMAbility {
+        try await PKMAbility.decode(from: call(endpoint: API.fetchAbilityByName(abilityName)))
+    }
+    
+    
+    /**
+     Fetch Characteristics list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchCharacteristicList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMCharacteristic {
+        try await callPaginated(endpoint: API.fetchCharacteristicList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Characteristic Information
+     
+     - parameter characteristicID: Characteristic ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchCharacteristic(_ characteristicID: Int) async throws -> PKMCharacteristic {
+        try await PKMCharacteristic.decode(from: call(endpoint: API.fetchCharacteristic(characteristicID)))
+    }
+    
+    
+    /**
+     Fetch Egg Group list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchEggGroupList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEggGroup {
+        try await callPaginated(endpoint: API.fetchEggGroupList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Egg Group Information
+     
+     - parameter eggGroupID: Egg Group ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchEggGroup(_ eggGroupID: Int) async throws -> PKMEggGroup {
+        try await PKMEggGroup.decode(from: call(endpoint: API.fetchEggGroupByID(eggGroupID)))
+    }
+    
+    
+    /**
+     Fetch Egg Group Information
+     
+     - parameter eggGroupName: Egg Group Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchEggGroup(_ eggGroupName: String) async throws -> PKMEggGroup {
+        try await PKMEggGroup.decode(from: call(endpoint: API.fetchEggGroupByName(eggGroupName)))
+    }
+    
+    
+    /**
+     Fetch Genders list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchGenderList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGender {
+        try await callPaginated(endpoint: API.fetchGenderList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Gender Information
+     
+     - parameter genderID: Gender ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchGender(_ genderID: Int) async throws -> PKMGender {
+        try await PKMGender.decode(from: call(endpoint: API.fetchGenderByID(genderID)))
+    }
+    
+    
+    /**
+     Fetch Gender Information
+     
+     - parameter genderName: Gender Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchGender(_ genderName: String) async throws -> PKMGender {
+        try await PKMGender.decode(from: call(endpoint: API.fetchGenderByName(genderName)))
+    }
+    
+    
+    /**
+     Fetch Growth Rate list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchGrowthRateList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGrowthRate {
+        try await callPaginated(endpoint: API.fetchGrowthRateList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Growth Rate Information
+     
+     - parameter growthRateID: Growth Rate ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchGrowthRate(_ growthRateID: Int) async throws -> PKMGrowthRate {
+        try await PKMGrowthRate.decode(from: call(endpoint: API.fetchGrowthRateByID(growthRateID)))
+    }
+    
+    
+    /**
+     Fetch Growth Rate Information
+     
+     - parameter growthRateName: Growth Rate Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchGrowthRate(_ growthRateName: String) async throws -> PKMGrowthRate {
+        try await PKMGrowthRate.decode(from: call(endpoint: API.fetchGrowthRateByName(growthRateName)))
+    }
+    
+    
+    /**
+     Fetch Nature list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchNatureList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMNature {
+        try await callPaginated(endpoint: API.fetchNatureList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Nature Information
+     
+     - parameter natureID: Nature ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchNature(_ natureID: Int) async throws -> PKMNature {
+        try await PKMNature.decode(from: call(endpoint: API.fetchNatureByID(natureID)))
+    }
+    
+    
+    /**
+     Fetch Nature Information
+     
+     - parameter natureName: Nature Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchNature(_ natureName: String) async throws -> PKMNature {
+        try await PKMNature.decode(from: call(endpoint: API.fetchNatureByName(natureName)))
+    }
+    
+    
+    /**
+     Fetch Pokeathlon Stat list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokeathlonStatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokeathlonStat {
+        try await callPaginated(endpoint: API.fetchPokeathlonStatList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Pokeathlon Stat Information
+     
+     - parameter pokeathlonStatID: Pokeathlon Stat ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokeathlonStat(_ pokeathlonStatID: Int) async throws -> PKMPokeathlonStat {
+        try await PKMPokeathlonStat.decode(from: call(endpoint: API.fetchPokeathlonStatByID(pokeathlonStatID)))
+    }
+    
+    
+    /**
+     Fetch Pokeathlon Stat Information
+     
+     - parameter pokeathlonStatName: Pokeathlon Stat Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokeathlonStat(_ pokeathlonStatName: String) async throws -> PKMPokeathlonStat {
+        try await PKMPokeathlonStat.decode(from: call(endpoint: API.fetchPokeathlonStatByName(pokeathlonStatName)))
+    }
+    
+    
+    /**
+     Fetch Pokemon list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemon {
+        try await callPaginated(endpoint: API.fetchPokemonList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Pokemon Information
+     
+     - parameter pokemonID: Pokemon ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemon(_ pokemonID: Int) async throws -> PKMPokemon {
+        try await PKMPokemon.decode(from: call(endpoint: API.fetchPokemonByID(pokemonID)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Information
+     
+     - parameter pokemonName: Pokemon Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemon(_ pokemonName: String) async throws -> PKMPokemon {
+        try await PKMPokemon.decode(from: call(endpoint: API.fetchPokemonByName(pokemonName)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Color list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonColorList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonColor {
+        try await callPaginated(endpoint: API.fetchPokemonColorList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Pokemon Color Information
+     
+     - parameter pokemonColorID: Pokemon Color ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonColor(_ pokemonColorID: Int) async throws -> PKMPokemonColor {
+        try await PKMPokemonColor.decode(from: call(endpoint: API.fetchPokemonColorByID(pokemonColorID)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Color Information
+     
+     - parameter pokemonColorName: Pokemon Color Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonColor(_ pokemonColorName: String) async throws -> PKMPokemonColor {
+        try await PKMPokemonColor.decode(from: call(endpoint: API.fetchPokemonColorByName(pokemonColorName)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Form list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonFormList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonForm {
+        try await callPaginated(endpoint: API.fetchPokemonFormList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Pokemon Form Information
+     
+     - parameter pokemonFormID: Pokemon Form ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonForm(_ pokemonFormID: Int) async throws -> PKMPokemonForm {
+        try await PKMPokemonForm.decode(from: call(endpoint: API.fetchPokemonFormByID(pokemonFormID)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Form Information
+     
+     - parameter pokemonFormName: Pokemon Form Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonForm(_ pokemonFormName: String) async throws -> PKMPokemonForm {
+        try await PKMPokemonForm.decode(from: call(endpoint: API.fetchPokemonFormByName(pokemonFormName)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Habitat list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonHabitatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonHabitat {
+        try await callPaginated(endpoint: API.fetchPokemonHabitatList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Pokemon Habitat Information
+     
+     - parameter pokemonHabitatID: Pokemon Habitat ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonHabitat(_ pokemonHabitatID: Int) async throws -> PKMPokemonHabitat {
+        try await PKMPokemonHabitat.decode(from: call(endpoint: API.fetchPokemonHabitatByID(pokemonHabitatID)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Habitat Information
+     
+     - parameter pokemonHabitatName: Pokemon Habitat Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonHabitat(_ pokemonHabitatName: String) async throws -> PKMPokemonHabitat {
+        try await PKMPokemonHabitat.decode(from: call(endpoint: API.fetchPokemonHabitatByName(pokemonHabitatName)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Shape list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonShapeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonShape {
+        try await callPaginated(endpoint: API.fetchPokemonShapeList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Pokemon Shape Information
+     
+     - parameter pokemonShapeID: Pokemon Shape ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonShape(_ pokemonShapeID: Int) async throws -> PKMPokemonShape {
+        try await PKMPokemonShape.decode(from: call(endpoint: API.fetchPokemonShapeByID(pokemonShapeID)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Shape Information
+     
+     - parameter pokemonShapeName: Pokemon Shape Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonShape(_ pokemonShapeName: String) async throws -> PKMPokemonShape {
+        try await PKMPokemonShape.decode(from: call(endpoint: API.fetchPokemonShapeByName(pokemonShapeName)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Species list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonSpeciesList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonSpecies {
+        try await callPaginated(endpoint: API.fetchPokemonSpeciesList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Pokemon Species Information
+     
+     - parameter pokemonSpeciesID: Pokemon Species ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonSpecies(_ pokemonSpeciesID: Int) async throws -> PKMPokemonSpecies {
+        try await PKMPokemonSpecies.decode(from: call(endpoint: API.fetchPokemonSpeciesByID(pokemonSpeciesID)))
+    }
+    
+    
+    /**
+     Fetch Pokemon Species Information
+     
+     - parameter pokemonSpeciesName: Pokemon Species Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchPokemonSpecies(_ pokemonSpeciesName: String) async throws -> PKMPokemonSpecies {
+        try await PKMPokemonSpecies.decode(from: call(endpoint: API.fetchPokemonSpeciesByName(pokemonSpeciesName)))
+    }
+    
+    
+    /**
+     Fetch Stat list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchStatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMStat {
+        try await callPaginated(endpoint: API.fetchStatList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Stat Information
+     
+     - parameter statID: Stat ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchStat(_ statID: Int) async throws -> PKMStat {
+        try await PKMStat.decode(from: call(endpoint: API.fetchStatByID(statID)))
+    }
+    
+    
+    /**
+     Fetch Stat Information
+     
+     - parameter statName: Stat Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchStat(_ statName: String) async throws -> PKMStat {
+        try await PKMStat.decode(from: call(endpoint: API.fetchStatByName(statName)))
+    }
+    
+    
+    /**
+     Fetch Type list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchTypeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMType {
+        try await callPaginated(endpoint: API.fetchTypeList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Type Information
+     
+     - parameter typeID: Type ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchType(_ typeID: Int) async throws -> PKMType {
+        try await PKMType.decode(from: call(endpoint: API.fetchTypeByID(typeID)))
+    }
+    
+    
+    /**
+     Fetch Type Information
+     
+     - parameter typeName: Type Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchType(_ typeName: String) async throws -> PKMType {
+        try await PKMType.decode(from: call(endpoint: API.fetchTypeByName(typeName)))
     }
 }

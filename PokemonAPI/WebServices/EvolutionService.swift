@@ -17,16 +17,27 @@ protocol PKMEvolutionService: HTTPWebService {
     func fetchEvolutionTrigger(_ evolutionTriggerID: Int, completion: @escaping (_ result: Result<PKMEvolutionTrigger, Error>) -> Void)
     func fetchEvolutionTrigger(_ evolutionTriggerName: String, completion: @escaping (_ result: Result<PKMEvolutionTrigger, Error>) -> Void)
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchEvolutionChainList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionChain
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchEvolutionChain(_ evolutionChainID: Int) -> AnyPublisher<PKMEvolutionChain, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionTrigger
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchEvolutionTrigger(_ evolutionTriggerID: Int) -> AnyPublisher<PKMEvolutionTrigger, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchEvolutionTrigger(_ evolutionTriggerName: String) -> AnyPublisher<PKMEvolutionTrigger, Error>
+    
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchEvolutionChainList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEvolutionChain
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchEvolutionChain(_ evolutionChainID: Int) async throws -> PKMEvolutionChain
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEvolutionTrigger
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchEvolutionTrigger(_ evolutionTriggerID: Int) async throws -> PKMEvolutionTrigger
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchEvolutionTrigger(_ evolutionTriggerName: String) async throws -> PKMEvolutionTrigger
 }
 
 
@@ -62,6 +73,8 @@ public struct EvolutionService: PKMEvolutionService {
     public var baseURL: String = "https://pokeapi.co/api/v2"
     
     
+    
+    // MARK: - Completion Services
     
     /**
      Fetch Encounter Chains list
@@ -120,32 +133,109 @@ public struct EvolutionService: PKMEvolutionService {
 // MARK: - Combine Services
 
 extension EvolutionService {
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Encounter Chains list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchEvolutionChainList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionChain {
         callPaginated(endpoint: API.fetchEvolutionChainList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Evolution Chain Information
+     
+     - parameter evolutionChainID: Evolution Chain ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchEvolutionChain(_ evolutionChainID: Int) -> AnyPublisher<PKMEvolutionChain, Error> {
         call(endpoint: API.fetchEvolutionChain(evolutionChainID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Encounter Triggers list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionTrigger {
         callPaginated(endpoint: API.fetchEvolutionTriggerList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Evolution Trigger Information
+     
+     - parameter evolutionTriggerID: Evolution Trigger ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchEvolutionTrigger(_ evolutionTriggerID: Int) -> AnyPublisher<PKMEvolutionTrigger, Error> {
         call(endpoint: API.fetchEvolutionTriggerByID(evolutionTriggerID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Evolution Trigger Information
+     
+     - parameter evolutionTriggerName: Evolution Trigger Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchEvolutionTrigger(_ evolutionTriggerName: String) -> AnyPublisher<PKMEvolutionTrigger, Error> {
         call(endpoint: API.fetchEvolutionTriggerByName(evolutionTriggerName))
+    }
+}
+
+
+
+// MARK: - Async Services
+
+extension EvolutionService {
+    /**
+     Fetch Encounter Chains list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchEvolutionChainList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEvolutionChain {
+        try await callPaginated(endpoint: API.fetchEvolutionChainList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Evolution Chain Information
+     
+     - parameter evolutionChainID: Evolution Chain ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchEvolutionChain(_ evolutionChainID: Int) async throws -> PKMEvolutionChain {
+        try await PKMEvolutionChain.decode(from: call(endpoint: API.fetchEvolutionChain(evolutionChainID)))
+    }
+    
+    
+    /**
+     Fetch Encounter Triggers list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEvolutionTrigger {
+        try await callPaginated(endpoint: API.fetchEvolutionTriggerList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Evolution Trigger Information
+     
+     - parameter evolutionTriggerID: Evolution Trigger ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchEvolutionTrigger(_ evolutionTriggerID: Int) async throws -> PKMEvolutionTrigger {
+        try await PKMEvolutionTrigger.decode(from: call(endpoint: API.fetchEvolutionTriggerByID(evolutionTriggerID)))
+    }
+    
+    
+    /**
+     Fetch Evolution Trigger Information
+     
+     - parameter evolutionTriggerName: Evolution Trigger Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchEvolutionTrigger(_ evolutionTriggerName: String) async throws -> PKMEvolutionTrigger {
+        try await PKMEvolutionTrigger.decode(from: call(endpoint: API.fetchEvolutionTriggerByName(evolutionTriggerName)))
     }
 }

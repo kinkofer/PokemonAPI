@@ -15,12 +15,19 @@ protocol PKMUtilityService: HTTPWebService {
     func fetchLanguage(_ languageID: Int, completion: @escaping (_ result: Result<PKMLanguage, Error>) -> Void)
     func fetchLanguage(_ languageName: String, completion: @escaping (_ result: Result<PKMLanguage, Error>) -> Void)
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchLanguageList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLanguage
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchLanguage(_ languageID: Int) -> AnyPublisher<PKMLanguage, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchLanguage(_ languageName: String) -> AnyPublisher<PKMLanguage, Error>
+    
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchLanguageList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLanguage
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchLanguage(_ languageID: Int) async throws -> PKMLanguage
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    func fetchLanguage(_ languageName: String) async throws -> PKMLanguage
 }
 
 
@@ -51,7 +58,7 @@ public struct UtilityService: PKMUtilityService {
     
     
     
-    // MARK: - Language
+    // MARK: - Completion Services
     
     /**
      Fetch Languages list
@@ -90,20 +97,69 @@ public struct UtilityService: PKMUtilityService {
 // MARK: - Combine Services
 
 extension UtilityService {
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Languages list
+     */
+    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchLanguageList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLanguage {
         callPaginated(endpoint: API.fetchLanuageList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Language Information
+     
+     - parameter languageID: Language ID
+     */
+    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchLanguage(_ languageID: Int) -> AnyPublisher<PKMLanguage, Error> {
         call(endpoint: API.fetchLanguageByID(languageID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Language Information
+     
+     - parameter languageName: Language Name
+     */
+    @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchLanguage(_ languageName: String) -> AnyPublisher<PKMLanguage, Error> {
         call(endpoint: API.fetchLanguageByName(languageName))
+    }
+}
+
+
+
+// MARK: - Async Services
+
+extension UtilityService {
+    /**
+     Fetch Languages list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchLanguageList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLanguage {
+        try await callPaginated(endpoint: API.fetchLanuageList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Language Information
+     
+     - parameter languageID: Language ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchLanguage(_ languageID: Int) async throws -> PKMLanguage {
+        try await PKMLanguage.decode(from: call(endpoint: API.fetchLanguageByID(languageID)))
+    }
+    
+    
+    /**
+     Fetch Language Information
+     
+     - parameter languageName: Language Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchLanguage(_ languageName: String) async throws -> PKMLanguage {
+        try await PKMLanguage.decode(from: call(endpoint: API.fetchLanguageByName(languageName)))
     }
 }

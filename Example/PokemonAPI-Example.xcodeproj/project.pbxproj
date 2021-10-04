@@ -10,6 +10,7 @@
 		423FBCF0E7D45023E57044FE /* Pods_PokemonAPI_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F706D420717D4F9586488C /* Pods_PokemonAPI_Example.framework */; };
 		596475C824958CAF004C7E93 /* CombineExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596475C724958CAF004C7E93 /* CombineExampleViewController.swift */; };
 		5964764B2497622F004C7E93 /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5964764A2497622F004C7E93 /* Combine.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		597FDCD3269CAF350098522B /* SwiftUIExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597FDCD2269CAF350098522B /* SwiftUIExample.swift */; };
 		59B1D71020E8006700923DCB /* PaginatedResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B1D70F20E8006700923DCB /* PaginatedResultsViewController.swift */; };
 		59B1D71220E8372200923DCB /* PageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B1D71120E8372200923DCB /* PageTableViewController.swift */; };
 		7412E01A1D58E3B30086DD94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412E0191D58E3B30086DD94 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		596475C724958CAF004C7E93 /* CombineExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExampleViewController.swift; sourceTree = "<group>"; };
 		5964764A2497622F004C7E93 /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = System/Library/Frameworks/Combine.framework; sourceTree = SDKROOT; };
+		597FDCD2269CAF350098522B /* SwiftUIExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExample.swift; sourceTree = "<group>"; };
 		59B1D70F20E8006700923DCB /* PaginatedResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResultsViewController.swift; sourceTree = "<group>"; };
 		59B1D71120E8372200923DCB /* PageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTableViewController.swift; sourceTree = "<group>"; };
 		61F706D420717D4F9586488C /* Pods_PokemonAPI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonAPI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,7 @@
 				7412E01D1D58E3B30086DD94 /* Main.storyboard */,
 				7412E0191D58E3B30086DD94 /* AppDelegate.swift */,
 				7412E01B1D58E3B30086DD94 /* ViewController.swift */,
+				597FDCD2269CAF350098522B /* SwiftUIExample.swift */,
 				596475C724958CAF004C7E93 /* CombineExampleViewController.swift */,
 				59B1D70F20E8006700923DCB /* PaginatedResultsViewController.swift */,
 				59B1D71120E8372200923DCB /* PageTableViewController.swift */,
@@ -219,6 +222,7 @@
 				596475C824958CAF004C7E93 /* CombineExampleViewController.swift in Sources */,
 				7412E01C1D58E3B30086DD94 /* ViewController.swift in Sources */,
 				7412E01A1D58E3B30086DD94 /* AppDelegate.swift in Sources */,
+				597FDCD3269CAF350098522B /* SwiftUIExample.swift in Sources */,
 				59B1D71020E8006700923DCB /* PaginatedResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "$(SRCROOT)/PokemonAPI-Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,6 +383,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "$(SRCROOT)/PokemonAPI-Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
