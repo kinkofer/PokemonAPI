@@ -11,7 +11,7 @@ import Foundation
 
 
 protocol PKMContestService: HTTPWebService {
-    func fetchContestList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMContestType
+    func fetchContestTypeList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMContestType
     func fetchContestType(_ contestTypeID: Int, completion: @escaping (_ result: Result<PKMContestType, Error>) -> Void)
     func fetchContestType(_ contestTypeName: String, completion: @escaping (_ result: Result<PKMContestType, Error>) -> Void)
     func fetchContestEffectList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMContestEffect
@@ -20,7 +20,7 @@ protocol PKMContestService: HTTPWebService {
     func fetchSuperContestEffect(_ superContestEffectID: Int, completion: @escaping (_ result: Result<PKMSuperContestEffect, Error>) -> Void)
     
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchContestList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMContestType
+    func fetchContestTypeList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMContestType
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchContestType(_ contestTypeID: Int) -> AnyPublisher<PKMContestType, Error>
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
@@ -35,7 +35,7 @@ protocol PKMContestService: HTTPWebService {
     func fetchSuperContestEffect(_ superContestEffectID: Int) -> AnyPublisher<PKMSuperContestEffect, Error>
     
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-    func fetchContestList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMContestType
+    func fetchContestTypeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMContestType
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchContestType(_ contestTypeID: Int) async throws -> PKMContestType
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
@@ -56,7 +56,7 @@ protocol PKMContestService: HTTPWebService {
 
 public struct ContestService: PKMContestService {
     public enum API: APICall {
-        case fetchContestList
+        case fetchContestTypeList
         case fetchContestTypeByID(Int)
         case fetchContestTypeByName(String)
         case fetchContestEffectList
@@ -67,7 +67,7 @@ public struct ContestService: PKMContestService {
         
         var path: String {
             switch self {
-            case .fetchContestList:
+            case .fetchContestTypeList:
                 return "/contest-type"
             case .fetchContestTypeByID(let id):
                 return "/contest-type/\(id)"
@@ -96,8 +96,8 @@ public struct ContestService: PKMContestService {
     /**
      Fetch Contest list
      */
-    public func fetchContestList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMContestType {
-        callPaginated(endpoint: API.fetchContestList, paginationState: paginationState, completion: completion)
+    public func fetchContestTypeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMContestType {
+        callPaginated(endpoint: API.fetchContestTypeList, paginationState: paginationState, completion: completion)
     }
     
     
@@ -174,8 +174,8 @@ extension ContestService {
      Fetch Contest list
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchContestList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMContestType {
-        callPaginated(endpoint: API.fetchContestList, paginationState: paginationState)
+    public func fetchContestTypeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMContestType {
+        callPaginated(endpoint: API.fetchContestTypeList, paginationState: paginationState)
     }
     
     
@@ -250,8 +250,8 @@ extension ContestService {
      Fetch Contest list
      */
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-    public func fetchContestList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMContestType {
-        try await callPaginated(endpoint: API.fetchContestList, paginationState: paginationState)
+    public func fetchContestTypeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMContestType {
+        try await callPaginated(endpoint: API.fetchContestTypeList, paginationState: paginationState)
     }
     
     

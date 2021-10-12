@@ -487,7 +487,69 @@ struct MockBerryData {
 
 
 struct MockContestData {
+    static var contestTypeList: Data {
+        """
+        {
+          "count": 5,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "name": "cool",
+              "url": "https://pokeapi.co/api/v2/contest-type/1/"
+            },
+            {
+              "name": "beauty",
+              "url": "https://pokeapi.co/api/v2/contest-type/2/"
+            },
+            {
+              "name": "cute",
+              "url": "https://pokeapi.co/api/v2/contest-type/3/"
+            },
+            {
+              "name": "smart",
+              "url": "https://pokeapi.co/api/v2/contest-type/4/"
+            },
+            {
+              "name": "tough",
+              "url": "https://pokeapi.co/api/v2/contest-type/5/"
+            }
+          ]
+        }
+        """.data(using: .utf8)!
+    }
     
+    
+    static var contestType: Data {
+        """
+        {
+          "berry_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+          },
+          "id": 1,
+          "name": "cool",
+          "names": [
+            {
+              "color": "Rouge",
+              "language": {
+                "name": "fr",
+                "url": "https://pokeapi.co/api/v2/language/5/"
+              },
+              "name": "Sang-froid"
+            },
+            {
+              "color": "Red",
+              "language": {
+                "name": "en",
+                "url": "https://pokeapi.co/api/v2/language/9/"
+              },
+              "name": "Cool"
+            }
+          ]
+        }
+        """.data(using: .utf8)!
+    }
 }
 
 
