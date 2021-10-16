@@ -1,3 +1,21 @@
+## 6.1.0
+Add async functions to all services
+
+Replace example app
+
+Add examples for iOS, macOS, tvOS, and watchOS
+
+Add some async test functions
+
+
+## 6.0.2
+Fix Resource service url
+
+
+## 6.0.1
+Fix Package name
+
+
 ## 6.0.0
 Updated with Combine functions
 

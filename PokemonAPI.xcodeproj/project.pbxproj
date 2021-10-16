@@ -328,7 +328,7 @@
 		74B038441D56788200F48B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74B038501D5678AE00F48B92 /* PokemonAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PokemonAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B038541D5678AE00F48B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74B038591D5678AE00F48B92 /* PokemonAPI OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PokemonAPI OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		74B038591D5678AE00F48B92 /* PokemonAPI macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PokemonAPI macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B038601D5678AE00F48B92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -414,11 +414,10 @@
 		59647641249732E1004C7E93 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				74B038061D56714D00F48B92 /* PokemonAPI.h */,
-				74B038081D56714D00F48B92 /* Info.plist */,
-				74B038281D5677FE00F48B92 /* PokemonAPI watchOS */,
-				74B038351D56788200F48B92 /* PokemonAPI tvOS */,
-				74B038511D5678AE00F48B92 /* PokemonAPI OSX */,
+				59706BBB271B709F00992211 /* iOS */,
+				74B038281D5677FE00F48B92 /* watchOS */,
+				74B038351D56788200F48B92 /* tvOS */,
+				74B038511D5678AE00F48B92 /* macOS */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -428,7 +427,7 @@
 			children = (
 				74B038111D56714D00F48B92 /* PokemonAPITests */,
 				74B038411D56788200F48B92 /* PokemonAPI tvOSTests */,
-				74B0385D1D5678AE00F48B92 /* PokemonAPI OSXTests */,
+				74B0385D1D5678AE00F48B92 /* PokemonAPI macOSTests */,
 				59647643249733CB004C7E93 /* PokemonAPI iOSTests */,
 			);
 			path = Tests;
@@ -448,6 +447,15 @@
 				5964764524975122004C7E93 /* Combine.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		59706BBB271B709F00992211 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				74B038061D56714D00F48B92 /* PokemonAPI.h */,
+				74B038081D56714D00F48B92 /* Info.plist */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		597CEC5224A3B76C00E90A7C /* Network Mocking */ = {
@@ -518,7 +526,7 @@
 				74B038341D56788200F48B92 /* PokemonAPI.framework */,
 				74B0383D1D56788200F48B92 /* PokemonAPI tvOSTests.xctest */,
 				74B038501D5678AE00F48B92 /* PokemonAPI.framework */,
-				74B038591D5678AE00F48B92 /* PokemonAPI OSXTests.xctest */,
+				74B038591D5678AE00F48B92 /* PokemonAPI macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -565,22 +573,22 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		74B038281D5677FE00F48B92 /* PokemonAPI watchOS */ = {
+		74B038281D5677FE00F48B92 /* watchOS */ = {
 			isa = PBXGroup;
 			children = (
 				74B038291D5677FE00F48B92 /* PokemonAPI watchOS.h */,
 				74B0382B1D5677FE00F48B92 /* Info.plist */,
 			);
-			path = "PokemonAPI watchOS";
+			path = watchOS;
 			sourceTree = "<group>";
 		};
-		74B038351D56788200F48B92 /* PokemonAPI tvOS */ = {
+		74B038351D56788200F48B92 /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
 				74B038361D56788200F48B92 /* PokemonAPI tvOS.h */,
 				74B038381D56788200F48B92 /* Info.plist */,
 			);
-			path = "PokemonAPI tvOS";
+			path = tvOS;
 			sourceTree = "<group>";
 		};
 		74B038411D56788200F48B92 /* PokemonAPI tvOSTests */ = {
@@ -591,20 +599,20 @@
 			path = "PokemonAPI tvOSTests";
 			sourceTree = "<group>";
 		};
-		74B038511D5678AE00F48B92 /* PokemonAPI OSX */ = {
+		74B038511D5678AE00F48B92 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				74B038541D5678AE00F48B92 /* Info.plist */,
 			);
-			path = "PokemonAPI OSX";
+			path = macOS;
 			sourceTree = "<group>";
 		};
-		74B0385D1D5678AE00F48B92 /* PokemonAPI OSXTests */ = {
+		74B0385D1D5678AE00F48B92 /* PokemonAPI macOSTests */ = {
 			isa = PBXGroup;
 			children = (
 				74B038601D5678AE00F48B92 /* Info.plist */,
 			);
-			path = "PokemonAPI OSXTests";
+			path = "PokemonAPI macOSTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -737,9 +745,9 @@
 			productReference = 74B0383D1D56788200F48B92 /* PokemonAPI tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		74B0384F1D5678AE00F48B92 /* PokemonAPI OSX */ = {
+		74B0384F1D5678AE00F48B92 /* PokemonAPI macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 74B038611D5678AE00F48B92 /* Build configuration list for PBXNativeTarget "PokemonAPI OSX" */;
+			buildConfigurationList = 74B038611D5678AE00F48B92 /* Build configuration list for PBXNativeTarget "PokemonAPI macOS" */;
 			buildPhases = (
 				74B0384B1D5678AE00F48B92 /* Sources */,
 				74B0384C1D5678AE00F48B92 /* Frameworks */,
@@ -751,14 +759,14 @@
 			);
 			dependencies = (
 			);
-			name = "PokemonAPI OSX";
+			name = "PokemonAPI macOS";
 			productName = "PokemonKit OSX";
 			productReference = 74B038501D5678AE00F48B92 /* PokemonAPI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		74B038581D5678AE00F48B92 /* PokemonAPI OSXTests */ = {
+		74B038581D5678AE00F48B92 /* PokemonAPI macOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 74B038641D5678AE00F48B92 /* Build configuration list for PBXNativeTarget "PokemonAPI OSXTests" */;
+			buildConfigurationList = 74B038641D5678AE00F48B92 /* Build configuration list for PBXNativeTarget "PokemonAPI macOSTests" */;
 			buildPhases = (
 				74B038551D5678AE00F48B92 /* Sources */,
 				74B038561D5678AE00F48B92 /* Frameworks */,
@@ -769,9 +777,9 @@
 			dependencies = (
 				74B0385C1D5678AE00F48B92 /* PBXTargetDependency */,
 			);
-			name = "PokemonAPI OSXTests";
+			name = "PokemonAPI macOSTests";
 			productName = "PokemonKit OSXTests";
-			productReference = 74B038591D5678AE00F48B92 /* PokemonAPI OSXTests.xctest */;
+			productReference = 74B038591D5678AE00F48B92 /* PokemonAPI macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -781,7 +789,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Prismatic Games";
 				TargetAttributes = {
 					74B038021D56714D00F48B92 = {
@@ -831,8 +839,8 @@
 				74B0380C1D56714D00F48B92 /* PokemonAPI iOSTests */,
 				74B038331D56788200F48B92 /* PokemonAPI tvOS */,
 				74B0383C1D56788200F48B92 /* PokemonAPI tvOSTests */,
-				74B0384F1D5678AE00F48B92 /* PokemonAPI OSX */,
-				74B038581D5678AE00F48B92 /* PokemonAPI OSXTests */,
+				74B0384F1D5678AE00F48B92 /* PokemonAPI macOS */,
+				74B038581D5678AE00F48B92 /* PokemonAPI macOSTests */,
 				74B038261D5677FE00F48B92 /* PokemonAPI watchOS */,
 			);
 		};
@@ -1137,7 +1145,7 @@
 		};
 		74B0385C1D5678AE00F48B92 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 74B0384F1D5678AE00F48B92 /* PokemonAPI OSX */;
+			target = 74B0384F1D5678AE00F48B92 /* PokemonAPI macOS */;
 			targetProxy = 74B0385B1D5678AE00F48B92 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1167,6 +1175,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1229,6 +1238,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1265,7 +1275,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1274,15 +1285,17 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI";
 				PRODUCT_NAME = PokemonAPI;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -1290,7 +1303,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1299,21 +1313,22 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI";
 				PRODUCT_NAME = PokemonAPI;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
 		74B0381B1D56714D00F48B92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "Tests/PokemonAPI iOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPITests";
@@ -1326,7 +1341,6 @@
 		74B0381C1D56714D00F48B92 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "Tests/PokemonAPI iOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPITests";
@@ -1349,7 +1363,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/PokemonAPI watchOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/watchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-watchOS";
@@ -1375,7 +1389,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/PokemonAPI watchOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/watchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-watchOS";
@@ -1400,7 +1414,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/PokemonAPI tvOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-tvOS";
@@ -1425,7 +1439,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/PokemonAPI tvOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-tvOS";
@@ -1441,7 +1455,6 @@
 		74B038491D56788200F48B92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "Tests/PokemonAPI tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-tvOSTests";
@@ -1456,7 +1469,6 @@
 		74B0384A1D56788200F48B92 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = Q8N5TWD49X;
 				INFOPLIST_FILE = "Tests/PokemonAPI tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-tvOSTests";
@@ -1482,11 +1494,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/PokemonAPI OSX/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/macOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-macOS";
 				PRODUCT_NAME = PokemonAPI;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1509,11 +1521,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/PokemonAPI OSX/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Resources/macOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-macOS";
 				PRODUCT_NAME = PokemonAPI;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1527,11 +1539,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Q8N5TWD49X;
-				INFOPLIST_FILE = "Tests/PokemonAPI OSXTests/Info.plist";
+				INFOPLIST_FILE = "Tests/PokemonAPI macOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-OSXTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -1543,10 +1554,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "Tests/PokemonAPI OSXTests/Info.plist";
+				INFOPLIST_FILE = "Tests/PokemonAPI macOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-OSXTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -1610,7 +1621,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		74B038611D5678AE00F48B92 /* Build configuration list for PBXNativeTarget "PokemonAPI OSX" */ = {
+		74B038611D5678AE00F48B92 /* Build configuration list for PBXNativeTarget "PokemonAPI macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				74B038621D5678AE00F48B92 /* Debug */,
@@ -1619,7 +1630,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		74B038641D5678AE00F48B92 /* Build configuration list for PBXNativeTarget "PokemonAPI OSXTests" */ = {
+		74B038641D5678AE00F48B92 /* Build configuration list for PBXNativeTarget "PokemonAPI macOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				74B038651D5678AE00F48B92 /* Debug */,

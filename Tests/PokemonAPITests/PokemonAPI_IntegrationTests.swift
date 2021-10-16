@@ -40,7 +40,8 @@ class PokemonAPITests: XCTestCase {
     
     
     func testFetchBerryInfo() {
-        let asyncExpectation = expectation(description: "Fetch berries")
+        let asyncExpectation = expectation(description: "Fetch berry")
+        
         PokemonAPI().berryService.fetchBerry(1) { result in
             if case let .failure(error) = result {
                 XCTFail("The service should not fail: \(error.localizedDescription)")
@@ -53,8 +54,18 @@ class PokemonAPITests: XCTestCase {
         }
     }
     
+    
+    @available(iOS 15.0, *)
+    func testFetchBerryInfo() async throws {
+        let asyncExpectation = expectation(description: "Fetch berry")
+        let _ = try await PokemonAPI().berryService.fetchBerry(1)
+        asyncExpectation.fulfill()
+    }
+    
+    
     func testFetchEvolutionChain() {
         let asyncExpectation = expectation(description: "Fetch Evo Chains")
+        
         PokemonAPI().evolutionService.fetchEvolutionChainList() { result in
             if case let .failure(error) = result {
                 XCTFail("The service should not fail: \(error.localizedDescription)")
@@ -66,6 +77,7 @@ class PokemonAPITests: XCTestCase {
             XCTAssertNil(err, "Something went wrong")
         }
     }
+    
     
     func testFetchEvolution() {
         let asyncExpectation = expectation(description: "Fetch Evo Chain")
@@ -81,8 +93,10 @@ class PokemonAPITests: XCTestCase {
         }
     }
     
+    
     func testFetchVersionGroup() {
         let asyncExpectation = expectation(description: "Fetch Version Group")
+        
         PokemonAPI().gameService.fetchVersionGroup(1) { result in
             if case let .failure(error) = result {
                 XCTFail("The service should not fail: \(error.localizedDescription)")
@@ -95,8 +109,10 @@ class PokemonAPITests: XCTestCase {
         }
     }
     
+    
     func testFetchItem() {
         let asyncExpectation = expectation(description: "Fetch Item")
+        
         PokemonAPI().itemService.fetchItem(1) { result in
             if case let .failure(error) = result {
                 XCTFail("The service should not fail: \(error.localizedDescription)")
@@ -109,8 +125,10 @@ class PokemonAPITests: XCTestCase {
         }
     }
     
+    
     func testFetchItemAttr() {
         let asyncExpectation = expectation(description: "Fetch Item Attr")
+        
         PokemonAPI().itemService.fetchItemAttribute(1) { result in
             if case let .failure(error) = result {
                 XCTFail("The service should not fail: \(error.localizedDescription)")
@@ -123,8 +141,10 @@ class PokemonAPITests: XCTestCase {
         }
     }
     
+    
     func testFetchItemCategory() {
         let asyncExpectation = expectation(description: "Fetch Item Category")
+        
         PokemonAPI().itemService.fetchItemCategory(1) { result in
             if case let .failure(error) = result {
                 XCTFail("The service should not fail: \(error.localizedDescription)")
@@ -137,8 +157,10 @@ class PokemonAPITests: XCTestCase {
         }
     }
     
+    
     func testFetchItemFlingEffect() {
         let asyncExpectation = expectation(description: "Fetch Item Fling Effect")
+        
         PokemonAPI().itemService.fetchItemFlingEffect(1) { result in
             if case let .failure(error) = result {
                 XCTFail("The service should not fail: \(error.localizedDescription)")
@@ -150,6 +172,7 @@ class PokemonAPITests: XCTestCase {
             XCTAssertNil(err, "Something went wrong")
         }
     }
+    
     
     func testFetchItemPocket() {
         let asyncExpectation = expectation(description: "Fetch Item Pocket")

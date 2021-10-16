@@ -27,36 +27,67 @@ protocol PKMItemService: HTTPWebService {
     func fetchItemPocket(_ itemPocketID: Int, completion: @escaping (_ result: Result<PKMItemPocket, Error>) -> Void)
     func fetchItemPocket(_ itemPocketName: String, completion: @escaping (_ result: Result<PKMItemPocket, Error>) -> Void)
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItem
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItem(_ itemID: Int) -> AnyPublisher<PKMItem, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItem(_ itemName: String) -> AnyPublisher<PKMItem, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemAttributeList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemAttribute
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemAttribute(_ itemAttributeID: Int) -> AnyPublisher<PKMItemAttribute, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemAttribute(_ itemAttributeName: String) -> AnyPublisher<PKMItemAttribute, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemCategoryList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemCategory
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemCategory(_ itemCategoryID: Int) -> AnyPublisher<PKMItemCategory, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemCategory(_ itemCategoryName: String) -> AnyPublisher<PKMItemCategory, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemFlingEffectList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error>  where T: PKMItemFlingEffect
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemFlingEffect(_ itemFlingEffectsID: Int) -> AnyPublisher<PKMItemFlingEffect, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemFlingEffect(_ itemFlingEffectsName: String) -> AnyPublisher<PKMItemFlingEffect, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemPocketList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemPocket
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemPocket(_ itemPocketID: Int) -> AnyPublisher<PKMItemPocket, Error>
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     func fetchItemPocket(_ itemPocketName: String) -> AnyPublisher<PKMItemPocket, Error>
+    
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItem
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItem(_ itemID: Int) async throws -> PKMItem
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItem(_ itemName: String) async throws -> PKMItem
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemAttributeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemAttribute
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemAttribute(_ itemAttributeID: Int) async throws -> PKMItemAttribute
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemAttribute(_ itemAttributeName: String) async throws -> PKMItemAttribute
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemCategoryList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemCategory
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemCategory(_ itemCategoryID: Int) async throws -> PKMItemCategory
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemCategory(_ itemCategoryName: String) async throws -> PKMItemCategory
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemFlingEffectList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T>  where T: PKMItemFlingEffect
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemFlingEffect(_ itemFlingEffectsID: Int) async throws -> PKMItemFlingEffect
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemFlingEffect(_ itemFlingEffectsName: String) async throws -> PKMItemFlingEffect
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemPocketList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemPocket
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemPocket(_ itemPocketID: Int) async throws -> PKMItemPocket
+    @available(macOS 12, iOS 15, tvOS 15.0, watchOS 8.0, *)
+    func fetchItemPocket(_ itemPocketName: String) async throws -> PKMItemPocket
 }
 
 
@@ -121,6 +152,9 @@ public struct ItemService: PKMItemService {
     
     public var baseURL: String = "https://pokeapi.co/api/v2"
     
+    
+    
+    // MARK: - Completion Services
     
     /**
      Fetch Items list
@@ -287,92 +321,317 @@ public struct ItemService: PKMItemService {
 // MARK: - Combine Services
 
 extension ItemService {
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Items list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItem {
         callPaginated(endpoint: API.fetchItemList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Information
+     
+     - parameter itemID: Item ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItem(_ itemID: Int) -> AnyPublisher<PKMItem, Error> {
         call(endpoint: API.fetchItemByID(itemID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Information
+     
+     - parameter itemName: Item Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItem(_ itemName: String) -> AnyPublisher<PKMItem, Error> {
         call(endpoint: API.fetchItemByName(itemName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Attributes list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemAttributeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemAttribute {
         callPaginated(endpoint: API.fetchItemAttributeList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Attribute Information
+     
+     - parameter itemAttributeID: Item Attribute ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemAttribute(_ itemAttributeID: Int) -> AnyPublisher<PKMItemAttribute, Error> {
         call(endpoint: API.fetchItemAttributeByID(itemAttributeID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Attribute Information
+     
+     - parameter itemAttributeName: Item Attribute Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemAttribute(_ itemAttributeName: String) -> AnyPublisher<PKMItemAttribute, Error> {
         call(endpoint: API.fetchItemAttributeByName(itemAttributeName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Categories list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemCategoryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemCategory {
         callPaginated(endpoint: API.fetchItemCategoryList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Category Information
+     
+     - parameter itemCategoryID: Item Category ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemCategory(_ itemCategoryID: Int) -> AnyPublisher<PKMItemCategory, Error> {
         call(endpoint: API.fetchItemCategoryByID(itemCategoryID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Category Information
+     
+     - parameter itemCategoryName: Item Category Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemCategory(_ itemCategoryName: String) -> AnyPublisher<PKMItemCategory, Error> {
         call(endpoint: API.fetchItemCategoryByName(itemCategoryName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Fling Effects list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemFlingEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error>  where T: PKMItemFlingEffect {
         callPaginated(endpoint: API.fetchItemFlingEffectList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Fling Effect Information
+     
+     - parameter itemFlingEffectsID: Item Fling Effect ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemFlingEffect(_ itemFlingEffectsID: Int) -> AnyPublisher<PKMItemFlingEffect, Error> {
         call(endpoint: API.fetchItemFlingEffectByID(itemFlingEffectsID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Fling Effect Information
+     
+     - parameter itemFlingEffectsName: Item Fling Effect Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemFlingEffect(_ itemFlingEffectsName: String) -> AnyPublisher<PKMItemFlingEffect, Error> {
         call(endpoint: API.fetchItemFlingEffectByName(itemFlingEffectsName))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Pockets list
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemPocketList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMItemPocket {
         callPaginated(endpoint: API.fetchItemPocketList, paginationState: paginationState)
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Pocket Information
+     
+     - parameter itemPocketID: Item Pocket ID
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemPocket(_ itemPocketID: Int) -> AnyPublisher<PKMItemPocket, Error> {
         call(endpoint: API.fetchItemPocketByID(itemPocketID))
     }
     
     
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+    /**
+     Fetch Item Pocket Information
+     
+     - parameter itemPocketName: Item Pocket Name
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     public func fetchItemPocket(_ itemPocketName: String) -> AnyPublisher<PKMItemPocket, Error> {
         call(endpoint: API.fetchItemPocketByName(itemPocketName))
+    }
+}
+
+
+
+// MARK: - Async Services
+
+extension ItemService {
+    /**
+     Fetch Items list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItem {
+        try await callPaginated(endpoint: API.fetchItemList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Item Information
+     
+     - parameter itemID: Item ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItem(_ itemID: Int) async throws -> PKMItem {
+        try await PKMItem.decode(from: call(endpoint: API.fetchItemByID(itemID)))
+    }
+    
+    
+    /**
+     Fetch Item Information
+     
+     - parameter itemName: Item Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItem(_ itemName: String) async throws -> PKMItem {
+        try await PKMItem.decode(from: call(endpoint: API.fetchItemByName(itemName)))
+    }
+    
+    
+    /**
+     Fetch Item Attributes list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemAttributeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemAttribute {
+        try await callPaginated(endpoint: API.fetchItemAttributeList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Item Attribute Information
+     
+     - parameter itemAttributeID: Item Attribute ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemAttribute(_ itemAttributeID: Int) async throws -> PKMItemAttribute {
+        try await PKMItemAttribute.decode(from: call(endpoint: API.fetchItemAttributeByID(itemAttributeID)))
+    }
+    
+    
+    /**
+     Fetch Item Attribute Information
+     
+     - parameter itemAttributeName: Item Attribute Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemAttribute(_ itemAttributeName: String) async throws -> PKMItemAttribute {
+        try await PKMItemAttribute.decode(from: call(endpoint: API.fetchItemAttributeByName(itemAttributeName)))
+    }
+    
+    
+    /**
+     Fetch Item Categories list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemCategoryList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemCategory {
+        try await callPaginated(endpoint: API.fetchItemCategoryList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Item Category Information
+     
+     - parameter itemCategoryID: Item Category ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemCategory(_ itemCategoryID: Int) async throws -> PKMItemCategory {
+        try await PKMItemCategory.decode(from: call(endpoint: API.fetchItemCategoryByID(itemCategoryID)))
+    }
+    
+    
+    /**
+     Fetch Item Category Information
+     
+     - parameter itemCategoryName: Item Category Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemCategory(_ itemCategoryName: String) async throws -> PKMItemCategory {
+        try await PKMItemCategory.decode(from: call(endpoint: API.fetchItemCategoryByName(itemCategoryName)))
+    }
+    
+    
+    /**
+     Fetch Item Fling Effects list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemFlingEffectList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T>  where T: PKMItemFlingEffect {
+        try await callPaginated(endpoint: API.fetchItemFlingEffectList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Item Fling Effect Information
+     
+     - parameter itemFlingEffectsID: Item Fling Effect ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemFlingEffect(_ itemFlingEffectsID: Int) async throws -> PKMItemFlingEffect {
+        try await PKMItemFlingEffect.decode(from: call(endpoint: API.fetchItemFlingEffectByID(itemFlingEffectsID)))
+    }
+    
+    
+    /**
+     Fetch Item Fling Effect Information
+     
+     - parameter itemFlingEffectsName: Item Fling Effect Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemFlingEffect(_ itemFlingEffectsName: String) async throws -> PKMItemFlingEffect {
+        try await PKMItemFlingEffect.decode(from: call(endpoint: API.fetchItemFlingEffectByName(itemFlingEffectsName)))
+    }
+    
+    
+    /**
+     Fetch Item Pockets list
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemPocketList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemPocket {
+        try await callPaginated(endpoint: API.fetchItemPocketList, paginationState: paginationState)
+    }
+    
+    
+    /**
+     Fetch Item Pocket Information
+     
+     - parameter itemPocketID: Item Pocket ID
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemPocket(_ itemPocketID: Int) async throws -> PKMItemPocket {
+        try await PKMItemPocket.decode(from: call(endpoint: API.fetchItemPocketByID(itemPocketID)))
+    }
+    
+    
+    /**
+     Fetch Item Pocket Information
+     
+     - parameter itemPocketName: Item Pocket Name
+     */
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+    public func fetchItemPocket(_ itemPocketName: String) async throws -> PKMItemPocket {
+        try await PKMItemPocket.decode(from: call(endpoint: API.fetchItemPocketByName(itemPocketName)))
     }
 }
