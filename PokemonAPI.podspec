@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PokemonAPI"
-  s.version          = "6.0.2"
+  s.version          = "6.1.0"
   s.summary          = "A wrapper for pokeapi v2"
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
   PokemonAPI is a swift wrapper for PokéAPI (pokeapi.co).
-  Easily call web services to get info about Pokemon and the Pokemon games.
+  Easily call web APIs to get info about Pokemon and the Pokemon games.
   The framework supports paginated responses, allowing you to quickly get the next results or a specific page.
   Linked resources can quickly be turned into their associated classes via a generic `fetch(_ resource:)` function.
   All code is Swift native with no third party frameworks.
