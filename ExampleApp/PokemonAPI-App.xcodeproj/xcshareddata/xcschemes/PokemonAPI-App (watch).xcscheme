@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "74B038021D56714D00F48B92"
-               BuildableName = "PokemonAPI.framework"
-               BlueprintName = "PokemonAPI iOS"
-               ReferencedContainer = "container:PokemonAPI.xcodeproj">
+               BlueprintIdentifier = "59EC43A8271A4B0A00B57CFC"
+               BuildableName = "PokemonAPI-App-watch WatchKit App.app"
+               BlueprintName = "PokemonAPI-App-watch WatchKit App"
+               ReferencedContainer = "container:PokemonAPI-App.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "59EC43A5271A4B0A00B57CFC"
+               BuildableName = "PokemonAPI-App-watch.app"
+               BlueprintName = "PokemonAPI-App-watch"
+               ReferencedContainer = "container:PokemonAPI-App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,26 +41,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "74B038021D56714D00F48B92"
-            BuildableName = "PokemonAPI.framework"
-            BlueprintName = "PokemonAPI iOS"
-            ReferencedContainer = "container:PokemonAPI.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "74B0380C1D56714D00F48B92"
-               BuildableName = "PokemonAPI iOSTests.xctest"
-               BlueprintName = "PokemonAPI iOSTests"
-               ReferencedContainer = "container:PokemonAPI.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -59,15 +54,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "74B038021D56714D00F48B92"
-            BuildableName = "PokemonAPI.framework"
-            BlueprintName = "PokemonAPI iOS"
-            ReferencedContainer = "container:PokemonAPI.xcodeproj">
+            BlueprintIdentifier = "59EC43A8271A4B0A00B57CFC"
+            BuildableName = "PokemonAPI-App-watch WatchKit App.app"
+            BlueprintName = "PokemonAPI-App-watch WatchKit App"
+            ReferencedContainer = "container:PokemonAPI-App.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,15 +71,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "74B038021D56714D00F48B92"
-            BuildableName = "PokemonAPI.framework"
-            BlueprintName = "PokemonAPI iOS"
-            ReferencedContainer = "container:PokemonAPI.xcodeproj">
+            BlueprintIdentifier = "59EC43A8271A4B0A00B57CFC"
+            BuildableName = "PokemonAPI-App-watch WatchKit App.app"
+            BlueprintName = "PokemonAPI-App-watch WatchKit App"
+            ReferencedContainer = "container:PokemonAPI-App.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

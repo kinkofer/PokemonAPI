@@ -15,8 +15,17 @@ struct ContentView: View {
                 NavigationLink("Completion Example", destination: CompletionExampleView())
                 NavigationLink("Combine Example", destination: CombineExampleView())
                 NavigationLink("Async/Await Example", destination: AsyncAwaitExampleView())
-                NavigationLink("Paginated Results Example", destination: PaginatedResultsView())
+                #if os(iOS) || os(macOS)
+                    NavigationLink("Paginated Results Example", destination: PaginatedResultsView())
+                #elseif os(tvOS)
+                    NavigationLink("Paginated Results Example", destination: PaginatedResultsTVView())
+                #elseif os(watchOS)
+                    NavigationLink("Paginated Results Example", destination: PaginatedResultsWatchView())
+                #endif
             }
+            #if os(iOS) || os(macOS)
+            .listStyle(.sidebar)
+            #endif
         }
     }
 }
