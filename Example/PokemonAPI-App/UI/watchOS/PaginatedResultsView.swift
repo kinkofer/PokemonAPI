@@ -1,6 +1,6 @@
 //
-//  PaginatedResultsWatchView.swift
-//  PaginatedResultsWatchView
+//  PaginatedResultsView.swift
+//  PaginatedResultsView
 //
 //  Created by Christopher Jennewein on 10/15/21.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import PokemonAPI
 
 
-struct PaginatedResultsWatchView: View {
+struct PaginatedResultsView: View {
     @EnvironmentObject var pokemonAPI: PokemonAPI
     @State var error: Error?
     
@@ -100,7 +100,7 @@ struct PaginatedResultsWatchView: View {
     
     var pagePicker: some View {
         NavigationLink("Page \(pageIndex + 1)") {
-            PagePickerView(pages: pagedObject?.pages ?? 0, pageIndex: $pageIndex)
+            PageSelectView(pages: pagedObject?.pages ?? 0, pageIndex: $pageIndex)
                 .onChange(of: pageIndex) { index in
                     guard let pagedObject = pagedObject else { return }
                     Task { await fetchPokemon(paginationState: .continuing(pagedObject, .page(index))) }
@@ -124,29 +124,8 @@ struct PaginatedResultsWatchView: View {
 }
 
 
-
-struct PagePickerView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
-    var pages: Int
-    @Binding var pageIndex: Int
-    
-    var body: some View {
-        List {
-            ForEach(0..<pages, id: \.self) { page in
-                Button("Page \(page + 1)") {
-                    pageIndex = page
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }
-        }
-    }
-}
-
-
-
 struct PaginatedResultsWatchView_Previews: PreviewProvider {
     static var previews: some View {
-        PaginatedResultsWatchView()
+        PaginatedResultsView()
     }
 }

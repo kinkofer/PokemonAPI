@@ -16,10 +16,10 @@ let package = Package(
     targets: [
         .target(name: "PokemonAPI",
                 path: "PokemonAPI",
-                exclude: ["../ExampleApp", "../Tests"]),
+                exclude: ["../Example", "../Tests"]),
         .testTarget(name: "PokemonAPITests",
                     dependencies: ["PokemonAPI"],
                     path: "Tests",
-                    exclude: ["../ExampleApp"])
+                    exclude: ["../Example"])
     ]
 )
