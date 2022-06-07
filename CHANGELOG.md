@@ -1,3 +1,7 @@
+## 6.1.1
+Fix Pokedex async endpoints
+
+
 ## 6.1.0
 Add async functions to all services
 
