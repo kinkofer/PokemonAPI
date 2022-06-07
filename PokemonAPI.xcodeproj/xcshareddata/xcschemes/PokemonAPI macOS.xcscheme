@@ -42,7 +42,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "74B038581D5678AE00F48B92"
-               BuildableName = "PokemonAPI OSXTests.xctest"
+               BuildableName = "PokemonAPI macOSTests.xctest"
                BlueprintName = "PokemonAPI macOSTests"
                ReferencedContainer = "container:PokemonAPI.xcodeproj">
             </BuildableReference>
