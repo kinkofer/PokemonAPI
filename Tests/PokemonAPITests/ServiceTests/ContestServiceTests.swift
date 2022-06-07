@@ -45,6 +45,15 @@ class ContestServiceTests: XCTestCase {
     
     // MARK: - Tests
     
+    func testFetchContestTypeList_createUrl_success() async throws {
+        let paginationState: PaginationState<PKMContestType> = .initial(pageLimit: 5)
+        let url = try XCTUnwrap(API.fetchContestTypeList.createUrl(baseURL: service.baseURL, paginationState: paginationState), "The url should be created")
+        
+        let targetUrl = URL(string: "https://pokeapi.co/api/v2/contest-type?limit=5&offset=0")!
+        XCTAssertTrue(targetUrl.compareComponents(url))
+    }
+    
+    
     func testFetchContestTypeList_success() async throws {
         let paginationState: PaginationState<PKMContestType> = .initial(pageLimit: 5)
         try mock(.fetchContestTypeList, paginationState: paginationState, result: .success(MockContestData.contestTypeList))

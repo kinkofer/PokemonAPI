@@ -55,7 +55,7 @@ class PokemonAPITests: XCTestCase {
     }
     
     
-    @available(iOS 15.0, *)
+    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func testFetchBerryInfo() async throws {
         let asyncExpectation = expectation(description: "Fetch berry")
         let _ = try await PokemonAPI().berryService.fetchBerry(1)
