@@ -16,10 +16,14 @@ struct ContentView: View {
                 NavigationLink("Combine Example", destination: CombineExampleView())
                 NavigationLink("Async/Await Example", destination: AsyncAwaitExampleView())
                 NavigationLink("Paginated Results Example", destination: PaginatedResultsView())
+                NavigationLink("Loading List Example", destination: LoadingListExample())
             }
             #if os(iOS) || os(macOS)
             .listStyle(.sidebar)
             #endif
+            .navigationTitle("Examples")
+            
+            Text("Select an example")
         }
     }
 }

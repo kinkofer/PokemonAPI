@@ -38,6 +38,7 @@ struct CombineExampleView: View {
                 Text("Fetching berry...")
             }
         }
+        .navigationTitle("Fetch Berry")
         .onAppear {
             fetchBerryFirmness()
         }

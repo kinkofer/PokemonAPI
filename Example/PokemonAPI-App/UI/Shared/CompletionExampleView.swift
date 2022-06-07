@@ -29,6 +29,7 @@ struct CompletionExampleView: View {
                 Text("Searching for Pokémon...")
             }
         }
+        .navigationTitle("Fetch Pokémon")
         .onAppear {
             findPokemon()
         }

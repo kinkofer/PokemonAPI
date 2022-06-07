@@ -37,13 +37,14 @@ struct AsyncAwaitExampleView: View {
                 Text("Getting Pokémon game...")
             }
         }
+        .navigationTitle("Fetch Game and Regions")
         .task {
-            await findPokemon()
+            await findGameAndRegions()
         }
     }
     
     
-    func findPokemon() async {
+    func findGameAndRegions() async {
         do {
             versionGroup = try await pokemonAPI.gameService.fetchVersionGroup(3)
             

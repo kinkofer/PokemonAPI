@@ -25,6 +25,7 @@ struct PaginatedResultsView: View {
                     menu
                 }
             }
+            .navigationTitle("Fetch Pokémon List")
             .task {
                 await fetchPokemon()
             }
@@ -40,7 +41,7 @@ struct PaginatedResultsView: View {
                     let pokemonResults = pagedObject.results as? [PKMNamedAPIResource] {
                 List {
                     ForEach(pokemonResults, id: \.url) { pokemon in
-                        Text(pokemon.name ?? "Unknown Pokemon")
+                        Text(pokemon.name ?? "Unknown Pokémon")
                     }
                 }
                 .listStyle(.plain)

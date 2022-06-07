@@ -8,6 +8,7 @@
 import SwiftUI
 
 
+/// Page Select UI for tvOS and watchOS
 struct PageSelectView: View {
     @Environment(\.presentationMode) var presentationMode
     
