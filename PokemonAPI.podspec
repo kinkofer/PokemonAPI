@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PokemonAPI"
-  s.version          = "6.1.0"
+  s.version          = "6.1.1"
   s.summary          = "A wrapper for pokeapi v2"
 
 # This description is used to generate tags and improve search results.
