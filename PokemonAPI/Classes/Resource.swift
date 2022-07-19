@@ -41,5 +41,13 @@ open class PKMNamedAPIResource<T>: PKMAPIResource<T> {
         
         try super.init(from: decoder)
     }
+    
+    
+    open override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        
+        try super.encode(to: encoder)
+    }
 }
 
