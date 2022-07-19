@@ -13,7 +13,7 @@ import PokemonAPI
 struct PokemonAPI_App: App {
     var body: some Scene {
         WindowGroup {
-            let pokemonAPI = PokemonAPI()
+            let pokemonAPI = PokemonAPI(session: .cached)
             ContentView()
                 .environmentObject(pokemonAPI)
         }

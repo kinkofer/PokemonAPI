@@ -25,6 +25,8 @@
 		5981C7DB284FF2EE00635AAA /* LoadingListExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981C7D7284FAFB000635AAA /* LoadingListExample.swift */; };
 		5981C7DC284FF2EF00635AAA /* LoadingListExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981C7D7284FAFB000635AAA /* LoadingListExample.swift */; };
 		5981C7DD284FF2F000635AAA /* LoadingListExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981C7D7284FAFB000635AAA /* LoadingListExample.swift */; };
+		598626262852576900180451 /* URLSession+Cached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598626252852576900180451 /* URLSession+Cached.swift */; };
+		598626272852576900180451 /* URLSession+Cached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598626252852576900180451 /* URLSession+Cached.swift */; };
 		598C907A2718A2EA00DFB64E /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 598C90792718A2EA00DFB64E /* PokemonAPI */; };
 		598C907B2718A3EF00DFB64E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F8932270A1334004C4C9C /* ContentView.swift */; };
 		598C907E271A30D100DFB64E /* PaginatedResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C907C271A30D100DFB64E /* PaginatedResultsView.swift */; };
@@ -104,6 +106,7 @@
 		59721554270A911C00850634 /* PokemonAPI-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PokemonAPI-App-Info.plist"; sourceTree = "<group>"; };
 		59721555270AC16D00850634 /* PaginatedResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResultsView.swift; sourceTree = "<group>"; };
 		5981C7D7284FAFB000635AAA /* LoadingListExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingListExample.swift; sourceTree = "<group>"; };
+		598626252852576900180451 /* URLSession+Cached.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Cached.swift"; sourceTree = "<group>"; };
 		598C907C271A30D100DFB64E /* PaginatedResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResultsView.swift; sourceTree = "<group>"; };
 		59EC43A6271A4B0A00B57CFC /* PokemonAPI-App-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PokemonAPI-App-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59EC43A9271A4B0A00B57CFC /* PokemonAPI-App-watch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PokemonAPI-App-watch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,6 +257,7 @@
 			children = (
 				59EC43DD271A60CC00B57CFC /* Image+.swift */,
 				593F8954270A3FF5004C4C9C /* PokemonAPI+.swift */,
+				598626252852576900180451 /* URLSession+Cached.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -373,6 +377,7 @@
 					};
 					59EC43A5271A4B0A00B57CFC = {
 						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1340;
 					};
 					59EC43A8271A4B0A00B57CFC = {
 						CreatedOnToolsVersion = 13.0;
@@ -460,6 +465,7 @@
 				598C907B2718A3EF00DFB64E /* ContentView.swift in Sources */,
 				591642ED27187F9E001B50B4 /* PokemonAPI_App.swift in Sources */,
 				591642F027187FA5001B50B4 /* CombineExampleView.swift in Sources */,
+				598626272852576900180451 /* URLSession+Cached.swift in Sources */,
 				5981C7DC284FF2EF00635AAA /* LoadingListExample.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +478,7 @@
 				59EC43DE271A60CC00B57CFC /* Image+.swift in Sources */,
 				59721556270AC16D00850634 /* PaginatedResultsView.swift in Sources */,
 				593F8941270A1339004C4C9C /* PokemonAPI_App.swift in Sources */,
+				598626262852576900180451 /* URLSession+Cached.swift in Sources */,
 				593F8955270A3FF5004C4C9C /* PokemonAPI+.swift in Sources */,
 				593F8952270A3E71004C4C9C /* CompletionExampleView.swift in Sources */,
 				5972154E270A6E4F00850634 /* AsyncAwaitExampleView.swift in Sources */,
@@ -869,13 +876,20 @@
 		59EC43CE271A4B1300B57CFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W5SXX2FNDK;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-App-watch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -883,9 +897,15 @@
 		59EC43CF271A4B1300B57CFC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W5SXX2FNDK;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.prismatic-games.PokemonAPI-App-watch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
