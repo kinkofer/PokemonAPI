@@ -92,7 +92,7 @@ open class PKMItemHolderPokemon: Codable, SelfDecodable {
 open class PKMItemHolderPokemonVersionDetail: Codable {
     
     /// How often this Pokémon holds this item in this version
-    open var rarity: String?
+    open var rarity: Int?
     
     /// The version that this item is held in by the Pokémon
     open var version: PKMNamedAPIResource<PKMVersion>?
