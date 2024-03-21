@@ -651,8 +651,11 @@ open class PKMPokemonSprites: Codable, SelfDecodable {
     /// The female depiction of this Pokémon from the back in battle
     open var backFemale: String?
     
+    
     /// The shiny female depiction of this Pokémon from the back in battle
     open var backShinyFemale: String?
+    
+    open var other:Other?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
