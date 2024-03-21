@@ -889,7 +889,7 @@ open class PKMPokemonSpeciesDexEntry: Codable, SelfDecodable {
     open var entryNumber: Int?
     
     /// The Pokédex the referenced Pokémon species can be found in
-    open var name: PKMNamedAPIResource<PKMName>?
+    open var pokedex: PKMNamedAPIResource<PKMName>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()

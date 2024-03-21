@@ -92,6 +92,7 @@ open class PKMFlavorText: Codable, SelfDecodable {
     
     /// The language this name is in
     open var language: PKMName?
+    
     open var version:PKMVersion?
     
     public static var decoder: JSONDecoder = {
