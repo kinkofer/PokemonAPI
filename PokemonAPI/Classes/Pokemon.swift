@@ -555,6 +555,77 @@ open class PKMPokemonStat: Codable, SelfDecodable {
     }()
 }
 
+//MARK: - Other
+open class Other: Codable,SelfDecodable {
+    
+    open var dreamWorld: DreamWorld?
+    open var home: Home?
+    open var officialArtwork: OfficialArtwork?
+    open var showdown: Showdown?
+
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+// MARK: - DreamWorld
+open class DreamWorld: Codable,SelfDecodable {
+    open var frontDefault, frontFemale: String?
+
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+// MARK: - Home
+open class Home: Codable,SelfDecodable {
+    open var frontDefault: String?
+    open var frontFemale: String?
+    open var frontShiny: String?
+    open var frontShinyFemale: String?
+    
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+// MARK: - OfficialArtwork
+open class OfficialArtwork: Codable,SelfDecodable {
+    open var frontDefault, frontShiny: String?
+
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+// MARK: - Showdown
+open class Showdown: Codable, SelfDecodable {
+    open var backDefault: String?
+    open var backFemale: String?
+    open var backShiny: String?
+    open var backShinyFemale: String?
+    open var frontDefault: String?
+    open var frontFemale: String?
+    open var frontShiny: String?
+    open var frontShinyFemale: String?
+
+    public static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
 
 /// Pokemon Sprites
 open class PKMPokemonSprites: Codable, SelfDecodable {
@@ -701,6 +772,8 @@ open class PKMPokemonFormSprites: Codable, SelfDecodable {
     
     /// The shiny depiction of this Pokémon form from the back in battle
     open var backShiny: String?
+    
+    open var other:Other?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
