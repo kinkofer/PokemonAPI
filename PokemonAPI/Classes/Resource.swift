@@ -10,18 +10,8 @@ import Foundation
 
 /// API Referenced Resource
 open class PKMAPIResource<T>: Codable {
-    private enum CodingKeys: String, CodingKey {
-        case url
-    }
-    
     /// The URL of the referenced resource
     open var url: String?
-    
-    
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.url = try container.decode(String.self, forKey: .url)
-    }
 }
 
 

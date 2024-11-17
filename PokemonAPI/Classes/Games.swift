@@ -112,7 +112,7 @@ open class PKMVersion: Codable, SelfDecodable {
     open var names: [PKMName]?
     
     /// The version group this version belongs to
-    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
+    open var versionGroup: PKMNamedAPIResource<PKMVersionGroup>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
