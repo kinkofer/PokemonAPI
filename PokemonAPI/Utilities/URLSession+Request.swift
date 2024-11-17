@@ -88,20 +88,7 @@ extension URLSession {
             }
         }
         catch {
-            if let nsError = error as NSError?,
-                nsError.code == HTTPError.noNetwork.code {
-                throw HTTPError.noNetwork
-            }
-            else if let nsError = error as NSError?,
-                nsError.code == HTTPError.timeout.code {
-                throw HTTPError.timeout
-            }
-            else if let httpError = error as? HTTPError {
-                throw httpError
-            }
-            else {
-                throw HTTPError.other(error)
-            }
+            throw HTTPError.from(error)
         }
     }
 }

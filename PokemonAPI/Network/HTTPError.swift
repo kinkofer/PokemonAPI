@@ -135,6 +135,28 @@ public enum HTTPError: Error, LocalizedError {
             return 499
         }
     }
+    
+    
+    static func from(_ error: Error) -> HTTPError {
+        if let nsError = error as NSError?,
+           nsError.code == HTTPError.noNetwork.code {
+            return HTTPError.noNetwork
+        }
+        else if let nsError = error as NSError?,
+                nsError.code == HTTPError.timeout.code {
+            return HTTPError.timeout
+        }
+        else if let nsError = error as NSError?,
+                let underlyingError = nsError.userInfo[NSUnderlyingErrorKey] as? Error {
+            return from(underlyingError)
+        }
+        else if let httpError = error as? HTTPError {
+            return httpError
+        }
+        else {
+            return HTTPError.other(error)
+        }
+    }
 }
 
 

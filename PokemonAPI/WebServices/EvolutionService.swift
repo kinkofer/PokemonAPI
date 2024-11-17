@@ -6,7 +6,6 @@
 //  Copyright © 2020 Prismatic Games. All rights reserved.
 //
 
-import Combine
 import Foundation
 
 
@@ -16,17 +15,6 @@ protocol PKMEvolutionService: HTTPWebService {
     func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMEvolutionTrigger
     func fetchEvolutionTrigger(_ evolutionTriggerID: Int, completion: @escaping (_ result: Result<PKMEvolutionTrigger, Error>) -> Void)
     func fetchEvolutionTrigger(_ evolutionTriggerName: String, completion: @escaping (_ result: Result<PKMEvolutionTrigger, Error>) -> Void)
-    
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionChainList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionChain
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionChain(_ evolutionChainID: Int) -> AnyPublisher<PKMEvolutionChain, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionTrigger
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionTrigger(_ evolutionTriggerID: Int) -> AnyPublisher<PKMEvolutionTrigger, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchEvolutionTrigger(_ evolutionTriggerName: String) -> AnyPublisher<PKMEvolutionTrigger, Error>
     
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchEvolutionChainList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEvolutionChain
@@ -125,62 +113,6 @@ public struct EvolutionService: PKMEvolutionService {
         call(endpoint: API.fetchEvolutionTriggerByName(evolutionTriggerName)) { result in
             result.decode(completion: completion)
         }
-    }
-}
-
-
-
-// MARK: - Combine Services
-
-extension EvolutionService {
-    /**
-     Fetch Encounter Chains list
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchEvolutionChainList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionChain {
-        callPaginated(endpoint: API.fetchEvolutionChainList, paginationState: paginationState)
-    }
-    
-    
-    /**
-     Fetch Evolution Chain Information
-     
-     - parameter evolutionChainID: Evolution Chain ID
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchEvolutionChain(_ evolutionChainID: Int) -> AnyPublisher<PKMEvolutionChain, Error> {
-        call(endpoint: API.fetchEvolutionChain(evolutionChainID))
-    }
-    
-    
-    /**
-     Fetch Encounter Triggers list
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMEvolutionTrigger {
-        callPaginated(endpoint: API.fetchEvolutionTriggerList, paginationState: paginationState)
-    }
-    
-    
-    /**
-     Fetch Evolution Trigger Information
-     
-     - parameter evolutionTriggerID: Evolution Trigger ID
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchEvolutionTrigger(_ evolutionTriggerID: Int) -> AnyPublisher<PKMEvolutionTrigger, Error> {
-        call(endpoint: API.fetchEvolutionTriggerByID(evolutionTriggerID))
-    }
-    
-    
-    /**
-     Fetch Evolution Trigger Information
-     
-     - parameter evolutionTriggerName: Evolution Trigger Name
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchEvolutionTrigger(_ evolutionTriggerName: String) -> AnyPublisher<PKMEvolutionTrigger, Error> {
-        call(endpoint: API.fetchEvolutionTriggerByName(evolutionTriggerName))
     }
 }
 

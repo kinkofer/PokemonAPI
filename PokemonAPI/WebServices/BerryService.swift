@@ -6,7 +6,6 @@
 //  Copyright © 2020 Prismatic Games. All rights reserved.
 //
 
-import Combine
 import Foundation
 
 
@@ -22,25 +21,6 @@ public protocol PKMBerryService: HTTPWebService {
     func fetchBerryFlavorList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMBerryFlavor
     func fetchBerryFlavor(_ berryFlavorID: Int, completion: @escaping (_ result: Result<PKMBerryFlavor, Error>) -> Void)
     func fetchBerryFlavor(_ berryFlavorName: String, completion: @escaping (_ result: Result<PKMBerryFlavor, Error>) -> Void)
-    
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchBerryList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerry
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchBerry(_ berryID: Int) -> AnyPublisher<PKMBerry, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchBerry(_ berryName: String) -> AnyPublisher<PKMBerry, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchBerryFirmnessList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerryFirmness
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchBerryFirmness(_ berryFirmnessID: Int) -> AnyPublisher<PKMBerryFirmness, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchBerryFirmness(_ berryFirmnessName: String) -> AnyPublisher<PKMBerryFirmness, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchBerryFlavorList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerryFlavor
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchBerryFlavor(_ berryFlavorID: Int) -> AnyPublisher<PKMBerryFlavor, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchBerryFlavor(_ berryFlavorName: String) -> AnyPublisher<PKMBerryFlavor, Error>
     
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchBerryList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMBerry
@@ -203,105 +183,6 @@ public struct BerryService: PKMBerryService {
         call(endpoint: API.fetchBerryFlavorByName(berryFlavorName)) { result in
             result.decode(completion: completion)
         }
-    }
-}
-
-
-
-// MARK: - Combine Services
-
-extension BerryService {
-    /**
-     Fetch Berry list
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerry {
-        callPaginated(endpoint: API.fetchBerryList, paginationState: paginationState)
-    }
-    
-    
-    /**
-     Fetch Berry Information
-     
-     - parameter berryId: Berry ID
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerry(_ berryID: Int) -> AnyPublisher<PKMBerry, Error> {
-        call(endpoint: API.fetchBerryByID(berryID))
-    }
-    
-    
-    /**
-     Fetch Berry Information
-     
-     - parameter berryName: Berry Name
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerry(_ berryName: String) -> AnyPublisher<PKMBerry, Error> {
-        call(endpoint: API.fetchBerryByName(berryName))
-    }
-    
-    
-    /**
-     Fetch Berry Firmness list
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryFirmnessList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerryFirmness {
-        callPaginated(endpoint: API.fetchBerryFirmnessList, paginationState: paginationState)
-    }
-    
-    
-    /**
-     Fetch Berry Firmness Information
-     
-     - parameter berryFirmnessId: Berry Firmness ID
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryFirmness(_ berryFirmnessID: Int) -> AnyPublisher<PKMBerryFirmness, Error> {
-        call(endpoint: API.fetchBerryFirmnessByID(berryFirmnessID))
-    }
-    
-    
-    /**
-     Fetch Berry Firmness Information
-     
-     - parameter berryFirmnessName: Berry Firmness Name
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryFirmness(_ berryFirmnessName: String) -> AnyPublisher<PKMBerryFirmness, Error> {
-        call(endpoint: API.fetchBerryFirmnessByName(berryFirmnessName))
-    }
-    
-    
-    /**
-     Fetch Berry Flavors list
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryFlavorList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMBerryFlavor {
-        callPaginated(endpoint: API.fetchBerryFlavorList, paginationState: paginationState)
-    }
-    
-    
-    /**
-     Fetch Berry Flavor Information
-     
-     - parameter berryFlavorId: Berry Flavor ID
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryFlavor(_ berryFlavorID: Int) -> AnyPublisher<PKMBerryFlavor, Error> {
-        call(endpoint: API.fetchBerryFlavorByID(berryFlavorID))
-    }
-    
-    
-    
-    /**
-     Fetch Berry Flavor Information
-     
-     - parameter berryFlavorName: Berry Flavor Name
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchBerryFlavor(_ berryFlavorName: String) -> AnyPublisher<PKMBerryFlavor, Error> {
-        call(endpoint: API.fetchBerryFlavorByName(berryFlavorName))
     }
 }
 

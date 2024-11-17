@@ -7,22 +7,19 @@
 //
 
 import XCTest
-import Combine
 @testable import PokemonAPI
 
 
-@available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
 class BerryServiceTests: XCTestCase {
     typealias API = BerryService.API
     typealias Mock = RequestMocking.MockedResponse
     
     var service: BerryService!
-    var cancellables = Set<AnyCancellable>()
     
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        cancellables = Set<AnyCancellable>()
         service = BerryService(session: .mockedResponsesOnly)
     }
 
@@ -49,449 +46,269 @@ class BerryServiceTests: XCTestCase {
     
     // MARK: - Tests
     
-    func testFetchBerryList_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryList_success() async throws {
         let paginationState: PaginationState<PKMBerry> = .initial(pageLimit: 20)
         try mock(.fetchBerryList, paginationState: paginationState, result: .success(MockBerryData.berryList))
         
-        service.fetchBerryList()
-            .sinkToResult { result in
-                switch result {
-                case .success(let pagedObject):
-                    do {
-                        let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
-                        let berry = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a berry")
-                        let berryName = try XCTUnwrap(berry.name, "The berry should have a name")
-                        
-                        XCTAssertTrue(pagedObject.count == 64, "Expected to find 64 berries but found \(count)")
-                        XCTAssertTrue(berryName == "cheri", "Expected the first berry to be cheri but found \(berryName)")
-                    } catch {
-                        XCTFail("The response was not valid")
-                    }
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
+        do {
+            let pagedObject = try await service.fetchBerryList()
+            do {
+                let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
+                let berry = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a berry")
+                let berryName = try XCTUnwrap(berry.name, "The berry should have a name")
                 
-                asyncExpectation.fulfill();
+                XCTAssertTrue(pagedObject.count == 64, "Expected to find 64 berries but found \(count)")
+                XCTAssertTrue(berryName == "cheri", "Expected the first berry to be cheri but found \(berryName)")
+            } catch {
+                XCTFail("The response was not valid")
             }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
     
     
-    func testFetchBerryList_failure() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryList_failure() async throws {
         let paginationState: PaginationState<PKMBerry> = .initial(pageLimit: 20)
         let testError = HTTPError.unexpectedResponse
         let testResult: Result<Data, Error> = .failure(testError)
         try mock(.fetchBerryList, paginationState: paginationState, result: testResult, httpCode: testError.code)
         
-        service.fetchBerryList()
-            .sinkToResult { result in
-                switch result {
-                case .success:
-                    XCTFail("The service should fail")
-                case .failure(let error):
-                    XCTAssertTrue(error.localizedDescription == testError.localizedDescription)
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            _ = try await service.fetchBerryList()
+            XCTFail("The service should fail")
+        } catch {
+            XCTAssertTrue(error.localizedDescription == testError.localizedDescription)
+        }
     }
     
     
-    func testFetchBerryByID_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryByID_success() async throws {
         try mock(.fetchBerryByID(1), result: .success(MockBerryData.berry))
         
-        service.fetchBerry(1)
-            .sinkToResult { result in
-                switch result {
-                case .success(let result):
-                    XCTAssert(result.name == "cheri")
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            let result = try await service.fetchBerry(1)
+            XCTAssert(result.name == "cheri")
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
     
     
-    func testFetchBerryByID_failure() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryByID_failure() async throws {
         let testError = HTTPError.unexpectedResponse
         let testResult: Result<Data, Error> = .failure(testError)
         try mock(.fetchBerryByID(1), result: testResult, httpCode: testError.code)
         
-        service.fetchBerry(1)
-            .sinkToResult { result in
-                switch result {
-                case .success:
-                    XCTFail("The service should fail")
-                case .failure(let error):
-                    XCTAssert(error.localizedDescription == testError.localizedDescription)
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            _ = try await service.fetchBerry(1)
+            XCTFail("The service should fail")
+        } catch {
+            XCTAssert(error.localizedDescription == testError.localizedDescription)
+        }
     }
     
     
-    func testFetchBerryByName_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryByName_success() async throws {
         try mock(.fetchBerryByName("cheri"), result: .success(MockBerryData.berry))
         
-        service.fetchBerry("cheri")
-            .sinkToResult { result in
-                switch result {
-                case .success(let result):
-                    XCTAssert(result.name == "cheri")
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            let result = try await service.fetchBerry("cheri")
+            XCTAssert(result.name == "cheri")
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
     
     
-    func testFetchBerryByName_failure() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryByName_failure() async throws {
         let testError = HTTPError.unexpectedResponse
         let testResult: Result<Data, Error> = .failure(testError)
         try mock(.fetchBerryByName("cheri"), result: testResult, httpCode: testError.code)
         
-        service.fetchBerry("cheri")
-            .sinkToResult { result in
-                switch result {
-                case .success:
-                    XCTFail("The service should fail")
-                case .failure(let error):
-                    XCTAssert(error.localizedDescription == testError.localizedDescription)
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            _ = try await service.fetchBerry("cheri")
+            XCTFail("The service should fail")
+        } catch {
+            XCTAssert(error.localizedDescription == testError.localizedDescription)
+        }
     }
     
     
-    func testFetchBerryFirmnessList_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFirmnessList_success() async throws {
         let paginationState: PaginationState<PKMBerryFirmness> = .initial(pageLimit: 20)
         try mock(.fetchBerryFirmnessList, paginationState: paginationState, result: .success(MockBerryData.berryFirmnessList))
         
-        service.fetchBerryFirmnessList()
-            .sinkToResult { result in
-                switch result {
-                case .success(let pagedObject):
-                    do {
-                        let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
-                        let berryFirmness = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a berry firmness")
-                        let berryFirmnessName = try XCTUnwrap(berryFirmness.name, "The berry firmness should have a name")
-                        
-                        XCTAssertTrue(count == 5, "Expected 5 berry firmness count but found \(count)")
-                        XCTAssertTrue(berryFirmnessName == "very-soft")
-                    } catch {
-                        XCTFail("The response was not valid")
-                    }
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
+        do {
+            let pagedObject = try await service.fetchBerryFirmnessList()
+            do {
+                let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
+                let berryFirmness = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a berry firmness")
+                let berryFirmnessName = try XCTUnwrap(berryFirmness.name, "The berry firmness should have a name")
                 
-                asyncExpectation.fulfill();
+                XCTAssertTrue(count == 5, "Expected 5 berry firmness count but found \(count)")
+                XCTAssertTrue(berryFirmnessName == "very-soft")
+            } catch {
+                XCTFail("The response was not valid")
             }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
     
     
-    func testFetchBerryFirmnessList_failure() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFirmnessList_failure() async throws {
         let paginationState: PaginationState<PKMBerryFirmness> = .initial(pageLimit: 20)
         let testError = HTTPError.unexpectedResponse
         let testResult: Result<Data, Error> = .failure(testError)
         try mock(.fetchBerryFirmnessList, paginationState: paginationState, result: testResult, httpCode: testError.code)
         
-        service.fetchBerryFirmnessList()
-            .sinkToResult { result in
-                switch result {
-                case .success:
-                    XCTFail("The service should fail")
-                case .failure(let error):
-                    XCTAssert(error.localizedDescription == testError.localizedDescription, "Expected error description \"\(testError.localizedDescription)\" but found \"\(error.localizedDescription)\"")
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            _ = try await service.fetchBerryFirmnessList()
+            XCTFail("The service should fail")
+        } catch {
+            XCTAssert(error.localizedDescription == testError.localizedDescription, "Expected error description \"\(testError.localizedDescription)\" but found \"\(error.localizedDescription)\"")
+        }
     }
     
     
-    func testFetchBerryFirmnessByID_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFirmnessByID_success() async throws {
         try mock(.fetchBerryFirmnessByID(1), result: .success(MockBerryData.berryFirmness))
         
-        service.fetchBerryFirmness(1)
-            .sinkToResult { result in
-                switch result {
-                case .success(let result):
-                    XCTAssert(result.name == "very-soft")
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            let result = try await service.fetchBerryFirmness(1)
+            XCTAssert(result.name == "very-soft")
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
     
     
-    func testFetchBerryFirmnessByID_failure() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFirmnessByID_failure() async throws {
         let testError = HTTPError.unexpectedResponse
         let testResult: Result<Data, Error> = .failure(testError)
         try mock(.fetchBerryFirmnessByID(1), result: testResult, httpCode: testError.code)
         
-        service.fetchBerryFirmness(1)
-            .sinkToResult { result in
-                switch result {
-                case .success:
-                    XCTFail("The service should fail")
-                case .failure(let error):
-                    XCTAssert(error.localizedDescription == testError.localizedDescription)
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            _ = try await service.fetchBerryFirmness(1)
+            XCTFail("The service should fail")
+        } catch {
+            XCTAssert(error.localizedDescription == testError.localizedDescription)
+        }
     }
     
     
-    func testFetchBerryFirmnessByName_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFirmnessByName_success() async throws {
         try mock(.fetchBerryFirmnessByName("very-soft"), result: .success(MockBerryData.berryFirmness))
         
-        service.fetchBerryFirmness("very-soft")
-            .sinkToResult { result in
-                switch result {
-                case .success(let result):
-                    XCTAssert(result.name == "very-soft")
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            let result = try await service.fetchBerryFirmness("very-soft")
+            XCTAssert(result.name == "very-soft")
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
     
     
-    func testFetchBerryFirmnessByName_failure() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFirmnessByName_failure() async throws {
         let testError = HTTPError.unexpectedResponse
         let testResult: Result<Data, Error> = .failure(testError)
         try mock(.fetchBerryFirmnessByName("very-soft"), result: testResult, httpCode: testError.code)
         
-        service.fetchBerryFirmness("very-soft")
-            .sinkToResult { result in
-                switch result {
-                case .success:
-                    XCTFail("The service should fail")
-                case .failure(let error):
-                    XCTAssert(error.localizedDescription == testError.localizedDescription)
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            _ = try await service.fetchBerryFirmness("very-soft")
+            XCTFail("The service should fail")
+        } catch {
+            XCTAssert(error.localizedDescription == testError.localizedDescription)
+        }
     }
     
     
-    func testFetchBerryFlavorList_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFlavorList_success() async throws {
         let paginationState: PaginationState<PKMBerryFlavor> = .initial(pageLimit: 20)
         try mock(.fetchBerryFlavorList, paginationState: paginationState, result: .success(MockBerryData.berryFlavorList))
         
-        service.fetchBerryFlavorList()
-            .sinkToResult { result in
-                switch result {
-                case .success(let pagedObject):
-                    do {
-                        let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
-                        let berryFlavor = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a berry flavor")
-                        let berryFlavorName = try XCTUnwrap(berryFlavor.name, "The berry flavor should have a name")
-                        
-                        XCTAssertTrue(count == 5, "Expected 5 berry flavors count but found \(count)")
-                        XCTAssertTrue(berryFlavorName == "spicy")
-                    } catch {
-                        XCTFail("The response was not valid")
-                    }
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
+        do {
+            let pagedObject = try await service.fetchBerryFlavorList()
+            do {
+                let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
+                let berryFlavor = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a berry flavor")
+                let berryFlavorName = try XCTUnwrap(berryFlavor.name, "The berry flavor should have a name")
                 
-                asyncExpectation.fulfill();
+                XCTAssertTrue(count == 5, "Expected 5 berry flavors count but found \(count)")
+                XCTAssertTrue(berryFlavorName == "spicy")
+            } catch {
+                XCTFail("The response was not valid")
             }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
     
     
-    func testFetchBerryFlavor_failure() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFlavor_failure() async throws {
         let paginationState: PaginationState<PKMBerryFlavor> = .initial(pageLimit: 20)
         let testError = HTTPError.unexpectedResponse
         let testResult: Result<Data, Error> = .failure(testError)
         try mock(.fetchBerryFlavorList, paginationState: paginationState, result: testResult, httpCode: testError.code)
         
-        service.fetchBerryFlavorList()
-            .sinkToResult { result in
-                switch result {
-                case .success:
-                    XCTFail("The service should fail")
-                case .failure(let error):
-                    XCTAssert(error.localizedDescription == testError.localizedDescription, "Expected error description \"\(testError.localizedDescription)\" but found \"\(error.localizedDescription)\"")
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            _ = try await service.fetchBerryFlavorList()
+            XCTFail("The service should fail")
+        } catch {
+            XCTAssert(error.localizedDescription == testError.localizedDescription, "Expected error description \"\(testError.localizedDescription)\" but found \"\(error.localizedDescription)\"")
+        }
     }
     
     
-    func testFetchBerryFlavorByID_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFlavorByID_success() async throws {
         try mock(.fetchBerryFlavorByID(1), result: .success(MockBerryData.berryFlavor))
         
-        service.fetchBerryFlavor(1)
-            .sinkToResult { result in
-                switch result {
-                case .success(let result):
-                    XCTAssert(result.name == "spicy")
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            let result = try await service.fetchBerryFlavor(1)
+            XCTAssert(result.name == "spicy")
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
     
     
-    func testFetchBerryFlavorByID_failure() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFlavorByID_failure() async throws {
         let testError = HTTPError.unexpectedResponse
         let testResult: Result<Data, Error> = .failure(testError)
         try mock(.fetchBerryFlavorByID(1), result: testResult, httpCode: testError.code)
         
-        service.fetchBerryFlavor(1)
-            .sinkToResult { result in
-                switch result {
-                case .success:
-                    XCTFail("The service should fail")
-                case .failure(let error):
-                    XCTAssert(error.localizedDescription == testError.localizedDescription)
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            _ = try await service.fetchBerryFlavor(1)
+            XCTFail("The service should fail")
+        } catch {
+            XCTAssert(error.localizedDescription == testError.localizedDescription)
+        }
     }
     
     
-    func testFetchBerryFlavorByName_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFlavorByName_success() async throws {
         try mock(.fetchBerryFlavorByName("spicy"), result: .success(MockBerryData.berryFlavor))
         
-        service.fetchBerryFlavor("spicy")
-            .sinkToResult { result in
-                switch result {
-                case .success(let result):
-                    XCTAssert(result.name == "spicy")
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            let result = try await service.fetchBerryFlavor("spicy")
+            XCTAssert(result.name == "spicy")
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
     
     
-    func testFetchBerryFlavorByName_failure() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchBerryFlavorByName_failure() async throws {
         let testError = HTTPError.unexpectedResponse
         let testResult: Result<Data, Error> = .failure(testError)
         try mock(.fetchBerryFlavorByName("spicy"), result: testResult, httpCode: testError.code)
         
-        service.fetchBerryFlavor("spicy")
-            .sinkToResult { result in
-                switch result {
-                case .success:
-                    XCTFail("The service should fail")
-                case .failure(let error):
-                    XCTAssert(error.localizedDescription == testError.localizedDescription)
-                }
-                
-                asyncExpectation.fulfill();
-            }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        do {
+            _ = try await service.fetchBerryFlavor("spicy")
+            XCTFail("The service should fail")
+        } catch {
+            XCTAssert(error.localizedDescription == testError.localizedDescription)
+        }
     }
 }

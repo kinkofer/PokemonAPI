@@ -1,3 +1,14 @@
+## 7.0.0
+Remove Cocoapods support
+
+Remove Combine methods
+
+Add additional Pokemon Sprite properties that are unlisted in the documentation
+
+Fix various typos and incorrect properties
+
+Update tests
+
 ## 6.1.1
 Fix Pokedex async endpoints
 

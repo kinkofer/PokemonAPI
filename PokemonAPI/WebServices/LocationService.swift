@@ -6,7 +6,6 @@
 //  Copyright © 2020 Prismatic Games. All rights reserved.
 //
 
-import Combine
 import Foundation
 
 
@@ -21,27 +20,6 @@ protocol PKMLocationService: HTTPWebService {
     func fetchRegionList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMRegion
     func fetchRegion(_ regionID: Int, completion: @escaping (_ result: Result<PKMRegion, Error>) -> Void)
     func fetchRegion(_ regionName: String, completion: @escaping (_ result: Result<PKMRegion, Error>) -> Void)
-    
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchLocationList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLocation
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchLocation(_ locationID: Int) -> AnyPublisher<PKMLocation, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchLocationAreaList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLocationArea
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchLocationArea(_ locationAreaID: Int) -> AnyPublisher<PKMLocationArea, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchPalParkAreaList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPalParkArea
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchPalParkArea(_ palParkAreaID: Int) -> AnyPublisher<PKMPalParkArea, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchPalParkArea(_ palParkAreaName: String) -> AnyPublisher<PKMPalParkArea, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchRegionList<T>(paginationState: PaginationState<T>) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMRegion
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchRegion(_ regionID: Int) -> AnyPublisher<PKMRegion, Error>
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetchRegion(_ regionName: String) -> AnyPublisher<PKMRegion, Error>
     
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchLocationList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLocation
@@ -217,113 +195,6 @@ public struct LocationService: PKMLocationService {
         call(endpoint: API.fetchRegionByName(regionName)) { result in
             result.decode(completion: completion)
         }
-    }
-}
-
-
-
-// MARK: - Combine Services
-
-extension LocationService {
-    /**
-     Fetch Locations list
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchLocationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLocation {
-        callPaginated(endpoint: API.fetchLocationList, paginationState: paginationState)
-    }
-    
-    
-    /**
-     Fetch Location Information
-     
-     - parameter locationID: Location ID
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchLocation(_ locationID: Int) -> AnyPublisher<PKMLocation, Error> {
-        call(endpoint: API.fetchLocation(locationID))
-    }
-    
-    
-    /**
-     Fetch Location Area list
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchLocationAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMLocationArea {
-        callPaginated(endpoint: API.fetchLocationAreaList, paginationState: paginationState)
-    }
-    
-    
-    /**
-     Fetch Location Area Information
-     
-     - parameter locationAreaId: Location Area ID
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchLocationArea(_ locationAreaID: Int) -> AnyPublisher<PKMLocationArea, Error> {
-        call(endpoint: API.fetchLocationArea(locationAreaID))
-    }
-    
-    
-    /**
-     Fetch Pal Park Areas list
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchPalParkAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMPalParkArea {
-        callPaginated(endpoint: API.fetchPalParkAreaList, paginationState: paginationState)
-    }
-    
-    
-    /**
-     Fetch Pal Park Area Information
-     
-     - parameter palParkAreaID: Pal Park Area ID
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchPalParkArea(_ palParkAreaID: Int) -> AnyPublisher<PKMPalParkArea, Error> {
-        call(endpoint: API.fetchPalParkAreaByID(palParkAreaID))
-    }
-    
-    
-    /**
-     Fetch Pal Park Area Information
-     
-     - parameter palParkAreaName: Pal Park Area Name
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchPalParkArea(_ palParkAreaName: String) -> AnyPublisher<PKMPalParkArea, Error> {
-        call(endpoint: API.fetchPalParkAreaByName(palParkAreaName))
-    }
-    
-    
-    /**
-     Fetch Regions list
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchRegionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) -> AnyPublisher<PKMPagedObject<T>, Error> where T: PKMRegion {
-        callPaginated(endpoint: API.fetchRegionList, paginationState: paginationState)
-    }
-    
-    
-    /**
-     Fetch Region Information
-     
-     - parameter regionID: Region ID
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchRegion(_ regionID: Int) -> AnyPublisher<PKMRegion, Error> {
-        call(endpoint: API.fetchRegionByID(regionID))
-    }
-    
-    
-    /**
-     Fetch Region Information
-     
-     - parameter regionName: Region Name
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func fetchRegion(_ regionName: String) -> AnyPublisher<PKMRegion, Error> {
-        call(endpoint: API.fetchRegionByName(regionName))
     }
 }
 

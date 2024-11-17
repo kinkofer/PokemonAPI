@@ -1,11 +1,8 @@
 # PokemonAPI
 
-[![Build Status](https://travis-ci.org/kinkofer/PokemonAPI.svg?branch=master)](https://travis-ci.org/kinkofer/PokemonAPI)
-[![License](https://img.shields.io/cocoapods/l/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
-[![Platform](https://img.shields.io/cocoapods/p/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
+[![License](https://img.shields.io/cocoapods/l/PokemonAPI.svg?style=flat)](https://github.com/kinkofer/PokemonAPI)
+[![Platform](https://img.shields.io/cocoapods/p/PokemonAPI.svg?style=flat)](https://github.com/kinkofer/PokemonAPI)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
-[![Version](https://img.shields.io/cocoapods/v/PokemonAPI.svg?style=flat)](http://cocoapods.org/pods/PokemonAPI)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ## What is this?
 
@@ -23,10 +20,9 @@ All code is Swift native with no third party frameworks.
 Use the `PokemonAPI` class to access web API classes organized by categories found on pokeapi.co (Berries, Pokemon, Games, etc.).
 
 ### Response
-All web API functions are duplicated to support three methods of receiving the response:
+All web API functions are duplicated to support two methods of receiving the response:
 
 - Escaping closures (completion handlers) with type `Result`
-- Publishers, for compatibility with the Combine framework (iOS 13, macOS 10.15, watchOS 6, tvOS 13) 
 - Async functions to support the async/await pattern (iOS 15, macOS 12, watchOS 8, tvOS 15)
 
 Success values from these functions contain a custom class decoded from the JSON response. The error value is custom enum type `HTTPError`.
@@ -81,25 +77,6 @@ PokemonAPI().berryService.fetchBerry(1) { result in
         print(error.localizedDescription)
     }
 }
-
-// Same example using Combine. Don't forget to store your cancellable.
-let cancellable = PokemonAPI().berryService.fetchBerry(1)
-	.sink(receiveCompletion: { completion in
-        if case .failure(let error) = completion {
-            print(error.localizedDescription)
-        }
-	}, receiveValue: { berry in
-		self.berryLabel.text = berry.name // cheri
-	})
-
-// Same example using async/await.
-do {
-    self.berryLabel.text = try await PokemonAPI().berryService.fetchBerry(1)
-}
-catch {
-    print(error.localizedDescription)
-}
-```
 
 
 ```swift
@@ -196,24 +173,6 @@ File->Swift Packages->Add Package Dependency...
 
 ```
 https://github.com/kinkofer/PokemonAPI
-```
-
-### Cocoapods
-
-PokemonAPI is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'PokemonAPI'
-```
-
-
-### Carthage
-
-If you're using Carthage you can add PokemonAPI by adding it to your Cartfile:
-
-```ruby
-github "kinkofer/PokemonAPI" ~> 6.1.0
 ```
 
 ## Author

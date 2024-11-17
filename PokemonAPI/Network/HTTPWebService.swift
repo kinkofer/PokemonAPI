@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 
 enum HTTPMethod: String {
@@ -65,36 +64,6 @@ extension HTTPWebService {
         }
         catch let error {
             completion(.failure(HTTPError.other(error)))
-        }
-    }
-}
-
-
-
-// MARK: - Publisher Calls
-
-@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-extension HTTPWebService {
-    func call<Value>(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) -> AnyPublisher<Value, Error> where Value: Decodable {
-        do {
-            let request = try endpoint.createUrlRequest(baseURL: baseURL, method: method, headers: headers, body: body)
-            return session
-                .dataTaskPublisher(for: request)
-                .requestJSON()
-        } catch let error {
-            return Fail<Value, Error>(error: error).eraseToAnyPublisher()
-        }
-    }
-    
-    
-    func callPaginated<Value>(endpoint: APICall, paginationState: PaginationState<Value>, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) -> AnyPublisher<PKMPagedObject<Value>, Error> where Value: Decodable {
-        do {
-            let request = try endpoint.createUrlRequest(baseURL: baseURL, paginationState: paginationState, method: method, headers: headers, body: body)
-            return session
-                .dataTaskPublisher(for: request)
-                .requestJSON()
-        } catch let error {
-            return Fail<PKMPagedObject<Value>, Error>(error: error).eraseToAnyPublisher()
         }
     }
 }

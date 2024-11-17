@@ -7,22 +7,19 @@
 //
 
 import XCTest
-import Combine
 @testable import PokemonAPI
 
 
-@available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
 class ResourceServiceTests: XCTestCase {
     typealias API = ResourceService.API
     typealias Mock = RequestMocking.MockedResponse
     
     var service: ResourceService!
-    var cancellables = Set<AnyCancellable>()
 
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        cancellables = Set<AnyCancellable>()
         service = ResourceService(session: .mockedResponsesOnly)
     }
     
@@ -44,29 +41,19 @@ class ResourceServiceTests: XCTestCase {
     
     // MARK: - Tests
     
-    func testFetchResource_success() throws {
-        let asyncExpectation = expectation(description: "Completion")
-        
+    func testFetchResource_success() async throws {
         try mock(.fetchResource(MockResourceData.berryResource), result: .success(MockBerryData.berry))
         
-        service.fetch(MockResourceData.berryResource)
-            .sinkToResult { result in
-                switch result {
-                case .success(let berry):
-                    do {
-                        let berryName = try XCTUnwrap(berry.name, "The berry should have a name")
-                        XCTAssertTrue(berryName == "cheri", "Expected the first berry to be cheri but found \(berryName)")
-                    } catch {
-                        XCTFail("The response was not valid")
-                    }
-                case .failure(let error):
-                    XCTFail("The service should not fail: \(error.localizedDescription)")
-                }
-                
-                asyncExpectation.fulfill();
+        do {
+            let berry = try await service.fetch(MockResourceData.berryResource)
+            do {
+                let berryName = try XCTUnwrap(berry.name, "The berry should have a name")
+                XCTAssertTrue(berryName == "cheri", "Expected the first berry to be cheri but found \(berryName)")
+            } catch {
+                XCTFail("The response was not valid")
             }
-            .store(in: &cancellables)
-        
-        self.wait(for: [asyncExpectation], timeout: 5)
+        } catch {
+            XCTFail("The service should not fail: \(error.localizedDescription)")
+        }
     }
 }
