@@ -50,7 +50,7 @@ public class PKMPagedObject<T>: Codable {
     /// The url for the current page
     public private(set) var current: String = ""
     
-    /// List of named API resources
+    /// List of API resources (some services return named resources and can be cast as [PKMAPIResource])
     public private(set) var results: [PKMAPIResource<T>]?
     
     /// The number of results returned on each page

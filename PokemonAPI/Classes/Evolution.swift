@@ -18,7 +18,7 @@ open class PKMEvolutionChain: Codable, SelfDecodable {
     open var babyTriggerItem: PKMNamedAPIResource<PKMItem>?
     
     /// The base chain link object. Each link contains evolution details for a Pokémon in the chain. Each link references the next Pokémon in the natural evolution order.
-    open var chain: PKMClainLink?
+    open var chain: PKMChainLink?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -28,8 +28,8 @@ open class PKMEvolutionChain: Codable, SelfDecodable {
 }
 
 
-/// Clain Link
-open class PKMClainLink: Codable, SelfDecodable {
+/// Chain Link
+open class PKMChainLink: Codable, SelfDecodable {
     
     /// Whether or not this link is for a baby Pokémon. This would only ever be true on the base link.
     open var isBaby: Bool?
@@ -41,7 +41,7 @@ open class PKMClainLink: Codable, SelfDecodable {
     open var evolutionDetails: [PKMEvolutionDetail]?
     
     /// A List of chain objects.
-    open var evolvesTo: [PKMClainLink]?
+    open var evolvesTo: [PKMChainLink]?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()

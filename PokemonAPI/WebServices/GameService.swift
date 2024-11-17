@@ -471,7 +471,7 @@ extension GameService {
      */
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchVersion(_ versionID: Int) async throws -> PKMVersion {
-        try await PKMVersion.decode(from: call(endpoint: API.fetchGenerationByID(versionID)))
+        try await PKMVersion.decode(from: call(endpoint: API.fetchVersionByID(versionID)))
     }
     
     
@@ -482,7 +482,7 @@ extension GameService {
      */
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchVersion(_ versionName: String) async throws -> PKMVersion {
-        try await PKMVersion.decode(from: call(endpoint: API.fetchGenerationByName(versionName)))
+        try await PKMVersion.decode(from: call(endpoint: API.fetchVersionByName(versionName)))
     }
     
     

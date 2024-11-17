@@ -87,11 +87,14 @@ open class PKMEncounter: Codable, SelfDecodable {
 /// Flavor Text
 open class PKMFlavorText: Codable, SelfDecodable {
     
-    /// The localized flavor text for an API resource in a specific language
+    /// The localized flavor text for an API resource in a specific language. Note that this text is left unprocessed as it is found in game files. This means that it contains special characters that one might want to replace with their visible decodable version.
     open var flavorText: String?
     
     /// The language this name is in
-    open var language: PKMName?
+    open var language: PKMNamedAPIResource<PKMLanguage>?
+    
+    /// The game version this flavor text is extracted from.
+    open var version: PKMNamedAPIResource<PKMVersion>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()

@@ -525,7 +525,7 @@ open class PKMPokemonMoveVersion: Codable, SelfDecodable {
     /// The version group in which the move is learned
     open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
-    /// The version group in which the move is learned
+    /// The minimum level to learn the move.
     open var levelLearnedAt: Int?
     
     public static var decoder: JSONDecoder = {
@@ -583,11 +583,134 @@ open class PKMPokemonSprites: Codable, SelfDecodable {
     /// The shiny female depiction of this Pokémon from the back in battle
     open var backShinyFemale: String?
     
+    open var other: PKMPokemonSpritesOther?
+    
+    open var versions: PKMPokemonSpritesVersions?
+    
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
+}
+
+
+/// Pokemon Sprites from other sources
+open class PKMPokemonSpritesOther: Codable {
+    enum CodingKeys: String, CodingKey {
+        case dreamWorld = "dream_world"
+        case home
+        case officialArtwork = "official-artwork"
+        case showdown
+    }
+    
+    open var dreamWorld: PKMPokemonSprites?
+    open var home: PKMPokemonSprites?
+    open var officialArtwork: PKMPokemonSprites?
+    open var showdown: PKMPokemonSprites?
+}
+
+
+/// Pokemon Sprites from other versions
+open class PKMPokemonSpritesVersions: Codable {
+    enum CodingKeys: String, CodingKey {
+        case generation1 = "generation-i"
+        case generation2 = "generation-ii"
+        case generation3 = "generation-iii"
+        case generation4 = "generation-iv"
+        case generation5 = "generation-v"
+        case generation6 = "generation-vi"
+        case generation7 = "generation-vii"
+        case generation8 = "generation-viii"
+        case generation9 = "generation-ix"
+    }
+    
+    open var generation1: PKMPokemonSpritesVersionsGeneration1?
+    open var generation2: PKMPokemonSpritesVersionsGeneration2?
+    open var generation3: PKMPokemonSpritesVersionsGeneration3?
+    open var generation4: PKMPokemonSpritesVersionsGeneration4?
+    open var generation5: PKMPokemonSpritesVersionsGeneration5?
+    open var generation6: PKMPokemonSpritesVersionsGeneration6?
+    open var generation7: PKMPokemonSpritesVersionsGeneration7?
+    open var generation8: PKMPokemonSpritesVersionsGeneration8?
+    open var generation9: PKMPokemonSpritesVersionsGeneration9?
+}
+
+
+open class PKMPokemonSpritesVersionsGeneration1: Codable {
+    enum CodingKeys: String, CodingKey {
+        case redBlue = "red-blue"
+        case yellow
+    }
+    
+    open var redBlue: PKMPokemonSprites?
+    open var yellow: PKMPokemonSprites?
+}
+
+open class PKMPokemonSpritesVersionsGeneration2: Codable {
+    open var crystal: PKMPokemonSprites?
+    open var gold: PKMPokemonSprites?
+    open var silver: PKMPokemonSprites?
+}
+
+open class PKMPokemonSpritesVersionsGeneration3: Codable {
+    enum CodingKeys: String, CodingKey {
+        case emerald
+        case fireRedLeafGreen = "firered-leafgreen"
+        case rubySapphire = "ruby-sapphire"
+    }
+    
+    open var emerald: PKMPokemonSprites?
+    open var fireRedLeafGreen: PKMPokemonSprites?
+    open var rubySapphire: PKMPokemonSprites?
+}
+
+open class PKMPokemonSpritesVersionsGeneration4: Codable {
+    enum CodingKeys: String, CodingKey {
+        case diamondPearl = "diamond-pearl"
+        case heartGoldSoulSilver = "heartgold-soulsilver"
+        case platinum
+    }
+    
+    open var diamondPearl: PKMPokemonSprites?
+    open var heartGoldSoulSilver: PKMPokemonSprites?
+    open var platinum: PKMPokemonSprites?
+}
+
+open class PKMPokemonSpritesVersionsGeneration5: Codable {
+    enum CodingKeys: String, CodingKey {
+        case blackWhite = "black-white"
+    }
+    
+    open var blackWhite: PKMPokemonSprites?
+}
+
+open class PKMPokemonSpritesVersionsGeneration6: Codable {
+    enum CodingKeys: String, CodingKey {
+        case omegaRubyAlphaSapphire = "omegaruby-alphasapphire"
+        case xY = "x-y"
+    }
+    
+    open var omegaRubyAlphaSapphire: PKMPokemonSprites?
+    open var xY: PKMPokemonSprites?
+}
+
+open class PKMPokemonSpritesVersionsGeneration7: Codable {
+    enum CodingKeys: String, CodingKey {
+        case icons
+        case ultraSunUltraMoon = "ultra-sun-ultra-moon"
+    }
+    
+    open var icons: PKMPokemonSprites?
+    open var ultraSunUltraMoon: PKMPokemonSprites?
+}
+
+open class PKMPokemonSpritesVersionsGeneration8: Codable {
+    open var icons: PKMPokemonSprites?
+}
+
+open class PKMPokemonSpritesVersionsGeneration9: Codable {
+    open var icons: PKMPokemonSprites?
 }
 
 
@@ -889,7 +1012,7 @@ open class PKMPokemonSpeciesDexEntry: Codable, SelfDecodable {
     open var entryNumber: Int?
     
     /// The Pokédex the referenced Pokémon species can be found in
-    open var name: PKMNamedAPIResource<PKMName>?
+    open var pokedex: PKMNamedAPIResource<PKMPokedex>?
     
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
