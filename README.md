@@ -41,26 +41,7 @@ The example project included in this framework contains a full example for worki
 
 ### Network Calls
 
-Allow your app to make calls to PokéAPI (pokeapi.co) by making an App Transport Security domain exception.
-
-In your Info.plist, add
-```
-<key>NSAppTransportSecurity</key>
-<dict>
-	<key>NSExceptionDomains</key>
-	<dict>
-		<key>pokeapi.co</key>
-		<dict>
-			<key>NSIncludesSubdomains</key>
-			<true/>
-			<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-			<true/>
-			<key>NSTemporaryExceptionMinimumTLSVersion</key>
-			<string>TLSv1.2</string>
-		</dict>
-	</dict>
-</dict>
-```
+Allow your app to make calls to PokéAPI (pokeapi.co) by enabling "Outgoing Connections (Client)" in your project's Signing & Capabilities.
 
 
 ## Examples
@@ -78,8 +59,6 @@ PokemonAPI().berryService.fetchBerry(1) { result in
     }
 }
 
-
-```swift
 // Example of calling a web API using a name
 PokemonAPI().pokemonService.fetchPokemon("bulbasaur") { result in
     switch result {

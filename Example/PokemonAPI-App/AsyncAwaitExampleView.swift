@@ -38,12 +38,12 @@ struct AsyncAwaitExampleView: View {
             }
         }
         .task {
-            await findPokemon()
+            await findRegions()
         }
     }
     
     
-    func findPokemon() async {
+    func findRegions() async {
         do {
             versionGroup = try await pokemonAPI.gameService.fetchVersionGroup(3)
             

@@ -1,31 +1,29 @@
 //
-//  ContentView.swift
-//  Shared
+//  ExampleMenuView.swift
+//  PokemonAPI-App
 //
-//  Created by Christopher Jennewein on 10/3/21.
+//  Created by Christopher Jennewein on 11/17/24.
 //
 
 import SwiftUI
 
-
-struct ContentView: View {
+struct ExampleMenuView: View {
     var body: some View {
-        NavigationView {
+        NavigationSplitView {
             List {
                 NavigationLink("Completion Example", destination: CompletionExampleView())
                 NavigationLink("Async/Await Example", destination: AsyncAwaitExampleView())
                 NavigationLink("Paginated Results Example", destination: PaginatedResultsView())
             }
-            #if os(iOS) || os(macOS)
-            .listStyle(.sidebar)
-            #endif
+#if os(macOS)
+            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
+#endif
+        } detail: {
+            Text("Select an example to see it in action.")
         }
     }
 }
 
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ExampleMenuView()
 }

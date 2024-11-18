@@ -1,8 +1,8 @@
 //
 //  PaginatedResultsView.swift
-//  PaginatedResultsView
+//  PokemonAPI-App
 //
-//  Created by Christopher Jennewein on 10/15/21.
+//  Created by Christopher Jennewein on 10/3/21.
 //
 
 import SwiftUI
@@ -20,8 +20,11 @@ struct PaginatedResultsView: View {
     
     var body: some View {
         mainContent
-            .navigationTitle("")
-            .navigationBarItems(trailing: menu)
+            .toolbar {
+                ToolbarItemGroup(placement: .principal) {
+                    menu
+                }
+            }
             .task {
                 await fetchPokemon()
             }
@@ -91,12 +94,20 @@ struct PaginatedResultsView: View {
     
     
     var pagePicker: some View {
-        NavigationLink("Page \(pageIndex + 1)") {
-            PageSelectView(pages: pagedObject?.pages ?? 0, pageIndex: $pageIndex)
-                .onChange(of: pageIndex) { index in
-                    guard let pagedObject = pagedObject else { return }
-                    Task { await fetchPokemon(paginationState: .continuing(pagedObject, .page(index))) }
+        Picker("", selection: $pageIndex) {
+            if let pagedObject = pagedObject {
+                ForEach(0..<pagedObject.pages, id: \.self) { page in
+                    Text("Page \(page + 1)")
+                        .tag(page)
                 }
+            }
+        }
+        #if os(macOS)
+        .pickerStyle(.menu)
+        #endif
+        .onChange(of: pageIndex) {
+            guard let pagedObject = pagedObject else { return }
+            Task { await fetchPokemon(paginationState: .continuing(pagedObject, .page(pageIndex))) }
         }
     }
     
@@ -104,7 +115,7 @@ struct PaginatedResultsView: View {
     
     // MARK: - Data
     
-    func fetchPokemon(paginationState: PaginationState<PKMPokemon> = .initial(pageLimit: 10)) async {
+    func fetchPokemon(paginationState: PaginationState<PKMPokemon> = .initial(pageLimit: 20)) async {
         do {
             pagedObject = try await pokemonAPI.pokemonService.fetchPokemonList(paginationState: paginationState)
             pageIndex = pagedObject?.currentPage ?? 0
@@ -117,7 +128,7 @@ struct PaginatedResultsView: View {
 
 
 
-struct PaginatedResultsTVView_Previews: PreviewProvider {
+struct PaginatedResultsView_Previews: PreviewProvider {
     static var previews: some View {
         PaginatedResultsView()
             .environmentObject(PokemonAPI())
