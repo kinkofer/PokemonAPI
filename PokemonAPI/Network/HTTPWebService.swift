@@ -51,8 +51,8 @@ extension HTTPWebService {
                 case .success(let data):
                     do {
                         let pagedObject = try PKMPagedObject<T>.decode(from: data)
-                        pagedObject.update(with: paginationState, currentUrl: url.absoluteString)
-                        completion(.success(pagedObject))
+                        let newPagedObject = PKMPagedObject<T>(from: pagedObject, with: paginationState, currentUrl: url.absoluteString)
+                        completion(.success(newPagedObject))
                     }
                     catch {
                         completion(.failure(HTTPError.jsonParsingError))
@@ -80,7 +80,7 @@ extension HTTPWebService {
     }
     
     
-    func callPaginated<Value>(endpoint: APICall, paginationState: PaginationState<Value>, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) async throws -> PKMPagedObject<Value> where Value: Decodable {
+    func callPaginated<T>(endpoint: APICall, paginationState: PaginationState<T>, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) async throws -> PKMPagedObject<T> where T: Decodable {
         let request = try endpoint.createUrlRequest(baseURL: baseURL, paginationState: paginationState, method: method, headers: headers, body: body)
         
         guard let url = request.url else {
@@ -88,8 +88,8 @@ extension HTTPWebService {
         }
         
         let data = try await session.startData(request)
-        let pagedObject = try PKMPagedObject<Value>.decode(from: data)
-        pagedObject.update(with: paginationState, currentUrl: url.absoluteString)
-        return pagedObject
+        let pagedObject = try PKMPagedObject<T>.decode(from: data)
+        let newPagedObject = PKMPagedObject<T>(from: pagedObject, with: paginationState, currentUrl: url.absoluteString)
+        return newPagedObject
     }
 }
