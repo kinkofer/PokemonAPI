@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum HTTPError: Error, LocalizedError {
+public enum HTTPError: Error, Equatable, LocalizedError {
     // Request Error cases
     
     /// The request could not be constructed
@@ -134,6 +134,11 @@ public enum HTTPError: Error, LocalizedError {
         default:
             return 499
         }
+    }
+    
+    
+    public static func == (lhs: HTTPError, rhs: HTTPError) -> Bool {
+        lhs.errorDescription == rhs.errorDescription
     }
     
     

@@ -31,12 +31,12 @@ class ContestServiceTests: XCTestCase {
     
     // MARK: - Helper
     
-    private func mock(_ apiCall: API, result: Result<Data, Swift.Error>, httpCode: Int = 200, paginated: Bool = false) throws {
+    private func mock(_ apiCall: API, result: Result<Data, Swift.Error>, httpCode: Int = 200) throws {
         let mock = try Mock(apiCall: apiCall, baseURL: service.baseURL, result: result, httpCode: httpCode)
         RequestMocking.add(mock: mock)
     }
     
-    private func mock<T>(_ apiCall: API, paginationState: PaginationState<T>, result: Result<Data, Swift.Error>, httpCode: Int = 200, paginated: Bool = false) throws where T: Codable {
+    private func mock<T>(_ apiCall: API, paginationState: PaginationState<T>, result: Result<Data, Swift.Error>, httpCode: Int = 200) throws where T: Codable {
         let mock = try Mock(apiCall: apiCall, baseURL: service.baseURL, paginationState: paginationState, result: result, httpCode: httpCode)
         RequestMocking.add(mock: mock)
     }
@@ -79,7 +79,9 @@ class ContestServiceTests: XCTestCase {
     
     
     func testFetchContestType_failure() async throws {
-        try mock(.fetchContestTypeByID(1), result: .failure(HTTPError.unexpectedResponse), httpCode: HTTPError.unexpectedResponse.code)
-        await XCTAssertThrowsError(try await service.fetchContestType(1))
+        let testError = HTTPError.unexpectedResponse
+        try mock(.fetchContestTypeByID(1), result: .failure(testError), httpCode: HTTPError.unexpectedResponse.code)
+        
+        await XCTAssertThrowsError(try await service.fetchContestType(1), testError)
     }
 }

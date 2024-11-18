@@ -32,12 +32,12 @@ class BerryServiceTests: XCTestCase {
     
     // MARK: - Helper
     
-    private func mock(_ apiCall: API, result: Result<Data, Swift.Error>, httpCode: Int = 200, paginated: Bool = false) throws {
+    private func mock(_ apiCall: API, result: Result<Data, Swift.Error>, httpCode: Int = 200) throws {
         let mock = try Mock(apiCall: apiCall, baseURL: service.baseURL, result: result, httpCode: httpCode)
         RequestMocking.add(mock: mock)
     }
     
-    private func mock<T>(_ apiCall: API, paginationState: PaginationState<T>, result: Result<Data, Swift.Error>, httpCode: Int = 200, paginated: Bool = false) throws where T: Codable {
+    private func mock<T>(_ apiCall: API, paginationState: PaginationState<T>, result: Result<Data, Swift.Error>, httpCode: Int = 200) throws where T: Codable {
         let mock = try Mock(apiCall: apiCall, baseURL: service.baseURL, paginationState: paginationState, result: result, httpCode: httpCode)
         RequestMocking.add(mock: mock)
     }
@@ -71,15 +71,9 @@ class BerryServiceTests: XCTestCase {
     func testFetchBerryList_failure() async throws {
         let paginationState: PaginationState<PKMBerry> = .initial(pageLimit: 20)
         let testError = HTTPError.unexpectedResponse
-        let testResult: Result<Data, Error> = .failure(testError)
-        try mock(.fetchBerryList, paginationState: paginationState, result: testResult, httpCode: testError.code)
+        try mock(.fetchBerryList, paginationState: paginationState, result: .failure(testError), httpCode: testError.code)
         
-        do {
-            _ = try await service.fetchBerryList()
-            XCTFail("The service should fail")
-        } catch {
-            XCTAssertTrue(error.localizedDescription == testError.localizedDescription)
-        }
+        await XCTAssertThrowsError(try await service.fetchBerryList(), testError)
     }
     
     
@@ -97,15 +91,9 @@ class BerryServiceTests: XCTestCase {
     
     func testFetchBerryByID_failure() async throws {
         let testError = HTTPError.unexpectedResponse
-        let testResult: Result<Data, Error> = .failure(testError)
-        try mock(.fetchBerryByID(1), result: testResult, httpCode: testError.code)
+        try mock(.fetchBerryByID(1), result: .failure(testError), httpCode: testError.code)
         
-        do {
-            _ = try await service.fetchBerry(1)
-            XCTFail("The service should fail")
-        } catch {
-            XCTAssert(error.localizedDescription == testError.localizedDescription)
-        }
+        await XCTAssertThrowsError(try await service.fetchBerry(1), testError)
     }
     
     
@@ -123,15 +111,9 @@ class BerryServiceTests: XCTestCase {
     
     func testFetchBerryByName_failure() async throws {
         let testError = HTTPError.unexpectedResponse
-        let testResult: Result<Data, Error> = .failure(testError)
-        try mock(.fetchBerryByName("cheri"), result: testResult, httpCode: testError.code)
+        try mock(.fetchBerryByName("cheri"), result: .failure(testError), httpCode: testError.code)
         
-        do {
-            _ = try await service.fetchBerry("cheri")
-            XCTFail("The service should fail")
-        } catch {
-            XCTAssert(error.localizedDescription == testError.localizedDescription)
-        }
+        await XCTAssertThrowsError(try await service.fetchBerry("cheri"), testError)
     }
     
     
@@ -160,15 +142,9 @@ class BerryServiceTests: XCTestCase {
     func testFetchBerryFirmnessList_failure() async throws {
         let paginationState: PaginationState<PKMBerryFirmness> = .initial(pageLimit: 20)
         let testError = HTTPError.unexpectedResponse
-        let testResult: Result<Data, Error> = .failure(testError)
-        try mock(.fetchBerryFirmnessList, paginationState: paginationState, result: testResult, httpCode: testError.code)
+        try mock(.fetchBerryFirmnessList, paginationState: paginationState, result: .failure(testError), httpCode: testError.code)
         
-        do {
-            _ = try await service.fetchBerryFirmnessList()
-            XCTFail("The service should fail")
-        } catch {
-            XCTAssert(error.localizedDescription == testError.localizedDescription, "Expected error description \"\(testError.localizedDescription)\" but found \"\(error.localizedDescription)\"")
-        }
+        await XCTAssertThrowsError(try await service.fetchBerryFirmnessList(), testError)
     }
     
     
@@ -186,15 +162,9 @@ class BerryServiceTests: XCTestCase {
     
     func testFetchBerryFirmnessByID_failure() async throws {
         let testError = HTTPError.unexpectedResponse
-        let testResult: Result<Data, Error> = .failure(testError)
-        try mock(.fetchBerryFirmnessByID(1), result: testResult, httpCode: testError.code)
+        try mock(.fetchBerryFirmnessByID(1), result: .failure(testError), httpCode: testError.code)
         
-        do {
-            _ = try await service.fetchBerryFirmness(1)
-            XCTFail("The service should fail")
-        } catch {
-            XCTAssert(error.localizedDescription == testError.localizedDescription)
-        }
+        await XCTAssertThrowsError(try await service.fetchBerryFirmness(1), testError)
     }
     
     
@@ -212,15 +182,9 @@ class BerryServiceTests: XCTestCase {
     
     func testFetchBerryFirmnessByName_failure() async throws {
         let testError = HTTPError.unexpectedResponse
-        let testResult: Result<Data, Error> = .failure(testError)
-        try mock(.fetchBerryFirmnessByName("very-soft"), result: testResult, httpCode: testError.code)
+        try mock(.fetchBerryFirmnessByName("very-soft"), result: .failure(testError), httpCode: testError.code)
         
-        do {
-            _ = try await service.fetchBerryFirmness("very-soft")
-            XCTFail("The service should fail")
-        } catch {
-            XCTAssert(error.localizedDescription == testError.localizedDescription)
-        }
+        await XCTAssertThrowsError(try await service.fetchBerryFirmness("very-soft"), testError)
     }
     
     
@@ -249,15 +213,9 @@ class BerryServiceTests: XCTestCase {
     func testFetchBerryFlavor_failure() async throws {
         let paginationState: PaginationState<PKMBerryFlavor> = .initial(pageLimit: 20)
         let testError = HTTPError.unexpectedResponse
-        let testResult: Result<Data, Error> = .failure(testError)
-        try mock(.fetchBerryFlavorList, paginationState: paginationState, result: testResult, httpCode: testError.code)
+        try mock(.fetchBerryFlavorList, paginationState: paginationState, result: .failure(testError), httpCode: testError.code)
         
-        do {
-            _ = try await service.fetchBerryFlavorList()
-            XCTFail("The service should fail")
-        } catch {
-            XCTAssert(error.localizedDescription == testError.localizedDescription, "Expected error description \"\(testError.localizedDescription)\" but found \"\(error.localizedDescription)\"")
-        }
+        await XCTAssertThrowsError(try await service.fetchBerryFlavorList(), testError)
     }
     
     
@@ -275,15 +233,9 @@ class BerryServiceTests: XCTestCase {
     
     func testFetchBerryFlavorByID_failure() async throws {
         let testError = HTTPError.unexpectedResponse
-        let testResult: Result<Data, Error> = .failure(testError)
-        try mock(.fetchBerryFlavorByID(1), result: testResult, httpCode: testError.code)
+        try mock(.fetchBerryFlavorByID(1), result: .failure(testError), httpCode: testError.code)
         
-        do {
-            _ = try await service.fetchBerryFlavor(1)
-            XCTFail("The service should fail")
-        } catch {
-            XCTAssert(error.localizedDescription == testError.localizedDescription)
-        }
+        await XCTAssertThrowsError(try await service.fetchBerryFlavor(1), testError)
     }
     
     
@@ -301,14 +253,8 @@ class BerryServiceTests: XCTestCase {
     
     func testFetchBerryFlavorByName_failure() async throws {
         let testError = HTTPError.unexpectedResponse
-        let testResult: Result<Data, Error> = .failure(testError)
-        try mock(.fetchBerryFlavorByName("spicy"), result: testResult, httpCode: testError.code)
+        try mock(.fetchBerryFlavorByName("spicy"), result: .failure(testError), httpCode: testError.code)
         
-        do {
-            _ = try await service.fetchBerryFlavor("spicy")
-            XCTFail("The service should fail")
-        } catch {
-            XCTAssert(error.localizedDescription == testError.localizedDescription)
-        }
+        await XCTAssertThrowsError(try await service.fetchBerryFlavor("spicy"), testError)
     }
 }

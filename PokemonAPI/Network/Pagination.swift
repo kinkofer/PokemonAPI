@@ -31,6 +31,8 @@ public enum PaginationRelationship {
 
 /// Paged Object
 public class PKMPagedObject<T>: Codable {
+    typealias PKMObject = T
+    
     enum CodingKeys: String, CodingKey {
         case count
         case next
@@ -105,7 +107,7 @@ public class PKMPagedObject<T>: Codable {
     
     /// Update PagedObject's offset, limit, and current url. These properties are not returned from the web service
     /// so must be updated from the previous values.
-    func update<T>(with paginationState: PaginationState<T>, currentUrl: String) {
+    func update<PKMObject>(with paginationState: PaginationState<PKMObject>, currentUrl: String) {
         switch paginationState {
         case .initial(let limit):
             self.offset = 0

@@ -32,7 +32,7 @@ class ResourceServiceTests: XCTestCase {
     
     // MARK: - Helper
     
-    private func mock<T>(_ apiCall: API<T>, result: Result<Data, Swift.Error>, httpCode: Int = 200, paginated: Bool = false) throws {
+    private func mock<T>(_ apiCall: API<T>, result: Result<Data, Swift.Error>, httpCode: Int = 200) throws {
         let mock = try Mock(apiCall: apiCall, baseURL: service.baseURL, result: result, httpCode: httpCode)
         RequestMocking.add(mock: mock)
     }
