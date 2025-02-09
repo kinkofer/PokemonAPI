@@ -23,562 +23,205 @@ class PokemonAPITests: XCTestCase {
     
     
     
-    func testFetchBerries() {
-        let asyncExpectation = expectation(description: "Fetch berries")
-        
-        PokemonAPI().berryService.fetchBerryList() { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchBerries() async throws {
+        let list = try await PokemonAPI().berryService.fetchBerryList()
+        XCTAssertGreaterThan(list.count ?? -1, 0)
     }
     
     
-    func testFetchBerryInfo() {
-        let asyncExpectation = expectation(description: "Fetch berry")
-        
-        PokemonAPI().berryService.fetchBerry(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchBerryInfo() async throws {
+        let obj = try await PokemonAPI().berryService.fetchBerry(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
     
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-    func testFetchBerryInfoAsync_success() async throws {
-        let berry = try await PokemonAPI().berryService.fetchBerry(1)
-        XCTAssertEqual(berry.id, 1)
+    func testFetchEvolutionChain() async throws {
+        let list = try await PokemonAPI().evolutionService.fetchEvolutionChainList()
+        XCTAssertGreaterThan(list.count ?? -1, 0)
     }
     
     
-    func testFetchEvolutionChain() {
-        let asyncExpectation = expectation(description: "Fetch Evo Chains")
-        
-        PokemonAPI().evolutionService.fetchEvolutionChainList() { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchEvolution() async throws {
+        let obj = try await PokemonAPI().evolutionService.fetchEvolutionChain(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
     
-    func testFetchEvolution() {
-        let asyncExpectation = expectation(description: "Fetch Evo Chain")
-        PokemonAPI().evolutionService.fetchEvolutionChain(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchVersionGroup() async throws {
+        let obj = try await PokemonAPI().gameService.fetchVersionGroup(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
     
-    func testFetchVersionGroup() {
-        let asyncExpectation = expectation(description: "Fetch Version Group")
-        
-        PokemonAPI().gameService.fetchVersionGroup(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchItem() async throws {
+        let obj = try await PokemonAPI().itemService.fetchItem(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
     
-    func testFetchItem() {
-        let asyncExpectation = expectation(description: "Fetch Item")
-        
-        PokemonAPI().itemService.fetchItem(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchItemAttr() async throws {
+        let obj = try await PokemonAPI().itemService.fetchItemAttribute(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
     
-    func testFetchItemAttr() {
-        let asyncExpectation = expectation(description: "Fetch Item Attr")
-        
-        PokemonAPI().itemService.fetchItemAttribute(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchItemCategory() async throws {
+        let obj = try await PokemonAPI().itemService.fetchItemCategory(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
     
-    func testFetchItemCategory() {
-        let asyncExpectation = expectation(description: "Fetch Item Category")
-        
-        PokemonAPI().itemService.fetchItemCategory(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchItemFlingEffect() async throws {
+        let obj = try await PokemonAPI().itemService.fetchItemFlingEffect(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
     
-    func testFetchItemFlingEffect() {
-        let asyncExpectation = expectation(description: "Fetch Item Fling Effect")
-        
-        PokemonAPI().itemService.fetchItemFlingEffect(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchItemPocket() async throws {
+        let obj = try await PokemonAPI().itemService.fetchItemPocket(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
     
-    func testFetchItemPocket() {
-        let asyncExpectation = expectation(description: "Fetch Item Pocket")
-        PokemonAPI().itemService.fetchItemPocket(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchMachine() async throws {
+        let obj = try await PokemonAPI().machineService.fetchMachine(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
     
-    func testFetchMachine() {
-        let asyncExpectation = expectation(description: "Fetch Machine")
-        PokemonAPI().machineService.fetchMachine(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchMove() async throws {
+        let obj = try await PokemonAPI().moveService.fetchMove(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    
-    func testFetchMove() {
-        let asyncExpectation = expectation(description: "Fetch Move")
-        PokemonAPI().moveService.fetchMove(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchMoveAilment() async throws {
+        let obj = try await PokemonAPI().moveService.fetchMoveAilment(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchMoveAilment() {
-        let asyncExpectation = expectation(description: "Fetch Move Ailment")
-        PokemonAPI().moveService.fetchMoveAilment(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchMoveBattleStyle() async throws {
+        let obj = try await PokemonAPI().moveService.fetchMoveBattleStyle(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchMoveBattleStyle() {
-        let asyncExpectation = expectation(description: "Fetch Move Battle Style")
-        PokemonAPI().moveService.fetchMoveBattleStyle(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchMoveCategory() async throws {
+        let obj = try await PokemonAPI().moveService.fetchMoveCategory(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchMoveCategory() {
-        let asyncExpectation = expectation(description: "Fetch move category")
-        PokemonAPI().moveService.fetchMoveCategory(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchMoveDamageClass() async throws {
+        let obj = try await PokemonAPI().moveService.fetchMoveDamageClass(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchMoveDamageClass() {
-        let asyncExpectation = expectation(description: "Fetch move damage class")
-        PokemonAPI().moveService.fetchMoveDamageClass(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchMoveLearnMethod() async throws {
+        let obj = try await PokemonAPI().moveService.fetchMoveLearnMethod(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchMoveLearnMethod() {
-        let asyncExpectation = expectation(description: "Fetch move learn method")
-        PokemonAPI().moveService.fetchMoveLearnMethod(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchMoveTarget() async throws {
+        let obj = try await PokemonAPI().moveService.fetchMoveTarget(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchMoveTarget() {
-        let asyncExpectation = expectation(description: "Fetch move target")
-        PokemonAPI().moveService.fetchMoveTarget(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchLocation() async throws {
+        let obj = try await PokemonAPI().locationService.fetchLocation(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchLocation() {
-        let asyncExpectation = expectation(description: "Fetch location")
-        PokemonAPI().locationService.fetchLocation(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchLocationArea() async throws {
+        let obj = try await PokemonAPI().locationService.fetchLocationArea(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchLocationArea() {
-        let asyncExpectation = expectation(description: "Fetch location area")
-        PokemonAPI().locationService.fetchLocationArea(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPalPark() async throws {
+        let obj = try await PokemonAPI().locationService.fetchPalParkArea(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchPalPark() {
-        let asyncExpectation = expectation(description: "Fetch pal park area")
-        PokemonAPI().locationService.fetchPalParkArea(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchRegion() async throws {
+        let obj = try await PokemonAPI().locationService.fetchRegion(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchRegion() {
-        let asyncExpectation = expectation(description: "Fetch Region")
-        PokemonAPI().locationService.fetchRegion(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchAbility() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchAbility(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchAbility() {
-        let asyncExpectation = expectation(description: "Fetch Ability")
-        PokemonAPI().pokemonService.fetchAbility(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchCharacteristic() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchCharacteristic(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchCharacteristic() {
-        let asyncExpectation = expectation(description: "Fetch Ability")
-        PokemonAPI().pokemonService.fetchCharacteristic(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchEggGroup() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchEggGroup(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchEggGroup() {
-        let asyncExpectation = expectation(description: "Fetch Egg Group")
-        PokemonAPI().pokemonService.fetchEggGroup(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchGender() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchGender(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchGender() {
-        let asyncExpectation = expectation(description: "Fetch Gender")
-        PokemonAPI().pokemonService.fetchGender(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchGrowthRate() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchGrowthRate(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchGrowthRate() {
-        let asyncExpectation = expectation(description: "Fetch Growth Rate")
-        PokemonAPI().pokemonService.fetchGrowthRate(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchNature() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchNature("2")
+        XCTAssertEqual(obj.id, 2)
     }
     
-    func testFetchNature() {
-        let asyncExpectation = expectation(description: "Fetch Nature")
-        PokemonAPI().pokemonService.fetchNature("2") { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPokeathlonStat() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchPokeathlonStat(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchPokeathlonStat() {
-        let asyncExpectation = expectation(description: "Fetch Pokeathlon Stat")
-        PokemonAPI().pokemonService.fetchPokeathlonStat(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPokemon() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchPokemon(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchPokemon() {
-        let asyncExpectation = expectation(description: "Fetch Pokemon")
-        PokemonAPI().pokemonService.fetchPokemon(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPokemonColor() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchPokemonColor(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchPokemonColor() {
-        let asyncExpectation = expectation(description: "Fetch Pokemon Color")
-        PokemonAPI().pokemonService.fetchPokemonColor(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPokemonForm() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchPokemonForm(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchPokemonForm() {
-        let asyncExpectation = expectation(description: "Fetch Pokemon Form")
-        PokemonAPI().pokemonService.fetchPokemonForm(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPokemonHabitat() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchPokemonHabitat(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchPokemonHabitat() {
-        let asyncExpectation = expectation(description: "Fetch Pokemon Habitat")
-        PokemonAPI().pokemonService.fetchPokemonHabitat(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPokemonShape() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchPokemonShape(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchPokemonShape() {
-        let asyncExpectation = expectation(description: "Fetch Pokemon Shape")
-        PokemonAPI().pokemonService.fetchPokemonShape(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPokemonSpecies() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchPokemonSpecies(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchPokemonSpecies() {
-        let asyncExpectation = expectation(description: "Fetch Pokemon Species")
-        PokemonAPI().pokemonService.fetchPokemonSpecies(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPokemonStat() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchStat("2")
+        XCTAssertEqual(obj.id, 2)
     }
     
-    func testFetchPokemonStat() {
-        let asyncExpectation = expectation(description: "Fetch Pokemon Stat")
-        PokemonAPI().pokemonService.fetchStat("2") { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testFetchPokemonType() async throws {
+        let obj = try await PokemonAPI().pokemonService.fetchType(1)
+        XCTAssertEqual(obj.id, 1)
     }
     
-    func testFetchPokemonType() {
-        let asyncExpectation = expectation(description: "Fetch Pokemon Type")
-        PokemonAPI().pokemonService.fetchType(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
-    }
-    
-    func testLanguage() {
-        let asyncExpectation = expectation(description: "Fetch Language")
-        PokemonAPI().utilityService.fetchLanguage(1) { result in
-            if case let .failure(error) = result {
-                XCTFail("The service should not fail: \(error.localizedDescription)")
-            }
-            asyncExpectation.fulfill();
-        }
-        
-        self.waitForExpectations(timeout: 30) { (err) -> Void in
-            XCTAssertNil(err, "Something went wrong")
-        }
+    func testLanguage() async throws {
+        let obj = try await PokemonAPI().utilityService.fetchLanguage(1)
+        XCTAssertEqual(obj.id, 1)
     }
 }
 

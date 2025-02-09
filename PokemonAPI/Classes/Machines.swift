@@ -21,7 +21,7 @@ open class PKMMachine: Codable, SelfDecodable {
     /// The version group that this machine applies to
     open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

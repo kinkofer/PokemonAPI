@@ -10,7 +10,6 @@ import XCTest
 @testable import PokemonAPI
 
 
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
 class ResourceServiceTests: XCTestCase {
     typealias API = ResourceService.API
     typealias Mock = RequestMocking.MockedResponse

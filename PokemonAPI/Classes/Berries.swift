@@ -47,7 +47,7 @@ open class PKMBerry: Codable, SelfDecodable {
     /// The Type the move "Natural Gift" has when used with this Berry
     open var naturalGiftType: PKMNamedAPIResource<PKMType>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -101,7 +101,7 @@ open class PKMBerryFlavor: Codable, SelfDecodable {
     /// The name of this berry flavor listed in different languages
     open var names: [PKMName]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

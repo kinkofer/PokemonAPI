@@ -39,7 +39,7 @@ open class PKMGeneration: Codable, SelfDecodable {
     /// A list of version groups that were introduced in this generation
     open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -74,7 +74,7 @@ open class PKMPokedex: Codable, SelfDecodable {
     /// A list of version groups this Pokédex is relevent to
     open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -91,7 +91,7 @@ open class PKMPokemonEntry: Codable, SelfDecodable {
     /// The Pokémon species being encountered
     open var pokemonSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -114,7 +114,7 @@ open class PKMVersion: Codable, SelfDecodable {
     /// The version group this version belongs to
     open var versionGroup: PKMNamedAPIResource<PKMVersionGroup>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -152,7 +152,7 @@ open class PKMVersionGroup: Codable, SelfDecodable {
     /// The versions this version group owns
     open var versions: [PKMNamedAPIResource<PKMVersion>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

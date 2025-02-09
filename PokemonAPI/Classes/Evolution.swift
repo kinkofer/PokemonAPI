@@ -20,7 +20,7 @@ open class PKMEvolutionChain: Codable, SelfDecodable {
     /// The base chain link object. Each link contains evolution details for a Pokémon in the chain. Each link references the next Pokémon in the natural evolution order.
     open var chain: PKMChainLink?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -43,7 +43,7 @@ open class PKMChainLink: Codable, SelfDecodable {
     /// A List of chain objects.
     open var evolvesTo: [PKMChainLink]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -108,7 +108,7 @@ open class PKMEvolutionDetail: Codable, SelfDecodable {
     /// Whether or not the 3DS needs to be turned upside-down as this Pokémon levels up.
     open var turnUpsideDown: Bool?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -131,7 +131,7 @@ open class PKMEvolutionTrigger: Codable, SelfDecodable {
     /// A list of pokemon species that result from this evolution trigger
     open var pokemonSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

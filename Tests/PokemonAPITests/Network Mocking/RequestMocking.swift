@@ -21,8 +21,8 @@ extension URLSession {
 }
 
 
-final class RequestMocking: URLProtocol {
-    static private var mocks: [MockedResponse] = []
+final class RequestMocking: URLProtocol, @unchecked Sendable {
+    static nonisolated(unsafe) private var mocks: [MockedResponse] = []
     
     
     override class func canInit(with request: URLRequest) -> Bool {
@@ -91,7 +91,7 @@ extension RequestMocking {
 // MARK: - RequestBlocking
 
 /// If RequestMocking fails to find a MockedResponse, RequestBlocking will prevent the session from using default protocols (i.e. making a real call)
-private class RequestBlocking: URLProtocol {
+private class RequestBlocking: URLProtocol, @unchecked Sendable {
     enum Error: Swift.Error {
         case requestBlocked
     }

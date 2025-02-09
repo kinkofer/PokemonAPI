@@ -10,36 +10,15 @@ import Foundation
 
 
 protocol PKMLocationService: HTTPWebService {
-    func fetchLocationList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMLocation
-    func fetchLocation(_ locationID: Int, completion: @escaping (_ result: Result<PKMLocation, Error>) -> Void)
-    func fetchLocationAreaList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMLocationArea
-    func fetchLocationArea(_ locationAreaID: Int, completion: @escaping (_ result: Result<PKMLocationArea, Error>) -> Void)
-    func fetchPalParkAreaList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMPalParkArea
-    func fetchPalParkArea(_ palParkAreaID: Int, completion: @escaping (_ result: Result<PKMPalParkArea, Error>) -> Void)
-    func fetchPalParkArea(_ palParkAreaName: String, completion: @escaping (_ result: Result<PKMPalParkArea, Error>) -> Void)
-    func fetchRegionList<T>(paginationState: PaginationState<T>, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMRegion
-    func fetchRegion(_ regionID: Int, completion: @escaping (_ result: Result<PKMRegion, Error>) -> Void)
-    func fetchRegion(_ regionName: String, completion: @escaping (_ result: Result<PKMRegion, Error>) -> Void)
-    
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchLocationList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLocation
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchLocation(_ locationID: Int) async throws -> PKMLocation
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchLocationAreaList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLocationArea
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchLocationArea(_ locationAreaID: Int) async throws -> PKMLocationArea
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchPalParkAreaList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPalParkArea
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchPalParkArea(_ palParkAreaID: Int) async throws -> PKMPalParkArea
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchPalParkArea(_ palParkAreaName: String) async throws -> PKMPalParkArea
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchRegionList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMRegion
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchRegion(_ regionID: Int) async throws -> PKMRegion
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetchRegion(_ regionName: String) async throws -> PKMRegion
 }
 
@@ -92,121 +71,9 @@ public struct LocationService: PKMLocationService {
     
     
     
-    // MARK: - Completion Services
-    
     /**
      Fetch Locations list
      */
-    public func fetchLocationList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMLocation {
-        callPaginated(endpoint: API.fetchLocationList, paginationState: paginationState, completion: completion)
-    }
-    
-    
-    /**
-     Fetch Location Information
-     
-     - parameter locationID: Location ID
-     */
-    public func fetchLocation(_ locationID: Int, completion: @escaping (_ result: Result<PKMLocation, Error>) -> Void) {
-        call(endpoint: API.fetchLocation(locationID)) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
-     Fetch Location Area list
-     */
-    public func fetchLocationAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMLocationArea {
-        callPaginated(endpoint: API.fetchLocationAreaList, paginationState: paginationState, completion: completion)
-    }
-    
-    
-    /**
-     Fetch Location Area Information
-     
-     - parameter locationAreaId: Location Area ID
-     */
-    public func fetchLocationArea(_ locationAreaId: Int, completion: @escaping (_ result: Result<PKMLocationArea, Error>) -> Void) {
-        call(endpoint: API.fetchLocationArea(locationAreaId)) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
-     Fetch Pal Park Areas list
-     */
-    public func fetchPalParkAreaList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMPalParkArea {
-        callPaginated(endpoint: API.fetchPalParkAreaList, paginationState: paginationState, completion: completion)
-    }
-    
-    
-    /**
-     Fetch Pal Park Area Information
-     
-     - parameter palParkAreaID: Pal Park Area ID
-     */
-    public func fetchPalParkArea(_ palParkAreaID: Int, completion: @escaping (_ result: Result<PKMPalParkArea, Error>) -> Void) {
-        call(endpoint: API.fetchPalParkAreaByID(palParkAreaID)) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
-     Fetch Pal Park Area Information
-     
-     - parameter palParkAreaName: Pal Park Area Name
-     */
-    public func fetchPalParkArea(_ palParkAreaName: String, completion: @escaping (_ result: Result<PKMPalParkArea, Error>) -> Void) {
-        call(endpoint: API.fetchPalParkAreaByName(palParkAreaName)) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
-     Fetch Regions list
-     */
-    public func fetchRegionList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20), completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) where T: PKMRegion {
-        callPaginated(endpoint: API.fetchRegionList, paginationState: paginationState, completion: completion)
-    }
-    
-    
-    /**
-     Fetch Region Information
-     
-     - parameter regionID: Region ID
-     */
-    public func fetchRegion(_ regionID: Int, completion: @escaping (_ result: Result<PKMRegion, Error>) -> Void) {
-        call(endpoint: API.fetchRegionByID(regionID)) { result in
-            result.decode(completion: completion)
-        }
-    }
-    
-    
-    /**
-     Fetch Region Information
-     
-     - parameter regionName: Region Name
-     */
-    public func fetchRegion(_ regionName: String, completion: @escaping (_ result: Result<PKMRegion, Error>) -> Void) {
-        call(endpoint: API.fetchRegionByName(regionName)) { result in
-            result.decode(completion: completion)
-        }
-    }
-}
-
-
-
-// MARK: - Async Services
-
-extension LocationService {
-    /**
-     Fetch Locations list
-     */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchLocationList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLocation {
         try await callPaginated(endpoint: API.fetchLocationList, paginationState: paginationState)
     }
@@ -217,7 +84,6 @@ extension LocationService {
      
      - parameter locationID: Location ID
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchLocation(_ locationID: Int) async throws -> PKMLocation {
         try await PKMLocation.decode(from: call(endpoint: API.fetchLocation(locationID)))
     }
@@ -226,7 +92,6 @@ extension LocationService {
     /**
      Fetch Location Area list
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchLocationAreaList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLocationArea {
         try await callPaginated(endpoint: API.fetchLocationAreaList, paginationState: paginationState)
     }
@@ -237,7 +102,6 @@ extension LocationService {
      
      - parameter locationAreaId: Location Area ID
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchLocationArea(_ locationAreaID: Int) async throws -> PKMLocationArea {
         try await PKMLocationArea.decode(from: call(endpoint: API.fetchLocationArea(locationAreaID)))
     }
@@ -246,7 +110,6 @@ extension LocationService {
     /**
      Fetch Pal Park Areas list
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchPalParkAreaList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPalParkArea {
         try await callPaginated(endpoint: API.fetchPalParkAreaList, paginationState: paginationState)
     }
@@ -257,7 +120,6 @@ extension LocationService {
      
      - parameter palParkAreaID: Pal Park Area ID
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchPalParkArea(_ palParkAreaID: Int) async throws -> PKMPalParkArea {
         try await PKMPalParkArea.decode(from: call(endpoint: API.fetchPalParkAreaByID(palParkAreaID)))
     }
@@ -268,7 +130,6 @@ extension LocationService {
      
      - parameter palParkAreaName: Pal Park Area Name
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchPalParkArea(_ palParkAreaName: String) async throws -> PKMPalParkArea {
         try await PKMPalParkArea.decode(from: call(endpoint: API.fetchPalParkAreaByName(palParkAreaName)))
     }
@@ -277,7 +138,6 @@ extension LocationService {
     /**
      Fetch Regions list
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchRegionList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMRegion {
         try await callPaginated(endpoint: API.fetchRegionList, paginationState: paginationState)
     }
@@ -288,7 +148,6 @@ extension LocationService {
      
      - parameter regionID: Region ID
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchRegion(_ regionID: Int) async throws -> PKMRegion {
         try await PKMRegion.decode(from: call(endpoint: API.fetchRegionByID(regionID)))
     }
@@ -299,7 +158,6 @@ extension LocationService {
      
      - parameter regionName: Region Name
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetchRegion(_ regionName: String) async throws -> PKMRegion {
         try await PKMRegion.decode(from: call(endpoint: API.fetchRegionByName(regionName)))
     }

@@ -29,7 +29,7 @@ open class PKMLocation: Codable, SelfDecodable {
     /// Areas that can be found within this location
     open var areas: [PKMNamedAPIResource<PKMLocationArea>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -64,7 +64,7 @@ open class PKMLocationArea: Codable, SelfDecodable {
     /// A list of Pokémon that can be encountered in this area along with version specific details about the encounter
     open var pokemonEncounters: [PKMPokemonEncounter]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -81,7 +81,7 @@ open class PKMEncounterMethodRate: Codable, SelfDecodable {
     /// The chance of the encounter to occur on a version of the game.
     open var versionDetails: [PKMEncounterVersionDetails]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -109,7 +109,7 @@ open class PKMPokemonEncounter: Codable, SelfDecodable {
     /// A list of versions and encounters with Pokémon that might happen in the referenced location area
     open var versionDetails: [PKMVersionEncounterDetail]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -135,7 +135,7 @@ open class PKMPalParkArea: Codable, SelfDecodable {
     /// A list of Pokémon encountered in thi pal park area along with details
     open var pokemonEncounters: [PKMPalParkEncounterSpecies]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -155,7 +155,7 @@ open class PKMPalParkEncounterSpecies: Codable, SelfDecodable {
     /// The Pokémon species being encountered
     open var pokemonSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -190,7 +190,7 @@ open class PKMRegion: Codable, SelfDecodable {
     /// A list of version groups where this region can be visited
     open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

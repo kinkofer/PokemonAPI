@@ -10,23 +10,19 @@ import PokemonAPI
 
 
 struct AsyncAwaitExampleView: View {
-    @EnvironmentObject var pokemonAPI: PokemonAPI
-    
-    @State var versionGroup: PKMVersionGroup?
-    @State var regions: [PKMRegion]?
-    @State var error: Error?
+    @State var viewModel = AsyncAwaitExampleView.ViewModel()
     
     
     var body: some View {
         Group {
-            if let error = error {
+            if let error = viewModel.error {
                 Text("An error occurred: \(error.localizedDescription)")
             }
-            else if let versionGroup = versionGroup,
+            else if let versionGroup = viewModel.versionGroup,
                let name = versionGroup.name {
                 Text("Game: \(name)")
                 
-                if let regions = regions {
+                if let regions = viewModel.regions {
                     Text("Regions: \(regions.compactMap { $0.name }.joined(separator: ", "))")
                 }
                 else {
@@ -38,29 +34,49 @@ struct AsyncAwaitExampleView: View {
             }
         }
         .task {
-            await findRegions()
+            await viewModel.findRegions()
         }
     }
     
     
-    func findRegions() async {
-        do {
-            versionGroup = try await pokemonAPI.gameService.fetchVersionGroup(3)
-            
-            if let regionResources = versionGroup?.regions {
-                for regionResource in regionResources {
-                    let region = try await pokemonAPI.resourceService.fetch(regionResource)
-                    if regions == nil {
-                        regions = [region]
-                    }
-                    else {
-                        regions?.append(region)
+    
+}
+
+
+extension AsyncAwaitExampleView {
+    @MainActor
+    @Observable
+    class ViewModel {
+        let pokemonAPI: PokemonAPI
+        
+        private(set) var versionGroup: PKMVersionGroup?
+        private(set) var regions: [PKMRegion]?
+        private(set) var error: Error?
+        
+        init() {
+            pokemonAPI = PokemonAPI()
+        }
+        
+        
+        func findRegions() async {
+            do {
+                versionGroup = try await pokemonAPI.gameService.fetchVersionGroup(3)
+                
+                if let regionResources = versionGroup?.regions {
+                    for regionResource in regionResources {
+                        let region = try await pokemonAPI.resourceService.fetch(regionResource)
+                        if regions == nil {
+                            regions = [region]
+                        }
+                        else {
+                            regions?.append(region)
+                        }
                     }
                 }
             }
-        }
-        catch {
-            self.error = error
+            catch {
+                self.error = error
+            }
         }
     }
 }

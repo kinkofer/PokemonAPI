@@ -23,7 +23,7 @@ open class PKMContestType: Codable, SelfDecodable {
     /// The name of this contest type listed in different languages
     open var names: [PKMContestName]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -63,7 +63,7 @@ open class PKMContestEffect: Codable, SelfDecodable {
     /// The flavor text of this contest effect listed in different languages
     open var flavorTextEntries: [PKMFlavorText]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -86,7 +86,7 @@ open class PKMSuperContestEffect: Codable, SelfDecodable {
     /// A list of moves that have the effect when used in super contests
     open var moves: [PKMNamedAPIResource<PKMMove>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

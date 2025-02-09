@@ -56,7 +56,7 @@ open class PKMItem: Codable, SelfDecodable {
     /// A list of the machines related to this item
     open var machines: [PKMMachineVersionDetail]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -80,7 +80,7 @@ open class PKMItemHolderPokemon: Codable, SelfDecodable {
     /// The details for the version that this item is held in by the Pokémon
     open var versionDetails: [PKMItemHolderPokemonVersionDetail]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -154,7 +154,7 @@ open class PKMItemFlingEffect: Codable, SelfDecodable {
     /// A list of items that have this fling effect    list
     open var items: [PKMNamedAPIResource<PKMItem>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

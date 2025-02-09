@@ -23,57 +23,6 @@ public protocol HTTPWebService {
 // MARK: - Completion Calls
 
 extension HTTPWebService {
-    func call(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
-        do {
-            let request = try endpoint.createUrlRequest(baseURL: baseURL, method: method, headers: headers, body: body)
-            // Make the request
-            session.startData(request) { result in
-                completion(result)
-            }
-        }
-        catch let error {
-            completion(.failure(HTTPError.other(error)))
-        }
-    }
-    
-    
-    func callPaginated<T>(endpoint: APICall, paginationState: PaginationState<T>, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil, completion: @escaping (_ result: Result<PKMPagedObject<T>, Error>) -> Void) {
-        do {
-            let request = try endpoint.createUrlRequest(baseURL: baseURL, paginationState: paginationState, method: method, headers: headers, body: body)
-            
-            guard let url = request.url else {
-                return completion(.failure(HTTPError.invalidRequest))
-            }
-            
-            // Make the request
-            session.startData(request) { result in
-                switch result {
-                case .success(let data):
-                    do {
-                        let pagedObject = try PKMPagedObject<T>.decode(from: data)
-                        let newPagedObject = PKMPagedObject<T>(from: pagedObject, with: paginationState, currentUrl: url.absoluteString)
-                        completion(.success(newPagedObject))
-                    }
-                    catch {
-                        completion(.failure(HTTPError.jsonParsingError))
-                    }
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        }
-        catch let error {
-            completion(.failure(HTTPError.other(error)))
-        }
-    }
-}
-
-
-
-// MARK: - Async Calls
-
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-extension HTTPWebService {
     func call(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil) async throws -> Data {
         let request = try endpoint.createUrlRequest(baseURL: baseURL, method: method, headers: headers, body: body)
         return try await session.startData(request)

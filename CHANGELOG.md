@@ -1,7 +1,7 @@
 ## 7.0.0
 Remove Cocoapods support
 
-Remove Combine methods
+Remove Combine and Completion methods
 
 Add additional Pokemon Sprite properties that are unlisted in the documentation
 

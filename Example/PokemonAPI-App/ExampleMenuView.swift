@@ -11,7 +11,6 @@ struct ExampleMenuView: View {
     var body: some View {
         NavigationSplitView {
             List {
-                NavigationLink("Completion Example", destination: CompletionExampleView())
                 NavigationLink("Async/Await Example", destination: AsyncAwaitExampleView())
                 NavigationLink("Paginated Results Example", destination: PaginatedResultsView())
             }

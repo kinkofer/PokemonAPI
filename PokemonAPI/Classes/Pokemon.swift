@@ -40,7 +40,7 @@ open class PKMAbility: Codable, SelfDecodable {
     /// A list of Pokémon that could potentially have this ability
     open var pokemon: [PKMAbilityPokemon]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -57,7 +57,7 @@ open class PKMAbilityEffectChange: Codable, SelfDecodable {
     /// The version group in which the previous effect of this ability originated
     open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -77,7 +77,7 @@ open class PKMAbilityFlavorText: Codable, SelfDecodable {
     /// The language this name is in
     open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -97,7 +97,7 @@ open class PKMAbilityPokemon: Codable, SelfDecodable {
     /// The Pokémon this ability could belong to
     open var pokemon: PKMNamedAPIResource<PKMPokemon>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -123,7 +123,7 @@ open class PKMCharacteristic: Codable, SelfDecodable {
     /// The descriptions of this characteristic listed in different languages
     open var descriptions: [PKMDescription]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -149,7 +149,7 @@ open class PKMEggGroup: Codable, SelfDecodable {
     /// A list of all Pokémon species that are members of this egg group
     open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -175,7 +175,7 @@ open class PKMGender: Codable, SelfDecodable {
     /// A list of Pokémon species that required this gender in order for a Pokémon to evolve into them
     open var requiredForEvolution: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -192,7 +192,7 @@ open class PKMPokemonSpeciesGender: Codable, SelfDecodable {
     /// A Pokémon species that can be the referenced gender
     open var pokemonSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -224,7 +224,7 @@ open class PKMGrowthRate: Codable, SelfDecodable {
     /// A list of Pokémon species that gain levels at this growth rate
     open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -276,7 +276,7 @@ open class PKMNature: Codable, SelfDecodable {
     /// The name of this nature listed in different languages
     open var names: [PKMName]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -293,7 +293,7 @@ open class PKMNatureStatChange: Codable, SelfDecodable {
     /// The stat being affected
     open var pokeathlonStat: PKMNamedAPIResource<PKMPokeathlonStat>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -313,7 +313,7 @@ open class PKMMoveBattleStylePreference: Codable, SelfDecodable {
     /// The move battle style
     open var moveBattleStyle: PKMNamedAPIResource<PKMMoveBattleStyle>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -339,7 +339,7 @@ open class PKMPokeathlonStat: Codable, SelfDecodable {
     /// A detail of natures which affect this Pokéathlon stat positively or negatively
     open var affectingNatures: PKMNaturePokeathlonStatAffectSets?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -367,7 +367,7 @@ open class PKMNaturePokeathlonStatAffect: Codable, SelfDecodable {
     /// The nature causing the change
     open var nature: PKMNamedAPIResource<PKMNature>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -432,7 +432,7 @@ open class PKMPokemon: Codable, SelfDecodable {
     /// A list of details showing types this Pokémon has
     open var types: [PKMPokemonType]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -452,7 +452,7 @@ open class PKMPokemonAbility: Codable, SelfDecodable {
     /// The ability the Pokémon may have
     open var ability: PKMNamedAPIResource<PKMAbility>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -480,7 +480,7 @@ open class PKMPokemonHeldItem: Codable, SelfDecodable {
     /// The details of the different versions in which the item is held
     open var versionDetails: [PKMPokemonHeldItemVersion]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -508,7 +508,7 @@ open class PKMPokemonMove: Codable, SelfDecodable {
     /// The details of the version in which the Pokémon can learn the move
     open var versionGroupDetails: [PKMPokemonMoveVersion]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -528,7 +528,7 @@ open class PKMPokemonMoveVersion: Codable, SelfDecodable {
     /// The minimum level to learn the move.
     open var levelLearnedAt: Int?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -548,7 +548,7 @@ open class PKMPokemonStat: Codable, SelfDecodable {
     /// The base value of the stat
     open var baseStat: Int?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -587,7 +587,7 @@ open class PKMPokemonSprites: Codable, SelfDecodable {
     
     open var versions: PKMPokemonSpritesVersions?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -723,7 +723,7 @@ open class PKMLocationAreaEncounter: Codable, SelfDecodable {
     /// A list of versions and encounters with the referenced Pokémon that might happen
     open var versionDetails: [PKMVersionEncounterDetail]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -749,7 +749,7 @@ open class PKMPokemonColor: Codable, SelfDecodable {
     /// A list of the Pokémon species that have this color
     open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -802,7 +802,7 @@ open class PKMPokemonForm: Codable, SelfDecodable {
     /// The form specific form name of this Pokémon form, or empty if the form does not have a specific name
     open var formNames: [PKMName]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -825,7 +825,7 @@ open class PKMPokemonFormSprites: Codable, SelfDecodable {
     /// The shiny depiction of this Pokémon form from the back in battle
     open var backShiny: String?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -851,7 +851,7 @@ open class PKMPokemonHabitat: Codable, SelfDecodable {
     /// A list of the Pokémon species that can be found in this habitat
     open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -880,7 +880,7 @@ open class PKMPokemonShape: Codable, SelfDecodable {
     /// A list of the Pokémon species that have this shape
     open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -897,7 +897,7 @@ open class PKMAwesomeName: Codable, SelfDecodable {
     /// The language this "scientific" name is in
     open var language: PKMNamedAPIResource<PKMLanguage>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -986,7 +986,7 @@ open class PKMPokemonSpecies: Codable, SelfDecodable {
     /// A list of the Pokémon that exist within this Pokémon species
     open var varieties: [PKMPokemonSpeciesVariety]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -1014,7 +1014,7 @@ open class PKMPokemonSpeciesDexEntry: Codable, SelfDecodable {
     /// The Pokédex the referenced Pokémon species can be found in
     open var pokedex: PKMNamedAPIResource<PKMPokedex>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -1034,7 +1034,7 @@ open class PKMPalParkEncounterArea: Codable, SelfDecodable {
     /// The pal park area where this encounter happens
     open var area: PKMNamedAPIResource<PKMPalParkArea>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -1051,7 +1051,7 @@ open class PKMPokemonSpeciesVariety: Codable, SelfDecodable {
     // The Pokémon variety
     open var pokemon: PKMNamedAPIResource<PKMPokemon>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -1092,7 +1092,7 @@ open class PKMStat: Codable, SelfDecodable {
     /// The name of this region listed in different languages
     open var names: [PKMName]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -1120,7 +1120,7 @@ open class PKMMoveStatAffect: Codable, SelfDecodable {
     /// The move causing the change
     open var move: PKMNamedAPIResource<PKMMove>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -1172,7 +1172,7 @@ open class PKMType: Codable, SelfDecodable {
     /// A list of moves that have this type
     open var moves: [PKMNamedAPIResource<PKMMove>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -1212,7 +1212,7 @@ open class PKMTypeRelations: Codable, SelfDecodable {
     /// A list of types that are very effective against this type
     open var doubleDamageFrom: [PKMNamedAPIResource<PKMType>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

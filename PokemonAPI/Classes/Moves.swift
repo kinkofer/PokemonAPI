@@ -80,7 +80,7 @@ open class PKMMove: Codable, SelfDecodable {
     /// The elemental type of this move    NamedAPIResource
     open var type: PKMNamedAPIResource<PKMType>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -108,7 +108,7 @@ open class PKMContestComboDetail: Codable, SelfDecodable {
     /// A list of moves to use after this move
     open var useAfter: [PKMNamedAPIResource<PKMMove>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -128,7 +128,7 @@ open class PKMMoveFlavorText: Codable, SelfDecodable {
     /// The version group that uses this flavor text
     open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -175,7 +175,7 @@ open class PKMMoveMetaData: Codable, SelfDecodable {
     /// The likelyhood this attack will cause a stat change in the target pokemon
     open var statChance: Int?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -218,7 +218,7 @@ open class PKMPastMoveStatValues: Codable, SelfDecodable {
     /// The version group in which these move stat values were in effect
     open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -327,7 +327,7 @@ open class PKMMoveLearnMethod: Codable, SelfDecodable {
     /// A list of version groups where moves can be learned through this method
     open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

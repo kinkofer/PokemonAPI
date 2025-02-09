@@ -76,7 +76,7 @@ open class PKMEncounter: Codable, SelfDecodable {
     /// The method by which this encounter happens
     open var method: PKMNamedAPIResource<PKMEncounterMethod>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -96,7 +96,7 @@ open class PKMFlavorText: Codable, SelfDecodable {
     /// The game version this flavor text is extracted from.
     open var version: PKMNamedAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -113,7 +113,7 @@ open class PKMGenerationGameIndex: Codable, SelfDecodable {
     /// The generation relevent to this game index
     open var generation: PKMNamedAPIResource<PKMGeneration>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -130,7 +130,7 @@ open class PKMMachineVersionDetail: Codable, SelfDecodable {
     /// The version group of this specific machine
     open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -161,7 +161,7 @@ open class PKMVerboseEffect: Codable, SelfDecodable {
     /// The language this effect is in
     open var language: PKMNamedAPIResource<PKMLanguage>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -181,7 +181,7 @@ open class PKMVersionEncounterDetail: Codable, SelfDecodable {
     /// A list of encounters and their specifics
     open var encounterDetails: [PKMEncounter]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -198,7 +198,7 @@ open class PKMVersionGameIndex: Codable, SelfDecodable {
     /// The version relevent to this game index
     open var version: PKMNamedAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -218,7 +218,7 @@ open class PKMVersionGroupFlavorText: Codable, SelfDecodable {
     /// The version group which uses this flavor text
     open var versionGroup: PKMNamedAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
