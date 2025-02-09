@@ -9,7 +9,7 @@ import Foundation
 
 
 /// The state of a paginated web service call.
-public enum PaginationState<T> {
+public enum PaginationState<T>: Sendable {
     /// Required state the first time you call the paginated web service.
     case initial(pageLimit: Int, offset: Int = 0)
     /// Used on subsequent calls to the paginated web service, getting results for that relationship.
@@ -18,7 +18,7 @@ public enum PaginationState<T> {
 
 
 /// Public enum representing the different positions for pagination relative to the last fetch
-public enum PaginationRelationship {
+public enum PaginationRelationship: Sendable {
     case first
     case last
     case next
@@ -30,7 +30,7 @@ public enum PaginationRelationship {
 
 
 /// Paged Object
-public struct PKMPagedObject<T>: Codable {
+public struct PKMPagedObject<T>: Codable, Sendable {
     public typealias PKMObject = T
     
     enum CodingKeys: String, CodingKey {
@@ -94,11 +94,7 @@ public struct PKMPagedObject<T>: Codable {
         self.count = try container.decodeIfPresent(Int.self, forKey: .count)
         self.next = try container.decodeIfPresent(String.self, forKey: .next)
         self.previous = try container.decodeIfPresent(String.self, forKey: .previous)
-        do {
-            self.results = try container.decodeIfPresent([PKMNamedAPIResource].self, forKey: .results)
-        } catch {
-            self.results = try container.decodeIfPresent([PKMAPIResource].self, forKey: .results)
-        }
+        self.results = try container.decodeIfPresent([PKMAPIResource].self, forKey: .results)
         
         offset = 0
         limit = 0

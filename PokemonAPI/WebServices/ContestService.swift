@@ -10,12 +10,12 @@ import Foundation
 
 
 protocol PKMContestService: HTTPWebService {
-    func fetchContestTypeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMContestType
+    func fetchContestTypeList(paginationState: PaginationState<PKMContestType>) async throws -> PKMPagedObject<PKMContestType>
     func fetchContestType(_ contestTypeID: Int) async throws -> PKMContestType
     func fetchContestType(_ contestTypeName: String) async throws -> PKMContestType
-    func fetchContestEffectList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMContestEffect
+    func fetchContestEffectList(paginationState: PaginationState<PKMContestEffect>) async throws -> PKMPagedObject<PKMContestEffect>
     func fetchContestEffect(_ contestEffectID: Int) async throws -> PKMContestEffect
-    func fetchSuperContestEffectList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMSuperContestEffect
+    func fetchSuperContestEffectList(paginationState: PaginationState<PKMSuperContestEffect>) async throws -> PKMPagedObject<PKMSuperContestEffect>
     func fetchSuperContestEffect(_ superContestEffectID: Int) async throws -> PKMSuperContestEffect
 }
 
@@ -23,7 +23,7 @@ protocol PKMContestService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct ContestService: PKMContestService {
+public struct ContestService: PKMContestService, Sendable {
     public enum API: APICall {
         case fetchContestTypeList
         case fetchContestTypeByID(Int)
@@ -63,7 +63,7 @@ public struct ContestService: PKMContestService {
     /**
      Fetch Contest list
      */
-    public func fetchContestTypeList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMContestType {
+    public func fetchContestTypeList(paginationState: PaginationState<PKMContestType> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMContestType> {
         try await callPaginated(endpoint: API.fetchContestTypeList, paginationState: paginationState)
     }
     
@@ -91,7 +91,7 @@ public struct ContestService: PKMContestService {
     /**
      Fetch Contest Effects list
      */
-    public func fetchContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMContestEffect {
+    public func fetchContestEffectList(paginationState: PaginationState<PKMContestEffect> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMContestEffect> {
         try await callPaginated(endpoint: API.fetchContestEffectList, paginationState: paginationState)
     }
     
@@ -109,7 +109,7 @@ public struct ContestService: PKMContestService {
     /**
      Fetch Super Contest Effects list
      */
-    public func fetchSuperContestEffectList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMSuperContestEffect {
+    public func fetchSuperContestEffectList(paginationState: PaginationState<PKMSuperContestEffect> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMSuperContestEffect> {
         try await callPaginated(endpoint: API.fetchSuperContestEffectList, paginationState: paginationState)
     }
     

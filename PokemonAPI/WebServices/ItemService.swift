@@ -10,19 +10,19 @@ import Foundation
 
 
 protocol PKMItemService: HTTPWebService {
-    func fetchItemList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItem
+    func fetchItemList(paginationState: PaginationState<PKMItem>) async throws -> PKMPagedObject<PKMItem>
     func fetchItem(_ itemID: Int) async throws -> PKMItem
     func fetchItem(_ itemName: String) async throws -> PKMItem
-    func fetchItemAttributeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemAttribute
+    func fetchItemAttributeList(paginationState: PaginationState<PKMItemAttribute>) async throws -> PKMPagedObject<PKMItemAttribute>
     func fetchItemAttribute(_ itemAttributeID: Int) async throws -> PKMItemAttribute
     func fetchItemAttribute(_ itemAttributeName: String) async throws -> PKMItemAttribute
-    func fetchItemCategoryList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemCategory
+    func fetchItemCategoryList(paginationState: PaginationState<PKMItemCategory>) async throws -> PKMPagedObject<PKMItemCategory>
     func fetchItemCategory(_ itemCategoryID: Int) async throws -> PKMItemCategory
     func fetchItemCategory(_ itemCategoryName: String) async throws -> PKMItemCategory
-    func fetchItemFlingEffectList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T>  where T: PKMItemFlingEffect
+    func fetchItemFlingEffectList(paginationState: PaginationState<PKMItemFlingEffect>) async throws -> PKMPagedObject<PKMItemFlingEffect>
     func fetchItemFlingEffect(_ itemFlingEffectsID: Int) async throws -> PKMItemFlingEffect
     func fetchItemFlingEffect(_ itemFlingEffectsName: String) async throws -> PKMItemFlingEffect
-    func fetchItemPocketList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemPocket
+    func fetchItemPocketList(paginationState: PaginationState<PKMItemPocket>) async throws -> PKMPagedObject<PKMItemPocket>
     func fetchItemPocket(_ itemPocketID: Int) async throws -> PKMItemPocket
     func fetchItemPocket(_ itemPocketName: String) async throws -> PKMItemPocket
 }
@@ -31,7 +31,7 @@ protocol PKMItemService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct ItemService: PKMItemService {
+public struct ItemService: PKMItemService, Sendable {
     public enum API: APICall {
         case fetchItemList
         case fetchItemByID(Int)
@@ -94,7 +94,7 @@ public struct ItemService: PKMItemService {
     /**
      Fetch Items list
      */
-    public func fetchItemList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItem {
+    public func fetchItemList(paginationState: PaginationState<PKMItem>) async throws -> PKMPagedObject<PKMItem> {
         try await callPaginated(endpoint: API.fetchItemList, paginationState: paginationState)
     }
     
@@ -122,7 +122,7 @@ public struct ItemService: PKMItemService {
     /**
      Fetch Item Attributes list
      */
-    public func fetchItemAttributeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemAttribute {
+    public func fetchItemAttributeList(paginationState: PaginationState<PKMItemAttribute>) async throws -> PKMPagedObject<PKMItemAttribute> {
         try await callPaginated(endpoint: API.fetchItemAttributeList, paginationState: paginationState)
     }
     
@@ -150,7 +150,7 @@ public struct ItemService: PKMItemService {
     /**
      Fetch Item Categories list
      */
-    public func fetchItemCategoryList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemCategory {
+    public func fetchItemCategoryList(paginationState: PaginationState<PKMItemCategory>) async throws -> PKMPagedObject<PKMItemCategory> {
         try await callPaginated(endpoint: API.fetchItemCategoryList, paginationState: paginationState)
     }
     
@@ -178,7 +178,7 @@ public struct ItemService: PKMItemService {
     /**
      Fetch Item Fling Effects list
      */
-    public func fetchItemFlingEffectList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T>  where T: PKMItemFlingEffect {
+    public func fetchItemFlingEffectList(paginationState: PaginationState<PKMItemFlingEffect>) async throws -> PKMPagedObject<PKMItemFlingEffect> {
         try await callPaginated(endpoint: API.fetchItemFlingEffectList, paginationState: paginationState)
     }
     
@@ -206,7 +206,7 @@ public struct ItemService: PKMItemService {
     /**
      Fetch Item Pockets list
      */
-    public func fetchItemPocketList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMItemPocket {
+    public func fetchItemPocketList(paginationState: PaginationState<PKMItemPocket>) async throws -> PKMPagedObject<PKMItemPocket> {
         try await callPaginated(endpoint: API.fetchItemPocketList, paginationState: paginationState)
     }
     

@@ -53,7 +53,7 @@ class BerryServiceTests: XCTestCase {
             let pagedObject = try await service.fetchBerryList()
             do {
                 let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
-                let berry = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a berry")
+                let berry = try XCTUnwrap(pagedObject.results?.first, "The first result should be a named resource of a berry")
                 let berryName = try XCTUnwrap(berry.name, "The berry should have a name")
                 
                 XCTAssertTrue(pagedObject.count == 64, "Expected to find 64 berries but found \(count)")
@@ -124,7 +124,7 @@ class BerryServiceTests: XCTestCase {
             let pagedObject = try await service.fetchBerryFirmnessList()
             do {
                 let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
-                let berryFirmness = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a berry firmness")
+                let berryFirmness = try XCTUnwrap(pagedObject.results?.first, "The first result should be a named resource of a berry firmness")
                 let berryFirmnessName = try XCTUnwrap(berryFirmness.name, "The berry firmness should have a name")
                 
                 XCTAssertTrue(count == 5, "Expected 5 berry firmness count but found \(count)")
@@ -195,7 +195,7 @@ class BerryServiceTests: XCTestCase {
             let pagedObject = try await service.fetchBerryFlavorList()
             do {
                 let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
-                let berryFlavor = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a berry flavor")
+                let berryFlavor = try XCTUnwrap(pagedObject.results?.first, "The first result should be a named resource of a berry flavor")
                 let berryFlavorName = try XCTUnwrap(berryFlavor.name, "The berry flavor should have a name")
                 
                 XCTAssertTrue(count == 5, "Expected 5 berry flavors count but found \(count)")

@@ -17,7 +17,7 @@ protocol PKMResourceService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct ResourceService: PKMResourceService {
+public struct ResourceService: PKMResourceService, Sendable {
     public enum API<T>: APICall {
         case fetchResource(PKMAPIResource<T>)
         

@@ -10,14 +10,14 @@ import Foundation
 
 
 protocol PKMLocationService: HTTPWebService {
-    func fetchLocationList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLocation
+    func fetchLocationList(paginationState: PaginationState<PKMLocation>) async throws -> PKMPagedObject<PKMLocation>
     func fetchLocation(_ locationID: Int) async throws -> PKMLocation
-    func fetchLocationAreaList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLocationArea
+    func fetchLocationAreaList(paginationState: PaginationState<PKMLocationArea>) async throws -> PKMPagedObject<PKMLocationArea>
     func fetchLocationArea(_ locationAreaID: Int) async throws -> PKMLocationArea
-    func fetchPalParkAreaList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPalParkArea
+    func fetchPalParkAreaList(paginationState: PaginationState<PKMPalParkArea>) async throws -> PKMPagedObject<PKMPalParkArea>
     func fetchPalParkArea(_ palParkAreaID: Int) async throws -> PKMPalParkArea
     func fetchPalParkArea(_ palParkAreaName: String) async throws -> PKMPalParkArea
-    func fetchRegionList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMRegion
+    func fetchRegionList(paginationState: PaginationState<PKMRegion>) async throws -> PKMPagedObject<PKMRegion>
     func fetchRegion(_ regionID: Int) async throws -> PKMRegion
     func fetchRegion(_ regionName: String) async throws -> PKMRegion
 }
@@ -26,7 +26,7 @@ protocol PKMLocationService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct LocationService: PKMLocationService {
+public struct LocationService: PKMLocationService, Sendable {
     public enum API: APICall {
         case fetchLocationList
         case fetchLocation(Int)
@@ -74,7 +74,7 @@ public struct LocationService: PKMLocationService {
     /**
      Fetch Locations list
      */
-    public func fetchLocationList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLocation {
+    public func fetchLocationList(paginationState: PaginationState<PKMLocation>) async throws -> PKMPagedObject<PKMLocation> {
         try await callPaginated(endpoint: API.fetchLocationList, paginationState: paginationState)
     }
     
@@ -92,7 +92,7 @@ public struct LocationService: PKMLocationService {
     /**
      Fetch Location Area list
      */
-    public func fetchLocationAreaList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLocationArea {
+    public func fetchLocationAreaList(paginationState: PaginationState<PKMLocationArea>) async throws -> PKMPagedObject<PKMLocationArea> {
         try await callPaginated(endpoint: API.fetchLocationAreaList, paginationState: paginationState)
     }
     
@@ -110,7 +110,7 @@ public struct LocationService: PKMLocationService {
     /**
      Fetch Pal Park Areas list
      */
-    public func fetchPalParkAreaList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPalParkArea {
+    public func fetchPalParkAreaList(paginationState: PaginationState<PKMPalParkArea>) async throws -> PKMPagedObject<PKMPalParkArea> {
         try await callPaginated(endpoint: API.fetchPalParkAreaList, paginationState: paginationState)
     }
     
@@ -138,7 +138,7 @@ public struct LocationService: PKMLocationService {
     /**
      Fetch Regions list
      */
-    public func fetchRegionList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMRegion {
+    public func fetchRegionList(paginationState: PaginationState<PKMRegion>) async throws -> PKMPagedObject<PKMRegion> {
         try await callPaginated(endpoint: API.fetchRegionList, paginationState: paginationState)
     }
     

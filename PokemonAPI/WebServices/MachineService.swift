@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol PKMMachineService: HTTPWebService {
-    func fetchMachineList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMMachine
+    func fetchMachineList(paginationState: PaginationState<PKMMachine>) async throws -> PKMPagedObject<PKMMachine>
     func fetchMachine(_ machineID: Int) async throws -> PKMMachine
 }
 
@@ -18,7 +18,7 @@ protocol PKMMachineService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct MachineService: PKMMachineService {
+public struct MachineService: PKMMachineService, Sendable {
     public enum API: APICall {
         case fetchMachineList
         case fetchMachine(Int)
@@ -42,7 +42,7 @@ public struct MachineService: PKMMachineService {
     /**
      Fetch Machines list
      */
-    public func fetchMachineList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMMachine {
+    public func fetchMachineList(paginationState: PaginationState<PKMMachine>) async throws -> PKMPagedObject<PKMMachine> {
         try await callPaginated(endpoint: API.fetchMachineList, paginationState: paginationState)
     }
     

@@ -1,5 +1,5 @@
 //
-//  PokemonAPI_AppApp.swift
+//  PokemonAPI_App.swift
 //  PokemonAPI-App
 //
 //  Created by Christopher Jennewein on 11/17/24.
@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct PokemonAPI_AppApp: App {
+struct PokemonAPI_App: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)

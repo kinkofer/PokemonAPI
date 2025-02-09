@@ -10,48 +10,48 @@ import Foundation
 
 
 protocol PKMPokemonService: HTTPWebService {
-    func fetchAbilityList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMAbility
+    func fetchAbilityList(paginationState: PaginationState<PKMAbility>) async throws -> PKMPagedObject<PKMAbility>
     func fetchAbility(_ abilityID: Int) async throws -> PKMAbility
     func fetchAbility(_ abilityName: String) async throws -> PKMAbility
-    func fetchCharacteristicList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMCharacteristic
+    func fetchCharacteristicList(paginationState: PaginationState<PKMCharacteristic>) async throws -> PKMPagedObject<PKMCharacteristic>
     func fetchCharacteristic(_ characteristicID: Int) async throws -> PKMCharacteristic
-    func fetchEggGroupList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEggGroup
+    func fetchEggGroupList(paginationState: PaginationState<PKMEggGroup>) async throws -> PKMPagedObject<PKMEggGroup>
     func fetchEggGroup(_ eggGroupID: Int) async throws -> PKMEggGroup
     func fetchEggGroup(_ eggGroupName: String) async throws -> PKMEggGroup
-    func fetchGenderList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGender
+    func fetchGenderList(paginationState: PaginationState<PKMGender>) async throws -> PKMPagedObject<PKMGender>
     func fetchGender(_ genderID: Int) async throws -> PKMGender
     func fetchGender(_ genderName: String) async throws -> PKMGender
-    func fetchGrowthRateList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGrowthRate
+    func fetchGrowthRateList(paginationState: PaginationState<PKMGrowthRate>) async throws -> PKMPagedObject<PKMGrowthRate>
     func fetchGrowthRate(_ growthRateID: Int) async throws -> PKMGrowthRate
     func fetchGrowthRate(_ growthRateName: String) async throws -> PKMGrowthRate
-    func fetchNatureList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMNature
+    func fetchNatureList(paginationState: PaginationState<PKMNature>) async throws -> PKMPagedObject<PKMNature>
     func fetchNature(_ natureID: Int) async throws -> PKMNature
     func fetchNature(_ natureName: String) async throws -> PKMNature
-    func fetchPokeathlonStatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokeathlonStat
+    func fetchPokeathlonStatList(paginationState: PaginationState<PKMPokeathlonStat>) async throws -> PKMPagedObject<PKMPokeathlonStat>
     func fetchPokeathlonStat(_ pokeathlonStatID: Int) async throws -> PKMPokeathlonStat
     func fetchPokeathlonStat(_ pokeathlonStatName: String) async throws -> PKMPokeathlonStat
-    func fetchPokemonList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemon
+    func fetchPokemonList(paginationState: PaginationState<PKMPokemon>) async throws -> PKMPagedObject<PKMPokemon>
     func fetchPokemon(_ pokemonID: Int) async throws -> PKMPokemon
     func fetchPokemon(_ pokemonName: String) async throws -> PKMPokemon
-    func fetchPokemonColorList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonColor
+    func fetchPokemonColorList(paginationState: PaginationState<PKMPokemonColor>) async throws -> PKMPagedObject<PKMPokemonColor>
     func fetchPokemonColor(_ pokemonColorID: Int) async throws -> PKMPokemonColor
     func fetchPokemonColor(_ pokemonColorName: String) async throws -> PKMPokemonColor
-    func fetchPokemonFormList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonForm
+    func fetchPokemonFormList(paginationState: PaginationState<PKMPokemonForm>) async throws -> PKMPagedObject<PKMPokemonForm>
     func fetchPokemonForm(_ pokemonFormID: Int) async throws -> PKMPokemonForm
     func fetchPokemonForm(_ pokemonFormName: String) async throws -> PKMPokemonForm
-    func fetchPokemonHabitatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonHabitat
+    func fetchPokemonHabitatList(paginationState: PaginationState<PKMPokemonHabitat>) async throws -> PKMPagedObject<PKMPokemonHabitat>
     func fetchPokemonHabitat(_ pokemonHabitatID: Int) async throws -> PKMPokemonHabitat
     func fetchPokemonHabitat(_ pokemonHabitatName: String) async throws -> PKMPokemonHabitat
-    func fetchPokemonShapeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonShape
+    func fetchPokemonShapeList(paginationState: PaginationState<PKMPokemonShape>) async throws -> PKMPagedObject<PKMPokemonShape>
     func fetchPokemonShape(_ pokemonShapeID: Int) async throws -> PKMPokemonShape
     func fetchPokemonShape(_ pokemonShapeName: String) async throws -> PKMPokemonShape
-    func fetchPokemonSpeciesList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonSpecies
+    func fetchPokemonSpeciesList(paginationState: PaginationState<PKMPokemonSpecies>) async throws -> PKMPagedObject<PKMPokemonSpecies>
     func fetchPokemonSpecies(_ pokemonSpeciesID: Int) async throws -> PKMPokemonSpecies
     func fetchPokemonSpecies(_ pokemonSpeciesName: String) async throws -> PKMPokemonSpecies
-    func fetchStatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMStat
+    func fetchStatList(paginationState: PaginationState<PKMStat>) async throws -> PKMPagedObject<PKMStat>
     func fetchStat(_ statID: Int) async throws -> PKMStat
     func fetchStat(_ statName: String) async throws -> PKMStat
-    func fetchTypeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMType
+    func fetchTypeList(paginationState: PaginationState<PKMType>) async throws -> PKMPagedObject<PKMType>
     func fetchType(_ typeID: Int) async throws -> PKMType
     func fetchType(_ typeName: String) async throws -> PKMType
 }
@@ -60,7 +60,7 @@ protocol PKMPokemonService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct PokemonService: PKMPokemonService {
+public struct PokemonService: PKMPokemonService, Sendable {
     public enum API: APICall {
         case fetchAbilityList
         case fetchAbilityByID(Int)
@@ -210,7 +210,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Abilities list
      */
-    public func fetchAbilityList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMAbility {
+    public func fetchAbilityList(paginationState: PaginationState<PKMAbility>) async throws -> PKMPagedObject<PKMAbility> {
         try await callPaginated(endpoint: API.fetchAbilityList, paginationState: paginationState)
     }
     
@@ -238,7 +238,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Characteristics list
      */
-    public func fetchCharacteristicList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMCharacteristic {
+    public func fetchCharacteristicList(paginationState: PaginationState<PKMCharacteristic>) async throws -> PKMPagedObject<PKMCharacteristic> {
         try await callPaginated(endpoint: API.fetchCharacteristicList, paginationState: paginationState)
     }
     
@@ -256,7 +256,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Egg Group list
      */
-    public func fetchEggGroupList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEggGroup {
+    public func fetchEggGroupList(paginationState: PaginationState<PKMEggGroup>) async throws -> PKMPagedObject<PKMEggGroup> {
         try await callPaginated(endpoint: API.fetchEggGroupList, paginationState: paginationState)
     }
     
@@ -284,7 +284,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Genders list
      */
-    public func fetchGenderList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGender {
+    public func fetchGenderList(paginationState: PaginationState<PKMGender>) async throws -> PKMPagedObject<PKMGender> {
         try await callPaginated(endpoint: API.fetchGenderList, paginationState: paginationState)
     }
     
@@ -312,7 +312,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Growth Rate list
      */
-    public func fetchGrowthRateList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGrowthRate {
+    public func fetchGrowthRateList(paginationState: PaginationState<PKMGrowthRate>) async throws -> PKMPagedObject<PKMGrowthRate> {
         try await callPaginated(endpoint: API.fetchGrowthRateList, paginationState: paginationState)
     }
     
@@ -340,7 +340,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Nature list
      */
-    public func fetchNatureList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMNature {
+    public func fetchNatureList(paginationState: PaginationState<PKMNature>) async throws -> PKMPagedObject<PKMNature> {
         try await callPaginated(endpoint: API.fetchNatureList, paginationState: paginationState)
     }
     
@@ -368,7 +368,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Pokeathlon Stat list
      */
-    public func fetchPokeathlonStatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokeathlonStat {
+    public func fetchPokeathlonStatList(paginationState: PaginationState<PKMPokeathlonStat>) async throws -> PKMPagedObject<PKMPokeathlonStat> {
         try await callPaginated(endpoint: API.fetchPokeathlonStatList, paginationState: paginationState)
     }
     
@@ -396,7 +396,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Pokemon list
      */
-    public func fetchPokemonList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemon {
+    public func fetchPokemonList(paginationState: PaginationState<PKMPokemon>) async throws -> PKMPagedObject<PKMPokemon> {
         try await callPaginated(endpoint: API.fetchPokemonList, paginationState: paginationState)
     }
     
@@ -424,7 +424,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Pokemon Color list
      */
-    public func fetchPokemonColorList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonColor {
+    public func fetchPokemonColorList(paginationState: PaginationState<PKMPokemonColor>) async throws -> PKMPagedObject<PKMPokemonColor> {
         try await callPaginated(endpoint: API.fetchPokemonColorList, paginationState: paginationState)
     }
     
@@ -452,7 +452,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Pokemon Form list
      */
-    public func fetchPokemonFormList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonForm {
+    public func fetchPokemonFormList(paginationState: PaginationState<PKMPokemonForm>) async throws -> PKMPagedObject<PKMPokemonForm> {
         try await callPaginated(endpoint: API.fetchPokemonFormList, paginationState: paginationState)
     }
     
@@ -480,7 +480,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Pokemon Habitat list
      */
-    public func fetchPokemonHabitatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonHabitat {
+    public func fetchPokemonHabitatList(paginationState: PaginationState<PKMPokemonHabitat>) async throws -> PKMPagedObject<PKMPokemonHabitat> {
         try await callPaginated(endpoint: API.fetchPokemonHabitatList, paginationState: paginationState)
     }
     
@@ -508,7 +508,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Pokemon Shape list
      */
-    public func fetchPokemonShapeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonShape {
+    public func fetchPokemonShapeList(paginationState: PaginationState<PKMPokemonShape>) async throws -> PKMPagedObject<PKMPokemonShape> {
         try await callPaginated(endpoint: API.fetchPokemonShapeList, paginationState: paginationState)
     }
     
@@ -536,7 +536,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Pokemon Species list
      */
-    public func fetchPokemonSpeciesList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokemonSpecies {
+    public func fetchPokemonSpeciesList(paginationState: PaginationState<PKMPokemonSpecies>) async throws -> PKMPagedObject<PKMPokemonSpecies> {
         try await callPaginated(endpoint: API.fetchPokemonSpeciesList, paginationState: paginationState)
     }
     
@@ -564,7 +564,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Stat list
      */
-    public func fetchStatList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMStat {
+    public func fetchStatList(paginationState: PaginationState<PKMStat>) async throws -> PKMPagedObject<PKMStat> {
         try await callPaginated(endpoint: API.fetchStatList, paginationState: paginationState)
     }
     
@@ -592,7 +592,7 @@ public struct PokemonService: PKMPokemonService {
     /**
      Fetch Type list
      */
-    public func fetchTypeList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMType {
+    public func fetchTypeList(paginationState: PaginationState<PKMType>) async throws -> PKMPagedObject<PKMType> {
         try await callPaginated(endpoint: API.fetchTypeList, paginationState: paginationState)
     }
     

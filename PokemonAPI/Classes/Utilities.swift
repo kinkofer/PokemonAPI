@@ -11,25 +11,25 @@ import Foundation
 // MARK: - Languages
 
 /// Languages for translations of API resource information.
-open class PKMLanguage: Codable {
+public struct PKMLanguage: Codable, Sendable {
     
     /// The identifier for this language resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this language resource
-    open var name: String?
+    public let name: String?
     
     /// Whether or not the games are published in this language
-    open var official: Bool?
+    public let official: Bool?
     
     /// The two-letter code of the country where this language is spoken. Note that it is not unique.
-    open var iso639: String?
+    public let iso639: String?
     
     /// The two-letter code of the language. Note that it is not unique.
-    open var iso3166: String?
+    public let iso3166: String?
     
     /// The name of this language listed in different languages
-    open var names: [PKMName]?
+    public let names: [PKMName]?
 }
 
 
@@ -37,44 +37,44 @@ open class PKMLanguage: Codable {
 // MARK - Common Models
 
 /// Description
-open class PKMDescription: Codable {
+public struct PKMDescription: Codable, Sendable {
     
     /// The localized description for an API resource in a specific language
-    open var description: String?
+    public let description: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource<PKMLanguage>?
+    public let language: PKMAPIResource<PKMLanguage>?
 }
 
 
 /// Effect
-open class PKMEffect: Codable {
+public struct PKMEffect: Codable, Sendable {
     
     /// The localized effect text for an API resource in a specific language
-    open var effect: String?
+    public let effect: String?
     
     /// The language this effect is in
-    open var language: PKMNamedAPIResource<PKMLanguage>?
+    public let language: PKMAPIResource<PKMLanguage>?
 }
 
 
 /// Encounter
-open class PKMEncounter: Codable, SelfDecodable {
+public struct PKMEncounter: Codable, SelfDecodable, Sendable {
     
     /// The lowest level the Pokémon could be encountered at
-    open var minLevel: Int?
+    public let minLevel: Int?
     
     /// The highest level the Pokémon could be encountered at
-    open var maxLevel: Int?
+    public let maxLevel: Int?
     
     /// A list of condition values that must be in effect for this encounter to occur
-    open var conditionValues: [PKMNamedAPIResource<PKMEncounterConditionValue>]?
+    public let conditionValues: [PKMAPIResource<PKMEncounterConditionValue>]?
     
     /// percent chance that this encounter will occur
-    open var chance: Int?
+    public let chance: Int?
     
     /// The method by which this encounter happens
-    open var method: PKMNamedAPIResource<PKMEncounterMethod>?
+    public let method: PKMAPIResource<PKMEncounterMethod>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -85,16 +85,16 @@ open class PKMEncounter: Codable, SelfDecodable {
 
 
 /// Flavor Text
-open class PKMFlavorText: Codable, SelfDecodable {
+public struct PKMFlavorText: Codable, SelfDecodable, Sendable {
     
     /// The localized flavor text for an API resource in a specific language. Note that this text is left unprocessed as it is found in game files. This means that it contains special characters that one might want to replace with their visible decodable version.
-    open var flavorText: String?
+    public let flavorText: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource<PKMLanguage>?
+    public let language: PKMAPIResource<PKMLanguage>?
     
     /// The game version this flavor text is extracted from.
-    open var version: PKMNamedAPIResource<PKMVersion>?
+    public let version: PKMAPIResource<PKMVersion>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -105,13 +105,13 @@ open class PKMFlavorText: Codable, SelfDecodable {
 
 
 /// Generation Game Index
-open class PKMGenerationGameIndex: Codable, SelfDecodable {
+public struct PKMGenerationGameIndex: Codable, SelfDecodable, Sendable {
     
     /// The internal id of an API resource within game data
-    open var gameIndex: Int?
+    public let gameIndex: Int?
     
     /// The generation relevent to this game index
-    open var generation: PKMNamedAPIResource<PKMGeneration>?
+    public let generation: PKMAPIResource<PKMGeneration>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -122,13 +122,13 @@ open class PKMGenerationGameIndex: Codable, SelfDecodable {
 
 
 /// Machine Version Detail
-open class PKMMachineVersionDetail: Codable, SelfDecodable {
+public struct PKMMachineVersionDetail: Codable, SelfDecodable, Sendable {
     
     /// The machine that teaches a move from an item
-    open var machine: PKMAPIResource<PKMMachine>?
+    public let machine: PKMAPIResource<PKMMachine>?
     
     /// The version group of this specific machine
-    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersion>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -139,27 +139,27 @@ open class PKMMachineVersionDetail: Codable, SelfDecodable {
 
 
 /// Name
-open class PKMName: Codable {
+public struct PKMName: Codable, Sendable {
     
     /// The localized name for an API resource in a specific language
-    open var name: String?
+    public let name: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource<PKMLanguage>?
+    public let language: PKMAPIResource<PKMLanguage>?
 }
 
 
 /// Verbose Effect
-open class PKMVerboseEffect: Codable, SelfDecodable {
+public struct PKMVerboseEffect: Codable, SelfDecodable, Sendable {
     
     /// The localized effect text for an API resource in a specific language
-    open var effect: String?
+    public let effect: String?
     
     /// The localized effect text in brief
-    open var shortEffect: String?
+    public let shortEffect: String?
     
     /// The language this effect is in
-    open var language: PKMNamedAPIResource<PKMLanguage>?
+    public let language: PKMAPIResource<PKMLanguage>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -170,16 +170,16 @@ open class PKMVerboseEffect: Codable, SelfDecodable {
 
 
 /// Version Encounter Detail
-open class PKMVersionEncounterDetail: Codable, SelfDecodable {
+public struct PKMVersionEncounterDetail: Codable, SelfDecodable, Sendable {
     
     /// The game version this encounter happens in
-    open var version: PKMNamedAPIResource<PKMVersion>?
+    public let version: PKMAPIResource<PKMVersion>?
     
     /// The total percentage of all encounter potential
-    open var maxChance: Int?
+    public let maxChance: Int?
     
     /// A list of encounters and their specifics
-    open var encounterDetails: [PKMEncounter]?
+    public let encounterDetails: [PKMEncounter]?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -190,13 +190,13 @@ open class PKMVersionEncounterDetail: Codable, SelfDecodable {
 
 
 /// Version Game Index
-open class PKMVersionGameIndex: Codable, SelfDecodable {
+public struct PKMVersionGameIndex: Codable, SelfDecodable, Sendable {
     
     /// The internal id of an API resource within game data
-    open var gameIndex: Int?
+    public let gameIndex: Int?
     
     /// The version relevent to this game index
-    open var version: PKMNamedAPIResource<PKMVersion>?
+    public let version: PKMAPIResource<PKMVersion>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -207,16 +207,16 @@ open class PKMVersionGameIndex: Codable, SelfDecodable {
 
 
 /// Version Group Flavor Text
-open class PKMVersionGroupFlavorText: Codable, SelfDecodable {
+public struct PKMVersionGroupFlavorText: Codable, SelfDecodable, Sendable {
     
     /// The localized name for an API resource in a specific language
-    open var text: String?
+    public let text: String?
     
     /// The language this name is in
-    open var language: PKMNamedAPIResource<PKMLanguage>?
+    public let language: PKMAPIResource<PKMLanguage>?
     
     /// The version group which uses this flavor text
-    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersion>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()

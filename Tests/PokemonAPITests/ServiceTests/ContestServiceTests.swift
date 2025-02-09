@@ -59,7 +59,7 @@ class ContestServiceTests: XCTestCase {
         
         let pagedObject = try await service.fetchContestTypeList(paginationState: .initial(pageLimit: 5))
         let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
-        let contestType = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a contest type")
+        let contestType = try XCTUnwrap(pagedObject.results?.first, "The first result should be a named resource of a contest type")
         let contestTypeName = try XCTUnwrap(contestType.name, "The contest type should have a name")
 
         XCTAssertEqual(pagedObject.count, 5, "Expected to find 5 contest types but found \(count)")

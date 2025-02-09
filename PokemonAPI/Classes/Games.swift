@@ -10,34 +10,34 @@ import Foundation
 
 
 /// A generation is a grouping of the Pokémon games that separates them based on the Pokémon they include. In each generation, a new set of Pokémon, Moves, Abilities and Types that did not exist in the previous generation are released.
-open class PKMGeneration: Codable, SelfDecodable {
+public struct PKMGeneration: Codable, SelfDecodable, Sendable {
     
     /// The identifier for this generation resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this generation resource
-    open var name: String?
+    public let name: String?
     
     /// The name of this generation listed in different languages
-    open var names: [PKMName]?
+    public let names: [PKMName]?
     
     /// A list of abilities that were introduced in this generation
-    open var abilities: [PKMNamedAPIResource<PKMAbility>]?
+    public let abilities: [PKMAPIResource<PKMAbility>]?
     
     /// The main region travelled in this generation
-    open var mainRegion: PKMNamedAPIResource<PKMRegion>?
+    public let mainRegion: PKMAPIResource<PKMRegion>?
     
     /// A list of moves that were introduced in this generation
-    open var moves: [PKMNamedAPIResource<PKMMove>]?
+    public let moves: [PKMAPIResource<PKMMove>]?
     
     /// A list of Pokémon species that were introduced in this generation
-    open var pokemonSpecies: [PKMNamedAPIResource<PKMPokemonSpecies>]?
+    public let pokemonSpecies: [PKMAPIResource<PKMPokemonSpecies>]?
     
     /// A list of types that were introduced in this generation
-    open var types: [PKMNamedAPIResource<PKMType>]?
+    public let types: [PKMAPIResource<PKMType>]?
     
     /// A list of version groups that were introduced in this generation
-    open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
+    public let versionGroups: [PKMAPIResource<PKMVersionGroup>]?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -48,31 +48,31 @@ open class PKMGeneration: Codable, SelfDecodable {
 
 
 /// A Pokédex is a handheld electronic encyclopedia device; one which is capable of recording and retaining information of the various Pokémon in a given region with the exception of the national dex and some smaller dexes related to portions of a region. See Bulbapedia for greater detail.
-open class PKMPokedex: Codable, SelfDecodable {
+public struct PKMPokedex: Codable, SelfDecodable, Sendable {
     
     /// The identifier for this Pokédex resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this Pokédex resource
-    open var name: String?
+    public let name: String?
     
     /// Whether or not this Pokédex originated in the main series of the video games
-    open var isMainSeries: Bool?
+    public let isMainSeries: Bool?
     
     /// The description of this Pokédex listed in different languages
-    open var descriptions: [PKMDescription]?
+    public let descriptions: [PKMDescription]?
     
     /// The name of this Pokédex listed in different languages
-    open var names: [PKMName]?
+    public let names: [PKMName]?
     
     /// A list of pokemon catalogued in this Pokédex and their indexes
-    open var pokemonEntries: [PKMPokemonEntry]?
+    public let pokemonEntries: [PKMPokemonEntry]?
     
     /// The region this Pokédex catalogues pokemon for
-    open var region: PKMNamedAPIResource<PKMRegion>?
+    public let region: PKMAPIResource<PKMRegion>?
     
     /// A list of version groups this Pokédex is relevent to
-    open var versionGroups: [PKMNamedAPIResource<PKMVersionGroup>]?
+    public let versionGroups: [PKMAPIResource<PKMVersionGroup>]?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -83,13 +83,13 @@ open class PKMPokedex: Codable, SelfDecodable {
 
 
 /// Pokemon Entry
-open class PKMPokemonEntry: Codable, SelfDecodable {
+public struct PKMPokemonEntry: Codable, SelfDecodable, Sendable {
     
     /// The index of this pokemon species entry within the Pokédex
-    open var entryNumber: Int?
+    public let entryNumber: Int?
     
     /// The Pokémon species being encountered
-    open var pokemonSpecies: PKMNamedAPIResource<PKMPokemonSpecies>?
+    public let pokemonSpecies: PKMAPIResource<PKMPokemonSpecies>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -100,19 +100,19 @@ open class PKMPokemonEntry: Codable, SelfDecodable {
 
 
 /// Versions of the games, e.g., Red, Blue or Yellow.
-open class PKMVersion: Codable, SelfDecodable {
+public struct PKMVersion: Codable, SelfDecodable, Sendable {
     
     /// The identifier for this version resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this version resource
-    open var name: String?
+    public let name: String?
     
     /// The name of this version listed in different languages
-    open var names: [PKMName]?
+    public let names: [PKMName]?
     
     /// The version group this version belongs to
-    open var versionGroup: PKMNamedAPIResource<PKMVersionGroup>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -123,34 +123,34 @@ open class PKMVersion: Codable, SelfDecodable {
 
 
 /// Version groups categorize highly similar versions of the games.
-open class PKMVersionGroup: Codable, SelfDecodable {
+public struct PKMVersionGroup: Codable, SelfDecodable, Sendable {
     
     /// The identifier for this version group resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this version group resource
-    open var name: String?
+    public let name: String?
     
     /// Order for sorting. Almost by date of release, except similar versions are grouped together.
-    open var order: Int?
+    public let order: Int?
     
     /// The generation this version was introduced in
-    open var generation: PKMNamedAPIResource<PKMGeneration>?
+    public let generation: PKMAPIResource<PKMGeneration>?
     
     /// A list of methods in which Pokémon can learn moves in this version group
-    open var moveLearnMethods: [PKMNamedAPIResource<PKMMoveLearnMethod>]?
+    public let moveLearnMethods: [PKMAPIResource<PKMMoveLearnMethod>]?
     
     /// The name of this version group listed in different languages
-    open var names: [PKMName]?
+    public let names: [PKMName]?
     
     /// A list of Pokédexes introduces in this version group
-    open var pokedexes: [PKMNamedAPIResource<PKMPokedex>]?
+    public let pokedexes: [PKMAPIResource<PKMPokedex>]?
     
     /// A list of regions that can be visited in this version group    list
-    open var regions: [PKMNamedAPIResource<PKMRegion>]?
+    public let regions: [PKMAPIResource<PKMRegion>]?
     
     /// The versions this version group owns
-    open var versions: [PKMNamedAPIResource<PKMVersion>]?
+    public let versions: [PKMAPIResource<PKMVersion>]?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()

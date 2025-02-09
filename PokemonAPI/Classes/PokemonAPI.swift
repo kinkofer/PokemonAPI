@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class PokemonAPI {
+public final class PokemonAPI {
     public let session: URLSession
     
     public init(session: URLSession = URLSession.shared) {

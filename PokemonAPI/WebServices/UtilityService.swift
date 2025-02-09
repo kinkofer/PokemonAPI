@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol PKMUtilityService: HTTPWebService {
-    func fetchLanguageList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLanguage
+    func fetchLanguageList(paginationState: PaginationState<PKMLanguage>) async throws -> PKMPagedObject<PKMLanguage>
     func fetchLanguage(_ languageID: Int) async throws -> PKMLanguage
     func fetchLanguage(_ languageName: String) async throws -> PKMLanguage
 }
@@ -19,7 +19,7 @@ protocol PKMUtilityService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct UtilityService: PKMUtilityService {
+public struct UtilityService: PKMUtilityService, Sendable {
     public enum API: APICall {
         case fetchLanuageList
         case fetchLanguageByID(Int)
@@ -46,7 +46,7 @@ public struct UtilityService: PKMUtilityService {
     /**
      Fetch Languages list
      */
-    public func fetchLanguageList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMLanguage {
+    public func fetchLanguageList(paginationState: PaginationState<PKMLanguage>) async throws -> PKMPagedObject<PKMLanguage> {
         try await callPaginated(endpoint: API.fetchLanuageList, paginationState: paginationState)
     }
     

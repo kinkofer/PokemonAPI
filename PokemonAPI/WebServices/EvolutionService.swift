@@ -10,9 +10,9 @@ import Foundation
 
 
 protocol PKMEvolutionService: HTTPWebService {
-    func fetchEvolutionChainList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEvolutionChain
+    func fetchEvolutionChainList(paginationState: PaginationState<PKMEvolutionChain>) async throws -> PKMPagedObject<PKMEvolutionChain>
     func fetchEvolutionChain(_ evolutionChainID: Int) async throws -> PKMEvolutionChain
-    func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEvolutionTrigger
+    func fetchEvolutionTriggerList(paginationState: PaginationState<PKMEvolutionTrigger>) async throws -> PKMPagedObject<PKMEvolutionTrigger>
     func fetchEvolutionTrigger(_ evolutionTriggerID: Int) async throws -> PKMEvolutionTrigger
     func fetchEvolutionTrigger(_ evolutionTriggerName: String) async throws -> PKMEvolutionTrigger
 }
@@ -21,7 +21,7 @@ protocol PKMEvolutionService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct EvolutionService: PKMEvolutionService {
+public struct EvolutionService: PKMEvolutionService, Sendable {
     public enum API: APICall {
         case fetchEvolutionChainList
         case fetchEvolutionChain(Int)
@@ -54,7 +54,7 @@ public struct EvolutionService: PKMEvolutionService {
     /**
      Fetch Encounter Chains list
      */
-    public func fetchEvolutionChainList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMEvolutionChain {
+    public func fetchEvolutionChainList(paginationState: PaginationState<PKMEvolutionChain> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMEvolutionChain> {
         try await callPaginated(endpoint: API.fetchEvolutionChainList, paginationState: paginationState)
     }
     
@@ -72,7 +72,7 @@ public struct EvolutionService: PKMEvolutionService {
     /**
      Fetch Encounter Triggers list
      */
-    public func fetchEvolutionTriggerList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMEvolutionTrigger {
+    public func fetchEvolutionTriggerList(paginationState: PaginationState<PKMEvolutionTrigger> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMEvolutionTrigger> {
         try await callPaginated(endpoint: API.fetchEvolutionTriggerList, paginationState: paginationState)
     }
     

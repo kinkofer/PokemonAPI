@@ -12,13 +12,13 @@ import Foundation
 // MARK: - Protocol
 
 public protocol PKMBerryService: HTTPWebService {
-    func fetchBerryList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMBerry
+    func fetchBerryList(paginationState: PaginationState<PKMBerry>) async throws -> PKMPagedObject<PKMBerry>
     func fetchBerry(_ berryID: Int) async throws -> PKMBerry
     func fetchBerry(_ berryName: String) async throws -> PKMBerry
-    func fetchBerryFirmnessList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMBerryFirmness
+    func fetchBerryFirmnessList(paginationState: PaginationState<PKMBerryFirmness>) async throws -> PKMPagedObject<PKMBerryFirmness>
     func fetchBerryFirmness(_ berryFirmnessID: Int) async throws -> PKMBerryFirmness
     func fetchBerryFirmness(_ berryFirmnessName: String) async throws -> PKMBerryFirmness
-    func fetchBerryFlavorList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMBerryFlavor
+    func fetchBerryFlavorList(paginationState: PaginationState<PKMBerryFlavor>) async throws -> PKMPagedObject<PKMBerryFlavor>
     func fetchBerryFlavor(_ berryFlavorID: Int) async throws -> PKMBerryFlavor
     func fetchBerryFlavor(_ berryFlavorName: String) async throws -> PKMBerryFlavor
 }
@@ -27,7 +27,7 @@ public protocol PKMBerryService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct BerryService: PKMBerryService {
+public struct BerryService: PKMBerryService, Sendable {
     public enum API: APICall {
         case fetchBerryList
         case fetchBerryByID(Int)
@@ -72,7 +72,7 @@ public struct BerryService: PKMBerryService {
     /**
      Fetch Berry list
      */
-    public func fetchBerryList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMBerry {
+    public func fetchBerryList(paginationState: PaginationState<PKMBerry> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMBerry> {
         try await callPaginated(endpoint: API.fetchBerryList, paginationState: paginationState)
     }
     
@@ -100,7 +100,7 @@ public struct BerryService: PKMBerryService {
     /**
      Fetch Berry Firmness list
      */
-    public func fetchBerryFirmnessList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMBerryFirmness {
+    public func fetchBerryFirmnessList(paginationState: PaginationState<PKMBerryFirmness> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMBerryFirmness> {
         try await callPaginated(endpoint: API.fetchBerryFirmnessList, paginationState: paginationState)
     }
     
@@ -128,7 +128,7 @@ public struct BerryService: PKMBerryService {
     /**
      Fetch Berry Flavors list
      */
-    public func fetchBerryFlavorList<T>(paginationState: PaginationState<T> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<T> where T: PKMBerryFlavor {
+    public func fetchBerryFlavorList(paginationState: PaginationState<PKMBerryFlavor> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMBerryFlavor> {
         try await callPaginated(endpoint: API.fetchBerryFlavorList, paginationState: paginationState)
     }
     

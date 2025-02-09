@@ -10,13 +10,13 @@ import Foundation
 
 
 protocol PKMEncounterService: HTTPWebService {
-    func fetchEncounterMethodList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEncounterMethod
+    func fetchEncounterMethodList(paginationState: PaginationState<PKMEncounterMethod>) async throws -> PKMPagedObject<PKMEncounterMethod>
     func fetchEncounterMethod(_ encounterMethodID: Int) async throws -> PKMEncounterMethod
     func fetchEncounterMethod(_ encounterMethodName: String) async throws -> PKMEncounterMethod
-    func fetchEncounterConditionList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEncounterCondition
+    func fetchEncounterConditionList(paginationState: PaginationState<PKMEncounterCondition>) async throws -> PKMPagedObject<PKMEncounterCondition>
     func fetchEncounterCondition(_ encounterConditionID: Int) async throws -> PKMEncounterCondition
     func fetchEncounterCondition(_ encounterConditionName: String) async throws -> PKMEncounterCondition
-    func fetchEncounterConditionValueList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEncounterConditionValue
+    func fetchEncounterConditionValueList(paginationState: PaginationState<PKMEncounterConditionValue>) async throws -> PKMPagedObject<PKMEncounterConditionValue>
     func fetchEncounterConditionValue(_ encounterConditionValueID: Int) async throws -> PKMEncounterConditionValue
     func fetchEncounterConditionValue(_ encounterConditionValueName: String) async throws -> PKMEncounterConditionValue
 }
@@ -25,7 +25,7 @@ protocol PKMEncounterService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct EncounterService: PKMEncounterService {
+public struct EncounterService: PKMEncounterService, Sendable {
     public enum API: APICall {
         case fetchEncounterMethodList
         case fetchEncounterMethodByID(Int)
@@ -71,7 +71,7 @@ public struct EncounterService: PKMEncounterService {
     /**
      Fetch Encounter Methods list
      */
-    public func fetchEncounterMethodList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEncounterMethod {
+    public func fetchEncounterMethodList(paginationState: PaginationState<PKMEncounterMethod>) async throws -> PKMPagedObject<PKMEncounterMethod> {
         try await callPaginated(endpoint: API.fetchEncounterMethodList, paginationState: paginationState)
     }
     
@@ -99,7 +99,7 @@ public struct EncounterService: PKMEncounterService {
     /**
      Fetch Encounter Conditions list
      */
-    public func fetchEncounterConditionList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEncounterCondition {
+    public func fetchEncounterConditionList(paginationState: PaginationState<PKMEncounterCondition>) async throws -> PKMPagedObject<PKMEncounterCondition> {
         try await callPaginated(endpoint: API.fetchEncounterConditionList, paginationState: paginationState)
     }
     
@@ -127,7 +127,7 @@ public struct EncounterService: PKMEncounterService {
     /**
      Fetch Encounter Condition Values list
      */
-    public func fetchEncounterConditionValueList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMEncounterConditionValue {
+    public func fetchEncounterConditionValueList(paginationState: PaginationState<PKMEncounterConditionValue>) async throws -> PKMPagedObject<PKMEncounterConditionValue> {
         try await callPaginated(endpoint: API.fetchEncounterConditionValueList, paginationState: paginationState)
     }
     

@@ -170,7 +170,7 @@ public enum HTTPError: Error, Equatable, LocalizedError {
  Valid HTTP response status codes that can be returned from a web server
  - seealso: [List of HTTP status codes - Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
  */
-public enum HTTPStatus: Int {
+public enum HTTPStatus: Int, Sendable {
     case continueCode = 100
     case switchingProtocols = 101
     case processing = 102

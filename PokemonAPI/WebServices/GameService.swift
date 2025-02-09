@@ -10,16 +10,16 @@ import Foundation
 
 
 protocol PKMGameService: HTTPWebService {
-    func fetchGenerationList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGeneration
+    func fetchGenerationList(paginationState: PaginationState<PKMGeneration>) async throws -> PKMPagedObject<PKMGeneration>
     func fetchGeneration(_ generationID: Int) async throws -> PKMGeneration
     func fetchGeneration(_ generationName: String) async throws -> PKMGeneration
-    func fetchPokedexList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokedex
+    func fetchPokedexList(paginationState: PaginationState<PKMPokedex>) async throws -> PKMPagedObject<PKMPokedex>
     func fetchPokedex(_ pokedexID: Int) async throws -> PKMPokedex
     func fetchPokedex(_ pokedexName: String) async throws -> PKMPokedex
-    func fetchVersionList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMVersion
+    func fetchVersionList(paginationState: PaginationState<PKMVersion>) async throws -> PKMPagedObject<PKMVersion>
     func fetchVersion(_ versionID: Int) async throws -> PKMVersion
     func fetchVersion(_ versionName: String) async throws -> PKMVersion
-    func fetchVersionGroupList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMVersionGroup
+    func fetchVersionGroupList(paginationState: PaginationState<PKMVersionGroup>) async throws -> PKMPagedObject<PKMVersionGroup>
     func fetchVersionGroup(_ versionGroupID: Int) async throws -> PKMVersionGroup
     func fetchVersionGroup(_ versionGroupName: String) async throws -> PKMVersionGroup
 }
@@ -28,7 +28,7 @@ protocol PKMGameService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct GameService: PKMGameService {
+public struct GameService: PKMGameService, Sendable {
     public enum API: APICall {
         case fetchGenerationList
         case fetchGenerationByID(Int)
@@ -84,7 +84,7 @@ public struct GameService: PKMGameService {
      Fetch Generations list
      */
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-    public func fetchGenerationList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMGeneration {
+    public func fetchGenerationList(paginationState: PaginationState<PKMGeneration>) async throws -> PKMPagedObject<PKMGeneration> {
         try await callPaginated(endpoint: API.fetchGenerationList, paginationState: paginationState)
     }
     
@@ -112,7 +112,7 @@ public struct GameService: PKMGameService {
     /**
      Fetch Pokedex list
      */
-    public func fetchPokedexList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMPokedex {
+    public func fetchPokedexList(paginationState: PaginationState<PKMPokedex>) async throws -> PKMPagedObject<PKMPokedex> {
         try await callPaginated(endpoint: API.fetchPokedexList, paginationState: paginationState)
     }
     
@@ -140,7 +140,7 @@ public struct GameService: PKMGameService {
     /**
      Fetch Versions list
      */
-    public func fetchVersionList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMVersion {
+    public func fetchVersionList(paginationState: PaginationState<PKMVersion>) async throws -> PKMPagedObject<PKMVersion> {
         try await callPaginated(endpoint: API.fetchVersionList, paginationState: paginationState)
     }
     
@@ -168,7 +168,7 @@ public struct GameService: PKMGameService {
     /**
      Fetch Versions Groups list
      */
-    public func fetchVersionGroupList<T>(paginationState: PaginationState<T>) async throws -> PKMPagedObject<T> where T: PKMVersionGroup {
+    public func fetchVersionGroupList(paginationState: PaginationState<PKMVersionGroup>) async throws -> PKMPagedObject<PKMVersionGroup> {
         try await callPaginated(endpoint: API.fetchVersionGroupList, paginationState: paginationState)
     }
     

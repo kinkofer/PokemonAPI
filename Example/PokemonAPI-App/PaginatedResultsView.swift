@@ -37,7 +37,7 @@ struct PaginatedResultsView: View {
                 Text("An error occurred: \(error.localizedDescription)")
             }
             else if let pagedObject = pagedObject,
-                    let pokemonResults = pagedObject.results as? [PKMNamedAPIResource] {
+                    let pokemonResults = pagedObject.results {
                 List {
                     ForEach(pokemonResults, id: \.url) { pokemon in
                         Text(pokemon.name ?? "Unknown Pokemon")
