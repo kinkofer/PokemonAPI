@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum HTTPError: Error, LocalizedError {
+public enum HTTPError: Error, Equatable, LocalizedError {
     // Request Error cases
     
     /// The request could not be constructed
@@ -135,6 +135,33 @@ public enum HTTPError: Error, LocalizedError {
             return 499
         }
     }
+    
+    
+    public static func == (lhs: HTTPError, rhs: HTTPError) -> Bool {
+        lhs.errorDescription == rhs.errorDescription
+    }
+    
+    
+    static func from(_ error: Error) -> HTTPError {
+        if let nsError = error as NSError?,
+           nsError.code == HTTPError.noNetwork.code {
+            return HTTPError.noNetwork
+        }
+        else if let nsError = error as NSError?,
+                nsError.code == HTTPError.timeout.code {
+            return HTTPError.timeout
+        }
+        else if let nsError = error as NSError?,
+                let underlyingError = nsError.userInfo[NSUnderlyingErrorKey] as? Error {
+            return from(underlyingError)
+        }
+        else if let httpError = error as? HTTPError {
+            return httpError
+        }
+        else {
+            return HTTPError.other(error)
+        }
+    }
 }
 
 
@@ -143,7 +170,7 @@ public enum HTTPError: Error, LocalizedError {
  Valid HTTP response status codes that can be returned from a web server
  - seealso: [List of HTTP status codes - Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
  */
-public enum HTTPStatus: Int {
+public enum HTTPStatus: Int, Sendable {
     case continueCode = 100
     case switchingProtocols = 101
     case processing = 102

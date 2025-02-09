@@ -594,14 +594,14 @@ struct MockPokemonData {
 
 
 struct MockResourceData {
-    static var berryResource: PKMNamedAPIResource<PKMBerry> {
+    static var berryResource: PKMAPIResource<PKMBerry> {
         let resourceData = """
         {
             "name": "cherri",
             "url": "https://pokeapi.co/api/v2/berry/1/"
         }
         """.data(using: .utf8)!
-        return try! PKMNamedAPIResource<PKMBerry>.decode(from: resourceData)
+        return try! PKMAPIResource<PKMBerry>.decode(from: resourceData)
     }
 }
 

@@ -9,16 +9,16 @@ import Foundation
 
 
 /// The state of a paginated web service call.
-public enum PaginationState<T> {
+public enum PaginationState<T>: Sendable {
     /// Required state the first time you call the paginated web service.
-    case initial(pageLimit: Int)
+    case initial(pageLimit: Int, offset: Int = 0)
     /// Used on subsequent calls to the paginated web service, getting results for that relationship.
     case continuing(PKMPagedObject<T>, PaginationRelationship)
 }
 
 
 /// Public enum representing the different positions for pagination relative to the last fetch
-public enum PaginationRelationship {
+public enum PaginationRelationship: Sendable {
     case first
     case last
     case next
@@ -30,7 +30,9 @@ public enum PaginationRelationship {
 
 
 /// Paged Object
-public class PKMPagedObject<T>: Codable {
+public struct PKMPagedObject<T>: Codable, Sendable {
+    public typealias PKMObject = T
+    
     enum CodingKeys: String, CodingKey {
         case count
         case next
@@ -39,27 +41,27 @@ public class PKMPagedObject<T>: Codable {
     }
     
     /// The total number of resources available from this API
-    public private(set) var count: Int?
+    public let count: Int?
     
     /// The url for the next page in the list
-    private(set) var next: String?
+    let next: String?
     
     /// The url for the previous page in the list
-    private(set) var previous: String?
+    let previous: String?
     
     /// The url for the current page
-    public private(set) var current: String = ""
+    let current: String
     
     /// List of API resources (some services return named resources and can be cast as [PKMAPIResource])
-    public private(set) var results: [PKMAPIResource<T>]?
+    public let results: [PKMAPIResource<T>]?
     
     /// The number of results returned on each page
-    private(set) var limit: Int = 0
+    public let limit: Int
     
     /// The current offset for the web service
-    private(set) var offset: Int = 0
+    public let offset: Int
     
-    /// The number of pages produced based of the pageLimit
+    /// The number of pages produced based on the pageLimit
     public var pages: Int {
         guard let count = count, limit != 0 else {
             return 0
@@ -87,35 +89,35 @@ public class PKMPagedObject<T>: Codable {
     
     // MARK: - Init
     
-    public required init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.count = try container.decodeIfPresent(Int.self, forKey: .count)
         self.next = try container.decodeIfPresent(String.self, forKey: .next)
         self.previous = try container.decodeIfPresent(String.self, forKey: .previous)
-        do {
-            self.results = try container.decodeIfPresent([PKMNamedAPIResource].self, forKey: .results)
-        } catch {
-            self.results = try container.decodeIfPresent([PKMAPIResource].self, forKey: .results)
-        }
+        self.results = try container.decodeIfPresent([PKMAPIResource].self, forKey: .results)
+        
+        offset = 0
+        limit = 0
+        current = ""
     }
     
     
-    
-    // MARK: - Update
-    
-    /// Update PagedObject's offset, limit, and current url. These properties are not returned from the web service
-    /// so must be updated from the previous values.
-    func update<T>(with paginationState: PaginationState<T>, currentUrl: String) {
+    public init(from pagedObject: PKMPagedObject, with paginationState: PaginationState<PKMObject>, currentUrl: String) {
+        results = pagedObject.results
+        count = pagedObject.count
+        next = pagedObject.next
+        previous = pagedObject.previous
+        
         switch paginationState {
-        case .initial(let limit):
-            self.offset = 0
-            self.limit = limit
+        case .initial(let newLimit, let newOffset):
+            offset = newOffset
+            limit = newLimit
         case .continuing(let pagedObject, let relationship):
-            self.offset = pagedObject.getOffset(for: relationship)
-            self.limit = pagedObject.limit
+            offset = pagedObject.getOffset(for: relationship)
+            limit = pagedObject.limit
         }
         
-        self.current = currentUrl
+        current = currentUrl
     }
     
     

@@ -9,45 +9,45 @@ import Foundation
 
 
 /// Berries are small fruits that can provide HP and status condition restoration, stat enhancement, and even damage negation when eaten by Pokémon. Check out Bulbapedia for greater detail.
-open class PKMBerry: Codable, SelfDecodable {
+public struct PKMBerry: Codable, SelfDecodable, Sendable {
     
     /// The identifier for this berry resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this berry resource
-    open var name: String?
+    public let name: String?
     
     /// Time it takes the tree to grow one stage, in hours. Berry trees go through four of these growth stages before they can be picked.
-    open var growthTime: Int?
+    public let growthTime: Int?
     
     /// The maximum number of these berries that can grow on one tree in Generation IV
-    open var maxHarvest: Int?
+    public let maxHarvest: Int?
     
     /// The power of the move "Natural Gift" when used with this Berry
-    open var naturalGiftPower: Int?
+    public let naturalGiftPower: Int?
     
     /// The size of this Berry, in millimeters
-    open var size: Int?
+    public let size: Int?
     
     /// The smoothness of this Berry, used in making Pokéblocks or Poffins
-    open var smoothness: Int?
+    public let smoothness: Int?
     
     /// The speed at which this Berry dries out the soil as it grows. A higher rate means the soil dries more quickly.
-    open var soilDryness: Int?
+    public let soilDryness: Int?
     
     /// The firmness of this berry, used in making Pokéblocks or Poffins
-    open var firmness: PKMNamedAPIResource<PKMBerryFirmness>?
+    public let firmness: PKMAPIResource<PKMBerryFirmness>?
     
     /// A list of references to each flavor a berry can have and the potency of each of those flavors in regard to this berry
-    open var flavors: [PKMBerryFlavorMap]?
+    public let flavors: [PKMBerryFlavorMap]?
     
-    /// Berries are actually items. This is a reference to the item specific data for this berry.
-    open var item: PKMNamedAPIResource<PKMItem>?
+    /// Berries are actually items. This is a reference to the item-specific data for this berry.
+    public let item: PKMAPIResource<PKMItem>?
     
     /// The Type the move "Natural Gift" has when used with this Berry
-    open var naturalGiftType: PKMNamedAPIResource<PKMType>?
+    public let naturalGiftType: PKMAPIResource<PKMType>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -56,52 +56,52 @@ open class PKMBerry: Codable, SelfDecodable {
 
 
 /// Berry Flavor Map
-open class PKMBerryFlavorMap: Codable {
+public struct PKMBerryFlavorMap: Codable, Sendable {
     
     /// How powerful the referenced flavor is for this berry
-    open var potency: Int?
+    public let potency: Int?
     
     /// The berry with the referenced flavor
-    open var flavor: PKMNamedAPIResource<PKMBerryFlavor>?
+    public let flavor: PKMAPIResource<PKMBerryFlavor>?
 }
 
 
 /// Berry Firmness
-open class PKMBerryFirmness: Codable {
+public struct PKMBerryFirmness: Codable, Sendable {
     
     /// The identifier for this berry firmness resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name of this berry firmness listed in different languages
-    open var berries: [PKMNamedAPIResource<PKMBerry>]?
+    public let berries: [PKMAPIResource<PKMBerry>]?
     
     /// A list of the berries with this firmness
-    open var names: [PKMName]?
+    public let names: [PKMName]?
     
     /// The name for this berry firmness resource
-    open var name: String?
+    public let name: String?
 }
 
 
 /// Flavors determine whether a Pokémon will benefit or suffer from eating a berry based on their nature. Check out Bulbapedia for greater detail.
-open class PKMBerryFlavor: Codable, SelfDecodable {
+public struct PKMBerryFlavor: Codable, SelfDecodable, Sendable {
     
     /// The identifier for this berry flavor resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this berry flavor resource
-    open var name: String?
+    public let name: String?
     
     /// A list of the berries with this flavor
-    open var berries: [PKMFlavorBerryMap]?
+    public let berries: [PKMFlavorBerryMap]?
     
     /// The contest type that correlates with this berry flavor
-    open var contestType: PKMNamedAPIResource<PKMContestType>?
+    public let contestType: PKMAPIResource<PKMContestType>?
     
     /// The name of this berry flavor listed in different languages
-    open var names: [PKMName]?
+    public let names: [PKMName]?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
@@ -110,11 +110,11 @@ open class PKMBerryFlavor: Codable, SelfDecodable {
 
 
 /// Flavor Berry Map
-open class PKMFlavorBerryMap: Codable {
+public struct PKMFlavorBerryMap: Codable, Sendable {
     
     /// How powerful the referenced flavor is for this berry
-    open var potency: Int?
+    public let potency: Int?
     
     /// The berry with the referenced flavor
-    open var berry: PKMNamedAPIResource<PKMBerry>?
+    public let berry: PKMAPIResource<PKMBerry>?
 }

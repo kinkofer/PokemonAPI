@@ -8,20 +8,20 @@
 import Foundation
 
 
-open class PKMMachine: Codable, SelfDecodable {
+public struct PKMMachine: Codable, SelfDecodable, Sendable {
     /// The identifier for this machine resource
-    open var id: Int?
+    public let id: Int?
     
     /// The TM or HM item that corresponds to this machine
-    open var item: PKMNamedAPIResource<PKMItem>?
+    public let item: PKMAPIResource<PKMItem>?
     
     /// The move that is taught by this machine
-    open var move: PKMNamedAPIResource<PKMMove>?
+    public let move: PKMAPIResource<PKMMove>?
     
     /// The version group that this machine applies to
-    open var versionGroup: PKMNamedAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersion>?
     
-    public static var decoder: JSONDecoder = {
+    public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder

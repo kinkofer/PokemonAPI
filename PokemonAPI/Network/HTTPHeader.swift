@@ -44,7 +44,7 @@ public enum HTTPHeader {
 
 
 
-public struct MediaType: OptionSet {
+public struct MediaType: OptionSet, Sendable {
     public let rawValue: Int
     
     public static let json = MediaType(rawValue: 1 << 0)

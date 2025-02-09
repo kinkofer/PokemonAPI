@@ -9,19 +9,20 @@ import XCTest
 
 
 extension XCTest {
-    @available(iOS 15.0, *)
     /// Asserts the closure will throw an error
     /// - Important: This function is temporary until XCTAssertThrowsError supports async closures natively
-    func XCTAssertThrowsError<T: Codable>(_ expression: @autoclosure () async throws -> T,
-                                          _ message: @autoclosure () -> String = "The closure did not throw an error",
-                                          file: StaticString = #filePath,
-                                          line: UInt = #line,
-                                          _ errorHandler: (_ error: Error) -> Void = { _ in }) async {
+    /// - Note: Adapted from https://arturgruchala.com/testing-async-await-exceptions/
+    func XCTAssertThrowsError<T, R>(_ expression: @autoclosure () async throws -> T,
+                                    _ errorThrown: @autoclosure () -> R,
+                                    _ message: @autoclosure () -> String = "The expression did not throw an error",
+                                    file: StaticString = #filePath,
+                                    line: UInt = #line,
+                                    _ errorHandler: (_ error: Error) -> Void = { _ in }) async where T: Codable, R: Error & Equatable {
         do {
             _ = try await expression()
             XCTFail(message(), file: file, line: line)
         } catch {
-            errorHandler(error)
+            XCTAssertEqual(error as? R, errorThrown())
         }
     }
 }

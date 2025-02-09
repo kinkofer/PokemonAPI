@@ -9,51 +9,51 @@ import Foundation
 
 
 /// Methods by which the player might can encounter Pokémon in the wild, e.g., walking in tall grass. Check out Bulbapedia for greater detail.
-open class PKMEncounterMethod: Codable {
+public struct PKMEncounterMethod: Codable, Sendable {
     
     /// The identifier for this encounter method resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this encounter method resource
-    open var name: String?
+    public let name: String?
     
     /// A good value for sorting
-    open var order: Int?
+    public let order: Int?
     
     /// The name of this encounter method listed in different languages
-    open var names: [PKMName]?
+    public let names: [PKMName]?
 }
 
 
 /// Encounter Condition
-open class PKMEncounterCondition: Codable {
+public struct PKMEncounterCondition: Codable, Sendable {
     
     /// The identifier for this encounter condition resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this encounter condition resource
-    open var name: String?
+    public let name: String?
     
     /// A list of possible values for this encounter condition
-    open var values: [PKMNamedAPIResource<PKMEncounterConditionValue>]?
+    public let values: [PKMAPIResource<PKMEncounterConditionValue>]?
     
     /// The name of this encounter method listed in different languages
-    open var names: [PKMName]?
+    public let names: [PKMName]?
 }
 
 
 /// Encounter Condition Value
-open class PKMEncounterConditionValue: Codable {
+public struct PKMEncounterConditionValue: Codable, Sendable {
     
     /// The identifier for this encounter condition value resource
-    open var id: Int?
+    public let id: Int?
     
     /// The name for this encounter condition value resource
-    open var name: String?
+    public let name: String?
     
     /// The condition this encounter condition value pertains to
-    open var condition: [PKMNamedAPIResource<PKMEncounterCondition>]?
+    public let condition: [PKMAPIResource<PKMEncounterCondition>]?
     
     /// The name of this encounter condition value listed in different languages
-    open var names: [PKMName]?
+    public let names: [PKMName]?
 }

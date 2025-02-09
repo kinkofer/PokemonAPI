@@ -1,3 +1,18 @@
+## 7.0.0
+Update for Swift 6
+
+Change PKM objects to Sendable structs
+
+Remove Cocoapods support
+
+Remove Combine and Completion methods
+
+Add additional Pokemon Sprite properties that are unlisted in the documentation
+
+Fix various typos and incorrect properties
+
+Update tests
+
 ## 6.1.1
 Fix Pokedex async endpoints
 

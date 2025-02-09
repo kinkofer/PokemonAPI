@@ -27,8 +27,9 @@ extension APICall {
         var offset = 0
         
         switch paginationState {
-        case .initial(pageLimit: let limit):
+        case .initial(pageLimit: let limit, offset: let initialOffset):
             pageLimit = limit
+            offset = initialOffset
         case .continuing(let paginatedResult, let relationship):
             pageLimit = paginatedResult.limit
             offset = paginatedResult.getOffset(for: relationship)

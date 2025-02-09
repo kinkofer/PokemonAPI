@@ -6,17 +6,10 @@
 //  Copyright © 2020 Prismatic Games. All rights reserved.
 //
 
-import Combine
 import Foundation
 
 
 protocol PKMResourceService: HTTPWebService {
-    func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T, Error>) -> Void)
-    
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) -> AnyPublisher<T, Error>
-    
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) async throws -> T
 }
 
@@ -24,7 +17,7 @@ protocol PKMResourceService: HTTPWebService {
 
 // MARK: - Web Services
 
-public struct ResourceService: PKMResourceService {
+public struct ResourceService: PKMResourceService, Sendable {
     public enum API<T>: APICall {
         case fetchResource(PKMAPIResource<T>)
         
@@ -50,35 +43,6 @@ public struct ResourceService: PKMResourceService {
      
      - parameter resource: PKMAPIResource or APINamedAPIResource
      */
-    public func fetch<T: Decodable>(_ resource: PKMAPIResource<T>, completion: @escaping (_ result: Result<T, Error>) -> Void) {
-        guard API.fetchResource(resource).path.isEmpty == false else {
-            completion(.failure(HTTPError.invalidRequest))
-            return
-        }
-        
-        call(endpoint: API.fetchResource(resource)) { result in
-            result.decode(completion: completion)
-        }
-    }
-}
-
-
-
-// MARK: - Combine Services
-
-extension ResourceService {
-    @available(OSX 10.15, iOS 13, tvOS 13.0, watchOS 6.0, *)
-    public func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) -> AnyPublisher<T, Error> {
-        call(endpoint: API.fetchResource(resource))
-    }
-}
-
-
-
-// MARK: - Async Services
-
-extension ResourceService {
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     public func fetch<T: Decodable>(_ resource: PKMAPIResource<T>) async throws -> T {
         try await T.decode(from: call(endpoint: API.fetchResource(resource)))
     }

@@ -9,7 +9,6 @@ import XCTest
 @testable import PokemonAPI
 
 
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
 class ContestServiceTests: XCTestCase {
     typealias API = ContestService.API
     typealias Mock = RequestMocking.MockedResponse
@@ -31,12 +30,12 @@ class ContestServiceTests: XCTestCase {
     
     // MARK: - Helper
     
-    private func mock(_ apiCall: API, result: Result<Data, Swift.Error>, httpCode: Int = 200, paginated: Bool = false) throws {
+    private func mock(_ apiCall: API, result: Result<Data, Swift.Error>, httpCode: Int = 200) throws {
         let mock = try Mock(apiCall: apiCall, baseURL: service.baseURL, result: result, httpCode: httpCode)
         RequestMocking.add(mock: mock)
     }
     
-    private func mock<T>(_ apiCall: API, paginationState: PaginationState<T>, result: Result<Data, Swift.Error>, httpCode: Int = 200, paginated: Bool = false) throws where T: Codable {
+    private func mock<T>(_ apiCall: API, paginationState: PaginationState<T>, result: Result<Data, Swift.Error>, httpCode: Int = 200) throws where T: Codable {
         let mock = try Mock(apiCall: apiCall, baseURL: service.baseURL, paginationState: paginationState, result: result, httpCode: httpCode)
         RequestMocking.add(mock: mock)
     }
@@ -60,7 +59,7 @@ class ContestServiceTests: XCTestCase {
         
         let pagedObject = try await service.fetchContestTypeList(paginationState: .initial(pageLimit: 5))
         let count = try XCTUnwrap(pagedObject.count, "The PKMPagedObject should have a count")
-        let contestType = try XCTUnwrap(pagedObject.results?.first as? PKMNamedAPIResource, "The first result should be a named resource of a contest type")
+        let contestType = try XCTUnwrap(pagedObject.results?.first, "The first result should be a named resource of a contest type")
         let contestTypeName = try XCTUnwrap(contestType.name, "The contest type should have a name")
 
         XCTAssertEqual(pagedObject.count, 5, "Expected to find 5 contest types but found \(count)")
@@ -79,7 +78,9 @@ class ContestServiceTests: XCTestCase {
     
     
     func testFetchContestType_failure() async throws {
-        try mock(.fetchContestTypeByID(1), result: .failure(HTTPError.unexpectedResponse), httpCode: HTTPError.unexpectedResponse.code)
-        await XCTAssertThrowsError(try await service.fetchContestType(1))
+        let testError = HTTPError.unexpectedResponse
+        try mock(.fetchContestTypeByID(1), result: .failure(testError), httpCode: HTTPError.unexpectedResponse.code)
+        
+        await XCTAssertThrowsError(try await service.fetchContestType(1), testError)
     }
 }
