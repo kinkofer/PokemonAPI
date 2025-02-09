@@ -1,4 +1,8 @@
 ## 7.0.0
+Update for Swift 6
+
+Change PKM objects to Sendable structs
+
 Remove Cocoapods support
 
 Remove Combine and Completion methods
