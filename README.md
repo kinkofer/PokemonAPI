@@ -8,10 +8,14 @@
 
 PokemonAPI is a Swift wrapper for PokéAPI (pokeapi.co). Easily call web APIs to get info about Pokemon and the Pokemon games.
 
+```swift
+let ditto = try await PokemonAPI().pokemonService.fetchPokemon("ditto") 
+```
+
 The framework supports paginated responses, allowing you to quickly get the next results or a specific page. 
 Linked resources can quickly be turned into their associated classes via a generic `fetch(_ resource:)` function.
 
-All code is Swift native with no third party frameworks.
+All code is Swift native with no third party frameworks. Supports Swift 6 concurrancy with Sendable structs.
 
 
 
@@ -20,12 +24,8 @@ All code is Swift native with no third party frameworks.
 Use the `PokemonAPI` class to access web API classes organized by categories found on pokeapi.co (Berries, Pokemon, Games, etc.).
 
 ### Response
-All web API functions are duplicated to support two methods of receiving the response:
 
-- Escaping closures (completion handlers) with type `Result`
-- Async functions to support the async/await pattern (iOS 15, macOS 12, watchOS 8, tvOS 15)
-
-Success values from these functions contain a custom class decoded from the JSON response. The error value is custom enum type `HTTPError`.
+All web API functions support the async/await pattern (iOS 15, macOS 12, watchOS 8, tvOS 15). Success values contain a Sendable struct decoded from the JSON response. The thrown exception is a custom Error enum type `HTTPError`.
 
 ### Resources
 
