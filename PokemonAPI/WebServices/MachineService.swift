@@ -42,7 +42,7 @@ public struct MachineService: PKMMachineService, Sendable {
     /**
      Fetch Machines list
      */
-    public func fetchMachineList(paginationState: PaginationState<PKMMachine>) async throws -> PKMPagedObject<PKMMachine> {
+    public func fetchMachineList(paginationState: PaginationState<PKMMachine> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMMachine> {
         try await callPaginated(endpoint: API.fetchMachineList, paginationState: paginationState)
     }
     
