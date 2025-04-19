@@ -523,7 +523,7 @@ public struct PKMPokemonMoveVersion: Codable, SelfDecodable, Sendable {
     public let moveLearnMethod: PKMAPIResource<PKMMoveLearnMethod>?
     
     /// The version group in which the move is learned
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     /// The minimum level to learn the move.
     public let levelLearnedAt: Int?
