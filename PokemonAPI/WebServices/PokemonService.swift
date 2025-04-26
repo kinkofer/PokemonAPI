@@ -210,7 +210,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Abilities list
      */
-    public func fetchAbilityList(paginationState: PaginationState<PKMAbility>) async throws -> PKMPagedObject<PKMAbility> {
+    public func fetchAbilityList(paginationState: PaginationState<PKMAbility> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMAbility> {
         try await callPaginated(endpoint: API.fetchAbilityList, paginationState: paginationState)
     }
     
@@ -238,7 +238,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Characteristics list
      */
-    public func fetchCharacteristicList(paginationState: PaginationState<PKMCharacteristic>) async throws -> PKMPagedObject<PKMCharacteristic> {
+    public func fetchCharacteristicList(paginationState: PaginationState<PKMCharacteristic> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMCharacteristic> {
         try await callPaginated(endpoint: API.fetchCharacteristicList, paginationState: paginationState)
     }
     
@@ -256,7 +256,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Egg Group list
      */
-    public func fetchEggGroupList(paginationState: PaginationState<PKMEggGroup>) async throws -> PKMPagedObject<PKMEggGroup> {
+    public func fetchEggGroupList(paginationState: PaginationState<PKMEggGroup> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMEggGroup> {
         try await callPaginated(endpoint: API.fetchEggGroupList, paginationState: paginationState)
     }
     
@@ -284,7 +284,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Genders list
      */
-    public func fetchGenderList(paginationState: PaginationState<PKMGender>) async throws -> PKMPagedObject<PKMGender> {
+    public func fetchGenderList(paginationState: PaginationState<PKMGender> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMGender> {
         try await callPaginated(endpoint: API.fetchGenderList, paginationState: paginationState)
     }
     
@@ -312,7 +312,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Growth Rate list
      */
-    public func fetchGrowthRateList(paginationState: PaginationState<PKMGrowthRate>) async throws -> PKMPagedObject<PKMGrowthRate> {
+    public func fetchGrowthRateList(paginationState: PaginationState<PKMGrowthRate> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMGrowthRate> {
         try await callPaginated(endpoint: API.fetchGrowthRateList, paginationState: paginationState)
     }
     
@@ -340,7 +340,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Nature list
      */
-    public func fetchNatureList(paginationState: PaginationState<PKMNature>) async throws -> PKMPagedObject<PKMNature> {
+    public func fetchNatureList(paginationState: PaginationState<PKMNature> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMNature> {
         try await callPaginated(endpoint: API.fetchNatureList, paginationState: paginationState)
     }
     
@@ -368,7 +368,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Pokeathlon Stat list
      */
-    public func fetchPokeathlonStatList(paginationState: PaginationState<PKMPokeathlonStat>) async throws -> PKMPagedObject<PKMPokeathlonStat> {
+    public func fetchPokeathlonStatList(paginationState: PaginationState<PKMPokeathlonStat> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMPokeathlonStat> {
         try await callPaginated(endpoint: API.fetchPokeathlonStatList, paginationState: paginationState)
     }
     
@@ -396,7 +396,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Pokemon list
      */
-    public func fetchPokemonList(paginationState: PaginationState<PKMPokemon>) async throws -> PKMPagedObject<PKMPokemon> {
+    public func fetchPokemonList(paginationState: PaginationState<PKMPokemon> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMPokemon> {
         try await callPaginated(endpoint: API.fetchPokemonList, paginationState: paginationState)
     }
     
@@ -424,7 +424,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Pokemon Color list
      */
-    public func fetchPokemonColorList(paginationState: PaginationState<PKMPokemonColor>) async throws -> PKMPagedObject<PKMPokemonColor> {
+    public func fetchPokemonColorList(paginationState: PaginationState<PKMPokemonColor> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMPokemonColor> {
         try await callPaginated(endpoint: API.fetchPokemonColorList, paginationState: paginationState)
     }
     
@@ -452,7 +452,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Pokemon Form list
      */
-    public func fetchPokemonFormList(paginationState: PaginationState<PKMPokemonForm>) async throws -> PKMPagedObject<PKMPokemonForm> {
+    public func fetchPokemonFormList(paginationState: PaginationState<PKMPokemonForm> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMPokemonForm> {
         try await callPaginated(endpoint: API.fetchPokemonFormList, paginationState: paginationState)
     }
     
@@ -480,7 +480,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Pokemon Habitat list
      */
-    public func fetchPokemonHabitatList(paginationState: PaginationState<PKMPokemonHabitat>) async throws -> PKMPagedObject<PKMPokemonHabitat> {
+    public func fetchPokemonHabitatList(paginationState: PaginationState<PKMPokemonHabitat> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMPokemonHabitat> {
         try await callPaginated(endpoint: API.fetchPokemonHabitatList, paginationState: paginationState)
     }
     
@@ -508,7 +508,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Pokemon Shape list
      */
-    public func fetchPokemonShapeList(paginationState: PaginationState<PKMPokemonShape>) async throws -> PKMPagedObject<PKMPokemonShape> {
+    public func fetchPokemonShapeList(paginationState: PaginationState<PKMPokemonShape> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMPokemonShape> {
         try await callPaginated(endpoint: API.fetchPokemonShapeList, paginationState: paginationState)
     }
     
@@ -536,7 +536,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Pokemon Species list
      */
-    public func fetchPokemonSpeciesList(paginationState: PaginationState<PKMPokemonSpecies>) async throws -> PKMPagedObject<PKMPokemonSpecies> {
+    public func fetchPokemonSpeciesList(paginationState: PaginationState<PKMPokemonSpecies> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMPokemonSpecies> {
         try await callPaginated(endpoint: API.fetchPokemonSpeciesList, paginationState: paginationState)
     }
     
@@ -564,7 +564,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Stat list
      */
-    public func fetchStatList(paginationState: PaginationState<PKMStat>) async throws -> PKMPagedObject<PKMStat> {
+    public func fetchStatList(paginationState: PaginationState<PKMStat> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMStat> {
         try await callPaginated(endpoint: API.fetchStatList, paginationState: paginationState)
     }
     
@@ -592,7 +592,7 @@ public struct PokemonService: PKMPokemonService, Sendable {
     /**
      Fetch Type list
      */
-    public func fetchTypeList(paginationState: PaginationState<PKMType>) async throws -> PKMPagedObject<PKMType> {
+    public func fetchTypeList(paginationState: PaginationState<PKMType> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMType> {
         try await callPaginated(endpoint: API.fetchTypeList, paginationState: paginationState)
     }
     

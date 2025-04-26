@@ -74,7 +74,7 @@ public struct LocationService: PKMLocationService, Sendable {
     /**
      Fetch Locations list
      */
-    public func fetchLocationList(paginationState: PaginationState<PKMLocation>) async throws -> PKMPagedObject<PKMLocation> {
+    public func fetchLocationList(paginationState: PaginationState<PKMLocation> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMLocation> {
         try await callPaginated(endpoint: API.fetchLocationList, paginationState: paginationState)
     }
     
@@ -92,7 +92,7 @@ public struct LocationService: PKMLocationService, Sendable {
     /**
      Fetch Location Area list
      */
-    public func fetchLocationAreaList(paginationState: PaginationState<PKMLocationArea>) async throws -> PKMPagedObject<PKMLocationArea> {
+    public func fetchLocationAreaList(paginationState: PaginationState<PKMLocationArea> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMLocationArea> {
         try await callPaginated(endpoint: API.fetchLocationAreaList, paginationState: paginationState)
     }
     
@@ -110,7 +110,7 @@ public struct LocationService: PKMLocationService, Sendable {
     /**
      Fetch Pal Park Areas list
      */
-    public func fetchPalParkAreaList(paginationState: PaginationState<PKMPalParkArea>) async throws -> PKMPagedObject<PKMPalParkArea> {
+    public func fetchPalParkAreaList(paginationState: PaginationState<PKMPalParkArea> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMPalParkArea> {
         try await callPaginated(endpoint: API.fetchPalParkAreaList, paginationState: paginationState)
     }
     
@@ -138,7 +138,7 @@ public struct LocationService: PKMLocationService, Sendable {
     /**
      Fetch Regions list
      */
-    public func fetchRegionList(paginationState: PaginationState<PKMRegion>) async throws -> PKMPagedObject<PKMRegion> {
+    public func fetchRegionList(paginationState: PaginationState<PKMRegion> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMRegion> {
         try await callPaginated(endpoint: API.fetchRegionList, paginationState: paginationState)
     }
     

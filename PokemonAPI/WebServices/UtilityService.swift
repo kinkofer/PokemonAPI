@@ -46,7 +46,7 @@ public struct UtilityService: PKMUtilityService, Sendable {
     /**
      Fetch Languages list
      */
-    public func fetchLanguageList(paginationState: PaginationState<PKMLanguage>) async throws -> PKMPagedObject<PKMLanguage> {
+    public func fetchLanguageList(paginationState: PaginationState<PKMLanguage> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMLanguage> {
         try await callPaginated(endpoint: API.fetchLanuageList, paginationState: paginationState)
     }
     

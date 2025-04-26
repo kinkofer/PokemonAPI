@@ -94,7 +94,7 @@ public struct ItemService: PKMItemService, Sendable {
     /**
      Fetch Items list
      */
-    public func fetchItemList(paginationState: PaginationState<PKMItem>) async throws -> PKMPagedObject<PKMItem> {
+    public func fetchItemList(paginationState: PaginationState<PKMItem> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMItem> {
         try await callPaginated(endpoint: API.fetchItemList, paginationState: paginationState)
     }
     
@@ -122,7 +122,7 @@ public struct ItemService: PKMItemService, Sendable {
     /**
      Fetch Item Attributes list
      */
-    public func fetchItemAttributeList(paginationState: PaginationState<PKMItemAttribute>) async throws -> PKMPagedObject<PKMItemAttribute> {
+    public func fetchItemAttributeList(paginationState: PaginationState<PKMItemAttribute> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMItemAttribute> {
         try await callPaginated(endpoint: API.fetchItemAttributeList, paginationState: paginationState)
     }
     
@@ -150,7 +150,7 @@ public struct ItemService: PKMItemService, Sendable {
     /**
      Fetch Item Categories list
      */
-    public func fetchItemCategoryList(paginationState: PaginationState<PKMItemCategory>) async throws -> PKMPagedObject<PKMItemCategory> {
+    public func fetchItemCategoryList(paginationState: PaginationState<PKMItemCategory> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMItemCategory> {
         try await callPaginated(endpoint: API.fetchItemCategoryList, paginationState: paginationState)
     }
     
@@ -178,7 +178,7 @@ public struct ItemService: PKMItemService, Sendable {
     /**
      Fetch Item Fling Effects list
      */
-    public func fetchItemFlingEffectList(paginationState: PaginationState<PKMItemFlingEffect>) async throws -> PKMPagedObject<PKMItemFlingEffect> {
+    public func fetchItemFlingEffectList(paginationState: PaginationState<PKMItemFlingEffect> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMItemFlingEffect> {
         try await callPaginated(endpoint: API.fetchItemFlingEffectList, paginationState: paginationState)
     }
     
@@ -206,7 +206,7 @@ public struct ItemService: PKMItemService, Sendable {
     /**
      Fetch Item Pockets list
      */
-    public func fetchItemPocketList(paginationState: PaginationState<PKMItemPocket>) async throws -> PKMPagedObject<PKMItemPocket> {
+    public func fetchItemPocketList(paginationState: PaginationState<PKMItemPocket> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMItemPocket> {
         try await callPaginated(endpoint: API.fetchItemPocketList, paginationState: paginationState)
     }
     

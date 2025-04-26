@@ -71,7 +71,7 @@ public struct EncounterService: PKMEncounterService, Sendable {
     /**
      Fetch Encounter Methods list
      */
-    public func fetchEncounterMethodList(paginationState: PaginationState<PKMEncounterMethod>) async throws -> PKMPagedObject<PKMEncounterMethod> {
+    public func fetchEncounterMethodList(paginationState: PaginationState<PKMEncounterMethod> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMEncounterMethod> {
         try await callPaginated(endpoint: API.fetchEncounterMethodList, paginationState: paginationState)
     }
     
@@ -99,7 +99,7 @@ public struct EncounterService: PKMEncounterService, Sendable {
     /**
      Fetch Encounter Conditions list
      */
-    public func fetchEncounterConditionList(paginationState: PaginationState<PKMEncounterCondition>) async throws -> PKMPagedObject<PKMEncounterCondition> {
+    public func fetchEncounterConditionList(paginationState: PaginationState<PKMEncounterCondition> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMEncounterCondition> {
         try await callPaginated(endpoint: API.fetchEncounterConditionList, paginationState: paginationState)
     }
     
@@ -127,7 +127,7 @@ public struct EncounterService: PKMEncounterService, Sendable {
     /**
      Fetch Encounter Condition Values list
      */
-    public func fetchEncounterConditionValueList(paginationState: PaginationState<PKMEncounterConditionValue>) async throws -> PKMPagedObject<PKMEncounterConditionValue> {
+    public func fetchEncounterConditionValueList(paginationState: PaginationState<PKMEncounterConditionValue> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMEncounterConditionValue> {
         try await callPaginated(endpoint: API.fetchEncounterConditionValueList, paginationState: paginationState)
     }
     
