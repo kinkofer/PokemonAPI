@@ -50,6 +50,9 @@ public struct PKMMove: Codable, SelfDecodable, Sendable {
     /// The list of previous effects this move has had across version groups of the games
     public let effectChanges: [PKMAbilityEffectChange]?
     
+    /// List of Pokemon that can learn the move
+    public let learnedByPokemon: [PKMAPIResource<PKMPokemon>]?
+    
     /// The flavor text of this move listed in different languages
     public let flavorTextEntries: [PKMMoveFlavorText]?
     
