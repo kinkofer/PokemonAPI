@@ -120,6 +120,9 @@ public struct PKMCharacteristic: Codable, SelfDecodable, Sendable {
     /// The possible values of the highest stat that would result in a Pokémon recieving this characteristic when divided by 5
     public let possibleValues: [Int]?
     
+    /// The stat which results in this characteristic.
+    public let highestStat: PKMAPIResource<PKMStat>?
+    
     /// The descriptions of this characteristic listed in different languages
     public let descriptions: [PKMDescription]?
     
@@ -420,11 +423,20 @@ public struct PKMPokemon: Codable, SelfDecodable, Sendable {
     /// A list of moves along with learn methods and level details pertaining to specific version groups
     public let moves: [PKMPokemonMove]?
     
+    /// A list of details showing types this pokémon had in previous generations
+    public let pastTypes: [PKMPokemonTypePast]
+    
+    /// A list of details showing abilities this pokémon had in previous generations
+    public let pastAbilities: [PKMPokemonAbilityPast]
+    
     /// A set of sprites used to depict this Pokémon in the game
     public let sprites: PKMPokemonSprites?
     
     /// The species this Pokémon belongs to
     public let species: PKMAPIResource<PKMPokemonSpecies>?
+    
+    /// A set of cries used to depict this Pokémon in the game.
+    public let cries: PKMPokemonCries?
     
     /// A list of base stat values for this Pokémon
     public let stats: [PKMPokemonStat]?
@@ -468,6 +480,39 @@ public struct PKMPokemonType: Codable, Sendable {
     
     /// The type the referenced Pokémon has
     public let type: PKMAPIResource<PKMType>?
+}
+
+
+/// Pokemon Form Type
+public struct PKMPokemonFormType: Codable, Sendable {
+    
+    /// The order the Pokémon's types are listed in
+    public let slot: Int?
+    
+    /// The type the referenced Form has.
+    public let type: PKMAPIResource<PKMType>?
+}
+
+
+/// Pokemon Type Past
+public struct PKMPokemonTypePast: Codable, Sendable {
+    
+    /// The item the referenced Pokémon holds.
+    public let item: PKMAPIResource<PKMItem>?
+    
+    /// The details of the different versions in which the item is held.
+    public let versionDetails: [PKMPokemonHeldItemVersion]?
+}
+
+
+/// Pokemon Ability Past
+public struct PKMPokemonAbilityPast: Codable, Sendable {
+    
+    /// The last generation in which the referenced pokémon had the listed abilities.
+    public let generation: PKMAPIResource<PKMGeneration>?
+    
+    /// The abilities the referenced pokémon had up to and including the listed generation. If null, the slot was previously empty.
+    public let ability: [PKMAbility]?
 }
 
 
@@ -528,6 +573,9 @@ public struct PKMPokemonMoveVersion: Codable, SelfDecodable, Sendable {
     /// The minimum level to learn the move.
     public let levelLearnedAt: Int?
     
+    /// Order by which the pokemon will learn the move. A newly learnt move will replace the move with lowest order.
+    public let order: Int?
+    
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -555,6 +603,20 @@ public struct PKMPokemonStat: Codable, SelfDecodable, Sendable {
     }()
 }
 
+
+/// Pokemon Cries
+public struct PKMPokemonCries: Codable, Sendable {
+    
+    /// The latest depiction of this Pokémon's cry.
+    public let latest: String?
+    
+    /// The legacy depiction of this Pokémon's cry.
+    public let legacy: String?
+}
+
+
+
+// MARK: - Pokemon Sprites
 
 /// Pokemon Sprites
 public struct PKMPokemonSprites: Codable, SelfDecodable, Sendable {
@@ -749,6 +811,9 @@ public struct PKMPokemonSpritesVersionsGeneration9: Codable, Sendable {
 }
 
 
+
+// MARK: - Pokemon Location Areas
+
 /// Location Area Encounter
 public struct PKMLocationAreaEncounter: Codable, SelfDecodable, Sendable {
     
@@ -824,6 +889,9 @@ public struct PKMPokemonForm: Codable, SelfDecodable, Sendable {
     
     /// The Pokémon that can take on this form
     public let pokemon: PKMAPIResource<PKMPokemon>?
+    
+    /// A list of details showing types this  Pokémon form has.
+    public let types: [PKMPokemonFormType]?
     
     /// A set of sprites used to depict this Pokémon form in the game
     public let sprites: PKMPokemonFormSprites?
@@ -966,6 +1034,12 @@ public struct PKMPokemonSpecies: Codable, SelfDecodable, Sendable {
     
     /// Whether or not this is a baby Pokémon
     public let isBaby: Bool?
+    
+    /// Whether or not this is a legendary Pokémon.
+    public let isLegendary: Bool?
+    
+    /// Whether or not this is a mythical Pokémon.
+    public let isMythical: Bool?
     
     /// Initial hatch counter: one must walk 255 × (hatch_counter + 1) steps before this Pokémon's egg hatches, unless utilizing bonuses like Flame Body's
     public let hatchCounter: Int?
@@ -1189,6 +1263,9 @@ public struct PKMType: Codable, SelfDecodable, Sendable {
     /// A detail of how effective this type is toward others and vice versa
     public let damageRelations: PKMTypeRelations?
     
+    /// A list of details of how effective this type was toward others and vice versa in previous generations
+    public let pastDamageRelations: [PKMTypeRelationsPast]?
+    
     /// A list of game indices relevent to this item by generation
     public let gameIndices: [PKMGenerationGameIndex]?
     
@@ -1246,6 +1323,23 @@ public struct PKMTypeRelations: Codable, SelfDecodable, Sendable {
     
     /// A list of types that are very effective against this type
     public let doubleDamageFrom: [PKMAPIResource<PKMType>]?
+    
+    public static let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+}
+
+
+/// Pokemon Type Relations Past
+public struct PKMTypeRelationsPast: Codable, SelfDecodable, Sendable {
+    
+    /// The last generation in which the referenced type had the listed damage relations
+    public let generation: PKMAPIResource<PKMGeneration>?
+    
+    /// The damage relations the referenced type had up to and including the listed generation
+    public let damageRelations: PKMTypeRelations?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()

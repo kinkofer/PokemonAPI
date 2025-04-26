@@ -83,8 +83,7 @@ public struct GameService: PKMGameService, Sendable {
     /**
      Fetch Generations list
      */
-    @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-    public func fetchGenerationList(paginationState: PaginationState<PKMGeneration>) async throws -> PKMPagedObject<PKMGeneration> {
+    public func fetchGenerationList(paginationState: PaginationState<PKMGeneration> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMGeneration> {
         try await callPaginated(endpoint: API.fetchGenerationList, paginationState: paginationState)
     }
     
@@ -112,7 +111,7 @@ public struct GameService: PKMGameService, Sendable {
     /**
      Fetch Pokedex list
      */
-    public func fetchPokedexList(paginationState: PaginationState<PKMPokedex>) async throws -> PKMPagedObject<PKMPokedex> {
+    public func fetchPokedexList(paginationState: PaginationState<PKMPokedex> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMPokedex> {
         try await callPaginated(endpoint: API.fetchPokedexList, paginationState: paginationState)
     }
     
@@ -140,7 +139,7 @@ public struct GameService: PKMGameService, Sendable {
     /**
      Fetch Versions list
      */
-    public func fetchVersionList(paginationState: PaginationState<PKMVersion>) async throws -> PKMPagedObject<PKMVersion> {
+    public func fetchVersionList(paginationState: PaginationState<PKMVersion> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMVersion> {
         try await callPaginated(endpoint: API.fetchVersionList, paginationState: paginationState)
     }
     
@@ -168,7 +167,7 @@ public struct GameService: PKMGameService, Sendable {
     /**
      Fetch Versions Groups list
      */
-    public func fetchVersionGroupList(paginationState: PaginationState<PKMVersionGroup>) async throws -> PKMPagedObject<PKMVersionGroup> {
+    public func fetchVersionGroupList(paginationState: PaginationState<PKMVersionGroup> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMVersionGroup> {
         try await callPaginated(endpoint: API.fetchVersionGroupList, paginationState: paginationState)
     }
     

@@ -118,7 +118,7 @@ public struct MoveService: PKMMoveService, Sendable {
     /**
      Fetch Moves list
      */
-    public func fetchMoveList(paginationState: PaginationState<PKMMove>) async throws -> PKMPagedObject<PKMMove> {
+    public func fetchMoveList(paginationState: PaginationState<PKMMove> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMMove> {
         try await callPaginated(endpoint: API.fetchMoveList, paginationState: paginationState)
     }
     
@@ -146,7 +146,7 @@ public struct MoveService: PKMMoveService, Sendable {
     /**
      Fetch Moves Ailments list
      */
-    public func fetchMoveAilmentList(paginationState: PaginationState<PKMMoveAilment>) async throws -> PKMPagedObject<PKMMoveAilment> {
+    public func fetchMoveAilmentList(paginationState: PaginationState<PKMMoveAilment> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMMoveAilment> {
         try await callPaginated(endpoint: API.fetchMoveAilmentList, paginationState: paginationState)
     }
     
@@ -174,7 +174,7 @@ public struct MoveService: PKMMoveService, Sendable {
     /**
      Fetch Moves Battle Styles list
      */
-    public func fetchMoveBattleStyleList(paginationState: PaginationState<PKMMoveBattleStyle>) async throws -> PKMPagedObject<PKMMoveBattleStyle> {
+    public func fetchMoveBattleStyleList(paginationState: PaginationState<PKMMoveBattleStyle> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMMoveBattleStyle> {
         try await callPaginated(endpoint: API.fetchMoveBattleStyleList, paginationState: paginationState)
     }
     
@@ -202,7 +202,7 @@ public struct MoveService: PKMMoveService, Sendable {
     /**
      Fetch Moves Categories list
      */
-    public func fetchMoveCategoryList(paginationState: PaginationState<PKMMoveCategory>) async throws -> PKMPagedObject<PKMMoveCategory> {
+    public func fetchMoveCategoryList(paginationState: PaginationState<PKMMoveCategory> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMMoveCategory> {
         try await callPaginated(endpoint: API.fetchMoveCategoryList, paginationState: paginationState)
     }
     
@@ -230,7 +230,7 @@ public struct MoveService: PKMMoveService, Sendable {
     /**
      Fetch Moves Damage Classes list
      */
-    public func fetchMoveDamageClassList(paginationState: PaginationState<PKMMoveDamageClass>) async throws -> PKMPagedObject<PKMMoveDamageClass> {
+    public func fetchMoveDamageClassList(paginationState: PaginationState<PKMMoveDamageClass> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMMoveDamageClass> {
         try await callPaginated(endpoint: API.fetchMoveDamageClassList, paginationState: paginationState)
     }
     
@@ -258,7 +258,7 @@ public struct MoveService: PKMMoveService, Sendable {
     /**
      Fetch Moves Learn Methods list
      */
-    public func fetchMoveLearnMethodList(paginationState: PaginationState<PKMMoveLearnMethod>) async throws -> PKMPagedObject<PKMMoveLearnMethod> {
+    public func fetchMoveLearnMethodList(paginationState: PaginationState<PKMMoveLearnMethod> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMMoveLearnMethod> {
         try await callPaginated(endpoint: API.fetchMoveLearnMethodList, paginationState: paginationState)
     }
     
@@ -286,7 +286,7 @@ public struct MoveService: PKMMoveService, Sendable {
     /**
      Fetch Moves Targets list
      */
-    public func fetchMoveTargetList(paginationState: PaginationState<PKMMoveTarget>) async throws -> PKMPagedObject<PKMMoveTarget> {
+    public func fetchMoveTargetList(paginationState: PaginationState<PKMMoveTarget> = .initial(pageLimit: 20)) async throws -> PKMPagedObject<PKMMoveTarget> {
         try await callPaginated(endpoint: API.fetchMoveTargetList, paginationState: paginationState)
     }
     

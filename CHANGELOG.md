@@ -1,3 +1,9 @@
+## 7.0.1
+Update models with newer properties
+
+Change PokemonAPI Services from `lazy` to `let` properties to better support Sendable
+
+
 ## 7.0.0
 Update for Swift 6
 
@@ -12,6 +18,7 @@ Add additional Pokemon Sprite properties that are unlisted in the documentation
 Fix various typos and incorrect properties
 
 Update tests
+
 
 ## 6.1.1
 Fix Pokedex async endpoints
