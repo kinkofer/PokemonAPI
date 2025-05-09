@@ -129,7 +129,7 @@ public struct PKMMoveFlavorText: Codable, SelfDecodable, Sendable {
     public let language: PKMAPIResource<PKMLanguage>?
     
     /// The version group that uses this flavor text
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -219,7 +219,7 @@ public struct PKMPastMoveStatValues: Codable, SelfDecodable, Sendable {
     public let type: PKMAPIResource<PKMType>?
     
     /// The version group in which these move stat values were in effect
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
