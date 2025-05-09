@@ -75,7 +75,7 @@ public struct PKMAbilityFlavorText: Codable, SelfDecodable, Sendable {
     public let language: PKMAPIResource<PKMLanguage>?
     
     /// The language this name is in
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
