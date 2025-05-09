@@ -128,7 +128,7 @@ public struct PKMMachineVersionDetail: Codable, SelfDecodable, Sendable {
     public let machine: PKMAPIResource<PKMMachine>?
     
     /// The version group of this specific machine
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -216,7 +216,7 @@ public struct PKMVersionGroupFlavorText: Codable, SelfDecodable, Sendable {
     public let language: PKMAPIResource<PKMLanguage>?
     
     /// The version group which uses this flavor text
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
