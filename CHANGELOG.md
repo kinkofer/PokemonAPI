@@ -1,3 +1,6 @@
+## 7.0.2
+Fix property types
+
 ## 7.0.1
 Update models with newer properties
 
