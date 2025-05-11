@@ -129,7 +129,7 @@ public struct PKMMoveFlavorText: Codable, SelfDecodable, Sendable {
     public let language: PKMAPIResource<PKMLanguage>?
     
     /// The version group that uses this flavor text
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -146,7 +146,7 @@ public struct PKMMoveMetaData: Codable, SelfDecodable, Sendable {
     public let ailment: PKMAPIResource<PKMMoveAilment>?
     
     /// The category of move this move falls under, e.g. damage or ailment
-    public let category: PKMAPIResource<PKMMove>?
+    public let category: PKMAPIResource<PKMMoveCategory>?
     
     /// The minimum number of times this move hits. Null if it always only hits once.
     public let minHits: Int?
@@ -219,7 +219,7 @@ public struct PKMPastMoveStatValues: Codable, SelfDecodable, Sendable {
     public let type: PKMAPIResource<PKMType>?
     
     /// The version group in which these move stat values were in effect
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()

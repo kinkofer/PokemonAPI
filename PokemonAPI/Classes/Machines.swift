@@ -19,7 +19,7 @@ public struct PKMMachine: Codable, SelfDecodable, Sendable {
     public let move: PKMAPIResource<PKMMove>?
     
     /// The version group that this machine applies to
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()

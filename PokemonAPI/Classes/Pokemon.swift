@@ -55,7 +55,7 @@ public struct PKMAbilityEffectChange: Codable, SelfDecodable, Sendable {
     public let effectEntries: [PKMEffect]?
     
     /// The version group in which the previous effect of this ability originated
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -75,7 +75,7 @@ public struct PKMAbilityFlavorText: Codable, SelfDecodable, Sendable {
     public let language: PKMAPIResource<PKMLanguage>?
     
     /// The language this name is in
-    public let versionGroup: PKMAPIResource<PKMVersion>?
+    public let versionGroup: PKMAPIResource<PKMVersionGroup>?
     
     public static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
