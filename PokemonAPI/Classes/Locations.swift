@@ -132,7 +132,7 @@ public struct PKMPalParkArea: Codable, SelfDecodable, Sendable {
     /// The name of this pal park area listed in different languages
     public let names: [PKMName]?
     
-    /// A list of Pokémon encountered in thi pal park area along with details
+    /// A list of Pokémon encountered in this pal park area along with details
     public let pokemonEncounters: [PKMPalParkEncounterSpecies]?
     
     public static let decoder: JSONDecoder = {
