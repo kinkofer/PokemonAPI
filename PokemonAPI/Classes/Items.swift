@@ -75,7 +75,7 @@ public struct PKMItemSprites: Codable, Sendable {
 public struct PKMItemHolderPokemon: Codable, SelfDecodable, Sendable {
     
     /// The Pokémon that holds this item
-    public let pokemon: String?
+    public let pokemon: PKMAPIResource<PKMPokemon>?
     
     /// The details for the version that this item is held in by the Pokémon
     public let versionDetails: [PKMItemHolderPokemonVersionDetail]?
