@@ -30,7 +30,7 @@ public struct PKMItem: Codable, SelfDecodable, Sendable {
     public let attributes: [PKMAPIResource<PKMItemAttribute>]?
     
     /// The category of items this item falls into
-    public let category: PKMItemCategory?
+    public let category: PKMAPIResource<PKMItemCategory>?
     
     /// The effect of this ability listed in different languages
     public let effectEntries: [PKMVerboseEffect]?
