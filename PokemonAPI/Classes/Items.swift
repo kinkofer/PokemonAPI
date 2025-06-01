@@ -30,7 +30,7 @@ public struct PKMItem: Codable, SelfDecodable, Sendable {
     public let attributes: [PKMAPIResource<PKMItemAttribute>]?
     
     /// The category of items this item falls into
-    public let category: PKMItemCategory?
+    public let category: PKMAPIResource<PKMItemCategory>?
     
     /// The effect of this ability listed in different languages
     public let effectEntries: [PKMVerboseEffect]?
@@ -75,7 +75,7 @@ public struct PKMItemSprites: Codable, Sendable {
 public struct PKMItemHolderPokemon: Codable, SelfDecodable, Sendable {
     
     /// The Pokémon that holds this item
-    public let pokemon: String?
+    public let pokemon: PKMAPIResource<PKMPokemon>?
     
     /// The details for the version that this item is held in by the Pokémon
     public let versionDetails: [PKMItemHolderPokemonVersionDetail]?
